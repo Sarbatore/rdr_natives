@@ -13,27 +13,32 @@ I hope you guys will participate to this repository. In order to maintain optima
 - Function name must be the LUA equivalent of the C function name or you invent a name for those who are unknown
 - Comment on the functions (short description, parameters and return value)
 
-## Working functions list
-|-- Audio
-| GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine)
-| PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine)
-| PlayAmbientSpeechFromPosition(x, y, z, soundRef, soundName, speechParams, speechLine)
+## Functions list:
+Audio |
+-- |
+GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine)
+PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine)
+PlayAmbientSpeechFromPosition(x, y, z, soundRef, soundName, speechParams, speechLine)
 
-|-- Inventory
-| InventoryGetGuidFromItemid(guid, item, slotId)
-| GetCharacterInventoryGuid()
-| GetWardrobeInventoryGuid()
-| GetWeaponInventoryGuid()
-| GetWeaponStatsGuid(weapon)
-| InventoryGetInventoryItemInspectionInfo(item)
+Inventory |
+-- |
+InventoryGetGuidFromItemid(guid, item, slotId)
+GetCharacterInventoryGuid()
+GetWardrobeInventoryGuid()
+GetWeaponInventoryGuid()
+GetWeaponStatsGuid(weapon)
+InventoryGetInventoryItemInspectionInfo(item)
 
-|-- Itemdatabase
-| ItemdatabaseFilloutItemEffectIdInfo(effectId)
-| ItemdatabaseFilloutItemEffectIds(key)
-| ItemdatabaseFilloutItemInfo(key)
+Itemdatabase |
+-- |
+ItemdatabaseFilloutItemEffectIdInfo(effectId)
+ItemdatabaseFilloutItemEffectIds(key)
+ItemdatabaseFilloutItemInfo(key)
 
-|-- Task
-| GetScenarioPointsInArea(x, y, z, radius, size)
+Task |
+-- |
+GetScenarioPointsInArea(x, y, z, radius, size)
 
-|-- Uievents
-| EventsUiPeekMessage(uiapp)
+Uievents |
+-- |
+EventsUiPeekMessage(uiapp)
