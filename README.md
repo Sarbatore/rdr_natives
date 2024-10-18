@@ -24,48 +24,79 @@ I hope you guys will participate to this repository. In order to maintain optima
 - Function name must be the LUA equivalent of the C function name or you invent a name for those who are unknown
 - Comment on the functions (short description, parameters and return value)
 
-## Working functions list
+## References:
 Audio |
 -- |
+CanPedSaySpeech(ped, soundName, speechParams, speechLine)
+GetLastAmbientSpeechHash(ped)
+GetCurrentAmbientSpeechHash(ped)
 GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine)
 PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine)
 PlayAmbientSpeechFromPosition(x, y, z, soundRef, soundName, speechParams, speechLine)
 
+Cam |
+-- |
+SetCameraGroundLevelZoom(zoom)
+SetCameraClosestZoom()
+
+Hud |
+-- |
+GetWeaponWheelHighlightedWeaponHash()
+
 Inventory |
 -- |
 InventoryGetGuidFromItemid(guid, item, slotId)
-GetCharacterInventoryGuid()
-GetWardrobeInventoryGuid()
-GetWeaponInventoryGuid()
-GetWeaponStatsGuid(weapon)
 InventoryGetInventoryItemInspectionInfo(item)
-Inventory |
--- |
-InventoryGetGuidFromItemid(guid, item, slotId)
-GetCharacterInventoryGuid()
-GetWardrobeInventoryGuid()
-GetWeaponInventoryGuid()
-GetWeaponStatsGuid(weapon)
-InventoryGetInventoryItemInspectionInfo(item)
+GetContainerEffectsEntryId(entryId, name, p2, p3)
+GetContainerStatsEntryId(entryId, name, p2, playerId)
+ApplyPedWeaponStatsToStatsEntryId(entryId, weapon, ped)
 
 Itemdatabase |
 -- |
 ItemdatabaseFilloutItemEffectIdInfo(effectId)
 ItemdatabaseFilloutItemEffectIds(key)
 ItemdatabaseFilloutItemInfo(key)
-Itemdatabase |
+
+Map |
 -- |
-ItemdatabaseFilloutItemEffectIdInfo(effectId)
-ItemdatabaseFilloutItemEffectIds(key)
-ItemdatabaseFilloutItemInfo(key)
+SetBlipIconLockonEntityPrompt(entity, blipHash)
+ClearExistingBlipFromLockonEntityPrompt(entity, blipId)
+SetExistingBlipLockonEntityPrompt(entity, blipId)
+
+Player |
+-- |
+HasPlayerDamagedRecentlyAttackedPed(player, duration)
+GetRecentlyAttackedPedsInCombo(player, duration, size)
+SpecialAbilitySetActivate(player)
+SetPlayerPickupPromptVisible(player, isVisible)
+SetPlayerHatAccess(player, flag, allow)
+SetPlayerAimWeapon(player, weaponHash, attachSlotId)
+SetPlayerSurrenderPromptThisFrame(player, targetPed, promptOrder, unknownFlag)
+DisablePlayerInteractiveFocusPreset(player, name)
+SetPlayerWeaponDrawSpeed(player, weapon, speed)
+AddPlayerInteractiveFocusPreset(player, ped, preset, x, y, z, targetEntity, name)
+EagleEyeGetTrackedPedId(player)
+EagleEyeAreAllTrailsHidden(player)
+EagleEyeSetHideAllTrails(player, hideTrails)
+GetNumDeadEyeMarksOnPed(player, ped)
+CanPlayerFocusOnTrackInEagleEye(player)
+SetDeadEyeEntityGlowIntensityWithFlag(player, param2, param3, param4, glowIntensity, flag)
+SetDeadEyeEntityGlowWithFlag(player, flag)
+EagleEyeSetSprintBehavior(player, disableSprint)
+SetPlayerMeleePromptText(player, promptText)
+SetPlayerLeavePromptText(player, promptText)
+SetPlayerSitPromptText(player, promptText)
 
 Task |
--- |
+-- 
 GetScenarioPointsInArea(x, y, z, radius, size)
-Task |
--- |
-GetScenarioPointsInArea(x, y, z, radius, size)
+LoadCarriableConfigHash(carryConfigHash)
+HasCarriableConfigHashLoaded(carryConfigHash)
 
 Uievents |
 -- |
 EventsUiPeekMessage(uiapp)
+
+Vehicle |
+-- |
+GetTrainTrackInfos(train)
