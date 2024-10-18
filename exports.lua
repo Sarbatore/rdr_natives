@@ -38,6 +38,9 @@ else
     exports("SetExistingBlipLockonEntityPrompt", SetExistingBlipLockonEntityPrompt)
 
     -- Ped
+    exports("ApplyPedDamagePackToBone", ApplyPedDamagePackToBone)
+    exports("ApplyColdToPed", ApplyColdToPed)
+    exports("HasPedBeenShotByPlayerRecently", HasPedBeenShotByPlayerRecently)
 
     -- Player
     exports("AddPlayerInteractiveFocusPreset", AddPlayerInteractiveFocusPreset)
@@ -73,4 +76,7 @@ else
 
     -- Vehicle
     exports("GetTrainTrackInfos", GetTrainTrackInfos)
+
+    -- Weapon
+    exports("IsWeaponCloseRange", IsWeaponCloseRange)
 end
