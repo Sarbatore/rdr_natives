@@ -35,3 +35,10 @@ end
 function GetNumReservedStamina(ped)
     return Citizen.InvokeNative(0xFC3B580C4380B5B7, ped)
 end
+
+---Returns the number of peds that were restrained with the weapon thrown bolas. [@outsider]
+---@param ped number
+---@return number
+function GetNumPedsRestrainedFromWeaponBolas(ped)
+    return Citizen.InvokeNative(0x46D42883E873C1D7, ped)
+end

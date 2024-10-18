@@ -13,6 +13,10 @@ else
     exports("SetCameraClosestZoom", SetCameraClosestZoom)
     exports("SetCameraGroundLevelZoom", SetCameraGroundLevelZoom)
 
+    -- Fire
+    exports("AddExplosionWithDamageCauser", AddExplosionWithDamageCauser)
+    exports("AddExplosionWithUserVfxAndDamageCauser", AddExplosionWithUserVfxAndDamageCauser)
+
     -- HUD
     exports("GetWeaponWheelHighlightedWeaponHash", GetWeaponWheelHighlightedWeaponHash)
 
@@ -80,6 +84,7 @@ else
     exports("GetTrainTrackInfos", GetTrainTrackInfos)
 
     -- Weapon
+    exports("GetNumPedsRestrainedFromWeaponBolas", GetNumPedsRestrainedFromWeaponBolas)
     exports("GetWeaponHashFromPedWeapon", GetWeaponHashFromPedWeapon)
     exports("IsWeaponCloseRange", IsWeaponCloseRange)
     exports("SetPedWeaponOnBack", SetPedWeaponOnBack)

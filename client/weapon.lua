@@ -7,7 +7,7 @@ end
 
 ---Holster the holded shoulder weapon. Precisions: 0 means with anim while 1 means direct holster [@sarbatore]
 ---@param ped number
----@param disableAnim number
+---@param disableAnim boolean
 function SetPedWeaponOnBack(ped, disableAnim)
     Citizen.InvokeNative(0x4820A6939D7CEF28, ped, disableAnim)
 end
