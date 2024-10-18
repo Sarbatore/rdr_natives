@@ -39,13 +39,29 @@ GetWardrobeInventoryGuid()
 GetWeaponInventoryGuid()
 GetWeaponStatsGuid(weapon)
 InventoryGetInventoryItemInspectionInfo(item)
+Inventory |
+-- |
+InventoryGetGuidFromItemid(guid, item, slotId)
+GetCharacterInventoryGuid()
+GetWardrobeInventoryGuid()
+GetWeaponInventoryGuid()
+GetWeaponStatsGuid(weapon)
+InventoryGetInventoryItemInspectionInfo(item)
 
 Itemdatabase |
 -- |
 ItemdatabaseFilloutItemEffectIdInfo(effectId)
 ItemdatabaseFilloutItemEffectIds(key)
 ItemdatabaseFilloutItemInfo(key)
+Itemdatabase |
+-- |
+ItemdatabaseFilloutItemEffectIdInfo(effectId)
+ItemdatabaseFilloutItemEffectIds(key)
+ItemdatabaseFilloutItemInfo(key)
 
+Task |
+-- |
+GetScenarioPointsInArea(x, y, z, radius, size)
 Task |
 -- |
 GetScenarioPointsInArea(x, y, z, radius, size)
