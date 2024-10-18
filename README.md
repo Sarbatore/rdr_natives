@@ -88,7 +88,7 @@ SetPlayerLeavePromptText(player, promptText)
 SetPlayerSitPromptText(player, promptText)
 
 Task |
--- 
+-- |
 GetScenarioPointsInArea(x, y, z, radius, size)
 LoadCarriableConfigHash(carryConfigHash)
 HasCarriableConfigHashLoaded(carryConfigHash)
