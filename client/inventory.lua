@@ -63,7 +63,7 @@ function InventoryGetInventoryItemInspectionInfo(item)
     return false
 end
 
---- Returns the effects entry id for "CatalogItemInspection" container
+--- Returns the effects entry id for "CatalogItemInspection" container [@sarbatore]
 ---@param entryId number
 ---@param name string
 ---@param p2 boolean
@@ -73,7 +73,7 @@ function InventoryGetCatalogItemInspectionEffectsEntry(entryId, name, p2, p3)
     return Citizen.InvokeNative(0x9D21B185ABC2DBC4, entryId, name, p1, p2)
 end
 
---- Returns the stats entry id for "CatalogItemInspection" container
+--- Returns the stats entry id for "CatalogItemInspection" container [@sarbatore]
 ---@param entryId number
 ---@param name string
 ---@param p2 number
@@ -83,7 +83,7 @@ function InventoryGetCatalogItemInspectionStatsEntry(entryId, name, p2, playerId
     return Citizen.InvokeNative(0x9D21B185ABC2DBC5, entryId, name, p2, playerId)
 end
 
---- Applies the weapon stats to the stats entry id
+--- Applies the weapon stats to the stats entry id [@sarbatore]
 ---@param entryId number
 ---@param weapon hash
 ---@param ped Ped

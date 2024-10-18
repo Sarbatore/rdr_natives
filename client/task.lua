@@ -21,13 +21,13 @@ function GetScenarioPointsInArea(x, y, z, radius, size)
     return false
 end
 
----Loads the carryable config hash
+---Loads the carryable config hash [@outsider]
 ---@param carryConfigHash number
 function LoadCarriableConfigHash(carryConfigHash)
     Citizen.InvokeNative(0xFF745B0346E19E2C, carryConfigHash)
 end
 
----Checks if the carryable config hash has been loaded
+---Checks if the carryable config hash has been loaded [@outsider]
 ---@param carryConfigHash number
 ---@return boolean
 function HasCarriableConfigHashLoaded(carryConfigHash)
