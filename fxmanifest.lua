@@ -4,12 +4,9 @@ rdr3_warning "I acknowledge that this is a prerelease build of RedM, and I am aw
 lua54 "yes"
 author "Sarbatore"
 
-shared_scripts {
-	"exports.lua",
-}
-
 client_scripts {
 	"@vorp_utils/shared/services/dataview.lua", -- Your dataview path
 	"client/*.lua",
 	"cl_examples.lua",
+	"exports.lua",
 }

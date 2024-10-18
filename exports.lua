@@ -7,12 +7,15 @@ else
     exports("PlayAmbientSpeechFromPosition", PlayAmbientSpeechFromPosition)
 
     -- Inventory
-    exports("InventoryGetGuidFromItemid", InventoryGetGuidFromItemid)
-    exports("InventoryGetInventoryItemInspectionInfo", InventoryGetInventoryItemInspectionInfo)
+    exports("ApplyPedWeaponStatsToStatsEntryId", ApplyPedWeaponStatsToStatsEntryId)
+    exports("GetContainerEffectsEntryId", GetContainerEffectsEntryId)
+    exports("GetContainerStatsEntryId", GetContainerStatsEntryId)
     exports("GetCharacterInventoryGuid", GetCharacterInventoryGuid) -- Not a native
     exports("GetWardrobeInventoryGuid", GetWardrobeInventoryGuid) -- Not a native
     exports("GetWeaponInventoryGuid", GetWeaponInventoryGuid) -- Not a native
     exports("GetWeaponStatsGuid", GetWeaponStatsGuid) -- Not a native
+    exports("InventoryGetGuidFromItemid", InventoryGetGuidFromItemid)
+    exports("InventoryGetInventoryItemInspectionInfo", InventoryGetInventoryItemInspectionInfo)
 
     -- Itemdatabase
     exports("ItemdatabaseFilloutItemEffectIdInfo", ItemdatabaseFilloutItemEffectIdInfo)
