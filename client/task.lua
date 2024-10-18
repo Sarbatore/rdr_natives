@@ -33,3 +33,17 @@ end
 function HasCarriableConfigHashLoaded(carryConfigHash)
     return Citizen.InvokeNative(0xB8F52A3F84A7CC59, carryConfigHash)
 end
+
+---Returns the entity coverpoint with offset [@sarbatore]
+---@param entity number
+---@param xOffset number
+---@param yOffset number
+---@param zOffset number
+---@param heading number
+---@param p5 number
+---@param p6 number
+---@param p7 number
+---@param p8 number
+function GetCoverpointFromEntityWithOffset(entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8)
+    return Citizen.InvokeNative(0x59872EA4CBD11C56, entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8)
+end

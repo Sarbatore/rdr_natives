@@ -28,3 +28,10 @@ end
 function ApplyColdToPed(ped, intensity, p2)
     Citizen.InvokeNative(0x1F8215D0E446F593, ped, intensity, p2)
 end
+
+---Returns the number of reserved stamina. [@outsider]
+---@param ped number
+---@return number
+function GetNumReservedStamina(ped)
+    return Citizen.InvokeNative(0xFC3B580C4380B5B7, ped)
+end

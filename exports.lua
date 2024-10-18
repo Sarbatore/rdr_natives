@@ -40,6 +40,7 @@ else
     -- Ped
     exports("ApplyPedDamagePackToBone", ApplyPedDamagePackToBone)
     exports("ApplyColdToPed", ApplyColdToPed)
+    exports("GetNumReservedStamina", GetNumReservedStamina)
     exports("HasPedBeenShotByPlayerRecently", HasPedBeenShotByPlayerRecently)
 
     -- Player
@@ -67,6 +68,7 @@ else
     exports("SpecialAbilitySetActivate", SpecialAbilitySetActivate)
 
     -- Task
+    exports("GetCoverpointFromEntityWithOffset", GetCoverpointFromEntityWithOffset)
     exports("GetScenarioPointsInArea", GetScenarioPointsInArea)
     exports("LoadCarriableConfigHash", LoadCarriableConfigHash)
     exports("HasCarriableConfigHashLoaded", HasCarriableConfigHashLoaded)
@@ -78,5 +80,7 @@ else
     exports("GetTrainTrackInfos", GetTrainTrackInfos)
 
     -- Weapon
+    exports("GetWeaponHashFromPedWeapon", GetWeaponHashFromPedWeapon)
     exports("IsWeaponCloseRange", IsWeaponCloseRange)
+    exports("SetPedWeaponOnBack", SetPedWeaponOnBack)
 end
