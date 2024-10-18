@@ -19,4 +19,3 @@ function EventsUiPeekMessage(uiapp)
 
     return false
 end
-exports("EventsUiPeekMessage", EventsUiPeekMessage)

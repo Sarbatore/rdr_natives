@@ -16,7 +16,6 @@ function GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechL
 
     return DataStruct:Buffer()
 end
-exports("GetAmbientSpeechParamsBuffer", GetAmbientSpeechParamsBuffer)
 
 --- Play an ambient speech from a ped
 ---@param ped number
@@ -29,7 +28,6 @@ function PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine
     local params = exports.redm_natives:GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine)
     return Citizen.InvokeNative(0x8E04FEDD28D42462, ped, params)
 end
-exports("PlayPedAmbientSpeech", PlayPedAmbientSpeech)
 
 --- Play an ambient speech from a position
 ---@param x number
@@ -43,4 +41,3 @@ function PlayAmbientSpeechFromPosition(x, y, z, soundRef, soundName, speechParam
     local params = exports.redm_natives:GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine)
     return Citizen.InvokeNative(0xED640017ED337E45, x, y, z, params)
 end
-exports("PlayAmbientSpeechFromPosition", PlayAmbientSpeechFromPosition)

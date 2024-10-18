@@ -189,3 +189,43 @@ RegisterCommand("EventsUiPeekMessage", function()
 
     CloseAllUiapps()
 end)
+
+RegisterCommand("GetTrainTrackInfos", function()
+    local train = GetVehiclePedIsIn(PlayerPedId(), false)
+    local retval, trackHash, trackJunction = exports.redm_natives:GetTrainTrackInfos(train)
+    if (retval) then
+        print("GetTrainTrackInfos", trackHash, trackJunction)
+    else
+        print("Failed to GetTrainTrackInfos")
+    end
+end)
+
+RegisterCommand("redtest", function()
+    local playerId = PlayerId()
+    local playerPed = PlayerPedId()
+    local statemachine = -1468895189
+    local weapon = `WEAPON_RIFLE_BOLTACTION` --`WEAPON_REVOLVER_CATTLEMAN`
+
+    if (UiStateMachineExists(statemachine) == 1) then
+        UiStateMachineDestroy(statemachine)
+    end
+
+    local rootContainer = DatabindingAddDataContainerFromPath("", "DynamicCatalogItems")
+    local itemInspectionContainer = DatabindingAddDataContainer(rootContainer, "CatalogItemInspection")
+
+    local effectsEntryId = Citizen.InvokeNative(0x9D21B185ABC2DBC4, itemInspectionContainer, "effects", false, false)
+	local statsEntryId = Citizen.InvokeNative(0x9D21B185ABC2DBC5, itemInspectionContainer, "stats", 0, playerId)
+	local compareStatsEntryId = Citizen.InvokeNative(0x9D21B185ABC2DBC5, itemInspectionContainer, "compareStats", 0, playerId)
+
+    Citizen.InvokeNative(0x75CFAC49301E134F, effectsEntryId, true, false)
+    Citizen.InvokeNative(0x75CFAC49301E134E, statsEntryId, true, playerPed)
+    Citizen.InvokeNative(0x75CFAC49301E134E, compareStatsEntryId, weapon, playerPed)
+
+    print(effects, stats, compareStats)
+
+    local flowblock = RequestFlowBlock(`shop_browsing_main_flow`)
+    repeat Wait(0) until UiflowblockIsLoaded(flowblock) == 1
+
+    UiflowblockEnter(flowblock, `catalog_weapon_inspection`)
+    UiStateMachineCreate(statemachine, flowblock)
+end)

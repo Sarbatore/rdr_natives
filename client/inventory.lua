@@ -11,7 +11,7 @@ function InventoryGetGuidFromItemid(guid, item, slotId)
 
     return false
 end
-exports("InventoryGetGuidFromItemid", InventoryGetGuidFromItemid)
+
 
 ---
 ---@return guid
@@ -19,7 +19,6 @@ function GetCharacterInventoryGuid()
     local retval, guid = exports.redm_natives:InventoryGetGuidFromItemid(0, `CHARACTER`, `SLOTID_NONE`)
     return guid
 end
-exports("GetCharacterInventoryGuid", GetCharacterInventoryGuid)
 
 ---
 ---@return guid
@@ -28,7 +27,6 @@ function GetWardrobeInventoryGuid()
     local _, guid = exports.redm_natives:InventoryGetGuidFromItemid(characterInventoryGuid, `WARDROBE`, `SLOTID_WARDROBE`)
     return guid
 end
-exports("GetWardrobeInventoryGuid", GetWardrobeInventoryGuid)
 
 ---
 ---@return guid
@@ -37,7 +35,6 @@ function GetWeaponInventoryGuid()
     local _, guid = exports.redm_natives:InventoryGetGuidFromItemid(characterInventoryGuid, `CARRIED_WEAPONS`, `SLOTID_CARRIED_WEAPONS`)
     return guid
 end
-exports("GetWeaponInventoryGuid", GetWeaponInventoryGuid)
 
 ---
 ---@param weapon hash
@@ -65,4 +62,3 @@ function InventoryGetInventoryItemInspectionInfo(item)
 
     return false
 end
-exports("InventoryGetInventoryItemInspectionInfo", InventoryGetInventoryItemInspectionInfo)

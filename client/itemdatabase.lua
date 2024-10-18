@@ -17,7 +17,6 @@ function ItemdatabaseFilloutItemEffectIdInfo(effectId)
 
     return false
 end
-exports("ItemdatabaseFilloutItemEffectIdInfo", ItemdatabaseFilloutItemEffectIdInfo)
 
 ---
 ---@param key number
@@ -41,7 +40,6 @@ function ItemdatabaseFilloutItemEffectIds(key)
 
     return false
 end
-exports("ItemdatabaseFilloutItemEffectIds", ItemdatabaseFilloutItemEffectIds)
 
 ---
 ---@param key number
@@ -57,7 +55,6 @@ function ItemdatabaseFilloutItemInfo(key)
 
     return false
 end
-exports("ItemdatabaseFilloutItemInfo", ItemdatabaseFilloutItemInfo)
 
 ---@todo Implement ItemdatabaseFilloutItem
 ---
@@ -80,7 +77,6 @@ function ItemdatabaseFilloutItem(key, costType, index)
 
     return false
 end
-exports("ItemdatabaseFilloutItem", ItemdatabaseFilloutItem)
 
 ---@todo Implement ItemdatabaseFilloutBuyAwardUiData
 ---
@@ -96,7 +92,6 @@ function ItemdatabaseFilloutBuyAwardUiData(award)
 
     return false
 end
-exports("ItemdatabaseFilloutBuyAwardUiData", ItemdatabaseFilloutBuyAwardUiData)
 
 ---@todo Implement ItemdatabaseFilloutAcquireCost
 ---
@@ -117,7 +112,6 @@ function ItemdatabaseFilloutAcquireCost(key, costType)
 
     return false
 end
-exports("ItemdatabaseFilloutAcquireCost", ItemdatabaseFilloutAcquireCost)
 
 ---@todo Implement ItemdatabaseFilloutTagData
 ---
@@ -137,7 +131,6 @@ function ItemdatabaseFilloutTagData(key)
 
     return false
 end
-exports("ItemdatabaseFilloutTagData", ItemdatabaseFilloutTagData)
 
 ---@todo Implement ItemdatabaseGetHasSlotInfo
 ---
@@ -154,7 +147,6 @@ function ItemdatabaseGetHasSlotInfo(category, index)
 
     return false
 end
-exports("ItemdatabaseGetHasSlotInfo", ItemdatabaseGetHasSlotInfo)
 
 ---@todo Implement ItemdatabaseCreateItemCollection
 ---
@@ -171,4 +163,3 @@ function ItemdatabaseCreateItemCollection(size, comparisonType)
 
     return false
 end
-exports("ItemdatabaseCreateItemCollection", ItemdatabaseCreateItemCollection)
