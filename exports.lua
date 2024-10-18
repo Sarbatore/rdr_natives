@@ -2,9 +2,19 @@ if (IsDuplicityVersion()) then
 
 else
     -- Audio
+    exports("CanPedSaySpeech", CanPedSaySpeech)
     exports("GetAmbientSpeechParamsBuffer", GetAmbientSpeechParamsBuffer)
+    exports("GetCurrentAmbientSpeechHash", GetCurrentAmbientSpeechHash)
+    exports("GetLastAmbientSpeechHash", GetLastAmbientSpeechHash)
     exports("PlayPedAmbientSpeech", PlayPedAmbientSpeech)
     exports("PlayAmbientSpeechFromPosition", PlayAmbientSpeechFromPosition)
+
+    -- Cam
+    exports("SetCameraClosestZoom", SetCameraClosestZoom)
+    exports("SetCameraGroundLevelZoom", SetCameraGroundLevelZoom)
+
+    -- HUD
+    exports("GetWeaponWheelHighlightedWeaponHash", GetWeaponWheelHighlightedWeaponHash)
 
     -- Inventory
     exports("ApplyPedWeaponStatsToStatsEntryId", ApplyPedWeaponStatsToStatsEntryId)
@@ -26,6 +36,8 @@ else
     exports("SetBlipIconLockonEntityPrompt", SetBlipIconLockonEntityPrompt)
     exports("ClearExistingBlipFromLockonEntityPrompt", ClearExistingBlipFromLockonEntityPrompt)
     exports("SetExistingBlipLockonEntityPrompt", SetExistingBlipLockonEntityPrompt)
+
+    -- Ped
 
     -- Player
     exports("AddPlayerInteractiveFocusPreset", AddPlayerInteractiveFocusPreset)

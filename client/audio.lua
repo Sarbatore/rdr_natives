@@ -41,3 +41,27 @@ function PlayAmbientSpeechFromPosition(x, y, z, soundRef, soundName, speechParam
     local params = exports.redm_natives:GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine)
     return Citizen.InvokeNative(0xED640017ED337E45, x, y, z, params)
 end
+
+---Returns the hash of the currently playing ambient speech of a ped [@aaron1a12]
+---@param ped number
+---@return hash
+function GetCurrentAmbientSpeechHash(ped)
+    return Citizen.InvokeNative(0x4A98E228A936DBCC, ped)
+end
+
+---Returns the hash of the last ambient speech played by a ped [@aaron1a12]
+---@param ped number
+---@return hash
+function GetLastAmbientSpeechHash(ped)
+    return Citizen.InvokeNative(0x6BFFB7C276866996, ped)
+end
+
+---Returns whether a ped can say a specific speech line [@aaron1a12]
+---@param ped number
+---@param soundName string
+---@param speechParams hash
+---@param speechLine integer 
+---@return boolean
+function CanPedSaySpeech(ped, soundName, speechParams, speechLine)
+    return Citizen.InvokeNative(0x9D6DEC9791A4E501, ped, soundName, speechParams, speechLine)
+end
