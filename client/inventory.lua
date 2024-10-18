@@ -69,7 +69,7 @@ end
 ---@param p2 boolean
 ---@param p3 boolean
 ---@return number
-function GetContainerEffectsEntryId(entryId, name, p2, p3)
+function InventoryGetCatalogItemInspectionEffectsEntry(entryId, name, p2, p3)
     return Citizen.InvokeNative(0x9D21B185ABC2DBC4, entryId, name, p1, p2)
 end
 
@@ -79,7 +79,7 @@ end
 ---@param p2 number
 ---@param playerId number
 ---@return number
-function GetContainerStatsEntryId(entryId, name, p2, playerId)
+function InventoryGetCatalogItemInspectionStatsEntry(entryId, name, p2, playerId)
     return Citizen.InvokeNative(0x9D21B185ABC2DBC5, entryId, name, p2, playerId)
 end
 
@@ -87,6 +87,6 @@ end
 ---@param entryId number
 ---@param weapon hash
 ---@param ped Ped
-function ApplyPedWeaponStatsToStatsEntryId(entryId, weapon, ped)
+function InventoryApplyWeaponStatsToEntry(entryId, weapon, ped)
     Citizen.InvokeNative(0x75CFAC49301E134E, entryId, weapon, ped)
 end
