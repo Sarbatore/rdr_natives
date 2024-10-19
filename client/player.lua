@@ -186,3 +186,29 @@ end
 function SetPlayerSitPromptText(player, promptText)
     Citizen.InvokeNative(0x988C9045531B9FCE, player, promptText)
 end
+
+---Adds a player interactive focus preset at coordinates [@kadir]
+---@param player number
+---@param x number
+---@param y number
+---@param z number
+---@param preset string
+---@param targetEntity number
+---@param name string
+function AddPlayerInteractiveFocusPresetAtCoords(player, x, y, z, preset, targetEntity, name)
+    Citizen.InvokeNative(0xD48227263E3D06AE, player, x, y, z, preset, targetEntity, name)
+end
+
+---Returns whether the player has a jump to active prompt [@kadir]
+---@param player number
+---@return boolean
+function IsPlayerPromptJumpToActive(player)
+    return Citizen.InvokeNative(0x2009F8AB7A5E9D6D, player)
+end
+
+---Checks if the player's Deadeye ability is enabled [@kadir]
+---@param player number
+---@return boolean
+function IsDeadEyeAbilityEnabled(player)
+    return Citizen.InvokeNative(0xDE6C85975F9D4894, player)
+end

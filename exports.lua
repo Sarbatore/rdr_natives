@@ -13,6 +13,9 @@ else
     exports("SetCameraClosestZoom", SetCameraClosestZoom)
     exports("SetCameraGroundLevelZoom", SetCameraGroundLevelZoom)
 
+    -- Entity
+    exports("AttachEntityToCoordsPhysically", AttachEntityToCoordsPhysically)
+
     -- Fire
     exports("AddExplosionWithDamageCauser", AddExplosionWithDamageCauser)
     exports("AddExplosionWithUserVfxAndDamageCauser", AddExplosionWithUserVfxAndDamageCauser)
@@ -49,6 +52,7 @@ else
 
     -- Player
     exports("AddPlayerInteractiveFocusPreset", AddPlayerInteractiveFocusPreset)
+    exports("AddPlayerInteractiveFocusPresetAtCoords", AddPlayerInteractiveFocusPresetAtCoords)
     exports("CanPlayerFocusOnTrackInEagleEye", CanPlayerFocusOnTrackInEagleEye)
     exports("DisablePlayerInteractiveFocusPreset", DisablePlayerInteractiveFocusPreset)
     exports("EagleEyeGetTrackedPedId", EagleEyeGetTrackedPedId)
@@ -58,6 +62,8 @@ else
     exports("GetNumDeadEyeMarksOnPed", GetNumDeadEyeMarksOnPed)
     exports("GetRecentlyAttackedPedsInCombo", GetRecentlyAttackedPedsInCombo)
     exports("HasPlayerDamagedRecentlyAttackedPed", HasPlayerDamagedRecentlyAttackedPed)
+    exports("IsDeadEyeAbilityEnabled", IsDeadEyeAbilityEnabled)
+    exports("IsPlayerPromptJumpToActive", IsPlayerPromptJumpToActive)
     exports("SetDeadEyeEntityGlowIntensityWithFlag", SetDeadEyeEntityGlowIntensityWithFlag)
     exports("SetDeadEyeEntityGlowWithFlag", SetDeadEyeEntityGlowWithFlag)
     exports("SetPlayerAimWeapon", SetPlayerAimWeapon)
