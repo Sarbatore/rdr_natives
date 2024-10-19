@@ -1,5 +1,6 @@
 ## Description
-Find here and use most of the natives which use DataView structures.
+This resource is a strong library of discovered native functions by the community.
+You can reuse functions with exports or by including files.
 
 ## Usages
 ### With exports
@@ -7,13 +8,13 @@ Find here and use most of the natives which use DataView structures.
 exports.redm_natives:PlayPedAmbientSpeech(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0) -- This will make your ped speak.
 ```
 ### By including file in fxmanifest
-fxmanifest
+fxmanifest.lua
 ```lua
 client_scripts {
     "@redm_natives/client/audio.lua"
 }
 ```
-Use in your file
+yourfile.lua
 ```lua
     PlayPedAmbientSpeech(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0)
 ```
@@ -23,6 +24,8 @@ I hope you guys will participate to this repository. In order to maintain optima
 - A file for a namespace
 - Function name must be the LUA equivalent of the C function name or you invent a name for those who are unknown
 - Comment on the functions (short description, parameters and return value)
+- Export your function in exports.lua
+- Add the function to the references list (alphabetically)
 
 ## References:
 Audio |
