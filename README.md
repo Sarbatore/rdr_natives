@@ -28,16 +28,26 @@ I hope you guys will participate to this repository. In order to maintain optima
 Audio |
 -- |
 CanPedSaySpeech(ped, soundName, speechParams, speechLine)
-GetLastAmbientSpeechHash(ped)
-GetCurrentAmbientSpeechHash(ped)
 GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine)
-PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine)
+GetCurrentAmbientSpeechHash(ped)
+GetLastAmbientSpeechHash(ped)
 PlayAmbientSpeechFromPosition(x, y, z, soundRef, soundName, speechParams, speechLine)
+PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine)
 
 Cam |
 -- |
-SetCameraGroundLevelZoom(zoom)
 SetCameraClosestZoom()
+SetCameraGroundLevelZoom(zoom)
+
+Entity |
+-- |
+AttachEntityToCoordsPhysically(entity, x, y, z, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
+GetEntityLooter(entity)
+
+Fire |
+-- |
+AddExplosionWithDamageCauser(entity, p1, x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake)
+AddExplosionWithUserVfxAndDamageCauser(entity, p1, x, y, z, explosionType, explosionFx, damageScale, isAudible, isInvisible, cameraShake)
 
 Hud |
 -- |
@@ -45,11 +55,11 @@ GetWeaponWheelHighlightedWeaponHash()
 
 Inventory |
 -- |
-InventoryGetGuidFromItemid(guid, item, slotId)
-InventoryGetInventoryItemInspectionInfo(item)
+ApplyPedWeaponStatsToStatsEntryId(entryId, weapon, ped)
 GetContainerEffectsEntryId(entryId, name, p2, p3)
 GetContainerStatsEntryId(entryId, name, p2, playerId)
-ApplyPedWeaponStatsToStatsEntryId(entryId, weapon, ped)
+InventoryGetGuidFromItemid(guid, item, slotId)
+InventoryGetInventoryItemInspectionInfo(item)
 
 Itemdatabase |
 -- |
@@ -59,39 +69,53 @@ ItemdatabaseFilloutItemInfo(key)
 
 Map |
 -- |
-SetBlipIconLockonEntityPrompt(entity, blipHash)
+ClearBlip(blip)
 ClearExistingBlipFromLockonEntityPrompt(entity, blipId)
+IsGPSActive()
+SetBlipIconLockonEntityPrompt(entity, blipHash)
 SetExistingBlipLockonEntityPrompt(entity, blipId)
+
+Ped |
+-- |
+ApplyColdToPed(ped, intensity, p2)
+ApplyPedDamagePackToBone(ped, boneIndex, xOffset, yOffset, zOffset, xRot, yRot, zRot, damagePack)
+GetNumReservedStamina(ped)
+GetNumPedsRestrainedFromWeaponBolas(ped)
+HasPedBeenShotByPlayerRecently(player, ped, duration)
 
 Player |
 -- |
-HasPlayerDamagedRecentlyAttackedPed(player, duration)
-GetRecentlyAttackedPedsInCombo(player, duration, size)
-SpecialAbilitySetActivate(player)
-SetPlayerPickupPromptVisible(player, isVisible)
-SetPlayerHatAccess(player, flag, allow)
-SetPlayerAimWeapon(player, weaponHash, attachSlotId)
-SetPlayerSurrenderPromptThisFrame(player, targetPed, promptOrder, unknownFlag)
-DisablePlayerInteractiveFocusPreset(player, name)
-SetPlayerWeaponDrawSpeed(player, weapon, speed)
 AddPlayerInteractiveFocusPreset(player, ped, preset, x, y, z, targetEntity, name)
-EagleEyeGetTrackedPedId(player)
-EagleEyeAreAllTrailsHidden(player)
-EagleEyeSetHideAllTrails(player, hideTrails)
-GetNumDeadEyeMarksOnPed(player, ped)
+AddPlayerInteractiveFocusPresetAtCoords(player, x, y, z, preset, targetEntity, name)
 CanPlayerFocusOnTrackInEagleEye(player)
+DisablePlayerInteractiveFocusPreset(player, name)
+EagleEyeAreAllTrailsHidden(player)
+EagleEyeGetTrackedPedId(player)
+EagleEyeSetHideAllTrails(player, hideTrails)
+EagleEyeSetSprintBehavior(player, disableSprint)
+GetNumDeadEyeMarksOnPed(player, ped)
+GetRecentlyAttackedPedsInCombo(player, duration, size)
+HasPlayerDamagedRecentlyAttackedPed(player, duration)
+IsDeadEyeAbilityEnabled(player)
+IsPlayerPromptJumpToActive(player)
 SetDeadEyeEntityGlowIntensityWithFlag(player, param2, param3, param4, glowIntensity, flag)
 SetDeadEyeEntityGlowWithFlag(player, flag)
-EagleEyeSetSprintBehavior(player, disableSprint)
-SetPlayerMeleePromptText(player, promptText)
+SetPlayerAimWeapon(player, weaponHash, attachSlotId)
+SetPlayerHatAccess(player, flag, allow)
 SetPlayerLeavePromptText(player, promptText)
+SetPlayerMeleePromptText(player, promptText)
+SetPlayerPickupPromptVisible(player, isVisible)
 SetPlayerSitPromptText(player, promptText)
+SetPlayerSurrenderPromptThisFrame(player, targetPed, promptOrder, unknownFlag)
+SetPlayerWeaponDrawSpeed(player, weapon, speed)
+SpecialAbilitySetActivate(player)
 
 Task |
 -- |
+GetCoverpointFromEntityWithOffset(entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8)
 GetScenarioPointsInArea(x, y, z, radius, size)
-LoadCarriableConfigHash(carryConfigHash)
 HasCarriableConfigHashLoaded(carryConfigHash)
+LoadCarriableConfigHash(carryConfigHash)
 
 Uievents |
 -- |
@@ -100,3 +124,9 @@ EventsUiPeekMessage(uiapp)
 Vehicle |
 -- |
 GetTrainTrackInfos(train)
+
+Weapon |
+-- |
+GetWeaponHashFromPedWeapon(pedWeaponCollection, weaponGroupHash)
+IsWeaponCloseRange(weapon)
+SetPedWeaponOnBack(ped, disableAnim)

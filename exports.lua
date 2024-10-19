@@ -15,6 +15,7 @@ else
 
     -- Entity
     exports("AttachEntityToCoordsPhysically", AttachEntityToCoordsPhysically)
+    exports("GetEntityLooter", GetEntityLooter)
 
     -- Fire
     exports("AddExplosionWithDamageCauser", AddExplosionWithDamageCauser)

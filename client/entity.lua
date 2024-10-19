@@ -17,3 +17,10 @@
 function AttachEntityToCoordsPhysically(entity, x, y, z, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
     return Citizen.InvokeNative(0x715012E3A63023C0, entity, x, y, z, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
 end
+
+---Return the entity which is looting the entity
+---@param entity number
+---@return number
+function GetEntityLooter(entity)
+    return Citizen.InvokeNative(0xEF2D9ED7CE684F08, entity)
+end
