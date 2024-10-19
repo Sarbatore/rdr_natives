@@ -42,3 +42,186 @@ end
 function GetNumPedsRestrainedFromWeaponBolas(ped)
     return Citizen.InvokeNative(0x46D42883E873C1D7, ped)
 end
+
+---Return wether a ped has interacted with a player recently. [@sarbatore]
+---@param ped number
+---@param player number
+---@param interactionFlag number
+---@param duration number
+---@return boolean
+function HasPedInteractedWithPlayerRecently(ped, player, interactionFlag, duration)
+    return Citizen.InvokeNative(0x947E43F544B6AB34, ped, player, interactionFlag, duration)
+end
+
+--[[
+###############################################################
+#                                                             #
+#                       UNKNOWN NATIVES                       #
+#                                                             #
+###############################################################
+]]
+
+---
+---@param ped number
+---@param hash number
+function N_0x1E017404784AA6A3(ped, hash)
+    Citizen.InvokeNative(0x1E017404784AA6A3, ped, hash)
+end
+
+---
+---@param ped number
+---@param hash number
+function N_0x7C8AA850617651D9(ped, hash)
+    Citizen.InvokeNative(0x7C8AA850617651D9, ped, hash)
+end
+
+---
+---@param componentHash number
+---@param hash number
+---@param metaPedType number
+---@param isMp boolean
+function N_0x31B2E7F2E3C58B89(componentHash, hash, metaPedType, isMp)
+    return Citizen.InvokeNative(0x31B2E7F2E3C58B89, componentHash, hash, metaPedType, isMp)
+end
+-- Example usage: N_0x31B2E7F2E3C58B89(`clothing_legendary_east_outfit`, joaat("base"), GetMetaPedType(playerPed), true)
+
+---
+---@param ped number
+---@param p1 number
+---@param duration number
+---@return boolean
+function N_0xF7327ACC7A89AEF1(ped, p1, duration)
+    return Citizen.InvokeNative(0xF7327ACC7A89AEF1, ped, p1, duration)
+end
+
+---
+---@param ped number
+---@param p1 number
+---@param duration number
+---@return boolean
+function N_0x5203038FF8BAE577(ped, p1, duration)
+    return Citizen.InvokeNative(0x5203038FF8BAE577, ped, p1, duration)
+end
+
+---
+---@param ped number
+---@param p1 number
+---@param duration number
+---@return boolean
+function N_0xC3995D396F1D97B6(ped, p1, duration)
+    return Citizen.InvokeNative(0xC3995D396F1D97B6, ped, p1, duration)
+end
+
+---
+---@param ped number
+---@param p1 number
+---@return boolean
+function N_0x32417CB860A3BDC4(ped, p1)
+    return Citizen.InvokeNative(0x32417CB860A3BDC4, ped, p1)
+end
+
+---
+---@param ped number
+---@param p1 number
+---@return boolean
+function N_0x7F090958AE95B61B(ped, p1)
+    return Citizen.InvokeNative(0x7F090958AE95B61B, ped, p1)
+end
+
+---
+---@param ped number
+---@return number
+function N_0x900CA00CE703E1E2(ped)
+    return Citizen.InvokeNative(0x900CA00CE703E1E2, ped)
+end
+
+---
+---@param ped number
+---@param p1 number
+function N_0xC494C76A34266E82(ped, p1)
+    Citizen.InvokeNative(0xC494C76A34266E82, ped, p1)
+end
+
+---
+---@param ped number
+---@param p1 bool
+function N_0xFEA6126C34DF2532(ped, p1)
+    Citizen.InvokeNative(0xFEA6126C34DF2532, ped, p1)
+end
+
+---
+---@param ped number
+---@param p1 bool
+function N_0xA2116C1E4ED85C24(ped, p1)
+    Citizen.InvokeNative(0xA2116C1E4ED85C24, ped, p1)
+end
+
+---
+---@param ped number
+---@param p1 number
+function N_0xD8544F6260F5F01E(ped, p1)
+    Citizen.InvokeNative(0xD8544F6260F5F01E, ped, p1)
+end
+
+---
+---@param ped number
+function N_0x758F081DB204DDDE(ped)
+    Citizen.InvokeNative(0x758F081DB204DDDE, ped)
+end
+
+---Returns retval and entity.
+---@param ped number
+---@param p1 number
+---@param p2 number
+---@param p3 number
+---@return boolean, number
+function N_0x4642182A298187D0(ped, p1, p2, p3)
+    return Citizen.InvokeNative(0x4642182A298187D0, ped, p1, p2, p3) -- N_0x4642182a298187d0
+end
+
+---Returns retval and number.
+---@param modelHash number
+---@param p1 number
+---@param p2 number
+---@return boolean, number
+function N_0xB29C553BA582D09E(modelHash, p1, p2)
+    return Citizen.InvokeNative(0xB29C553BA582D09E, modelHash, p1, p2) -- N_0xb29c553ba582d09e
+end
+
+---
+---@param ped number
+---@param p1 boolean
+function N_0xAAB86462966168CE(ped, p1)
+    Citizen.InvokeNative(0xAAB86462966168CE, ped, p1)
+end
+
+---Set something weird with dirt.
+---@param ped number
+---@param p1 number
+---@param p2 number
+---@param p3 boolean
+---@param p4 boolean
+function N_0xD049920CD29F6CC8(ped, p1, p2, p3, p4)
+    Citizen.InvokeNative(0xD049920CD29F6CC8, ped, p1, p2, p3, p4)
+end
+
+---
+---@param ped number
+---@param p1 boolean
+function N_0xBB3E5370EBB6BE28(ped, p1)
+    Citizen.InvokeNative(0xBB3E5370EBB6BE28, ped, p1)
+end
+
+---
+---@param ped number
+---@param ped2 number
+function N_0xAAC0EE3B4999ABB5(ped, ped2)
+    Citizen.InvokeNative(0xAAC0EE3B4999ABB5, ped, ped2)
+end
+
+---
+---@param ped number
+---@param p1 number
+function N_0x46BF2A810679D6E6(ped, p1)
+    return Citizen.InvokeNative(0x46BF2A810679D6E6, ped, p1)
+end

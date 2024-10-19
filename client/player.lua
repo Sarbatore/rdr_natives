@@ -1,4 +1,4 @@
----Returns wether the player has damaged any ped recently [@kadir]
+---Returns wether the player has damaged any ped recently. [@kadir]
 ---@param player number
 ---@param duration number
 ---@return boolean
@@ -6,7 +6,7 @@ function HasPlayerDamagedRecentlyAttackedPed(player, duration)
     return Citizen.InvokeNative(0x72AD59F7B7FB6E24, player, duration)
 end
 
----Returns a list of peds that the player has damaged recently [@kadir]
+---Returns a list of peds that the player has damaged recently. [@kadir]
 ---@param player number
 ---@param duration number
 ---@param size number
@@ -45,7 +45,7 @@ function SetPlayerPickupPromptVisible(player, isVisible)
     Citizen.InvokeNative(0xD1A70C1E8D1031FE, player, isVisible)
 end
 
----Sets the player's hat access [@kadir]
+---Sets the player's hat access. [@kadir]
 ---@param player number
 ---@param flag number
 ---@param allow boolean
@@ -53,14 +53,14 @@ function SetPlayerHatAccess(player, flag, allow)
     Citizen.InvokeNative(0xA0C683284DF027C7, player, flag, allow)
 end
 
---- Sets the player's ability to pick up a hat [@kadir]
+--- Sets the player's ability to pick up a hat. [@kadir]
 ---@param player number
 ---@param canPickup boolean
 function SetPlayerCanPickupHat(player, canPickup)
     Citizen.InvokeNative(0xACA45DDCEF6071C4, player, canPickup)
 end
 
----Sets the player's aim weapon [@kadir]
+---Sets the player's aim weapon. [@kadir]
 ---@param player number
 ---@param weaponHash number
 ---@param attachSlotId number
@@ -68,7 +68,7 @@ function SetPlayerAimWeapon(player, weaponHash, attachSlotId)
     Citizen.InvokeNative(0xCFFC3ECCD7A5CCEB, player, weaponHash, attachSlotId)
 end
 
----Sets the player's surrender prompt this frame [@kadir]
+---Sets the player's surrender prompt this frame. [@kadir]
 ---@param player number
 ---@param targetPed number
 ---@param promptOrder number
@@ -77,14 +77,14 @@ function SetPlayerSurrenderPromptThisFrame(player, targetPed, promptOrder, unkno
     Citizen.InvokeNative(0xCBB54CC7FFFFAB86, player, targetPed, promptOrder, unknownFlag)
 end
 
----Disables the player's interactive focus preset [@kadir]
+---Disables the player's interactive focus preset. [@kadir]
 ---@param player number
 ---@param name string
 function DisablePlayerInteractiveFocusPreset(player, name)
     Citizen.InvokeNative(0xC67A4910425F11F1, player, name)
 end
 
----Sets the player's weapon draw speed
+---Sets the player's weapon draw speed.
 ---@param player number
 ---@param weapon hash
 ---@param speed number
@@ -92,7 +92,7 @@ function SetPlayerWeaponDrawSpeed(player, weapon, speed)
     Citizen.InvokeNative(0x00EB5A760638DB55, player, speed)
 end
 
----Adds a player interactive focus preset [@kadir]
+---Adds a player interactive focus preset. [@kadir]
 ---@param player number
 ---@param ped number
 ---@param preset string
@@ -105,28 +105,28 @@ function AddPlayerInteractiveFocusPreset(player, ped, preset, x, y, z, targetEnt
     Citizen.InvokeNative(0x3946FC742AC305CD, player, ped, preset, x, y, z, targetEntity, name)
 end
 
----Gets the tracked ped id for eagle eye [@kadir]
+---Gets the tracked ped id for eagle eye. [@kadir]
 ---@param player number
 ---@return number
 function EagleEyeGetTrackedPedId(player)
     return Citizen.InvokeNative(0x3813E11A378958A5, player)
 end
 
----Returns whether all trails are hidden in eagle eye [@kadir]
+---Returns whether all trails are hidden in eagle eye. [@kadir]
 ---@param player number
 ---@return boolean
 function EagleEyeAreAllTrailsHidden(player)
     return Citizen.InvokeNative(0xA62BBAAE67A05BB0, player)
 end
 
----Sets whether all trails are hidden in eagle eye [@kadir]
+---Sets whether all trails are hidden in eagle eye. [@kadir]
 ---@param player number
 ---@param hideTrails boolean
 function EagleEyeSetHideAllTrails(player, hideTrails)
     Citizen.InvokeNative(0x330CA55A3647FA1C, player, hideTrails)
 end
 
----Returns the number of dead eye marks on a ped [@kadir]
+---Returns the number of dead eye marks on a ped. [@kadir]
 ---@param player number
 ---@param ped number
 ---@return number
@@ -134,14 +134,14 @@ function GetNumDeadEyeMarksOnPed(player, ped)
     return Citizen.InvokeNative(0x27AD7162D3FED01E, player, ped)
 end
 
----Returns whether the player can focus on a track in eagle eye [@kadir]
+---Returns whether the player can focus on a track in eagle eye. [@kadir]
 ---@param player number
 ---@return boolean
 function CanPlayerFocusOnTrackInEagleEye(player)
     return Citizen.InvokeNative(0x1DA5C5B0923E1B85, player)
 end
 
----Sets the dead eye entity glow intensity with flag [@kadir]
+---Sets the dead eye entity glow intensity with flag. [@kadir]
 ---@param player number
 ---@param param2 number
 ---@param param3 number
@@ -152,42 +152,42 @@ function SetDeadEyeEntityGlowIntensityWithFlag(player, param2, param3, param4, g
     Citizen.InvokeNative(0x131E294EF60160DF, player, param2, param3, param4, glowIntensity, flag)
 end
 
----Sets the dead eye entity glow with flag [@kadir]
+---Sets the dead eye entity glow with flag. [@kadir]
 ---@param player number
 ---@param flag number
 function SetDeadEyeEntityGlowWithFlag(player, flag)
     Citizen.InvokeNative(0x2B12B6FC8B8772AB, player, flag)
 end
 
----Sets the eagle eye sprint behavior [@kadir]
+---Sets the eagle eye sprint behavior. [@kadir]
 ---@param player number
 ---@param disableSprint boolean
 function EagleEyeSetSprintBehavior(player, disableSprint)
     Citizen.InvokeNative(0xCE285A4413B00B7F, player, disableSprint)
 end
 
----Sets the player's melee prompt text [@kadir]
+---Sets the player's melee prompt text. [@kadir]
 ---@param player number
 ---@param promptText string
 function SetPlayerMeleePromptText(player, promptText)
     Citizen.InvokeNative(0x0FAF95D71ED67ADE, player, promptText)
 end
 
----Sets the player's leave prompt text [@kadir]
+---Sets the player's leave prompt text. [@kadir]
 ---@param player number
 ---@param promptText string
 function SetPlayerLeavePromptText(player, promptText)
     Citizen.InvokeNative(0x06C3DB00B69D5435, player, promptText)
 end
 
----Sets the player's sit prompt text [@kadir]
+---Sets the player's sit prompt text. [@kadir]
 ---@param player number
 ---@param promptText string
 function SetPlayerSitPromptText(player, promptText)
     Citizen.InvokeNative(0x988C9045531B9FCE, player, promptText)
 end
 
----Adds a player interactive focus preset at coordinates [@kadir]
+---Adds a player interactive focus preset at coordinates. [@kadir]
 ---@param player number
 ---@param x number
 ---@param y number
@@ -199,16 +199,40 @@ function AddPlayerInteractiveFocusPresetAtCoords(player, x, y, z, preset, target
     Citizen.InvokeNative(0xD48227263E3D06AE, player, x, y, z, preset, targetEntity, name)
 end
 
----Returns whether the player has a jump to active prompt [@kadir]
+---Returns whether the player has a jump to active prompt. [@kadir]
 ---@param player number
 ---@return boolean
 function IsPlayerPromptJumpToActive(player)
     return Citizen.InvokeNative(0x2009F8AB7A5E9D6D, player)
 end
 
----Checks if the player's Deadeye ability is enabled [@kadir]
+---Checks if the player's Deadeye ability is enabled. [@kadir]
 ---@param player number
 ---@return boolean
 function IsDeadEyeAbilityEnabled(player)
     return Citizen.InvokeNative(0xDE6C85975F9D4894, player)
+end
+
+---Add yellow particles to the entity. [@sarbatore]
+---@param entity number
+---@param entity2 number
+---@param p2 number
+---@param p3 number
+function EagleEyeAddParticleEffectToEntity(entity, entity2, p2, p3)
+    Citizen.InvokeNative(0x6ECFC621A168424C, entity, entity2, p2, p3)
+end
+
+---Remove yellow particles from the entity. [@sarbatore]
+---@param entity number
+---@param entity2 number
+---@param p2 number
+function EagleEyeRemoveParticleEffectFromEntity(entity, entity2, p2)
+    Citizen.InvokeNative(0xDC5E09D012D759C4, entity, entity2, p2)
+end
+
+---Enable/disable a color on the entity in eagle eye mode. [@sarbatore]
+---@param entity number
+---@param enable boolean
+function EagleEyeSetRegisteredEntityGlow(entity, enable)
+    Citizen.InvokeNative(0xBC02B3D151D3859F, entity, enable)
 end

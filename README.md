@@ -85,6 +85,7 @@ ApplyPedDamagePackToBone(ped, boneIndex, xOffset, yOffset, zOffset, xRot, yRot, 
 GetNumReservedStamina(ped)
 GetNumPedsRestrainedFromWeaponBolas(ped)
 HasPedBeenShotByPlayerRecently(player, ped, duration)
+HasPedInteractedWithPlayerRecently(ped, player, interactionFlag, duration)
 
 Player |
 -- |
@@ -92,10 +93,13 @@ AddPlayerInteractiveFocusPreset(player, ped, preset, x, y, z, targetEntity, name
 AddPlayerInteractiveFocusPresetAtCoords(player, x, y, z, preset, targetEntity, name)
 CanPlayerFocusOnTrackInEagleEye(player)
 DisablePlayerInteractiveFocusPreset(player, name)
+EagleEyeAddParticleEffectToEntity(entity, entity2, p2, p3)
 EagleEyeAreAllTrailsHidden(player)
 EagleEyeGetTrackedPedId(player)
 EagleEyeSetHideAllTrails(player, hideTrails)
 EagleEyeSetSprintBehavior(player, disableSprint)
+EagleEyeSetRegisteredEntityGlow(entity, enable)
+EagleEyeRemoveParticleEffectFromEntity(entity, entity2, p2)
 GetNumDeadEyeMarksOnPed(player, ped)
 GetRecentlyAttackedPedsInCombo(player, duration, size)
 HasPlayerDamagedRecentlyAttackedPed(player, duration)
