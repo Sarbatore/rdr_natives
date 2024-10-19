@@ -45,7 +45,7 @@ SetCameraGroundLevelZoom(zoom)
 Entity |
 -- |
 AttachEntityToCoordsPhysically(entity, x, y, z, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
-GetEntityLooter(entity)
+GetEntityLootingPed(ped)
 
 Fire |
 -- |
