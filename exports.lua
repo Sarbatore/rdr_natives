@@ -63,6 +63,7 @@ else
     exports("EagleEyeEnableEntityGlow", EagleEyeEnableEntityGlow)
     exports("EagleEyeGetTrackedPedId", EagleEyeGetTrackedPedId)
     exports("EagleEyeRemoveParticleEffectFromEntity", EagleEyeRemoveParticleEffectFromEntity)
+    exports("EagleEyeRemoveParticleEffectFromEntity_2", EagleEyeRemoveParticleEffectFromEntity_2)
     exports("EagleEyeSetHideAllTrails", EagleEyeSetHideAllTrails)
     exports("EagleEyeSetSprintBehavior", EagleEyeSetSprintBehavior)
     exports("GetNumDeadEyeMarksOnPed", GetNumDeadEyeMarksOnPed)

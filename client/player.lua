@@ -224,9 +224,15 @@ end
 
 ---Remove yellow particles from the entity. [@sarbatore]
 ---@param entity number
+function EagleEyeRemoveParticleEffectFromEntity(entity)
+    Citizen.InvokeNative(0x00B156AFEBCC5AE0, entity)
+end
+
+---Remove yellow particles from the entity. [@sarbatore]
+---@param entity number
 ---@param entity2 number
 ---@param p2 number
-function EagleEyeRemoveParticleEffectFromEntity(entity, entity2, p2)
+function EagleEyeRemoveParticleEffectFromEntity_2(entity, entity2, p2)
     Citizen.InvokeNative(0xDC5E09D012D759C4, entity, entity2, p2)
 end
 
@@ -249,3 +255,272 @@ end
 function IsPlayerSprintingOnHorseOnRoad(player)
     return Citizen.InvokeNative(0xE631EAF35828FA67, player)
 end
+
+--[[
+########################################################################################################################################
+#                                                                                                                                      #
+#                                                           UNKOWN NATIVES                                                             #
+#                                                                                                                                      #
+########################################################################################################################################
+]]
+
+---
+---@param player number
+function N_0xE910932F4B30BE23(player)
+    Citizen.InvokeNative(0xE910932F4B30BE23, player)
+end
+
+---
+---@param player number
+---@param p1 number
+function N_0x0E9057A9DA78D0F8(player, p1)
+    Citizen.InvokeNative(0x0E9057A9DA78D0F8, player, p1)
+end
+
+---
+---@param player number
+---@param p1 number
+function N_0x263D69767F76059C(player, p1)
+    Citizen.InvokeNative(0x263D69767F76059C, player, p1)
+end
+
+---
+---@param player number
+---@param p1 number
+function N_0x2B12B6FC8B8772AB(player, p1)
+    Citizen.InvokeNative(0x2B12B6FC8B8772AB, player, p1)
+end
+
+---
+---@return boolean
+function N_0xF4CB347D7B5EB0FD()
+    return Citizen.InvokeNative(0xF4CB347D7B5EB0FD)
+end
+
+---
+---@param player number
+function N_0x1F488807BC8E0630(player)
+    Citizen.InvokeNative(0x1F488807BC8E0630, player)
+end
+
+---
+---@param player number
+---@param p1 boolean
+function N_0x818241B3EDA84191(player, p1)
+    Citizen.InvokeNative(0x818241B3EDA84191, player, p1)
+end
+
+---
+---@param player number
+---@param weaponHash number
+---@param p2 boolean
+---@param p3 number
+function N_0x5C2E5E3CAEEB1F58(player, weaponHash, p2, p3)
+    Citizen.InvokeNative(0x5C2E5E3CAEEB1F58, player, weaponHash, p2, p3)
+end
+
+---
+---@param player number
+---@param p1 number
+function N_0xBED386157F65942C(player, p1)
+    Citizen.InvokeNative(0xBED386157F65942C, player, p1)
+end
+
+---
+---@param player number
+---@param p1 string
+function N_0x45EF176B532CA851(player, p1)
+    Citizen.InvokeNative(0x45EF176B532CA851, player, p1)
+end
+
+---
+---@param player number
+---@return boolean
+function N_0x621D1B289CAF5978(player)
+    return Citizen.InvokeNative(0x621D1B289CAF5978, player)
+end
+
+---
+---@param player number
+---@return number
+function N_0x03B4B759A8990505(player)
+    return Citizen.InvokeNative(0x03B4B759A8990505, player)
+end
+
+---Eagle eye thing.
+---@param entity number
+---@param p1 boolean
+function N_0x06E1FB78B1E59CA5(entity, p1)
+    Citizen.InvokeNative(0x06E1FB78B1E59CA5, entity, p1)
+end
+
+---
+---@param player number
+---@param p1 number
+function N_0x086549F3B0381CB1(player, p1)
+    Citizen.InvokeNative(0x086549F3B0381CB1, player, p1)
+end
+
+---May have a link with 0x2009F8AB7A5E9D6D
+---@param player number
+function N_0x12E09E278C6C29B7(player)
+    Citizen.InvokeNative(0x12E09E278C6C29B7, player)
+end
+
+---
+---@param player number
+---@param p1 string
+---@param p2 number
+---@param p3 number
+---@param p4 number
+---@param p5 number
+---@param p6 number
+---@param p7 number
+function N_0x0869D499A7848309(player, p1, p2, p3, p4, p5, p6, p7)
+    Citizen.InvokeNative(0x0869D499A7848309, player, p1, p2, p3, p4, p5, p6, p7)
+end
+
+---
+---@param player number
+---@param p1 number
+function N_0x08E22898A6AF4905(player, p1)
+    Citizen.InvokeNative(0x08E22898A6AF4905, player, p1)
+end
+
+---
+---@return boolean
+function N_0x0B7803F6F7BB43E0()
+    return Citizen.InvokeNative(0x0B7803F6F7BB43E0)
+end
+
+---Return lobby state?
+---@param hash number
+---@return number
+function N_0xC74EB3F2EC169F6B(hash)
+    return Citizen.InvokeNative(0xC74EB3F2EC169F6B, hash)
+end
+
+---
+---@param player number
+---@return number
+function N_0x0F4EAF69DA41AF43(player)
+    return Citizen.InvokeNative(0x0F4EAF69DA41AF43, player)
+end
+
+---
+---@param player number
+function N_0x0F9CF06986300875(player)
+    Citizen.InvokeNative(0x0F9CF06986300875, player)
+end
+
+---
+---@param player number
+function N_0x107F2A66E1C4C83A(player)
+    Citizen.InvokeNative(0x107F2A66E1C4C83A, player)
+end
+
+---
+---@param player number
+---@param p1 number
+function N_0x113EF458AB6CDA67(player, p1)
+    Citizen.InvokeNative(0x113EF458AB6CDA67, player, p1)
+end
+
+---
+---@param regionHash number
+function N_0x14E57F88BA0A07FC(regionHash)
+    Citizen.InvokeNative(0x14E57F88BA0A07FC, regionHash)
+end
+--[[
+joaat("bayounwa")
+joaat("bigvalley")
+joaat("BluewaterMarsh")
+joaat("Cumberland")
+joaat("greatplains")
+joaat("GrizzliesEast")
+joaat("GrizzliesWest")
+joaat("GuarmaD")
+joaat("heartlands")
+joaat("roanoke")
+joaat("scarlettmeadows")
+joaat("talltrees")
+joaat("GaptoothRidge")
+joaat("riobravo")
+joaat("ChollaSprings")
+joaat("HennigansStead")
+]]
+
+---May have a link with 0x19B2C7A6C34FAD54
+---@param player number
+---@return number
+function N_0x9422743A5BA50E10(player)
+    return Citizen.InvokeNative(0x9422743A5BA50E10, player)
+end
+
+---May have a link with 0x9422743A5BA50E10
+---@param player number
+---@param p1 number
+function N_0x19B2C7A6C34FAD54(player, p1)
+    Citizen.InvokeNative(0x19B2C7A6C34FAD54, player, p1)
+end
+
+---
+---@param gameTimer number
+function N_0x1AD8AD999C27F44A(gameTimer)
+    Citizen.InvokeNative(0x1AD8AD999C27F44A, gameTimer)
+end
+
+---
+---@param player number
+function N_0x1D256EED194F5B58(player)
+    Citizen.InvokeNative(0x1D256EED194F5B58, player)
+end
+
+---
+---@param player number
+---@return boolean
+function N_0x1E8099F449ABB0BA(player)
+    return Citizen.InvokeNative(0x1E8099F449ABB0BA, player)
+end
+
+---
+---@param player number
+---@param entity number
+---@param p2 number
+function N_0xDD33A82352C4652F(player, entity, p2)
+    Citizen.InvokeNative(0xDD33A82352C4652F, player, entity, p2)
+end
+
+---
+---@param player number
+---@param entity number
+---@param p2 number
+function N_0x84481018E668E1B8(player, entity, p2)
+    Citizen.InvokeNative(0x84481018E668E1B8, player, entity, p2)
+end
+
+---
+---@param player number
+---@param entity number
+---@param p2 boolean
+function N_0x1FDA57E8908F2609(player, entity, p2)
+    Citizen.InvokeNative(0x1FDA57E8908F2609, player, entity, p2)
+end
+
+---
+---@param player number
+---@return boolean
+function N_0x21091B4BEB6376EE(player)
+    return Citizen.InvokeNative(0x21091B4BEB6376EE, player)
+end
+
+---
+---@param player number
+---@param speech string
+function N_0x216BC0D3D2E413D2(player, speech)
+    Citizen.InvokeNative(0x216BC0D3D2E413D2, player, speech)
+end
+
+--[[
+
+]]
