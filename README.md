@@ -136,6 +136,15 @@ GetTrainTrackInfos(train)
 
 Weapon |
 -- |
+DoesPedHavePistol(ped, p1)
+DoesPedHaveRepeater(ped, p1)
+DoesPedHaveRevolver(ped, p1)
+DoesPedHaveRifle(ped, p1)
+DoesPedHaveShotgun(ped, p1)
+DoesPedHaveSniper(ped, p1)
+GetDefaultWeaponAttachPoint(weaponHash)
+GetWeaponHasMultipleAmmoTypes(weaponHash)
 GetWeaponHashFromPedWeapon(pedWeaponCollection, weaponGroupHash)
+IsPedHoldingWeapon(ped, weaponHash)
 IsWeaponCloseRange(weapon)
 SetPedWeaponOnBack(ped, disableAnim)

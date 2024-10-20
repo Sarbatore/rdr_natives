@@ -98,8 +98,17 @@ else
     exports("GetTrainTrackInfos", GetTrainTrackInfos)
 
     -- Weapon
+    exports("DoesPedHaveRifle", DoesPedHaveRifle)
+    exports("DoesPedHaveSniper", DoesPedHaveSniper)
+    exports("DoesPedHaveRepeater", DoesPedHaveRepeater)
+    exports("DoesPedHaveShotgun", DoesPedHaveShotgun)
+    exports("DoesPedHaveRevolver", DoesPedHaveRevolver)
+    exports("DoesPedHavePistol", DoesPedHavePistol)
+    exports("GetDefaultWeaponAttachPoint", GetDefaultWeaponAttachPoint)
     exports("GetNumPedsRestrainedFromWeaponBolas", GetNumPedsRestrainedFromWeaponBolas)
     exports("GetWeaponHashFromPedWeapon", GetWeaponHashFromPedWeapon)
+    exports("GetWeaponHasMultipleAmmoTypes", GetWeaponHasMultipleAmmoTypes)
+    exports("IsPedHoldingWeapon", IsPedHoldingWeapon)
     exports("IsWeaponCloseRange", IsWeaponCloseRange)
     exports("SetPedWeaponOnBack", SetPedWeaponOnBack)
 end
