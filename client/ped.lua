@@ -225,3 +225,55 @@ end
 function N_0x46BF2A810679D6E6(ped, p1)
     return Citizen.InvokeNative(0x46BF2A810679D6E6, ped, p1)
 end
+
+---
+---@param ped number
+---@param p1 boolean
+function N_0xC6136B40FFFB778(ped, p1)
+    Citizen.InvokeNative(0xC6136B40FFFB778, ped, p1)
+end
+
+---
+---@param ped number
+---@param p1 boolean
+function N_0xA967D6A8ED2D713B(ped, p1)
+    Citizen.InvokeNative(0xA967D6A8ED2D713B, ped, p1)
+end
+
+---
+---@param ped number
+---@param p1 boolean
+---@param p2 boolean
+---@param p3 boolean
+function N_0xAF041C10756C30FB(ped, p1, p2, p3)
+    Citizen.InvokeNative(0xAF041C10756C30FB, ped, p1, p2, p3)
+end
+
+---
+---@param ped number
+---@param p1 boolean
+---@param p2 number
+function N_0x49DADFC4CD808B0A(ped, p1, p2)
+    Citizen.InvokeNative(0x49DADFC4CD808B0A, ped, p1, p2)
+end
+
+---@param ped number
+---@param player number
+---@param duration number
+function N_0xE737D5F14304A2EC(ped, player, duration)
+    Citizen.InvokeNative(0xE737D5F14304A2EC, ped, player, duration)
+end
+
+---
+---@param ped number
+---@param hash1 number
+---@param hash2 number
+---@param p3 number
+---@param p4 number
+---@param p5 number
+---@return boolean
+function N_0xCB86D3E3E3708901(ped, hash1, hash2, p3, p4, p5)
+    return Citizen.InvokeNative(0xCB86D3E3E3708901, ped, hash1, hash2, p3, p4, p5)
+end
+
+-- Example usage: Citizen.InvokeNative(0xCB86D3E3E3708901, `Arthur`, `COMP_ABICNV8`, 1, 1, 0)

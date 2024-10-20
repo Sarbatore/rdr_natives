@@ -233,6 +233,19 @@ end
 ---Enable/disable a color on the entity in eagle eye mode. [@sarbatore]
 ---@param entity number
 ---@param enable boolean
-function EagleEyeSetRegisteredEntityGlow(entity, enable)
+function EagleEyeEnableEntityGlow(entity, enable)
     Citizen.InvokeNative(0xBC02B3D151D3859F, entity, enable)
+end
+
+---Clears all Eagle Eye trails that were registered for entities associated with the specified player. [@kadir]
+---@param player number
+function EagleEyeClearRegisteredTrails(player)
+    Citizen.InvokeNative(0xE5D3EB37ABC1EB03, player)
+end
+
+---Return wether the player is sprinting on a road while riding a horse. [@kadir]
+---@param player number
+---@return boolean
+function IsPlayerSprintingOnHorseOnRoad(player)
+    return Citizen.InvokeNative(0xE631EAF35828FA67, player)
 end
