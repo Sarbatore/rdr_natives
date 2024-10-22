@@ -31,11 +31,11 @@ I hope you guys will participate to this repository. In order to maintain optima
 Audio |
 -- |
 CanPedSaySpeech(ped, soundName, speechParams, speechLine)
-GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine)
+GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine, listenerPed, syncOverNetwork, p6, p7)
 GetCurrentAmbientSpeechHash(ped)
 GetLastAmbientSpeechHash(ped)
-PlayAmbientSpeechFromPosition(x, y, z, soundRef, soundName, speechParams, speechLine)
-PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine)
+PlayAmbientSpeechFromPosition(x, y, z, soundRef, soundName, speechParams, speechLine, listenerPed, syncOverNetwork, p6, p7)
+PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine, listenerPed, syncOverNetwork, p6, p7)
 
 Cam |
 -- |
