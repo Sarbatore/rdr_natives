@@ -16,10 +16,12 @@ else
     -- Entity
     exports("AttachEntityToCoordsPhysically", AttachEntityToCoordsPhysically)
     exports("GetEntityLootingPed", GetEntityLootingPed)
-
+    
     -- Fire
     exports("AddExplosionWithDamageCauser", AddExplosionWithDamageCauser)
     exports("AddExplosionWithUserVfxAndDamageCauser", AddExplosionWithUserVfxAndDamageCauser)
+    exports("DoesFireExistCloseToPlayerAtVolumePos", DoesFireExistCloseToPlayerAtVolumePos)
+    exports("IsEntityDamagedByFire", IsEntityDamagedByFire)
 
     -- HUD
     exports("GetWeaponWheelHighlightedWeaponHash", GetWeaponWheelHighlightedWeaponHash)
