@@ -256,6 +256,33 @@ function IsPlayerSprintingOnHorseOnRoad(player)
     return Citizen.InvokeNative(0xE631EAF35828FA67, player)
 end
 
+
+---Returns the depletion delay value for the Deadeye ability that was previously set using `SetDeadeyeAbilityDepletionDelay - 0x870634493CB4372C`. This function provides a float value representing the delay, allowing the game to retrieve the current Deadeye depletion setting for a specific player. [@kadir]
+---@param player number
+---@return number
+function GetDeadeyeAbilityDepletionDelay(player)
+    return Citizen.InvokeNative(0xE92261BD28C0878F, player)
+end
+
+---Clears the intensity of aura effects applied to entities for a specific player in Deadeye mode based on a flag parameter. This function is used to reset any intensity modifications set by `_SET_DEADEYE_ENTITY_AURA_INTENSITY_WITH_FLAG - 0x131E294EF60160DF`, restoring affected entities' aura intensity to their default state. [@kadir]
+---@param player number
+function ClearDeadeyeAuraIntensityWithFlag(player)
+    Citizen.InvokeNative(0x0E9057A9DA78D0F8, player)
+end
+
+---Resets any aura effects applied to entities for a specific player in Deadeye mode, returning all aura-related visuals to their default state. This function is primarily used to remove any highlighting or aura effects set by `_SET_DEADEYE_ENTITY_AURA_WITH_FLAG - 0x2B12B6FC8B8772AB` and `_SET_DEADEYE_ENTITY_AURA_INTENSITY_WITH_FLAG - 0x131E294EF60160DF`. [@kadir]
+---@param player number
+function ResetDeadeyeAuraEffect(player)
+    Citizen.InvokeNative(0xE910932F4B30BE23, player)
+end
+
+---Sets the aura color for entities that the player can target in Deadeye mode, based on a specific hash value. This Native was previously named `SetPlayerStatFlagHash`, but it has been re-evaluated and renamed to better reflect its function in controlling the Deadeye aura color for targeted entities. [@kadir]
+---@param player number
+---@param auraHash number
+function SetPlayerDeadEyeAuraByHash(player, auraHash)
+    Citizen.InvokeNative(0x768E81AE285A4B67, player, auraHash)
+end
+
 --[[
 ########################################################################################################################################
 #                                                                                                                                      #
@@ -263,19 +290,6 @@ end
 #                                                                                                                                      #
 ########################################################################################################################################
 ]]
-
----
----@param player number
-function N_0xE910932F4B30BE23(player)
-    Citizen.InvokeNative(0xE910932F4B30BE23, player)
-end
-
----
----@param player number
----@param p1 number
-function N_0x0E9057A9DA78D0F8(player, p1)
-    Citizen.InvokeNative(0x0E9057A9DA78D0F8, player, p1)
-end
 
 ---
 ---@param player number
