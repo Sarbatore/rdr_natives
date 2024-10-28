@@ -43,8 +43,12 @@ else
     exports("ItemdatabaseFilloutItemInfo", ItemdatabaseFilloutItemInfo)
 
     -- Map
-    exports("SetBlipIconLockonEntityPrompt", SetBlipIconLockonEntityPrompt)
+    exports("ClearBlip", ClearBlip)
     exports("ClearExistingBlipFromLockonEntityPrompt", ClearExistingBlipFromLockonEntityPrompt)
+    exports("IsBlipIconOnLockonEntityPrompt", IsBlipIconOnLockonEntityPrompt)
+    exports("IsGPSActive", IsGPSActive)
+    exports("RemoveBlipIconFromEntityLockonPrompt", RemoveBlipIconFromEntityLockonPrompt)
+    exports("SetBlipIconLockonEntityPrompt", SetBlipIconLockonEntityPrompt)
     exports("SetExistingBlipLockonEntityPrompt", SetExistingBlipLockonEntityPrompt)
 
     -- Ped

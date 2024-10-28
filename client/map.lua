@@ -23,3 +23,18 @@ end
 function IsGPSActive()
     return Citizen.InvokeNative(0xF47A1EB2A538A3A3)
 end
+
+---Check if the entity lockon prompt contains an icon. [@outsider]
+---@param entity number
+---@param blipId number
+---@return boolean
+function IsBlipIconOnLockonEntityPrompt(entity, blipId)
+    return Citizen.InvokeNative(0x3CB8859F04763C78, entity, blipId)
+end
+
+---Remove the icon from the entity lockon prompt. [@outsider]
+---@param entity number
+---@param integer number
+function RemoveBlipIconFromEntityLockonPrompt(entity, integer)
+    Citizen.InvokeNative(0xBB68D4D3CA3DE402, entity, integer)
+end

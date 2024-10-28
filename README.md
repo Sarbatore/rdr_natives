@@ -76,7 +76,9 @@ Map |
 -- |
 ClearBlip(blip)
 ClearExistingBlipFromLockonEntityPrompt(entity, blipId)
+IsBlipIconOnLockonEntityPrompt(entity, blipId)
 IsGPSActive()
+RemoveBlipIconFromEntityLockonPrompt(entity, integer)
 SetBlipIconLockonEntityPrompt(entity, blipHash)
 SetExistingBlipLockonEntityPrompt(entity, blipId)
 
