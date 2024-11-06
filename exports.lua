@@ -45,9 +45,13 @@ else
     -- Map
     exports("ClearBlip", ClearBlip)
     exports("ClearExistingBlipFromLockonEntityPrompt", ClearExistingBlipFromLockonEntityPrompt)
+    exports("ClearPausemapCoords", ClearPausemapCoords)
+    exports("GetWaypointCoordsAsPointers", GetWaypointCoordsAsPointers)
     exports("IsBlipIconOnLockonEntityPrompt", IsBlipIconOnLockonEntityPrompt)
     exports("IsGPSActive", IsGPSActive)
+    exports("IsGPSRouteOnRoad", IsGPSRouteOnRoad)
     exports("RemoveBlipIconFromEntityLockonPrompt", RemoveBlipIconFromEntityLockonPrompt)
+    exports("SetActiveBlipIconEntityPromptWithoutLockon", SetActiveBlipIconEntityPromptWithoutLockon)
     exports("SetBlipIconLockonEntityPrompt", SetBlipIconLockonEntityPrompt)
     exports("SetExistingBlipLockonEntityPrompt", SetExistingBlipLockonEntityPrompt)
 

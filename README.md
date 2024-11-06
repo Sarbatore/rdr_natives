@@ -76,9 +76,13 @@ Map |
 -- |
 ClearBlip(blip)
 ClearExistingBlipFromLockonEntityPrompt(entity, blipId)
+ClearPausemapCoords()
+GetWaypointCoordsAsPointers()
 IsBlipIconOnLockonEntityPrompt(entity, blipId)
 IsGPSActive()
+IsGPSRouteOnRoad()
 RemoveBlipIconFromEntityLockonPrompt(entity, integer)
+SetActiveBlipIconEntityPromptWithoutLockon(entity)
 SetBlipIconLockonEntityPrompt(entity, blipHash)
 SetExistingBlipLockonEntityPrompt(entity, blipId)
 
