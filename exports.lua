@@ -66,7 +66,7 @@ else
     exports("AddPlayerInteractiveFocusPreset", AddPlayerInteractiveFocusPreset)
     exports("AddPlayerInteractiveFocusPresetAtCoords", AddPlayerInteractiveFocusPresetAtCoords)
     exports("CanPlayerFocusOnTrackInEagleEye", CanPlayerFocusOnTrackInEagleEye)
-    exists("ClearDeadeyeAuraIntensityWithFlag", ClearDeadeyeAuraIntensityWithFlag)
+    exports("ClearDeadeyeAuraIntensityWithFlag", ClearDeadeyeAuraIntensityWithFlag)
     exports("DisablePlayerInteractiveFocusPreset", DisablePlayerInteractiveFocusPreset)
     exports("EagleEyeAreAllTrailsHidden", EagleEyeAreAllTrailsHidden)
     exports("EagleEyeAddParticleEffectToEntity", EagleEyeAddParticleEffectToEntity)
