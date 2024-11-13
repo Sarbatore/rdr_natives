@@ -11,7 +11,7 @@ end
 ---@param duration number
 ---@param size number
 ---@return boolean, ?table
-function GetRecentlyAttackedPedsInCombo(player, duration, size)
+function GetPedsInCombatWithRecently(player, duration, size)
     local DataStruct = DataView.ArrayBuffer(size*8)
 
     if (Citizen.InvokeNative(0x1A6E84F13C952094, player, duration, DataStruct:Buffer())) then
@@ -41,7 +41,7 @@ end
 ---Shows or hides all "Pick Up" prompts for the specified player. [@kadir]
 ---@param player number
 ---@param isVisible boolean
-function SetPlayerPickupPromptVisible(player, isVisible)
+function SetPlayerCanPickupAbility(player, isVisible)
     Citizen.InvokeNative(0xD1A70C1E8D1031FE, player, isVisible)
 end
 
@@ -137,7 +137,7 @@ end
 ---Returns whether the player can focus on a track in eagle eye. [@kadir]
 ---@param player number
 ---@return boolean
-function CanPlayerFocusOnTrackInEagleEye(player)
+function EagleEyeCanPlayerFocusOnTrack(player)
     return Citizen.InvokeNative(0x1DA5C5B0923E1B85, player)
 end
 
@@ -169,21 +169,21 @@ end
 ---Sets the player's melee prompt text. [@kadir]
 ---@param player number
 ---@param promptText string
-function SetPlayerMeleePromptText(player, promptText)
+function SetPlayerPromptMeleeText(player, promptText)
     Citizen.InvokeNative(0x0FAF95D71ED67ADE, player, promptText)
 end
 
 ---Sets the player's leave prompt text. [@kadir]
 ---@param player number
 ---@param promptText string
-function SetPlayerLeavePromptText(player, promptText)
+function SetPlayerPromptLeaveText(player, promptText)
     Citizen.InvokeNative(0x06C3DB00B69D5435, player, promptText)
 end
 
 ---Sets the player's sit prompt text. [@kadir]
 ---@param player number
 ---@param promptText string
-function SetPlayerSitPromptText(player, promptText)
+function SetPlayerPromptSitText(player, promptText)
     Citizen.InvokeNative(0x988C9045531B9FCE, player, promptText)
 end
 
@@ -195,7 +195,7 @@ end
 ---@param preset string
 ---@param targetEntity number
 ---@param name string
-function AddPlayerInteractiveFocusPresetAtCoords(player, x, y, z, preset, targetEntity, name)
+function AddAmbientPlayerInteractiveFocusPresetAtCoords(player, x, y, z, preset, targetEntity, name)
     Citizen.InvokeNative(0xD48227263E3D06AE, player, x, y, z, preset, targetEntity, name)
 end
 
@@ -209,7 +209,7 @@ end
 ---Checks if the player's Deadeye ability is enabled. [@kadir]
 ---@param player number
 ---@return boolean
-function IsDeadEyeAbilityEnabled(player)
+function IsSpecialAbilityEnabled(player)
     return Citizen.InvokeNative(0xDE6C85975F9D4894, player)
 end
 

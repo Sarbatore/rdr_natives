@@ -52,7 +52,7 @@ end
 
 ---Returns the x and y coordinates of the waypoint. [@kadir]
 ---@return number, number
-function GetWaypointCoordsAsPointers()
+function GetWaypointPosition()
     local x, y = Citizen.InvokeNative(0xF08E42BFA46BDFF8, Citizen.PointerValueFloat(), Citizen.PointerValueFloat())
     return x, y
 end
