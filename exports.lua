@@ -55,6 +55,10 @@ else
     exports("SetBlipIconLockonEntityPrompt", SetBlipIconLockonEntityPrompt)
     exports("SetExistingBlipLockonEntityPrompt", SetExistingBlipLockonEntityPrompt)
 
+    -- Misc
+    exports("DisableCompositeEatPromptThisFrame", DisableCompositeEatPromptThisFrame)
+    exports("DisableCompositePickPromptThisFrame", DisableCompositePickPromptThisFrame)
+
     -- Ped
     exports("ApplyPedDamagePackToBone", ApplyPedDamagePackToBone)
     exports("ApplyColdToPed", ApplyColdToPed)

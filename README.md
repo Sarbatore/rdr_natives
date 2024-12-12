@@ -86,6 +86,11 @@ SetActiveBlipIconEntityPromptWithoutLockon(entity)
 SetBlipIconLockonEntityPrompt(entity, blipHash)
 SetExistingBlipLockonEntityPrompt(entity, blipId)
 
+Misc |
+-- |
+DisableCompositeEatPromptThisFrame(composite, disable)
+DisableCompositePickPromptThisFrame(composite, disable)
+
 Ped |
 -- |
 ApplyColdToPed(ped, intensity, p2)
