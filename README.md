@@ -54,6 +54,13 @@ AddExplosionWithUserVfxAndDamageCauser(entity, p1, x, y, z, explosionType, explo
 DoesFireExistCloseToPlayerAtVolumePos(playerX, playerY, playerZ, volumePosX, volumePosY, volumePosZ, volumeRotX, volumeRotY, volumeRotZ)
 IsEntityDamagedByFire(entity)
 
+Flock |
+-- |
+ClearHerd(herd)
+DeleteHerd(herd)
+IsPedInHerd(herd, ped)
+RemoveHerdPed(herd, ped)
+
 Hud |
 -- |
 GetWeaponWheelHighlightedWeaponHash()
@@ -149,6 +156,7 @@ EventsUiPeekMessage(uiapp)
 
 Vehicle |
 -- |
+AreAnyVehicleWheelsDestroyed(vehicle)
 GetTrainTrackInfos(train)
 
 Weapon |

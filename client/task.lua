@@ -11,7 +11,7 @@ function GetScenarioPointsInArea(x, y, z, radius, size)
         local scenarioPoints = {}
         for i=1, size do
             local scenarioPoint = DataStruct:GetInt32(i*8)
-            if (DoesScenarioPointExist(scenarioPoint)) then
+            if (Citizen.InvokeNative(0x841475AC96E794D1, scenarioPoint)) then -- DOES_SCENARIO_POINT_EXIST
                 table.insert(scenarioPoints, scenarioPoint)
             end
         end

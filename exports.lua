@@ -23,6 +23,12 @@ else
     exports("DoesFireExistCloseToPlayerAtVolumePos", DoesFireExistCloseToPlayerAtVolumePos)
     exports("IsEntityDamagedByFire", IsEntityDamagedByFire)
 
+    -- Flock
+    exports("ClearHerd", ClearHerd)
+    exports("DeleteHerd", DeleteHerd)
+    exports("IsPedInHerd", IsPedInHerd)
+    exports("RemoveHerdPed", RemoveHerdPed)
+
     -- HUD
     exports("GetWeaponWheelHighlightedWeaponHash", GetWeaponWheelHighlightedWeaponHash)
 
@@ -113,6 +119,7 @@ else
     exports("EventsUiPeekMessage", EventsUiPeekMessage)
 
     -- Vehicle
+    exports("AreAnyVehicleWheelsDestroyed", AreAnyVehicleWheelsDestroyed)
     exports("GetTrainTrackInfos", GetTrainTrackInfos)
 
     -- Weapon
