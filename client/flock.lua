@@ -235,7 +235,7 @@ end
 ---@param p12 float
 ---@param p13 float
 function N_0xF2CCA7B68CFAB2B9(species, x, y, z, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13)
-	Citizen.InvokeNative(0xF2CCA7B68CFAB2B9, species, x, y, z, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13))
+	Citizen.InvokeNative(0xF2CCA7B68CFAB2B9, species, x, y, z, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13)
 end
 
 ---
