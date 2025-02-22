@@ -7,6 +7,5 @@ author "Sarbatore"
 client_scripts {
 	"@vorp_utils/shared/services/dataview.lua", -- Your dataview path
 	"client/*.lua",
-	"cl_examples.lua",
 	"exports.lua",
 }

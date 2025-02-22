@@ -30,8 +30,8 @@ end
 ---@param speechLine integer
 ---@return boolean
 function PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine, listenerPed, syncOverNetwork, p6, p7)
-    local params = exports.redm_natives:GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine, listenerPed, syncOverNetwork, p6, p7)
-    return Citizen.InvokeNative(0x8E04FEDD28D42462, ped, params)
+    local params = exports.rdr_natives:GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine, listenerPed, syncOverNetwork, p6, p7)
+    return Citizen.InvokeNative(0x8E04FEDD28D42462, ped, params) == 1
 end
 
 --- Play an ambient speech from a position
@@ -43,8 +43,8 @@ end
 ---@param speechParams hash
 ---@param speechLine integer
 function PlayAmbientSpeechFromPosition(x, y, z, soundRef, soundName, speechParams, speechLine, listenerPed, syncOverNetwork, p6, p7)
-    local params = exports.redm_natives:GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine, listenerPed, syncOverNetwork, p6, p7)
-    return Citizen.InvokeNative(0xED640017ED337E45, x, y, z, params)
+    local params = exports.rdr_natives:GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine, listenerPed, syncOverNetwork, p6, p7)
+    return Citizen.InvokeNative(0xED640017ED337E45, x, y, z, params) == 1
 end
 
 ---Returns the hash of the currently playing ambient speech of a ped [@aaron1a12]

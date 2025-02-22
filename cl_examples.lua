@@ -12,7 +12,7 @@ RegisterCommand("PlayPedAmbientSpeech", function()
     local speechParams = 291934926
     local speechLine = 0
 
-    local retval = exports.redm_natives:PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine)
+    local retval = exports.rdr_natives:PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine)
     if (retval) then
         print("PlayPedAmbientSpeech")
     else
@@ -28,7 +28,7 @@ RegisterCommand("PlayAmbientSpeechFromPosition", function()
     local speechParams = 291934926
     local speechLine = 0
 
-    local retval = exports.redm_natives:PlayAmbientSpeechFromPosition(coords.x, coords.y, coords.z, soundRef, soundName, speechParams, speechLine)
+    local retval = exports.rdr_natives:PlayAmbientSpeechFromPosition(coords.x, coords.y, coords.z, soundRef, soundName, speechParams, speechLine)
     if (retval) then
         print("PlayAmbientSpeechFromPosition")
     else
@@ -44,7 +44,7 @@ end)
 ########################################################################################################################
 ]]
 RegisterCommand("InventoryGetInventoryItemInspectionInfo", function()
-    local retval, model = exports.redm_natives:InventoryGetInventoryItemInspectionInfo(-780677328)
+    local retval, model = exports.rdr_natives:InventoryGetInventoryItemInspectionInfo(-780677328)
     if (retval) then
         print("InventoryGetInventoryItemInspectionInfo", model)
     else
@@ -60,7 +60,7 @@ end)
 ########################################################################################################################
 ]]
 RegisterCommand("ItemdatabaseFilloutItemInfo", function()
-    local retval, category, group = exports.redm_natives:ItemdatabaseFilloutItemInfo(-780677328)
+    local retval, category, group = exports.rdr_natives:ItemdatabaseFilloutItemInfo(-780677328)
     if (retval) then
         print("ItemdatabaseFilloutItemInfo", category, group)
     else
@@ -69,7 +69,7 @@ RegisterCommand("ItemdatabaseFilloutItemInfo", function()
 end)
 
 RegisterCommand("ItemdatabaseFilloutItemEffectIds", function()
-    local retval, effectIds = exports.redm_natives:ItemdatabaseFilloutItemEffectIds(`WEAPON_REVOLVER_CATTLEMAN`)
+    local retval, effectIds = exports.rdr_natives:ItemdatabaseFilloutItemEffectIds(`WEAPON_REVOLVER_CATTLEMAN`)
     if (retval) then
         if (#effectIds > 0) then
             print("ItemdatabaseFilloutItemEffectIds")
@@ -85,10 +85,10 @@ RegisterCommand("ItemdatabaseFilloutItemEffectIds", function()
 end)
 
 RegisterCommand("ItemdatabaseFilloutItemEffectIdInfo", function()
-    local retval, effectIds = exports.redm_natives:ItemdatabaseFilloutItemEffectIds(`WEAPON_REVOLVER_CATTLEMAN`)
+    local retval, effectIds = exports.rdr_natives:ItemdatabaseFilloutItemEffectIds(`WEAPON_REVOLVER_CATTLEMAN`)
     if (not retval) or (#effectIds == 0) then return end
 
-    local retval, id, type, value, time, timeUnits, corePercent, durationcategory = exports.redm_natives:ItemdatabaseFilloutItemEffectIdInfo(effectIds[1])
+    local retval, id, type, value, time, timeUnits, corePercent, durationcategory = exports.rdr_natives:ItemdatabaseFilloutItemEffectIdInfo(effectIds[1])
     if (retval) then
         print("ItemdatabaseFilloutItemEffectIdInfo", id, type, value, time, timeUnits, corePercent, durationcategory)
     else
@@ -98,10 +98,10 @@ end)
 
 ---@todo Implement ItemdatabaseGetHasSlotInfo
 RegisterCommand("ItemdatabaseGetHasSlotInfo", function()
-    local retval, category = exports.redm_natives:ItemdatabaseFilloutItemInfo(856287005)
+    local retval, category = exports.rdr_natives:ItemdatabaseFilloutItemInfo(856287005)
     if (not retval) then print("Failed to ItemdatabaseFilloutItemInfo") return end
     
-    local retval, hasSlot = exports.redm_natives:ItemdatabaseGetHasSlotInfo(category, 0)
+    local retval, hasSlot = exports.rdr_natives:ItemdatabaseGetHasSlotInfo(category, 0)
     if (retval) then
         print("ItemdatabaseGetHasSlotInfo", hasSlot)
     else
@@ -111,7 +111,7 @@ end)
 
 ---@todo Implement ItemdatabaseFilloutItem
 RegisterCommand("ItemdatabaseFilloutItem", function()
-    local retval, a = exports.redm_natives:ItemdatabaseFilloutItem(-1814149473, `COST_ABILITY_CARD_RANK_COUPON`, 0)
+    local retval, a = exports.rdr_natives:ItemdatabaseFilloutItem(-1814149473, `COST_ABILITY_CARD_RANK_COUPON`, 0)
     if (retval) then
         print("ItemdatabaseFilloutItem", a)
     else
@@ -121,7 +121,7 @@ end)
 
 ---@todo Implement ItemdatabaseFilloutAcquireCost
 RegisterCommand("ItemdatabaseFilloutAcquireCost", function()
-    local retval, unk1, unk2 = exports.redm_natives:ItemdatabaseFilloutAcquireCost(unk1, unk2)
+    local retval, unk1, unk2 = exports.rdr_natives:ItemdatabaseFilloutAcquireCost(unk1, unk2)
     if (retval) then
         print("ItemdatabaseFilloutAcquireCost", a, b)
     else
@@ -131,7 +131,7 @@ end)
 
 ---@todo Implement ItemdatabaseFilloutTagData
 RegisterCommand("ItemdatabaseFilloutTagData", function()
-    local retval, tagData = exports.redm_natives:ItemdatabaseFilloutTagData(-780677328)
+    local retval, tagData = exports.rdr_natives:ItemdatabaseFilloutTagData(-780677328)
     if (retval) then
         print("ItemdatabaseFilloutTagData", tagData)
     else
@@ -149,7 +149,7 @@ end)
 RegisterCommand("GetScenarioPointsInArea", function()
     local playerPed = PlayerPedId()
     local playerCoords = GetEntityCoords(playerPed)
-    local retval, scenarioPoints = exports.redm_natives:GetScenarioPointsInArea(playerCoords.x, playerCoords.y, playerCoords.z, 3.0, 10)
+    local retval, scenarioPoints = exports.rdr_natives:GetScenarioPointsInArea(playerCoords.x, playerCoords.y, playerCoords.z, 3.0, 10)
     if (retval) then
         for i, scenarioPoint in ipairs(scenarioPoints) do
             print("ScenarioPoint", scenarioPoint)
@@ -174,7 +174,7 @@ RegisterCommand("EventsUiPeekMessage", function()
         while IsUiappRunningByHash(uiapp) == 1 do
             Citizen.Wait(0)
             while EventsUiIsPending(uiapp) do
-                local retval, eventTypeHash, index, unk, entryId = exports.redm_natives:EventsUiPeekMessage(uiapp)
+                local retval, eventTypeHash, index, unk, entryId = exports.rdr_natives:EventsUiPeekMessage(uiapp)
                 if (retval) then
                     print("EventsUiPeekMessage", eventTypeHash, index, unk, entryId)
                 else
