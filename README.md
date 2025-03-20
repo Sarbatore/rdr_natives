@@ -2,6 +2,9 @@
 This resource is a strong library of discovered native functions by the community.
 You can reuse functions with exports or by including files.
 
+## Links
+- [Github](https://github.com/Sarbatore/rdr_natives)
+
 ## Usages
 ### With exports
 ```lua
