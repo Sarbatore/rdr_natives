@@ -65,12 +65,17 @@ else
     exports("DisableCompositeEatPromptThisFrame", DisableCompositeEatPromptThisFrame)
     exports("DisableCompositePickPromptThisFrame", DisableCompositePickPromptThisFrame)
 
+    -- Network
+    exports("NetworkLeaveSession", NetworkLeaveSession)
+    exports("NetworkUnregisterNetworkedEntity", NetworkUnregisterNetworkedEntity)
+
     -- Ped
     exports("ApplyPedDamagePackToBone", ApplyPedDamagePackToBone)
     exports("ApplyColdToPed", ApplyColdToPed)
     exports("GetNumReservedStamina", GetNumReservedStamina)
     exports("HasPedBeenShotByPlayerRecently", HasPedBeenShotByPlayerRecently)
     exports("HasPedInteractedWithPlayerRecently", HasPedInteractedWithPlayerRecently)
+    exports("IsPedAfloat", IsPedAfloat)
 
     -- Player
     exports("AddPlayerInteractiveFocusPreset", AddPlayerInteractiveFocusPreset)
@@ -109,11 +114,15 @@ else
     exports("SetPlayerWeaponDrawSpeed", SetPlayerWeaponDrawSpeed)
     exports("SpecialAbilitySetActivate", SpecialAbilitySetActivate)
 
+    -- Propset
+    exports("ModifyPropSetCoordsAndHeading", ModifyPropSetCoordsAndHeading)
+
     -- Task
     exports("GetCoverpointFromEntityWithOffset", GetCoverpointFromEntityWithOffset)
     exports("GetScenarioPointsInArea", GetScenarioPointsInArea)
     exports("LoadCarriableConfigHash", LoadCarriableConfigHash)
     exports("HasCarriableConfigHashLoaded", HasCarriableConfigHashLoaded)
+    exports("IsScenarioInUse", IsScenarioInUse)
 
     -- Uievents
     exports("EventsUiPeekMessage", EventsUiPeekMessage)

@@ -47,3 +47,10 @@ end
 function GetCoverpointFromEntityWithOffset(entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8)
     return Citizen.InvokeNative(0x59872EA4CBD11C56, entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8)
 end
+
+---Return whether the scenario is in use or not.
+---@param scenarioHash number
+---@return boolean
+function IsScenarioInUse(scenarioHash)
+    return Citizen.InvokeNative(0x1ACBC313966C21F3, scenarioHash)
+end

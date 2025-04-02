@@ -46,6 +46,13 @@ function HasPedInteractedWithPlayerRecently(ped, player, interactionFlag, durati
     return Citizen.InvokeNative(0x947E43F544B6AB34, ped, player, interactionFlag, duration)
 end
 
+---Returns whether a ped is afloat in water like swimming or in a boat (driving or standing on it). [@outsider]
+---@param ped number
+---@return boolean
+function IsPedAfloat(ped)
+    return Citizen.InvokeNative(0xDC88D06719070C39, ped) -- N_0xdc88d06719070c39
+end
+
 --[[
 ########################################################################################################################################
 #                                                                                                                                      #
