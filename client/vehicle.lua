@@ -11,3 +11,10 @@ end
 function AreAnyVehicleWheelsDestroyed(vehicle)
     return Citizen.InvokeNative(0x18714953CCED17D3, vehicle)
 end
+
+---Determines whether the train whistle can be used. True if so, False to make it unusable.
+---@param train number
+---@param enable bool
+function SetTrainWhistleEnabled(train, enable)
+    Citizen.InvokeNative(0x1BFBAFCC6760FF02, train, enable)
+end

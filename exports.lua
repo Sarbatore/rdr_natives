@@ -76,6 +76,7 @@ else
     exports("HasPedBeenShotByPlayerRecently", HasPedBeenShotByPlayerRecently)
     exports("HasPedInteractedWithPlayerRecently", HasPedInteractedWithPlayerRecently)
     exports("IsPedAfloat", IsPedAfloat)
+    exports("SetPedWetness", SetPedWetness)
 
     -- Player
     exports("AddPlayerInteractiveFocusPreset", AddPlayerInteractiveFocusPreset)
@@ -130,6 +131,7 @@ else
     -- Vehicle
     exports("AreAnyVehicleWheelsDestroyed", AreAnyVehicleWheelsDestroyed)
     exports("GetTrainTrackInfos", GetTrainTrackInfos)
+    exports("SetTrainWhistleEnabled", SetTrainWhistleEnabled)
 
     -- Weapon
     exports("DoesPedHaveRifle", DoesPedHaveRifle)

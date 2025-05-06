@@ -53,6 +53,13 @@ function IsPedAfloat(ped)
     return Citizen.InvokeNative(0xDC88D06719070C39, ped) -- N_0xdc88d06719070c39
 end
 
+---Only works when you use SET_PED_WETNESS_HEIGHT first , if you do 0.0 or it dries naturally
+---@param ped number
+---@param amount number
+function SetPedWetness(ped, amount)
+    Citizen.InvokeNative(0xF9CFF5BB70E8A2CB, ped, amount)
+end
+
 --[[
 ########################################################################################################################################
 #                                                                                                                                      #
