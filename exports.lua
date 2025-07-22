@@ -140,6 +140,8 @@ else
     exports("DoesPedHaveShotgun", DoesPedHaveShotgun)
     exports("DoesPedHaveRevolver", DoesPedHaveRevolver)
     exports("DoesPedHavePistol", DoesPedHavePistol)
+    exports("GetAmmoTypeForWeapon_2", GetAmmoTypeForWeapon_2)
+    exports("GetAmmoInPedWeaponFromGuid", GetAmmoInPedWeaponFromGuid)
     exports("GetDefaultWeaponAttachPoint", GetDefaultWeaponAttachPoint)
     exports("GetNumPedsRestrainedFromWeaponBolas", GetNumPedsRestrainedFromWeaponBolas)
     exports("GetWeaponHashFromPedWeapon", GetWeaponHashFromPedWeapon)

@@ -89,6 +89,21 @@ function DoesPedHavePistol(ped, p1)
     return Citizen.InvokeNative(0xBFCA7AFABF9D7967, ped, p1)
 end
 
+---Return the default ammo type for weapon
+---@param weaponHash number
+---@return bool
+function GetAmmoTypeForWeapon_2(weaponHash)
+    return Citizen.InvokeNative(0xEC97101A8F311282, weaponHash)
+end
+
+---Return the amount of ammo a weapon have from its guid
+---@param ped number
+---@param guid Buffer
+---@return bool
+function GetAmmoInPedWeaponFromGuid(ped, guid)
+    return Citizen.InvokeNative(0x4823F13A21F51964, ped, guid) or 0
+end
+
 ---Take weapon from horse ped?
 ---@param horsePed number
 ---@param weaponHash hash
