@@ -3,3 +3,10 @@
 function GetWeaponWheelHighlightedWeaponHash()
     return Citizen.InvokeNative(0x9C409BBC492CB5B1)
 end
+
+---Returns true if the mash prompt have just been pressed [@Sarbatore]
+---@param prompt number
+---@return bool
+function UiPromptHasMashModeJustPressed(prompt)
+    return Citizen.InvokeNative(0xB0E8599243B3F568, prompt)
+end

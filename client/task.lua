@@ -21,6 +21,10 @@ function GetScenarioPointsInArea(x, y, z, radius, size)
     return false
 end
 
+function TaskPickUpWeapon(ped, pickup)
+    Citizen.InvokeNative(0x55B0ECFD98596624, ped, pickup)
+end
+
 ---Loads the carryable config hash [@outsider]
 ---@param carryConfigHash number
 function LoadCarriableConfigHash(carryConfigHash)

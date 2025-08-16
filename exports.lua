@@ -31,6 +31,7 @@ else
 
     -- HUD
     exports("GetWeaponWheelHighlightedWeaponHash", GetWeaponWheelHighlightedWeaponHash)
+    exports("UiPromptHasMashModeJustPressed", UiPromptHasMashModeJustPressed)
 
     -- Inventory
     exports("InventoryApplyWeaponStatsToEntry", InventoryApplyWeaponStatsToEntry)
@@ -124,6 +125,7 @@ else
     exports("LoadCarriableConfigHash", LoadCarriableConfigHash)
     exports("HasCarriableConfigHashLoaded", HasCarriableConfigHashLoaded)
     exports("IsScenarioInUse", IsScenarioInUse)
+    exports("TaskPickUpWeapon", TaskPickUpWeapon)
 
     -- Uievents
     exports("EventsUiPeekMessage", EventsUiPeekMessage)
