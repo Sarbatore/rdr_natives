@@ -130,6 +130,6 @@ WEAPON_THROWN_BOLAS
 WEAPON_THROWN_MOLOTOV]]
 ---@param ped number
 ---@param weaponHash number
-function N_0x07E1C35F0078C3F9(ped, weaponHash)
+function IsPedHoldingWeapon(ped, weaponHash)
     return Citizen.InvokeNative(0x07E1C35F0078C3F9, ped, weaponHash)
 end

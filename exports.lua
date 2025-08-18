@@ -3,11 +3,11 @@ if (IsDuplicityVersion()) then
 else
     -- Audio
     exports("CanPedSaySpeech", CanPedSaySpeech)
-    exports("GetAmbientSpeechParamsBuffer", GetAmbientSpeechParamsBuffer)
+    exports("GetAmbientSpeechBuffer", GetAmbientSpeechBuffer)
     exports("GetCurrentAmbientSpeechHash", GetCurrentAmbientSpeechHash)
     exports("GetLastAmbientSpeechHash", GetLastAmbientSpeechHash)
-    exports("PlayPedAmbientSpeech", PlayPedAmbientSpeech)
-    exports("PlayAmbientSpeechFromPosition", PlayAmbientSpeechFromPosition)
+    exports("PlayPedAmbientSpeechNative", PlayPedAmbientSpeechNative)
+    exports("PlayAmbientSpeechFromPositionNative", PlayAmbientSpeechFromPositionNative)
 
     -- Cam
     exports("SetCameraClosestZoom", SetCameraClosestZoom)

@@ -8,7 +8,7 @@ You can reuse functions with exports or by including files.
 ## Usages
 ### With exports
 ```lua
-exports.redm_natives:PlayPedAmbientSpeech(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0) -- This will make your ped speak.
+exports.redm_natives:PlayPedAmbientSpeechNative(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0) -- This will make your ped speak.
 ```
 ### By including file in fxmanifest
 fxmanifest.lua
@@ -19,7 +19,7 @@ client_scripts {
 ```
 yourfile.lua
 ```lua
-    PlayPedAmbientSpeech(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0)
+    PlayPedAmbientSpeechNative(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0)
 ```
 
 ## Contributions
@@ -33,12 +33,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 ## References:
 Audio |
 -- |
-CanPedSaySpeech(ped, soundName, speechParams, speechLine)
-GetAmbientSpeechParamsBuffer(soundRef, soundName, speechParams, speechLine, listenerPed, syncOverNetwork, p6, p7)
+CanPedSaySpeech(ped, speechName, speechParam, speechLine)
+GetAmbientSpeechBuffer(speechRef, speechName, speechParam, speechLine, listenerPed, syncOverNetwork)
 GetCurrentAmbientSpeechHash(ped)
 GetLastAmbientSpeechHash(ped)
-PlayAmbientSpeechFromPosition(x, y, z, soundRef, soundName, speechParams, speechLine, listenerPed, syncOverNetwork, p6, p7)
-PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine, listenerPed, syncOverNetwork, p6, p7)
+PlayAmbientSpeechFromPositionNative(x, y, z, speechRef, speechName, speechParam, speechLine, listenerPed, syncOverNetwork)
+PlayPedAmbientSpeechNative(ped, speechRef, speechName, speechParam, speechLine, listenerPed, syncOverNetwork)
 
 Cam |
 -- |

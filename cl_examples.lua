@@ -5,22 +5,22 @@
 #                                                                                                                      #
 ########################################################################################################################
 ]]
-RegisterCommand("PlayPedAmbientSpeech", function()
+RegisterCommand("PlayPedAmbientSpeechNative", function()
     local ped = PlayerPedId()
     local soundRef = "0083_U_M_O_BlWGeneralStoreOwner_01"
     local soundName = "TAKE_YOUR_TIME"
     local speechParams = 291934926
     local speechLine = 0
 
-    local retval = exports.rdr_natives:PlayPedAmbientSpeech(ped, soundRef, soundName, speechParams, speechLine)
+    local retval = exports.rdr_natives:PlayPedAmbientSpeechNative(ped, soundRef, soundName, speechParams, speechLine)
     if (retval) then
-        print("PlayPedAmbientSpeech")
+        print("PlayPedAmbientSpeechNative")
     else
-        print("Failed to PlayPedAmbientSpeech")
+        print("Failed to PlayPedAmbientSpeechNative")
     end
 end)
 
-RegisterCommand("PlayAmbientSpeechFromPosition", function()
+RegisterCommand("PlayAmbientSpeechFromPositionNative", function()
     local ped = PlayerPedId()
     local coords = GetEntityCoords(ped)
     local soundRef = "0083_U_M_O_BlWGeneralStoreOwner_01"
@@ -28,11 +28,11 @@ RegisterCommand("PlayAmbientSpeechFromPosition", function()
     local speechParams = 291934926
     local speechLine = 0
 
-    local retval = exports.rdr_natives:PlayAmbientSpeechFromPosition(coords.x, coords.y, coords.z, soundRef, soundName, speechParams, speechLine)
+    local retval = exports.rdr_natives:PlayAmbientSpeechFromPositionNative(coords.x, coords.y, coords.z, soundRef, soundName, speechParams, speechLine)
     if (retval) then
-        print("PlayAmbientSpeechFromPosition")
+        print("PlayAmbientSpeechFromPositionNative")
     else
-        print("Failed to PlayAmbientSpeechFromPosition")
+        print("Failed to PlayAmbientSpeechFromPositionNative")
     end
 end)
 

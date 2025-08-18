@@ -5,6 +5,7 @@ lua54 "yes"
 
 author "Sarbatore"
 description "Natives discovered by community"
+version "1.0.1"
 
 client_scripts {
 	"@vorp_utils/shared/services/dataview.lua", -- Your dataview path
