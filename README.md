@@ -91,7 +91,7 @@ GetWaypointPosition()
 IsBlipIconOnLockonEntityPrompt(entity, blipId)
 IsGPSActive()
 IsGPSRouteOnRoad()
-RemoveBlipIconFromEntityLockonPrompt(entity, integer)
+RemoveBlipIconFromEntityLockonPrompt(entity, int)
 SetActiveBlipIconEntityPromptWithoutLockon(entity)
 SetBlipIconLockonEntityPrompt(entity, blipHash)
 SetExistingBlipLockonEntityPrompt(entity, blipId)
@@ -148,10 +148,17 @@ SpecialAbilitySetActivate(player)
 
 Task |
 -- |
+ClearVehicleTasks(vehicle)
 GetCoverpointFromEntityWithOffset(entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8)
+GetPedBreakFreeProgress(ped)
+GetScenarioContainerNumCompartments(entity)
+GetScenarioContainerNumOpenCompartments(entity)
+GetScenarioContainerRemainingLootCount(entity)
 GetScenarioPointsInArea(x, y, z, radius, size)
 HasCarriableConfigHashLoaded(carryConfigHash)
+IsPedBeingLed(mount)
 LoadCarriableConfigHash(carryConfigHash)
+SetIntimitatedFacingAngle(ped, useLimits, minAngle, maxAngle)
 
 Uievents |
 -- |

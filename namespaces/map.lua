@@ -19,28 +19,28 @@ function ClearBlip(blip)
 end
 
 ---Return whether a GPS marker is set. [@sarbatore]
----@return boolean
+---@return bool
 function IsGPSActive()
     return Citizen.InvokeNative(0xF47A1EB2A538A3A3)
 end
 
 ---Check if the entity lockon prompt contains an icon. [@outsider]
----@param entity number
+---@param entity Entity
 ---@param blipId number
----@return boolean
+---@return bool
 function IsBlipIconOnLockonEntityPrompt(entity, blipId)
     return Citizen.InvokeNative(0x3CB8859F04763C78, entity, blipId)
 end
 
 ---Remove the icon from the entity lockon prompt. [@outsider]
----@param entity number
----@param integer number
-function RemoveBlipIconFromEntityLockonPrompt(entity, integer)
-    Citizen.InvokeNative(0xBB68D4D3CA3DE402, entity, integer)
+---@param entity Entity
+---@param int number
+function RemoveBlipIconFromEntityLockonPrompt(entity, int)
+    Citizen.InvokeNative(0xBB68D4D3CA3DE402, entity, int)
 end
 
 ---Activates a blip icon prompt for a specific entity, allowing it to be displayed without requiring a lock-on. This function enables the blip to appear associated with the given entity, making it visible without the need to focus or target the entity directly. [@kadir]
----@param entity number
+---@param entity Entity
 function SetActiveBlipIconEntityPromptWithoutLockon(entity)
     Citizen.InvokeNative(0x1726963E6049DB53, entity)
 end
@@ -58,7 +58,7 @@ function GetWaypointPosition()
 end
 
 ---Checks if the GPS route to the waypoint is navigable along a road. If a route exists but there is no valid road path, this function returns false. [@kadir]
----@return boolean
+---@return bool
 function IsGPSRouteOnRoad()
     return Citizen.InvokeNative(0xF47A1EB2A538A3A3)
 end

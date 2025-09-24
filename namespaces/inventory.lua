@@ -2,7 +2,7 @@
 ---@param item number
 ---@param guid
 ---@param slotId number
----@return boolean, ?table
+---@return bool, ?table
 function InventoryGetGuidFromItemid(guid, item, slotId)
 	local DataStruct = DataView.ArrayBuffer(13*8)
     if (Citizen.InvokeNative(0x886DFD3E185C8A89, 1, guid, item, slotId, DataStruct:Buffer())) then
@@ -47,7 +47,7 @@ end
 
 ---
 ---@param item hash
----@return boolean, ?hash
+---@return bool, ?hash
 function InventoryGetInventoryItemInspectionInfo(item)
     local DataStruct = DataView.ArrayBuffer(256)
     DataStruct:SetInt32(3*8, -1)
@@ -66,8 +66,8 @@ end
 --- Returns the effects entry id for "CatalogItemInspection" container [@sarbatore]
 ---@param entryId number
 ---@param name string
----@param p2 boolean
----@param p3 boolean
+---@param p2 bool
+---@param p3 bool
 ---@return number
 function InventoryGetCatalogItemInspectionEffectsEntry(entryId, name, p2, p3)
     return Citizen.InvokeNative(0x9D21B185ABC2DBC4, entryId, name, p1, p2)

@@ -121,11 +121,18 @@ exports("SpecialAbilitySetActivate", SpecialAbilitySetActivate)
 exports("ModifyPropSetCoordsAndHeading", ModifyPropSetCoordsAndHeading)
 
 -- Task
+exports("ClearVehicleTasks", ClearVehicleTasks)
 exports("GetCoverpointFromEntityWithOffset", GetCoverpointFromEntityWithOffset)
+exports("GetPedBreakFreeProgress", GetPedBreakFreeProgress)
+exports("GetScenarioContainerNumCompartments", GetScenarioContainerNumCompartments)
+exports("GetScenarioContainerNumOpenCompartments", GetScenarioContainerNumOpenCompartments)
+exports("GetScenarioContainerRemainingLootCount", GetScenarioContainerRemainingLootCount)
 exports("GetScenarioPointsInArea", GetScenarioPointsInArea)
 exports("LoadCarriableConfigHash", LoadCarriableConfigHash)
 exports("HasCarriableConfigHashLoaded", HasCarriableConfigHashLoaded)
+exports("IsPedBeingLed", IsPedBeingLed)
 exports("IsScenarioInUse", IsScenarioInUse)
+exports("SetIntimitatedFacingAngle", SetIntimitatedFacingAngle)
 exports("TaskPickUpWeapon", TaskPickUpWeapon)
 
 -- Uievents

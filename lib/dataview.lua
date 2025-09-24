@@ -13,7 +13,7 @@ DataView = setmetatable({
         Float32 = { code = "f", size = 4 }, -- a float (native size)
         Float64 = { code = "d", size = 8 }, -- a double (native size)
 
-        LuaInt = { code = "j" }, -- a lua_Integer
+        LuaInt = { code = "j" }, -- a lua_int
         UluaInt = { code = "J" }, -- a lua_Unsigned
         LuaNum = { code = "n" }, -- a lua_Number
         String = { code = "z", size = -1, }, -- zero terminated string

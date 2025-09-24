@@ -1,7 +1,7 @@
 ---Return whether the ped is in the herd or not
 ---@param herd Herd
 ---@param ped Ped
----@return boolean
+---@return bool
 function IsPedInHerd(herd, ped)
 	return Citizen.InvokeNative(0x9E13ACC38BA8F9C3, herd, ped)
 end

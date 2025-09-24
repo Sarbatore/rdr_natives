@@ -1,5 +1,5 @@
 ---Attach an entity to coordinates physically [@sarbatore]
----@param entity number
+---@param entity Entity
 ---@param x number
 ---@param y number
 ---@param z number
@@ -7,7 +7,7 @@
 ---@param p5 number
 ---@param p6 number
 ---@param p7 number
----@param p8 boolean
+---@param p8 bool
 ---@param p9 number
 ---@param p10 number
 ---@param p11 number
@@ -19,7 +19,7 @@ function AttachEntityToCoordsPhysically(entity, x, y, z, p4, p5, p6, p7, p8, p9,
 end
 
 ---Return the entity which is looting the ped [@sarbatore]
----@param ped number
+---@param ped Ped
 ---@return number
 function GetEntityLootingPed(ped)
     return Citizen.InvokeNative(0xEF2D9ED7CE684F08, ped)

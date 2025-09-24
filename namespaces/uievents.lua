@@ -1,6 +1,6 @@
 ---
 ---@param uiapp hash
----@return boolean, ?number, ?number, ?number, ?number
+---@return bool, ?number, ?number, ?number, ?number
 function EventsUiPeekMessage(uiapp)
     local DataStruct = DataView.ArrayBuffer(4*8)
     DataStruct:SetInt32(0*8, 0) -- Event type
