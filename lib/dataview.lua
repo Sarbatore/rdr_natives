@@ -21,8 +21,8 @@ DataView = setmetatable({
 
     FixedTypes = {
         String = { code = "c" }, -- a fixed-sized string with n bytes
-        Int = { code = "i" }, -- a signed int with n bytes
-        Uint = { code = "I" }, -- an unsigned int with n bytes
+        Int = { code = "i" }, -- a signed integer with n bytes
+        Uint = { code = "I" }, -- an unsigned integer with n bytes
     },
 }, {
     __call = function(_, length)

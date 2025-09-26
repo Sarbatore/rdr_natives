@@ -3,7 +3,7 @@
 ---@param coordsX number
 ---@param coordsY number
 ---@param coordsZ number
----@param onGroundProperly bool
+---@param onGroundProperly boolean
 ---@param heading number
 ---@return void
 function ModifyPropSetCoordsAndHeading(propSet, coordsX, coordsY, coordsZ, onGroundProperly, heading)

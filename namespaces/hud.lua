@@ -6,7 +6,7 @@ end
 
 ---Returns true if the mash prompt have just been pressed [@Sarbatore]
 ---@param prompt Prompt
----@return bool
+---@return boolean
 function UiPromptHasMashModeJustPressed(prompt)
     return Citizen.InvokeNative(0xB0E8599243B3F568, prompt)
 end

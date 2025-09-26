@@ -1,6 +1,6 @@
 ---
 ---@param effectId number
----@return bool, ?number, ?number, ?number, ?number, ?number, ?number, ?number
+---@return boolean, ?number, ?number, ?number, ?number, ?number, ?number, ?number
 function ItemdatabaseFilloutItemEffectIdInfo(effectId)
     local DataStruct = DataView.ArrayBuffer(256)
     if (Citizen.InvokeNative(0xCF2D360D27FD1ABF, effectId, DataStruct:Buffer())) then
@@ -20,7 +20,7 @@ end
 
 ---
 ---@param key number
----@return bool, ?table
+---@return boolean, ?table
 function ItemdatabaseFilloutItemEffectIds(key)
     local DataStruct = DataView.ArrayBuffer(256)
     DataStruct:SetInt32(1*8, 20)
@@ -43,7 +43,7 @@ end
 
 ---
 ---@param key number
----@return bool, ?number, ?number
+---@return boolean, ?number, ?number
 function ItemdatabaseFilloutItemInfo(key)
     local DataStruct = DataView.ArrayBuffer(256)
     if (Citizen.InvokeNative(0xFE90ABBCBFDC13B2, key, DataStruct:Buffer())) then
@@ -61,7 +61,7 @@ end
 ---@param key number
 ---@param costType number
 ---@param index number
----@return bool
+---@return boolean
 function ItemdatabaseFilloutItem(key, costType, index)
     local DataStruct = DataView.ArrayBuffer(256)
 
@@ -81,7 +81,7 @@ end
 ---@todo Implement ItemdatabaseFilloutBuyAwardUiData
 ---
 ---@param award number
----@return bool
+---@return boolean
 function ItemdatabaseFilloutBuyAwardUiData(award)
     local DataStruct = DataView.ArrayBuffer(256)
 
@@ -97,7 +97,7 @@ end
 ---
 ---@param key number
 ---@param costType number
----@return bool
+---@return boolean
 function ItemdatabaseFilloutAcquireCost(key, costType)
     local DataStruct = DataView.ArrayBuffer(36*8)
     DataStruct:SetInt32(4*8, 15)
@@ -117,7 +117,7 @@ end
 ---
 ---@param key number
 ---@param costType number
----@return bool
+---@return boolean
 function ItemdatabaseFilloutTagData(key)
     local DataStruct = DataView.ArrayBuffer(256)
     DataStruct:SetInt32(0*8, 20)
@@ -136,7 +136,7 @@ end
 ---
 ---@param category number
 ---@param index number
----@return bool, ?number
+---@return boolean, ?number
 function ItemdatabaseGetHasSlotInfo(category, index)
     local DataStruct = DataView.ArrayBuffer(256)
     if (Citizen.InvokeNative(0x8A9BD0DB7E8376CF, category, index, DataStruct:Buffer())) then
@@ -152,7 +152,7 @@ end
 ---
 ---@param size number
 ---@param comparisonType number
----@return bool
+---@return boolean
 function ItemdatabaseCreateItemCollection(size, comparisonType)
     local DataStruct = DataView.ArrayBuffer(8*9)
 

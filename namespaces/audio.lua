@@ -1,10 +1,10 @@
 ---Returns the ambient speech parameters buffer
 ---@param speechRef string
 ---@param speechName string
----@param speechLine ?int
+---@param speechLine ?integer
 ---@param speechParam ?Hash
 ---@param pedListener ?Ped
----@param syncOverNetwork ?bool
+---@param syncOverNetwork ?boolean
 ---@return Buffer
 function GetAmbientSpeechBuffer(speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork)
     speechRef = speechRef or 0
@@ -29,10 +29,10 @@ end
 ---@param ped Ped
 ---@param speechRef string
 ---@param speechName string
----@param speechLine ?int
+---@param speechLine ?integer
 ---@param speechParam ?Hash
 ---@param pedListener ?Ped
----@param syncOverNetwork ?bool
+---@param syncOverNetwork ?boolean
 function PlayPedAmbientSpeechNative(ped, speechRef, speechName, speechParam, speechLine, pedListener, syncOverNetwork)
     local buffer = exports.rdr_natives:GetAmbientSpeechBuffer(speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork)
     return Citizen.InvokeNative(0x8E04FEDD28D42462, ped, buffer) == 1
@@ -44,11 +44,11 @@ end
 ---@param x float
 ---@param y float
 ---@param z float
----@param speechLine ?int
+---@param speechLine ?integer
 ---@param speechParam ?Hash
 ---@param pedListener ?Ped
----@param syncOverNetwork ?bool
----@return bool
+---@param syncOverNetwork ?boolean
+---@return boolean
 function PlayAmbientSpeechFromPositionNative(soundRef, soundName, x, y, z, speechLine, speechParam, pedListener, syncOverNetwork)
     local buffer = exports.rdr_natives:GetAmbientSpeechBuffer(soundRef, soundName, speechLine, speechParam, pedListener, syncOverNetwork)
     return Citizen.InvokeNative(0xED640017ED337E45, x, y, z, buffer) == 1
@@ -72,8 +72,8 @@ end
 ---@param ped Ped
 ---@param soundName string
 ---@param speechParam Hash
----@param speechLine int 
----@return bool
+---@param speechLine integer 
+---@return boolean
 function CanPedSaySpeech(ped, soundName, speechParam, speechLine)
     return Citizen.InvokeNative(0x9D6DEC9791A4E501, ped, soundName, speechParam, speechLine)
 end

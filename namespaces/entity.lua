@@ -7,7 +7,7 @@
 ---@param p5 number
 ---@param p6 number
 ---@param p7 number
----@param p8 bool
+---@param p8 boolean
 ---@param p9 number
 ---@param p10 number
 ---@param p11 number
