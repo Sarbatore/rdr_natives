@@ -24,3 +24,11 @@ end
 function GetEntityLootingPed(ped)
     return Citizen.InvokeNative(0xEF2D9ED7CE684F08, ped)
 end
+
+---Get the offset from the entity for the selected bone index [@sarbatore]
+---@param entity Entity
+---@param boneIndex number
+---@return vector
+function GetOffsetFromEntityBone(entity, boneIndex)
+    return Citizen.InvokeNative(0x5E214112806591EA, entity, boneIndex, Citizen.ResultAsVector())
+end

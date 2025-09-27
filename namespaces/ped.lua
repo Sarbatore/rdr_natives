@@ -92,7 +92,7 @@ ENTITY_AND_TAKEN_FROM_ENTITY = 2
 ---@param unk3 integer
 ---@param filter integer
 ---@return integer, Entity, Entity
-function RequestPedCarryingState(ped, carryingType, unk3, filter)
+function RequestCarryingStateForPed(ped, carryingType, unk3, filter)
     local struct = DataView.ArrayBuffer(2*8)
     local res = Citizen.InvokeNative(0x4642182A298187D0, ped, carryingType, struct:Buffer(), unk3, filter, Citizen.ResultAsInteger())
     local carriedEntity = struct:GetInt32(0*8)
@@ -112,10 +112,10 @@ function ComputeLootForPedCarcass(struct, model, damageCleanliness, skinningQual
 end
 
 ---Return wheter a ped is heard by a target ped. Usually flag is set to false when the ped is in stealth mode. [@sarbatore]
----@param ped Ped
 ---@param target Ped
+---@param ped Ped
 ---@param flag boolean
 ---@return boolean
-function CanPedBeHeard(ped, target, flag)
-    return Citizen.InvokeNative(0x0EA9EACBA3B01601, ped, target, flag, Citizen.ResultAsInteger()) == 1
+function CanPedHearTargetPed(target, ped, flag)
+    return Citizen.InvokeNative(0x0EA9EACBA3B01601, target, ped, flag, Citizen.ResultAsInteger()) == 1
 end

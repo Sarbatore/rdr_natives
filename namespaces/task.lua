@@ -116,3 +116,59 @@ end
 function ClearVehicleTasks(vehicle)
     Citizen.InvokeNative(0x141BC64C8D7C5529, vehicle)
 end
+
+---
+---@param ped Ped
+---@param x float
+---@param y float
+---@param z float
+---@param p4 integer
+---@param p5 boolean
+---@param p6 boolean
+function TaskForceAimAtCoord(ped, x, y, z, p4, p5, p6)
+    Citizen.InvokeNative(0x41323F4E0C4AE94B, ped, x, y, z, p4, p5, p6)
+end
+
+---Reset all scenario points in area.
+---@param x float
+---@param y float
+---@param z float
+---@param radius float
+function ResetScenarioPointsInArea(x, y, z, radius)
+    Citizen.InvokeNative(0x4161648394262FDF, x, y, z, radius)
+end
+
+---Set which seat index acts as the "driver seat" for driving tasks.
+---@param vehicle Vehicle
+---@param seatIndex integer
+function SetDrivingSeat(vehicle, seatIndex)
+    Citizen.InvokeNative(0x4BA972D0E5AD8122, vehicle, seatIndex)
+end
+
+---Return the seat index currently set as the "driving seat" for the specified vehicle.
+---@param vehicle Vehicle
+---@return integer
+function GetDrivingSeat(vehicle)
+    return Citizen.InvokeNative(0xE62754D09354F6CF, vehicle, Citizen.ResultAsInteger())
+end
+
+---Checks if the ped can/look is directed at the given coord within the specified radius.
+---@param ped Ped
+---@param x float
+---@param y float
+---@param z float
+---@param radius float
+---@return boolean
+function IsPedLookingAtCoord(ped, x, y, z, radius)
+    return Citizen.InvokeNative(0x508F5053E3F6F0C4, ped, x, y, z, radius, Citizen.ResultAsInteger()) == 1
+end
+
+---Checks if the vehicle's current drive-to destination matches the given coordinates.
+---@param vehicle Vehicle
+---@param x float
+---@param y float
+---@param z float
+---@return boolean
+function TaskVehicleIsAtDestination(vehicle, x, y, z)
+    return Citizen.InvokeNative(0x583AE9AF9CEE0958, vehicle, x, y, z, Citizen.ResultAsInteger()) == 1
+end

@@ -39,13 +39,13 @@ function RemoveBlipIconFromEntityLockonPrompt(entity, integer)
     Citizen.InvokeNative(0xBB68D4D3CA3DE402, entity, integer)
 end
 
----Activates a blip icon prompt for a specific entity, allowing it to be displayed without requiring a lock-on. This function enables the blip to appear associated with the given entity, making it visible without the need to focus or target the entity directly. [@kadir]
+---Activates a blip icon prompt for a specific entity, allowing it to be displayed without requiring a lock-on. Enables the blip to appear associated with the given entity, making it visible without the need to focus or target the entity directly. [@kadir]
 ---@param entity Entity
 function SetActiveBlipIconEntityPromptWithoutLockon(entity)
     Citizen.InvokeNative(0x1726963E6049DB53, entity)
 end
 
----Clears the previously set coordinates for the pause map view, removing any specified focal point and radius that were set using `SetPausemapCoordsWithRadius`. This function resets the map view, allowing it to open with the default coordinates and view instead of a specific target area. [@kadir]
+---Clears the previously set coordinates for the pause map view, removing any specified focal point and radius that were set using `SetPausemapCoordsWithRadius`. Resets the map view, allowing it to open with the default coordinates and view instead of a specific target area. [@kadir]
 function ClearPausemapCoords()
     Citizen.InvokeNative(0x7C9F4CDF402CA82A)
 end
@@ -57,7 +57,7 @@ function GetWaypointPosition()
     return x, y
 end
 
----Checks if the GPS route to the waypoint is navigable along a road. If a route exists but there is no valid road path, this function returns false. [@kadir]
+---Checks if the GPS route to the waypoint is navigable along a road. If a route exists but there is no valid road path, returns false. [@kadir]
 ---@return boolean
 function IsGPSRouteOnRoad()
     return Citizen.InvokeNative(0xF47A1EB2A538A3A3)

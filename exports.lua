@@ -1,18 +1,19 @@
 -- Audio
 exports("CanPedSaySpeech", CanPedSaySpeech)
-exports("GetAmbientSpeechBuffer", GetAmbientSpeechBuffer)
 exports("GetCurrentAmbientSpeechHash", GetCurrentAmbientSpeechHash)
 exports("GetLastAmbientSpeechHash", GetLastAmbientSpeechHash)
-exports("PlayPedAmbientSpeechNative", PlayPedAmbientSpeechNative)
 exports("PlayAmbientSpeechFromPositionNative", PlayAmbientSpeechFromPositionNative)
+exports("PlayPedAmbientSpeechNative", PlayPedAmbientSpeechNative)
 
 -- Cam
+exports("SetCamDofParams", SetCamDofParams)
 exports("SetCameraClosestZoom", SetCameraClosestZoom)
 exports("SetCameraGroundLevelZoom", SetCameraGroundLevelZoom)
 
 -- Entity
 exports("AttachEntityToCoordsPhysically", AttachEntityToCoordsPhysically)
 exports("GetEntityLootingPed", GetEntityLootingPed)
+exports("GetOffsetFromEntityBone", GetOffsetFromEntityBone)
 
 -- Fire
 exports("AddExplosionWithDamageCauser", AddExplosionWithDamageCauser)
@@ -29,10 +30,10 @@ exports("RemoveHerdPed", RemoveHerdPed)
 -- Graphics
 exports("RemoveVegModifier", RemoveVegModifier)
 
--- HUD
+-- Hud
 exports("GetWeaponWheelHighlightedWeaponHash", GetWeaponWheelHighlightedWeaponHash)
-exports("UiPromptHasMashModeJustPressed", UiPromptHasMashModeJustPressed)
 exports("RemoveMpGamerTag", RemoveMpGamerTag)
+exports("UiPromptHasMashModeJustPressed", UiPromptHasMashModeJustPressed)
 
 -- Inventory
 exports("InventoryApplyWeaponStatsToEntry", InventoryApplyWeaponStatsToEntry)
@@ -40,15 +41,17 @@ exports("InventoryGetCatalogItemInspectionEffectsEntry", InventoryGetCatalogItem
 exports("InventoryGetCatalogItemInspectionStatsEntry", InventoryGetCatalogItemInspectionStatsEntry)
 exports("InventoryGetGuidFromItemid", InventoryGetGuidFromItemid)
 exports("InventoryGetInventoryItemInspectionInfo", InventoryGetInventoryItemInspectionInfo)
-exports("GetCharacterInventoryGuid", GetCharacterInventoryGuid) -- Not a native
-exports("GetWardrobeInventoryGuid", GetWardrobeInventoryGuid) -- Not a native
-exports("GetWeaponInventoryGuid", GetWeaponInventoryGuid) -- Not a native
-exports("GetWeaponStatsGuid", GetWeaponStatsGuid) -- Not a native
 
 -- Itemdatabase
+exports("ItemdatabaseCreateItemCollection", ItemdatabaseCreateItemCollection)
+exports("ItemdatabaseFilloutAcquireCost", ItemdatabaseFilloutAcquireCost)
+exports("ItemdatabaseFilloutBuyAwardUiData", ItemdatabaseFilloutBuyAwardUiData)
+exports("ItemdatabaseFilloutItem", ItemdatabaseFilloutItem)
 exports("ItemdatabaseFilloutItemEffectIdInfo", ItemdatabaseFilloutItemEffectIdInfo)
 exports("ItemdatabaseFilloutItemEffectIds", ItemdatabaseFilloutItemEffectIds)
 exports("ItemdatabaseFilloutItemInfo", ItemdatabaseFilloutItemInfo)
+exports("ItemdatabaseFilloutTagData", ItemdatabaseFilloutTagData)
+exports("ItemdatabaseGetHasSlotInfo", ItemdatabaseGetHasSlotInfo)
 
 -- Map
 exports("ClearBlip", ClearBlip)
@@ -71,25 +74,28 @@ exports("DisableCompositePickPromptThisFrame", DisableCompositePickPromptThisFra
 exports("NetworkLeaveSession", NetworkLeaveSession)
 exports("NetworkUnregisterNetworkedEntity", NetworkUnregisterNetworkedEntity)
 
+-- Object
+exports("IsModelAPortablePickup", IsModelAPortablePickup)
+
 -- Ped
-exports("ApplyPedDamagePackToBone", ApplyPedDamagePackToBone)
 exports("ApplyColdToPed", ApplyColdToPed)
-exports("CanPedBeHeard", CanPedBeHeard)
+exports("ApplyPedDamagePackToBone", ApplyPedDamagePackToBone)
+exports("CanPedHearTargetPed", CanPedHearTargetPed)
 exports("ComputeLootForPedCarcass", ComputeLootForPedCarcass)
 exports("GetNumReservedStamina", GetNumReservedStamina)
 exports("HasPedBeenShotByPlayerRecently", HasPedBeenShotByPlayerRecently)
 exports("HasPedInteractedWithPlayerRecently", HasPedInteractedWithPlayerRecently)
 exports("IsPedAfloat", IsPedAfloat)
-exports("RequestPedCarryingState", RequestPedCarryingState)
+exports("RequestCarryingStateForPed", RequestCarryingStateForPed)
 exports("SetPedWetness", SetPedWetness)
 
 -- Player
-exports("AddPlayerInteractiveFocusPreset", AddPlayerInteractiveFocusPreset)
 exports("AddAmbientPlayerInteractiveFocusPresetAtCoords", AddAmbientPlayerInteractiveFocusPresetAtCoords)
+exports("AddPlayerInteractiveFocusPreset", AddPlayerInteractiveFocusPreset)
 exports("ClearDeadeyeAuraIntensityWithFlag", ClearDeadeyeAuraIntensityWithFlag)
 exports("DisablePlayerInteractiveFocusPreset", DisablePlayerInteractiveFocusPreset)
-exports("EagleEyeAreAllTrailsHidden", EagleEyeAreAllTrailsHidden)
 exports("EagleEyeAddParticleEffectToEntity", EagleEyeAddParticleEffectToEntity)
+exports("EagleEyeAreAllTrailsHidden", EagleEyeAreAllTrailsHidden)
 exports("EagleEyeCanPlayerFocusOnTrack", EagleEyeCanPlayerFocusOnTrack)
 exports("EagleEyeClearRegisteredTrails", EagleEyeClearRegisteredTrails)
 exports("EagleEyeEnableEntityGlow", EagleEyeEnableEntityGlow)
@@ -103,19 +109,19 @@ exports("GetNumDeadEyeMarksOnPed", GetNumDeadEyeMarksOnPed)
 exports("GetPedsInCombatWithRecently", GetPedsInCombatWithRecently)
 exports("GetPlayerInteractionAimEntity", GetPlayerInteractionAimEntity)
 exports("HasPlayerDamagedRecentlyAttackedPed", HasPlayerDamagedRecentlyAttackedPed)
-exports("IsSpecialAbilityEnabled", IsSpecialAbilityEnabled)
 exports("IsPlayerPromptJumpToActive", IsPlayerPromptJumpToActive)
 exports("IsPlayerSprintingOnHorseOnRoad", IsPlayerSprintingOnHorseOnRoad)
+exports("IsSpecialAbilityEnabled", IsSpecialAbilityEnabled)
 exports("ResetDeadeyeAuraEffect", ResetDeadeyeAuraEffect)
 exports("SetDeadEyeEntityGlowIntensityWithFlag", SetDeadEyeEntityGlowIntensityWithFlag)
 exports("SetDeadEyeEntityGlowWithFlag", SetDeadEyeEntityGlowWithFlag)
 exports("SetPlayerAimWeapon", SetPlayerAimWeapon)
+exports("SetPlayerCanPickupAbility", SetPlayerCanPickupAbility)
 exports("SetPlayerCanPickupHat", SetPlayerCanPickupHat)
 exports("SetPlayerDeadEyeAuraByHash", SetPlayerDeadEyeAuraByHash)
 exports("SetPlayerHatAccess", SetPlayerHatAccess)
 exports("SetPlayerPromptLeaveText", SetPlayerPromptLeaveText)
 exports("SetPlayerPromptMeleeText", SetPlayerPromptMeleeText)
-exports("SetPlayerCanPickupAbility", SetPlayerCanPickupAbility)
 exports("SetPlayerPromptSitText", SetPlayerPromptSitText)
 exports("SetPlayerSurrenderPromptThisFrame", SetPlayerSurrenderPromptThisFrame)
 exports("SetPlayerWeaponDrawSpeed", SetPlayerWeaponDrawSpeed)
@@ -124,28 +130,59 @@ exports("SpecialAbilitySetActivate", SpecialAbilitySetActivate)
 -- Propset
 exports("ModifyPropSetCoordsAndHeading", ModifyPropSetCoordsAndHeading)
 
+-- Streaming
+exports("HasClipSetLoaded_2", HasClipSetLoaded_2)
+exports("HasScenarioTypeForPedLoaded", HasScenarioTypeForPedLoaded)
+exports("RemoveClipSet_2", RemoveClipSet_2)
+exports("RemoveScenarioTypeForPed", RemoveScenarioTypeForPed)
+exports("RequestClipSet_2", RequestClipSet_2)
+exports("RequestScenarioTypeForPed", RequestScenarioTypeForPed)
+
 -- Task
 exports("ClearVehicleTasks", ClearVehicleTasks)
 exports("GetCoverpointFromEntityWithOffset", GetCoverpointFromEntityWithOffset)
+exports("GetDrivingSeat", GetDrivingSeat)
 exports("GetPedBreakFreeProgress", GetPedBreakFreeProgress)
 exports("GetScenarioContainerNumCompartments", GetScenarioContainerNumCompartments)
 exports("GetScenarioContainerNumOpenCompartments", GetScenarioContainerNumOpenCompartments)
 exports("GetScenarioContainerRemainingLootCount", GetScenarioContainerRemainingLootCount)
 exports("GetScenarioPointsInArea", GetScenarioPointsInArea)
-exports("LoadCarriableConfigHash", LoadCarriableConfigHash)
 exports("HasCarriableConfigHashLoaded", HasCarriableConfigHashLoaded)
 exports("IsPedBeingLed", IsPedBeingLed)
+exports("IsPedLookingAtCoord", IsPedLookingAtCoord)
 exports("IsScenarioInUse", IsScenarioInUse)
+exports("LoadCarriableConfigHash", LoadCarriableConfigHash)
+exports("ResetScenarioPointsInArea", ResetScenarioPointsInArea)
+exports("SetDrivingSeat", SetDrivingSeat)
 exports("SetIntimitatedFacingAngle", SetIntimitatedFacingAngle)
+exports("TaskForceAimAtCoord", TaskForceAimAtCoord)
 exports("TaskPickUpWeapon", TaskPickUpWeapon)
-
--- Streaming
-exports("HasScenarioTypeForPedLoaded", HasScenarioTypeForPedLoaded)
-exports("RemoveScenarioTypeForPed", RemoveScenarioTypeForPed)
-exports("RequestScenarioTypeForPed", RequestScenarioTypeForPed)
+exports("TaskVehicleIsAtDestination", TaskVehicleIsAtDestination)
 
 -- Uievents
 exports("EventsUiPeekMessage", EventsUiPeekMessage)
+
+-- Uifeed
+exports("N_0x18D6869FBFFEC0F8", N_0x18D6869FBFFEC0F8)
+exports("N_0xAFF5BE9BA496CE40", N_0xAFF5BE9BA496CE40)
+exports("UiFeedPostFeedTicker", UiFeedPostFeedTicker)
+exports("UiFeedPostHelpText", UiFeedPostHelpText)
+exports("UiFeedPostLocationShard", UiFeedPostLocationShard)
+exports("UiFeedPostMissionName", UiFeedPostMissionName)
+exports("UiFeedPostObjective", UiFeedPostObjective)
+exports("UiFeedPostOneTextShard", UiFeedPostOneTextShard)
+exports("UiFeedPostRankupToast", UiFeedPostRankupToast)
+exports("UiFeedPostReticleMessage", UiFeedPostReticleMessage)
+exports("UiFeedPostSampleNotification", UiFeedPostSampleNotification)
+exports("UiFeedPostSampleToast", UiFeedPostSampleToast)
+exports("UiFeedPostSampleToastRight", UiFeedPostSampleToastRight)
+exports("UiFeedPostSampleToastWithAppLink", UiFeedPostSampleToastWithAppLink)
+exports("UiFeedPostThreeTextShard", UiFeedPostThreeTextShard)
+exports("UiFeedPostTwoTextShard", UiFeedPostTwoTextShard)
+exports("UiFeedPostVoiceChatFeed", UiFeedPostVoiceChatFeed)
+exports("UiStickyFeedCreateDeathFailMessage", UiStickyFeedCreateDeathFailMessage)
+exports("UiStickyFeedCreateErrorMessage", UiStickyFeedCreateErrorMessage)
+exports("UiStickyFeedCreateWarningMessage", UiStickyFeedCreateWarningMessage)
 
 -- Vehicle
 exports("AreAnyVehicleWheelsDestroyed", AreAnyVehicleWheelsDestroyed)
@@ -154,18 +191,19 @@ exports("GetTrainTrackInfos", GetTrainTrackInfos)
 exports("SetTrainWhistleEnabled", SetTrainWhistleEnabled)
 
 -- Weapon
-exports("DoesPedHaveRifle", DoesPedHaveRifle)
-exports("DoesPedHaveSniper", DoesPedHaveSniper)
-exports("DoesPedHaveRepeater", DoesPedHaveRepeater)
-exports("DoesPedHaveShotgun", DoesPedHaveShotgun)
-exports("DoesPedHaveRevolver", DoesPedHaveRevolver)
 exports("DoesPedHavePistol", DoesPedHavePistol)
-exports("GetAmmoTypeForWeapon_2", GetAmmoTypeForWeapon_2)
+exports("DoesPedHaveRepeater", DoesPedHaveRepeater)
+exports("DoesPedHaveRevolver", DoesPedHaveRevolver)
+exports("DoesPedHaveRifle", DoesPedHaveRifle)
+exports("DoesPedHaveShotgun", DoesPedHaveShotgun)
+exports("DoesPedHaveSniper", DoesPedHaveSniper)
 exports("GetAmmoInPedWeaponFromGuid", GetAmmoInPedWeaponFromGuid)
+exports("GetAmmoTypeForWeapon_2", GetAmmoTypeForWeapon_2)
 exports("GetDefaultWeaponAttachPoint", GetDefaultWeaponAttachPoint)
 exports("GetNumPedsRestrainedFromWeaponBolas", GetNumPedsRestrainedFromWeaponBolas)
-exports("GetWeaponHashFromPedWeapon", GetWeaponHashFromPedWeapon)
 exports("GetWeaponHasMultipleAmmoTypes", GetWeaponHasMultipleAmmoTypes)
+exports("GetWeaponHashFromPedWeapon", GetWeaponHashFromPedWeapon)
 exports("IsPedHoldingWeapon", IsPedHoldingWeapon)
 exports("IsWeaponCloseRange", IsWeaponCloseRange)
+exports("N_0x14FF0C2545527F9B", N_0x14FF0C2545527F9B)
 exports("SetPedWeaponOnBack", SetPedWeaponOnBack)

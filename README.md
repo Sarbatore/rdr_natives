@@ -31,165 +31,284 @@ I hope you guys will participate to this repository. In order to maintain optima
 - Add the function to the references list (alphabetically)
 
 ## References:
-Audio |
--- |
-CanPedSaySpeech(ped, speechName, speechParam, speechLine)
-GetAmbientSpeechBuffer(speechRef, speechName, speechParam, speechLine, listenerPed, syncOverNetwork)
-GetCurrentAmbientSpeechHash(ped)
-GetLastAmbientSpeechHash(ped)
-PlayAmbientSpeechFromPositionNative(x, y, z, speechRef, speechName, speechParam, speechLine, listenerPed, syncOverNetwork)
-PlayPedAmbientSpeechNative(ped, speechRef, speechName, speechParam, speechLine, listenerPed, syncOverNetwork)
 
-Cam |
--- |
-SetCameraClosestZoom()
-SetCameraGroundLevelZoom(zoom)
+## Audio
 
-Entity |
--- |
-AttachEntityToCoordsPhysically(entity, x, y, z, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
-GetEntityLootingPed(ped)
+| Function | Parameters |
+|----------|------------|
+| `CanPedSaySpeech` | `ped, soundName, speechParam, speechLine` |
+| `GetAmbientSpeechBuffer` | `speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork` |
+| `GetCurrentAmbientSpeechHash` | `ped` |
+| `GetLastAmbientSpeechHash` | `ped` |
+| `PlayAmbientSpeechFromPositionNative` | `soundRef, soundName, x, y, z, speechLine, speechParam, pedListener, syncOverNetwork` |
+| `PlayPedAmbientSpeechNative` | `ped, speechRef, speechName, speechParam, speechLine, pedListener, syncOverNetwork` |
 
-Fire |
--- |
-AddExplosionWithDamageCauser(entity, p1, x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake)
-AddExplosionWithUserVfxAndDamageCauser(entity, p1, x, y, z, explosionType, explosionFx, damageScale, isAudible, isInvisible, cameraShake)
-DoesFireExistCloseToPlayerAtVolumePos(playerX, playerY, playerZ, volumePosX, volumePosY, volumePosZ, volumeRotX, volumeRotY, volumeRotZ)
-IsEntityDamagedByFire(entity)
+## Cam
 
-Flock |
--- |
-ClearHerd(herd)
-DeleteHerd(herd)
-IsPedInHerd(herd, ped)
-RemoveHerdPed(herd, ped)
+| Function | Parameters |
+|----------|------------|
+| `SetCamDofParams` | `cam, params` |
+| `SetCameraClosestZoom` | `` |
+| `SetCameraGroundLevelZoom` | `zoom` |
 
-Hud |
--- |
-GetWeaponWheelHighlightedWeaponHash()
+## Entity
 
-Inventory |
--- |
-ApplyPedWeaponStatsToStatsEntryId(entryId, weapon, ped)
-GetContainerEffectsEntryId(entryId, name, p2, p3)
-GetContainerStatsEntryId(entryId, name, p2, playerId)
-InventoryGetGuidFromItemid(guid, item, slotId)
-InventoryGetInventoryItemInspectionInfo(item)
+| Function | Parameters |
+|----------|------------|
+| `AttachEntityToCoordsPhysically` | `entity, x, y, z, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14` |
+| `GetEntityLootingPed` | `ped` |
+| `GetOffsetFromEntityBone` | `entity, boneIndex` |
 
-Itemdatabase |
--- |
-ItemdatabaseFilloutItemEffectIdInfo(effectId)
-ItemdatabaseFilloutItemEffectIds(key)
-ItemdatabaseFilloutItemInfo(key)
+## Fire
 
-Map |
--- |
-ClearBlip(blip)
-ClearExistingBlipFromLockonEntityPrompt(entity, blipId)
-ClearPausemapCoords()
-GetWaypointPosition()
-IsBlipIconOnLockonEntityPrompt(entity, blipId)
-IsGPSActive()
-IsGPSRouteOnRoad()
-RemoveBlipIconFromEntityLockonPrompt(entity, integer)
-SetActiveBlipIconEntityPromptWithoutLockon(entity)
-SetBlipIconLockonEntityPrompt(entity, blipHash)
-SetExistingBlipLockonEntityPrompt(entity, blipId)
+| Function | Parameters |
+|----------|------------|
+| `AddExplosionWithDamageCauser` | `entity, p1, x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake` |
+| `AddExplosionWithUserVfxAndDamageCauser` | `entity, p1, x, y, z, explosionType, explosionFx, damageScale, isAudible, isInvisible, cameraShake` |
+| `DoesFireExistCloseToPlayerAtVolumePos` | `playerX, playerY, playerZ, volumePosX, volumePosY, volumePosZ, volumeRotX, volumeRotY, volumeRotZ` |
+| `IsEntityDamagedByFire` | `entity` |
 
-Misc |
--- |
-DisableCompositeEatPromptThisFrame(composite, disable)
-DisableCompositePickPromptThisFrame(composite, disable)
+## Flock
 
-Ped |
--- |
-ApplyColdToPed(ped, intensity, p2)
-ApplyPedDamagePackToBone(ped, boneIndex, xOffset, yOffset, zOffset, xRot, yRot, zRot, damagePack)
-GetNumReservedStamina(ped)
-GetNumPedsRestrainedFromWeaponBolas(ped)
-HasPedBeenShotByPlayerRecently(player, ped, duration)
-HasPedInteractedWithPlayerRecently(ped, player, interactionFlag, duration)
+| Function | Parameters |
+|----------|------------|
+| `ClearHerd` | `herd` |
+| `DeleteHerd` | `herd` |
+| `IsPedInHerd` | `herd, ped` |
+| `RemoveHerdPed` | `herd, ped` |
 
-Player |
--- |
-AddPlayerInteractiveFocusPreset(player, ped, preset, x, y, z, targetEntity, name)
-AddAmbientPlayerInteractiveFocusPresetAtCoords(player, x, y, z, preset, targetEntity, name)
-EagleEyeCanPlayerFocusOnTrack(player)
-CanPedBeHeard(ped, target, flag)
-ClearDeadeyeAuraIntensityWithFlag(player)
-ComputeLootForPedCarcass(struct, model, damageCleanliness, skinningQuality)
-DisablePlayerInteractiveFocusPreset(player, name)
-EagleEyeAddParticleEffectToEntity(entity, entity2, p2, p3)
-EagleEyeAreAllTrailsHidden(player)
-EagleEyeClearRegisteredTrails(player)
-EagleEyeEnableEntityGlow(entity, enable)
-EagleEyeGetTrackedPedId(player)
-EagleEyeSetHideAllTrails(player, hideTrails)
-EagleEyeSetSprintBehavior(player, disableSprint)
-EagleEyeRemoveParticleEffectFromEntity(entity)
-GetDeadeyeAbilityDepletionDelay(player)
-GetNumDeadEyeMarksOnPed(player, ped)
-GetPedsInCombatWithRecently(player, duration, size)
-GetPlayerInteractionAimEntity(player)
-HasPlayerDamagedRecentlyAttackedPed(player, duration)
-IsSpecialAbilityEnabled(player)
-IsPlayerPromptJumpToActive(player)
-IsPlayerSprintingOnHorseOnRoad(player)
-RequestPedCarryingState(ped, carryingType, unk3, filter)
-ResetDeadeyeAuraEffect(player)
-SetDeadEyeEntityGlowIntensityWithFlag(player, param2, param3, param4, glowIntensity, flag)
-SetDeadEyeEntityGlowWithFlag(player, flag)
-SetPlayerAimWeapon(player, weaponHash, attachSlotId)
-SetPlayerDeadEyeAuraByHash(player, auraHash)
-SetPlayerHatAccess(player, flag, allow)
-SetPlayerPromptLeaveText(player, promptText)
-SetPlayerPromptMeleeText(player, promptText)
-SetPlayerCanPickupAbility(player, isVisible)
-SetPlayerPromptSitText(player, promptText)
-SetPlayerSurrenderPromptThisFrame(player, targetPed, promptOrder, unknownFlag)
-SetPlayerWeaponDrawSpeed(player, weapon, speed)
-SpecialAbilitySetActivate(player)
+## Graphics
 
-Streaming |
--- |
-HasScenarioTypeForPedLoaded(scenarioTypeId)
-RemoveScenarioTypeForPed(scenarioTypeId)
-RequestScenarioTypeForPed(ped, scenarioType, flag, conditionalScenario)
+| Function | Parameters |
+|----------|------------|
+| `RemoveVegModifier` | `vegModifier` |
 
-Task |
--- |
-ClearVehicleTasks(vehicle)
-GetCoverpointFromEntityWithOffset(entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8)
-GetPedBreakFreeProgress(ped)
-GetScenarioContainerNumCompartments(entity)
-GetScenarioContainerNumOpenCompartments(entity)
-GetScenarioContainerRemainingLootCount(entity)
-GetScenarioPointsInArea(x, y, z, radius, size)
-HasCarriableConfigHashLoaded(carryConfigHash)
-IsPedBeingLed(mount)
-LoadCarriableConfigHash(carryConfigHash)
-SetIntimitatedFacingAngle(ped, useLimits, minAngle, maxAngle)
+## Hud
 
-Uievents |
--- |
-EventsUiPeekMessage(uiapp)
+| Function | Parameters |
+|----------|------------|
+| `GetWeaponWheelHighlightedWeaponHash` | `` |
+| `RemoveMpGamerTag` | `gamerTag` |
+| `UiPromptHasMashModeJustPressed` | `prompt` |
 
-Vehicle |
--- |
-AreAnyVehicleWheelsDestroyed(vehicle)
-GetTrainTrackInfos(train)
+## Inventory
 
-Weapon |
--- |
-DoesPedHavePistol(ped, p1)
-DoesPedHaveRepeater(ped, p1)
-DoesPedHaveRevolver(ped, p1)
-DoesPedHaveRifle(ped, p1)
-DoesPedHaveShotgun(ped, p1)
-DoesPedHaveSniper(ped, p1)
-GetDefaultWeaponAttachPoint(weaponHash)
-GetWeaponHasMultipleAmmoTypes(weaponHash)
-GetWeaponHashFromPedWeapon(pedWeaponCollection, weaponGroupHash)
-IsPedHoldingWeapon(ped, weaponHash)
-IsWeaponCloseRange(weapon)
-SetPedWeaponOnBack(ped, disableAnim)
+| Function | Parameters |
+|----------|------------|
+| `InventoryApplyWeaponStatsToEntry` | `entryId, weapon, ped` |
+| `InventoryGetCatalogItemInspectionEffectsEntry` | `entryId, name, p2, p3` |
+| `InventoryGetCatalogItemInspectionStatsEntry` | `entryId, name, p2, playerId` |
+| `InventoryGetGuidFromItemid` | `guid, item, slotId` |
+| `InventoryGetInventoryItemInspectionInfo` | `item` |
+
+## Itemdatabase
+
+| Function | Parameters |
+|----------|------------|
+| `ItemdatabaseCreateItemCollection` | `size, comparisonType` |
+| `ItemdatabaseFilloutAcquireCost` | `key, costType` |
+| `ItemdatabaseFilloutBuyAwardUiData` | `award` |
+| `ItemdatabaseFilloutItem` | `key, costType, index` |
+| `ItemdatabaseFilloutItemEffectIdInfo` | `effectId` |
+| `ItemdatabaseFilloutItemEffectIds` | `key` |
+| `ItemdatabaseFilloutItemInfo` | `key` |
+| `ItemdatabaseFilloutTagData` | `key` |
+| `ItemdatabaseGetHasSlotInfo` | `category, index` |
+
+## Map
+
+| Function | Parameters |
+|----------|------------|
+| `ClearBlip` | `blip` |
+| `ClearExistingBlipFromLockonEntityPrompt` | `entity, blipId` |
+| `ClearPausemapCoords` | `` |
+| `GetWaypointPosition` | `` |
+| `IsBlipIconOnLockonEntityPrompt` | `entity, blipId` |
+| `IsGPSActive` | `` |
+| `IsGPSRouteOnRoad` | `` |
+| `RemoveBlipIconFromEntityLockonPrompt` | `entity, integer` |
+| `SetActiveBlipIconEntityPromptWithoutLockon` | `entity` |
+| `SetBlipIconLockonEntityPrompt` | `entity, blipHash` |
+| `SetExistingBlipLockonEntityPrompt` | `entity, blipId` |
+
+## Misc
+
+| Function | Parameters |
+|----------|------------|
+| `DisableCompositeEatPromptThisFrame` | `composite, disable` |
+| `DisableCompositePickPromptThisFrame` | `composite, disable` |
+
+## Network
+
+| Function | Parameters |
+|----------|------------|
+| `NetworkLeaveSession` | `` |
+| `NetworkUnregisterNetworkedEntity` | `entity` |
+
+## Object
+
+| Function | Parameters |
+|----------|------------|
+| `IsModelAPortablePickup` | `model` |
+
+## Ped
+
+| Function | Parameters |
+|----------|------------|
+| `ApplyColdToPed` | `ped, intensity, p2` |
+| `ApplyPedDamagePackToBone` | `ped, boneIndex, xOffset, yOffset, zOffset, xRot, yRot, zRot, damagePack` |
+| `CanPedHearTargetPed` | `target, ped, flag` |
+| `ComputeLootForPedCarcass` | `struct, model, damageCleanliness, skinningQuality` |
+| `GetNumReservedStamina` | `ped` |
+| `HasPedBeenShotByPlayerRecently` | `player, ped, duration` |
+| `HasPedInteractedWithPlayerRecently` | `ped, player, interactionFlag, duration` |
+| `IsPedAfloat` | `ped` |
+| `RequestCarryingStateForPed` | `ped, carryingType, unk3, filter` |
+| `SetPedWetness` | `ped, amount` |
+
+## Player
+
+| Function | Parameters |
+|----------|------------|
+| `AddAmbientPlayerInteractiveFocusPresetAtCoords` | `player, x, y, z, preset, targetEntity, name` |
+| `AddPlayerInteractiveFocusPreset` | `player, ped, preset, x, y, z, targetEntity, name` |
+| `ClearDeadeyeAuraIntensityWithFlag` | `player` |
+| `DisablePlayerInteractiveFocusPreset` | `player, name` |
+| `EagleEyeAddParticleEffectToEntity` | `entity, entity2, p2, p3` |
+| `EagleEyeAreAllTrailsHidden` | `player` |
+| `EagleEyeCanPlayerFocusOnTrack` | `player` |
+| `EagleEyeClearRegisteredTrails` | `player` |
+| `EagleEyeEnableEntityGlow` | `entity, enable` |
+| `EagleEyeGetTrackedPedId` | `player` |
+| `EagleEyeRemoveParticleEffectFromEntity` | `entity` |
+| `EagleEyeRemoveParticleEffectFromEntity_2` | `entity, entity2, p2` |
+| `EagleEyeSetHideAllTrails` | `player, hideTrails` |
+| `EagleEyeSetSprintBehavior` | `player, disableSprint` |
+| `GetDeadeyeAbilityDepletionDelay` | `player` |
+| `GetNumDeadEyeMarksOnPed` | `player, ped` |
+| `GetPedsInCombatWithRecently` | `player, duration, size` |
+| `GetPlayerInteractionAimEntity` | `player` |
+| `HasPlayerDamagedRecentlyAttackedPed` | `player, duration` |
+| `IsPlayerPromptJumpToActive` | `player` |
+| `IsPlayerSprintingOnHorseOnRoad` | `player` |
+| `IsSpecialAbilityEnabled` | `player` |
+| `ResetDeadeyeAuraEffect` | `player` |
+| `SetDeadEyeEntityGlowIntensityWithFlag` | `player, param2, param3, param4, glowIntensity, flag` |
+| `SetDeadEyeEntityGlowWithFlag` | `player, flag` |
+| `SetPlayerAimWeapon` | `player, weaponHash, attachSlotId` |
+| `SetPlayerCanPickupAbility` | `player, isVisible` |
+| `SetPlayerCanPickupHat` | `player, canPickup` |
+| `SetPlayerDeadEyeAuraByHash` | `player, auraHash` |
+| `SetPlayerHatAccess` | `player, flag, allow` |
+| `SetPlayerPromptLeaveText` | `player, promptText` |
+| `SetPlayerPromptMeleeText` | `player, promptText` |
+| `SetPlayerPromptSitText` | `player, promptText` |
+| `SetPlayerSurrenderPromptThisFrame` | `player, targetPed, promptOrder, unknownFlag` |
+| `SetPlayerWeaponDrawSpeed` | `player, weapon, speed` |
+| `SpecialAbilitySetActivate` | `player` |
+
+## Propset
+
+| Function | Parameters |
+|----------|------------|
+| `ModifyPropSetCoordsAndHeading` | `propSet, coordsX, coordsY, coordsZ, onGroundProperly, heading` |
+
+## Streaming
+
+| Function | Parameters |
+|----------|------------|
+| `HasClipSetLoaded_2` | `clipSet` |
+| `HasScenarioTypeForPedLoaded` | `scenarioTypeId` |
+| `RemoveClipSet_2` | `clipSet` |
+| `RemoveScenarioTypeForPed` | `scenarioTypeId` |
+| `RequestClipSet_2` | `clipSet` |
+| `RequestScenarioTypeForPed` | `ped, scenarioType, flag, conditionalScenario` |
+
+## Task
+
+| Function | Parameters |
+|----------|------------|
+| `ClearVehicleTasks` | `vehicle` |
+| `GetCoverpointFromEntityWithOffset` | `entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8` |
+| `GetDrivingSeat` | `vehicle` |
+| `GetPedBreakFreeProgress` | `ped` |
+| `GetScenarioContainerNumCompartments` | `entity` |
+| `GetScenarioContainerNumOpenCompartments` | `entity` |
+| `GetScenarioContainerRemainingLootCount` | `entity` |
+| `GetScenarioPointsInArea` | `x, y, z, radius, size` |
+| `HasCarriableConfigHashLoaded` | `carriableConfig` |
+| `IsPedBeingLed` | `mount` |
+| `IsPedLookingAtCoord` | `ped, x, y, z, radius` |
+| `IsScenarioInUse` | `scenarioHash` |
+| `LoadCarriableConfigHash` | `carriableConfig` |
+| `ResetScenarioPointsInArea` | `x, y, z, radius` |
+| `SetDrivingSeat` | `vehicle, seatIndex` |
+| `SetIntimitatedFacingAngle` | `ped, useLimits, minAngle, maxAngle` |
+| `TaskForceAimAtCoord` | `ped, x, y, z, p4, p5, p6` |
+| `TaskPickUpWeapon` | `ped, pickup` |
+| `TaskVehicleIsAtDestination` | `vehicle, x, y, z` |
+
+## Uievents
+
+| Function | Parameters |
+|----------|------------|
+| `EventsUiPeekMessage` | `uiapp` |
+
+## Uifeed
+
+| Function | Parameters |
+|----------|------------|
+| `N_0x18D6869FBFFEC0F8` | `data` |
+| `N_0xAFF5BE9BA496CE40` | `data` |
+| `UiFeedPostFeedTicker` | `data` |
+| `UiFeedPostHelpText` | `data` |
+| `UiFeedPostLocationShard` | `data` |
+| `UiFeedPostMissionName` | `data` |
+| `UiFeedPostObjective` | `data` |
+| `UiFeedPostOneTextShard` | `data` |
+| `UiFeedPostOptionsBuffer` | `data` |
+| `UiFeedPostRankupToast` | `data` |
+| `UiFeedPostReticleMessage` | `data` |
+| `UiFeedPostSampleNotification` | `data` |
+| `UiFeedPostSampleToast` | `data` |
+| `UiFeedPostSampleToastRight` | `data` |
+| `UiFeedPostSampleToastWithAppLink` | `data` |
+| `UiFeedPostThreeTextShard` | `data` |
+| `UiFeedPostTwoTextShard` | `data` |
+| `UiFeedPostVoiceChatFeed` | `data` |
+| `UiFeedToastBuffer` | `data` |
+| `UiShardFeedBuffer` | `data` |
+| `UiStickyFeedCreateDeathFailMessage` | `data` |
+| `UiStickyFeedCreateErrorMessage` | `data` |
+| `UiStickyFeedCreateWarningMessage` | `data` |
+| `UiStickyFeedOptionsBuffer` | `sound, firstButtonTextHash, isFirstButtonHold, secondButtonTextHash, isSecondButtonHold, thirdButtonTextHash, isThirdButtonHold, fourthButtonTextHash, isFourthButtonHold` |
+
+## Vehicle
+
+| Function | Parameters |
+|----------|------------|
+| `AreAnyVehicleWheelsDestroyed` | `vehicle` |
+| `DeleteMissionTrain` | `trainVehicle` |
+| `GetTrainTrackInfos` | `trainVehicle` |
+| `SetTrainWhistleEnabled` | `trainVehicle, enable` |
+
+## Weapon
+
+| Function | Parameters |
+|----------|------------|
+| `DoesPedHavePistol` | `ped, p1` |
+| `DoesPedHaveRepeater` | `ped, p1` |
+| `DoesPedHaveRevolver` | `ped, p1` |
+| `DoesPedHaveRifle` | `ped, p1` |
+| `DoesPedHaveShotgun` | `ped, p1` |
+| `DoesPedHaveSniper` | `ped, p1` |
+| `GetAmmoInPedWeaponFromGuid` | `ped, guid` |
+| `GetAmmoTypeForWeapon_2` | `weaponHash` |
+| `GetDefaultWeaponAttachPoint` | `weaponHash` |
+| `GetNumPedsRestrainedFromWeaponBolas` | `ped` |
+| `GetWeaponHasMultipleAmmoTypes` | `weaponHash` |
+| `GetWeaponHashFromPedWeapon` | `pedWeaponCollection, weaponGroupHash` |
+| `IsPedHoldingWeapon` | `ped, weaponHash` |
+| `IsWeaponCloseRange` | `weapon` |
+| `N_0x14FF0C2545527F9B` | `horsePed, weaponHash, ped` |
+| `SetPedWeaponOnBack` | `ped, disableAnim` |
