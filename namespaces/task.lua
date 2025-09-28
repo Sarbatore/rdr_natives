@@ -96,7 +96,7 @@ end
 ---Returns the current progress of the "Break Free" prompt when the specified ped is hogtied or knocked out.
 ---@param ped Ped
 ---@return float
-function GetPedBreakFreeProgress(ped)
+function GetPedWritheBreakFreeProgress(ped)
     return Citizen.InvokeNative(0x03D741CB4052E26C, ped, Citizen.ResultAsFloat())
 end
 
@@ -171,4 +171,47 @@ end
 ---@return boolean
 function TaskVehicleIsAtDestination(vehicle, x, y, z)
     return Citizen.InvokeNative(0x583AE9AF9CEE0958, vehicle, x, y, z, Citizen.ResultAsInteger()) == 1
+end
+
+---Checks if the given ped is currently in combat using a ranged weapon and is ready to shoot (actively attempting to attack).
+---@param ped Ped
+---@return boolean
+function GetTaskCombatReadyToShoot(ped)
+    return Citizen.InvokeNative(0x5EA655F01D93667A, ped, Citizen.ResultAsInteger()) == 1
+end
+
+---Retrieves chained scenario points linked to the given parent scenario.
+---@param scenario Hash
+---@param buffer DataView.ArrayBuffer
+---@param toggle boolean
+---@return integer
+function GetScenarioPointChained(scenario, buffer, toggle)
+    return Citizen.InvokeNative(0xE7BBC4E56B989449, scenario, buffer, toggle, Citizen.ResultAsInteger())
+end
+
+---Remove/unload a previously loaded carriable config.
+---@param carriableConfig Hash
+function RemoveCarriableConfigHash(carriableConfig)
+    Citizen.InvokeNative(0x6AFDA2264925BD11, carriableConfig)
+end
+
+---Return a coarse state for the "mount leap" task when a ped jumps from their horse onto another horse, a wagon, or a train.
+---@param ped Ped
+---@return integer
+function GetPedMountLeapState(ped)
+    return Citizen.InvokeNative(0x9420FB11B8D77948, ped, Citizen.ResultAsInteger())
+end
+
+---Return a normalized progress value (≈0.0 → 1.0) for the "mount leap" task as a ped jumps from their horse onto another horse, a wagon, or a train.
+---@param ped Ped
+---@return float
+function GetPedMountLeapProgress(ped)
+    return Citizen.InvokeNative(0x6BA606AB3A83BC4D, ped, Citizen.ResultAsFloat())
+end
+
+---Enables or disables the context/prompt associated with a given carriable config hash.
+---@param carriableConfig Hash
+---@param toggle boolean
+function SetCarriableConfigPromptEnabled(carriableConfig, toggle)
+    Citizen.InvokeNative(0x816A3ACD265E2297, carriableConfig, toggle)
 end

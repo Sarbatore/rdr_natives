@@ -7,17 +7,18 @@ You can reuse functions with exports or by including files.
 
 ## Usages
 ### With exports
+myscript/client.lua
 ```lua
 exports.redm_natives:PlayPedAmbientSpeechNative(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0) -- This will make your ped speak.
 ```
-### By including file in fxmanifest
-fxmanifest.lua
+### With include
+myscript/fxmanifest.lua
 ```lua
 client_scripts {
-    "@redm_natives/client/audio.lua"
+    "@redm_natives/namespaces/audio.lua"
 }
 ```
-yourfile.lua
+myscript/client.lua
 ```lua
     PlayPedAmbientSpeechNative(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0)
 ```
@@ -137,6 +138,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 |----------|------------|
 | `DisableCompositeEatPromptThisFrame` | `composite, disable` |
 | `DisableCompositePickPromptThisFrame` | `composite, disable` |
+| `GetGroundZAndMaterialFor3DCoord` | `x, y, z, p1` |
 
 ## Network
 
@@ -231,17 +233,23 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ClearVehicleTasks` | `vehicle` |
 | `GetCoverpointFromEntityWithOffset` | `entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8` |
 | `GetDrivingSeat` | `vehicle` |
-| `GetPedBreakFreeProgress` | `ped` |
+| `GetPedWritheBreakFreeProgress` | `ped` |
+| `GetPedMountLeapProgress` | `ped` |
+| `GetPedMountLeapState` | `ped` |
 | `GetScenarioContainerNumCompartments` | `entity` |
 | `GetScenarioContainerNumOpenCompartments` | `entity` |
 | `GetScenarioContainerRemainingLootCount` | `entity` |
+| `GetScenarioPointChained` | `scenario, buffer, toggle` |
 | `GetScenarioPointsInArea` | `x, y, z, radius, size` |
+| `GetTaskCombatReadyToShoot` | `ped` |
 | `HasCarriableConfigHashLoaded` | `carriableConfig` |
 | `IsPedBeingLed` | `mount` |
 | `IsPedLookingAtCoord` | `ped, x, y, z, radius` |
 | `IsScenarioInUse` | `scenarioHash` |
 | `LoadCarriableConfigHash` | `carriableConfig` |
+| `RemoveCarriableConfigHash` | `carriableConfig` |
 | `ResetScenarioPointsInArea` | `x, y, z, radius` |
+| `SetCarriableConfigPromptEnabled` | `carriableConfig, toggle` |
 | `SetDrivingSeat` | `vehicle, seatIndex` |
 | `SetIntimitatedFacingAngle` | `ped, useLimits, minAngle, maxAngle` |
 | `TaskForceAimAtCoord` | `ped, x, y, z, p4, p5, p6` |
@@ -288,7 +296,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 | Function | Parameters |
 |----------|------------|
 | `AreAnyVehicleWheelsDestroyed` | `vehicle` |
+| `BreakVehicleStraps` | `vehicle, coords` |
 | `DeleteMissionTrain` | `trainVehicle` |
+| `GetDraftVehicleFallingLog` | `vehicle` |
+| `GetNumDraftVehicleLogs` | `vehicle` |
+| `GetNumDraftVehicleStraps` | `vehicle` |
+| `GetTrainTrackCoordAtJunctionIndex` | `trackConfig, index, p2` |
 | `GetTrainTrackInfos` | `trainVehicle` |
 | `SetTrainWhistleEnabled` | `trainVehicle, enable` |
 
