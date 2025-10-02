@@ -33,7 +33,7 @@ end
 ---@param entity Entity
 ---@return boolean
 function IsEntityDamagedByFire(entity)
-    return Citizen.InvokeNative(0xA4454592DCF7C992, entity)
+    return Citizen.InvokeNative(0xA4454592DCF7C992, entity) == 1
 end
 
 ---Returns whether a fire exists close to a player at a volume position. [@sarbatore]
@@ -48,5 +48,5 @@ end
 ---@param volumeRotZ number
 ---@return boolean
 function DoesFireExistCloseToPlayerAtVolumePos(playerX, playerY, playerZ, volumePosX, volumePosY, volumePosZ, volumeRotX, volumeRotY, volumeRotZ)
-    return Citizen.InvokeNative(0x559FC1D310813031, playerX, playerY, playerZ, volumePosX, volumePosY, volumePosZ, volumeRotX, volumeRotY, volumeRotZ)
+    return Citizen.InvokeNative(0x559FC1D310813031, playerX, playerY, playerZ, volumePosX, volumePosY, volumePosZ, volumeRotX, volumeRotY, volumeRotZ) == 1
 end

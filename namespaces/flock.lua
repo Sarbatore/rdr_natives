@@ -3,7 +3,7 @@
 ---@param ped Ped
 ---@return boolean
 function IsPedInHerd(herd, ped)
-	return Citizen.InvokeNative(0x9E13ACC38BA8F9C3, herd, ped)
+	return Citizen.InvokeNative(0x9E13ACC38BA8F9C3, herd, ped) == 1
 end
 
 ---Remove a ped from a herd.

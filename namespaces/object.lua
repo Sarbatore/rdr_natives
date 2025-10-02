@@ -2,5 +2,5 @@
 ---@param model Hash
 ---@return boolean
 function IsModelAPortablePickup(model)
-    return Citizen.InvokeNative(0x20135AF9C10D2A3D, model, Citizen.ResultAsInteger()) == 1
+    return Citizen.InvokeNative(0x20135AF9C10D2A3D, model) == 1
 end

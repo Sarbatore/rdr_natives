@@ -38,7 +38,6 @@ I hope you guys will participate to this repository. In order to maintain optima
 | Function | Parameters |
 |----------|------------|
 | `CanPedSaySpeech` | `ped, soundName, speechParam, speechLine` |
-| `GetAmbientSpeechBuffer` | `speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork` |
 | `GetCurrentAmbientSpeechHash` | `ped` |
 | `GetLastAmbientSpeechHash` | `ped` |
 | `PlayAmbientSpeechFromPositionNative` | `soundRef, soundName, x, y, z, speechLine, speechParam, pedListener, syncOverNetwork` |

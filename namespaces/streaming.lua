@@ -19,7 +19,7 @@ end
 ---@param scenarioTypeId number
 ---@return boolean
 function HasScenarioTypeForPedLoaded(scenarioTypeId)
-    return Citizen.InvokeNative(0xA0AE7653E8181725, scenarioTypeId, Citizen.ResultAsInteger()) == 1
+    return Citizen.InvokeNative(0xA0AE7653E8181725, scenarioTypeId) == 1
 end
 
 ---Requests a clip set to be loaded
@@ -32,7 +32,7 @@ end
 ---@param clipSet string
 ---@return boolean
 function HasClipSetLoaded_2(clipSet)
-    return Citizen.InvokeNative(0x85B8F04555AB49B8, clipSet, Citizen.ResultAsInteger()) == 1
+    return Citizen.InvokeNative(0x85B8F04555AB49B8, clipSet) == 1
 end
 
 ---Removes the requested clip set

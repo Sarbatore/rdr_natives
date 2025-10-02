@@ -16,7 +16,7 @@ end
 ---@param item hash
 ---@return boolean, ?hash
 function InventoryGetInventoryItemInspectionInfo(item)
-    local DataStruct = DataView.ArrayBuffer(256)
+    local DataStruct = DataView.ArrayBuffer(32*8)
     DataStruct:SetInt32(3*8, -1)
     DataStruct:SetInt32(12*8, 4)
     DataStruct:SetInt32(17*8, 4)
@@ -37,7 +37,7 @@ end
 ---@param p3 boolean
 ---@return number
 function InventoryGetCatalogItemInspectionEffectsEntry(entryId, name, p2, p3)
-    return Citizen.InvokeNative(0x9D21B185ABC2DBC4, entryId, name, p1, p2)
+    return Citizen.InvokeNative(0x9D21B185ABC2DBC4, entryId, name, p1, p2, Citizen.ResultAsInteger())
 end
 
 --- Returns the stats entry id for "CatalogItemInspection" container [@sarbatore]
@@ -45,9 +45,9 @@ end
 ---@param name string
 ---@param p2 number
 ---@param playerId number
----@return number
+---@return integer
 function InventoryGetCatalogItemInspectionStatsEntry(entryId, name, p2, playerId)
-    return Citizen.InvokeNative(0x9D21B185ABC2DBC5, entryId, name, p2, playerId)
+    return Citizen.InvokeNative(0x9D21B185ABC2DBC5, entryId, name, p2, playerId, Citizen.ResultAsInteger())
 end
 
 --- Applies the weapon stats to the stats entry id [@sarbatore]

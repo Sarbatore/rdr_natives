@@ -9,7 +9,7 @@ end
 ---@param vehicle Vehicle
 ---@return boolean
 function AreAnyVehicleWheelsDestroyed(vehicle)
-    return Citizen.InvokeNative(0x18714953CCED17D3, vehicle)
+    return Citizen.InvokeNative(0x18714953CCED17D3, vehicle) == 1
 end
 
 ---Determines whether the train whistle can be used. True if so, False to make it unusable.
@@ -58,6 +58,6 @@ end
 ---Return the entity of the draft vehicle log that just fell off.
 ---@param vehicle Vehicle
 ---@return Entity
-function GetDraftVehicleFallingLog(vehicle)
+function RecoverDraftVehicleFallingLog(vehicle)
     return Citizen.InvokeNative(0x42404D57D621601A, vehicle)
 end

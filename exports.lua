@@ -1,6 +1,5 @@
 -- Audio
 exports("CanPedSaySpeech", CanPedSaySpeech)
-exports("GetAmbientSpeechBuffer", GetAmbientSpeechBuffer)
 exports("GetCurrentAmbientSpeechHash", GetCurrentAmbientSpeechHash)
 exports("GetLastAmbientSpeechHash", GetLastAmbientSpeechHash)
 exports("PlayAmbientSpeechFromPositionNative", PlayAmbientSpeechFromPositionNative)

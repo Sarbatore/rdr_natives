@@ -3,7 +3,7 @@
 ---@param duration number
 ---@return boolean
 function HasPlayerDamagedRecentlyAttackedPed(player, duration)
-    return Citizen.InvokeNative(0x72AD59F7B7FB6E24, player, duration)
+    return Citizen.InvokeNative(0x72AD59F7B7FB6E24, player, duration) == 1
 end
 
 ---Returns a list of peds that the player has damaged recently. [@kadir]
@@ -116,7 +116,7 @@ end
 ---@param player Player
 ---@return boolean
 function EagleEyeAreAllTrailsHidden(player)
-    return Citizen.InvokeNative(0xA62BBAAE67A05BB0, player)
+    return Citizen.InvokeNative(0xA62BBAAE67A05BB0, player) == 1
 end
 
 ---Sets whether all trails are hidden in eagle eye. [@kadir]
@@ -138,7 +138,7 @@ end
 ---@param player Player
 ---@return boolean
 function EagleEyeCanPlayerFocusOnTrack(player)
-    return Citizen.InvokeNative(0x1DA5C5B0923E1B85, player)
+    return Citizen.InvokeNative(0x1DA5C5B0923E1B85, player) == 1
 end
 
 ---Sets the dead eye entity glow intensity with flag. [@kadir]
@@ -203,14 +203,14 @@ end
 ---@param player Player
 ---@return boolean
 function IsPlayerPromptJumpToActive(player)
-    return Citizen.InvokeNative(0x2009F8AB7A5E9D6D, player)
+    return Citizen.InvokeNative(0x2009F8AB7A5E9D6D, player) == 1
 end
 
 ---Checks if the player's Deadeye ability is enabled. [@kadir]
 ---@param player Player
 ---@return boolean
 function IsSpecialAbilityEnabled(player)
-    return Citizen.InvokeNative(0xDE6C85975F9D4894, player)
+    return Citizen.InvokeNative(0xDE6C85975F9D4894, player) == 1
 end
 
 ---Add yellow particles to the entity. [@sarbatore]
@@ -253,7 +253,7 @@ end
 ---@param player Player
 ---@return boolean
 function IsPlayerSprintingOnHorseOnRoad(player)
-    return Citizen.InvokeNative(0xE631EAF35828FA67, player)
+    return Citizen.InvokeNative(0xE631EAF35828FA67, player) == 1
 end
 
 

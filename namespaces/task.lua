@@ -40,7 +40,7 @@ end
 ---@param carriableConfig Hash
 ---@return boolean
 function HasCarriableConfigHashLoaded(carriableConfig)
-    return Citizen.InvokeNative(0xB8F52A3F84A7CC59, carriableConfig)
+    return Citizen.InvokeNative(0xB8F52A3F84A7CC59, carriableConfig) == 1
 end
 
 ---Returns the entity coverpoint with offset [@sarbatore]
@@ -62,7 +62,7 @@ end
 ---@param scenarioHash Hash
 ---@return boolean
 function IsScenarioInUse(scenarioHash)
-    return Citizen.InvokeNative(0x1ACBC313966C21F3, scenarioHash)
+    return Citizen.InvokeNative(0x1ACBC313966C21F3, scenarioHash) == 1
 end
 
 ---Returns true if the specified mount (horse) is currently being led by the player, otherwise false.
@@ -160,7 +160,7 @@ end
 ---@param radius float
 ---@return boolean
 function IsPedLookingAtCoord(ped, x, y, z, radius)
-    return Citizen.InvokeNative(0x508F5053E3F6F0C4, ped, x, y, z, radius, Citizen.ResultAsInteger()) == 1
+    return Citizen.InvokeNative(0x508F5053E3F6F0C4, ped, x, y, z, radius) == 1
 end
 
 ---Checks if the vehicle's current drive-to destination matches the given coordinates.
@@ -170,14 +170,14 @@ end
 ---@param z float
 ---@return boolean
 function TaskVehicleIsAtDestination(vehicle, x, y, z)
-    return Citizen.InvokeNative(0x583AE9AF9CEE0958, vehicle, x, y, z, Citizen.ResultAsInteger()) == 1
+    return Citizen.InvokeNative(0x583AE9AF9CEE0958, vehicle, x, y, z) == 1
 end
 
 ---Checks if the given ped is currently in combat using a ranged weapon and is ready to shoot (actively attempting to attack).
 ---@param ped Ped
 ---@return boolean
 function GetTaskCombatReadyToShoot(ped)
-    return Citizen.InvokeNative(0x5EA655F01D93667A, ped, Citizen.ResultAsInteger()) == 1
+    return Citizen.InvokeNative(0x5EA655F01D93667A, ped) == 1
 end
 
 ---Retrieves chained scenario points linked to the given parent scenario.
@@ -185,7 +185,7 @@ end
 ---@param buffer DataView.ArrayBuffer
 ---@param toggle boolean
 ---@return integer
-function GetScenarioPointChained(scenario, buffer, toggle)
+function GetLinkedScenarioPoints(scenario, buffer, toggle)
     return Citizen.InvokeNative(0xE7BBC4E56B989449, scenario, buffer, toggle, Citizen.ResultAsInteger())
 end
 
@@ -214,4 +214,52 @@ end
 ---@param toggle boolean
 function SetCarriableConfigPromptEnabled(carriableConfig, toggle)
     Citizen.InvokeNative(0x816A3ACD265E2297, carriableConfig, toggle)
+end
+
+---Attempts to finish/advance a ped’s ongoing scenario transition (between scenario clips/anims).
+---@param ped Ped
+---@param p1 float
+function FinishScenarioTransition()
+    return Citizen.InvokeNative(0x90703A8F75EE4ABD, ped, p1) == 1
+end
+
+---Requests that the given carriable hat be assigned for equip by the ped.
+---@param hat Entity
+---@param ped Ped
+function RequestCarriableHatEquipToPed(hat, ped)
+    Citizen.InvokeNative(0x9ADDBB9242179D56, hat, ped)
+end
+
+---Removes the TaskCarriable association for the given entity.
+---@param carriable Entity
+function RemoveTaskCarriable(carriable)
+    Citizen.InvokeNative(0x9EBD34958AB6F824, carriable)
+end
+
+---Returns true if the given entity currently has an active "directed task" it's a task with a specific external objective (coordinate, entity, vehicle, or combat target).
+---@param entity Entity
+function HasEntityDirectedTaskActive(entity)
+    return Citizen.InvokeNative(0x9FF5F9B24E870748, entity) == 1
+end
+
+---Enables or disables the contextual "Pick Up" prompt for a carriable entity.
+---@param carriable Object
+---@param enabled bool
+function SetCarriablePickupPromptEnabled(carriable, enabled)
+    Citizen.InvokeNative(0xA21AA2F0C2180125, carriable, enabled)
+end
+
+---Updates the target coordinate of an ongoing SCRIPT_TASK_VEHICLE_SHOOT_AT_COORD for the given ped. This lets you "retarget" the shooting point in real time without restarting the task.
+---@param ped Ped
+---@param x float
+---@param y float
+---@param z float
+function UpdateTaskVehicleShootAtCoord(ped, x, y, z)
+    Citizen.InvokeNative(0xAF2EF28CE3084505, ped, x, y, z)
+end
+
+---Returns true while the ped has cast the fishing line and is **waiting for a fish to bite**. Once the ped hooks a fish and enters the struggle/reeled-in phase, this returns false.
+---@param ped Ped
+function DoesPedFishingWaitForBite(ped)
+    return Citizen.InvokeNative(0xB520DBDA7FCF573F, ped) == 1
 end

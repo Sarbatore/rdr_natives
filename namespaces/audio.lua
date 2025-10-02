@@ -6,7 +6,7 @@
 ---@param pedListener ?Ped
 ---@param syncOverNetwork ?boolean
 ---@return Buffer
-function GetAmbientSpeechBuffer(speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork)
+local function GetAmbientSpeechBuffer(speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork)
     speechRef = speechRef or 0
     speechLine = speechLine or 0
     speechParam = speechParam or 291934926
@@ -58,14 +58,14 @@ end
 ---@param ped Ped
 ---@return Hash
 function GetCurrentAmbientSpeechHash(ped)
-    return Citizen.InvokeNative(0x4A98E228A936DBCC, ped)
+    return Citizen.InvokeNative(0x4A98E228A936DBCC, ped, Citizen.ResultAsInteger())
 end
 
 ---Returns the hash of the last ambient speech played by a ped [@aaron1a12]
 ---@param ped Ped
 ---@return Hash
 function GetLastAmbientSpeechHash(ped)
-    return Citizen.InvokeNative(0x6BFFB7C276866996, ped)
+    return Citizen.InvokeNative(0x6BFFB7C276866996, ped, Citizen.ResultAsInteger())
 end
 
 ---Returns whether a ped can say a specific speech line [@aaron1a12]
@@ -75,5 +75,5 @@ end
 ---@param speechLine integer 
 ---@return boolean
 function CanPedSaySpeech(ped, soundName, speechParam, speechLine)
-    return Citizen.InvokeNative(0x9D6DEC9791A4E501, ped, soundName, speechParam, speechLine)
+    return Citizen.InvokeNative(0x9D6DEC9791A4E501, ped, soundName, speechParam, speechLine) == 1
 end

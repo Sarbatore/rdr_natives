@@ -1,16 +1,34 @@
+---Outputs the item infos (category, type, model, award)
+---@param item Hash
+---@return boolean, Hash, Hash, Hash, Hash, Hash
+function ItemdatabaseFilloutItemInfo(item)
+    local struct = DataView.ArrayBuffer(6*8)
+    if (Citizen.InvokeNative(0xFE90ABBCBFDC13B2, item, struct:Buffer())) then
+        local category = struct:GetInt32(1*8)
+        local itemType = struct:GetInt32(2*8)
+        local unk      = struct:GetInt32(3*8) 
+        local model    = struct:GetInt32(4*8)
+        local award    = struct:GetInt32(5*8)
+    
+        return true, category, itemType, unk, model, award
+    end
+
+    return false, 0, 0, 0, 0, 0
+end
+
 ---
 ---@param effectId number
 ---@return boolean, ?number, ?number, ?number, ?number, ?number, ?number, ?number
 function ItemdatabaseFilloutItemEffectIdInfo(effectId)
-    local DataStruct = DataView.ArrayBuffer(256)
-    if (Citizen.InvokeNative(0xCF2D360D27FD1ABF, effectId, DataStruct:Buffer())) then
-        local id = DataStruct:GetInt32(0*8)
-        local type = DataStruct:GetInt32(1*8)
-        local value = DataStruct:GetInt32(2*8)
-        local time = DataStruct:GetInt32(3*8)
-        local timeUnits = DataStruct:GetInt32(4*8)
-        local corePercent = DataStruct:GetFloat32(5*8)
-        local durationcategory = DataStruct:GetInt32(6*8)
+    local struct = DataView.ArrayBuffer(7*8)
+    if (Citizen.InvokeNative(0xCF2D360D27FD1ABF, effectId, struct:Buffer())) then
+        local id = struct:GetInt32(0*8)
+        local type = struct:GetInt32(1*8)
+        local value = struct:GetInt32(2*8)
+        local time = struct:GetInt32(3*8)
+        local timeUnits = struct:GetInt32(4*8)
+        local corePercent = struct:GetFloat32(5*8)
+        local durationcategory = struct:GetInt32(6*8)
     
         return true, id, type, value, time, timeUnits, corePercent, durationcategory
     end
@@ -19,147 +37,158 @@ function ItemdatabaseFilloutItemEffectIdInfo(effectId)
 end
 
 ---
----@param key number
----@return boolean, ?table
-function ItemdatabaseFilloutItemEffectIds(key)
-    local DataStruct = DataView.ArrayBuffer(256)
-    DataStruct:SetInt32(1*8, 20)
+---@param bundleId number
+---@param index integer
+---@return boolean, 
+function ItemdatabaseGetBundleItemInfo(bundleId, index)
+    local bundleStruct = DataView.ArrayBuffer(1*8)
+    bundleStruct:SetInt32(0*8, 1)
+    local itemStruct = DataView.ArrayBuffer(4*8)
     
-    if (Citizen.InvokeNative(0x9379BE60DC55BBE6, key, DataStruct:Buffer())) then
-        local effectIds = {}
-    
-        local numEffectIds = DataStruct:GetInt32(0)
-        if (numEffectIds > 0) then
-            for i=0, numEffectIds-1 do
-                table.insert(effectIds, DataStruct:GetInt32(i*8 + 16))
-            end
-        end
-    
-        return true, effectIds
+    if (Citizen.InvokeNative(0x5D48A77E4B668B57, bundleId, bundleStruct:Buffer(), index, itemStruct:Buffer())) then
+        local item = itemStruct:GetInt32(0 * 8)
+        local slotId = itemStruct:GetInt32(1 * 8)
+        local a = itemStruct:GetInt32(2 * 8)
+        local b = itemStruct:GetInt32(3 * 8)
+
+        return true, item, slotId, a, b
     end
 
-    return false
+    return false, 0, 0, 0, 0
 end
 
 ---
----@param key number
----@return boolean, ?number, ?number
-function ItemdatabaseFilloutItemInfo(key)
-    local DataStruct = DataView.ArrayBuffer(256)
-    if (Citizen.InvokeNative(0xFE90ABBCBFDC13B2, key, DataStruct:Buffer())) then
-        local category = DataStruct:GetInt32(1*8)
-        local group = DataStruct:GetInt32(2*8)
+---@param category Hash
+---@param index integer
+---@return Hash
+function ItemdatabaseGetFitsSlotInfo(category, index)
+    local struct = DataView.ArrayBuffer(1*8)
+    if (Citizen.InvokeNative(0x77210C146CED5261, category, index, struct:Buffer())) then
+        local slotId = struct:GetInt32(0*8)
+
+        return slotId
+    end
+
+    return 0
+end
+
+---Return the number of items for the bundle
+---@param bundleId number
+---@return integer
+function ItemdatabaseGetBundleItemCount(bundleId)
+    local struct = DataView.ArrayBuffer(8*8)
+    struct:SetInt32(0*8, 1)
+    local bundleSize = Citizen.InvokeNative(0x3332695B01015DF9, bundleId, struct:Buffer(), Citizen.ResultAsInteger())
     
-        return true, category, group
-    end
-
-    return false
+    return bundleSize
 end
 
----@todo Implement ItemdatabaseFilloutItem
 ---
----@param key number
----@param costType number
----@param index number
----@return boolean
-function ItemdatabaseFilloutItem(key, costType, index)
-    local DataStruct = DataView.ArrayBuffer(256)
+---@param bundle number
+---@param costtype number
+---@param index integer
+---@return boolean, 
+function ItemdatabaseFilloutBundle(bundle, costtype, index)
+    local struct = DataView.ArrayBuffer(20*8)
+    struct:SetInt32(0, 15)
 
-    if (Citizen.InvokeNative(0xAD73B614DF26CF8A, key, costType, index, DataStruct:Buffer())) then
-        local a = DataStruct:GetInt32(0*8)
-        local b = DataStruct:GetInt32(1*8)
-        local c = DataStruct:GetInt32(2*8)
-        local d = DataStruct:GetInt32(3*8)
-        local e = DataStruct:GetInt32(4*8)
-        print(a, b, c, d, e)
-        return true
-    end
-
-    return false
-end
-
----@todo Implement ItemdatabaseFilloutBuyAwardUiData
----
----@param award number
----@return boolean
-function ItemdatabaseFilloutBuyAwardUiData(award)
-    local DataStruct = DataView.ArrayBuffer(256)
-
-    if (Citizen.InvokeNative(0xAD73B614DF26CF8A, award, DataStruct:Buffer())) then
+    if (Citizen.InvokeNative(0xB542632693D53408, bundle, costtype, index, struct:Buffer())) then
+        local a = struct:GetInt32(0 * 8)
+        local b = struct:GetInt32(1 * 8)
+        local c = struct:GetInt32(2 * 8)
+        local d = struct:GetInt32(3 * 8)
+        local e = struct:GetInt32(4 * 8)
+        local f = struct:GetInt32(5 * 8)
+        local g = struct:GetInt32(6 * 8)
+        local h = struct:GetInt32(7 * 8)
+        local i = struct:GetInt32(8 * 8)
+        local j = struct:GetInt32(9 * 8)
+        local k = struct:GetInt32(10 * 8)
+        local l = struct:GetInt32(11 * 8)
+        local m = struct:GetInt32(12 * 8)
+        local n = struct:GetInt32(13 * 8)
         
         return true
     end
 
-    return false
+    return false, 
 end
 
----@todo Implement ItemdatabaseFilloutAcquireCost
 ---
----@param key number
----@param costType number
----@return boolean
-function ItemdatabaseFilloutAcquireCost(key, costType)
-    local DataStruct = DataView.ArrayBuffer(36*8)
-    DataStruct:SetInt32(4*8, 15)
-    DataStruct:SetInt32(36*8, 10)
+---@param modifier Hash
+---@param index integer
+---@return boolean, 
+function ItemdatabaseFilloutModifier(modifier, index)
+    local struct = DataView.ArrayBuffer(5*8)
 
-    if (Citizen.InvokeNative(0x74F7928816E4E181, key, costType, DataStruct:Buffer())) then
-        local unk1 = DataStruct:GetInt32(35*8)
-        local unk2 = DataStruct:GetInt32(36*8)
+    if (Citizen.InvokeNative(0x60614A0AB580A2B5, modifier, index, struct:Buffer())) then
+        local a = struct:GetInt32(0*8)
+        local b = struct:GetInt32(1*8)
+        local c = struct:GetInt32(2*8)
+        local d = struct:GetInt32(3*8)
+        local e = struct:GetInt32(4*8)
 
-        return true, unk1, unk2
+        return true, a, b, c, d, e
     end
 
     return false
 end
 
----@todo Implement ItemdatabaseFilloutTagData
----
----@param key number
----@param costType number
----@return boolean
-function ItemdatabaseFilloutTagData(key)
-    local DataStruct = DataView.ArrayBuffer(256)
-    DataStruct:SetInt32(0*8, 20)
+---Create an item collection and return its id and size.
+---@param slotId Hash
+---@param slotId2 Hash
+---@param p2 integer
+---@param category Hash
+---@param cost Hash
+---@param p5 integer
+---@param p6 integer
+---@param itemType Hash
+---@param ciTag Hash
+---@return integer, integer
+function ItemdatabaseCreateItemCollection(slotId, slotId2, p2, category, cost, p5, p6, itemType, ciTag)
+    local filterStruct = DataView.ArrayBuffer(9*8)
+    filterStruct:SetInt32(0*8, slotId)
+    filterStruct:SetInt32(1*8, slotId2)
+    filterStruct:SetInt32(2*8, p2)
+    filterStruct:SetInt32(3*8, category)
+    filterStruct:SetInt32(4*8, cost)
+    filterStruct:SetInt32(5*8, p5)
+    filterStruct:SetInt32(6*8, p6)
+    filterStruct:SetInt32(7*8, itemType)
+    filterStruct:SetInt32(8*8, ciTag)
+    local sizeStruct = DataView.ArrayBuffer(1*8)
 
-    local DataStruct2 = DataView.ArrayBuffer(1*8)
+    local collectionId = Citizen.InvokeNative(0x71EFA7999AE79408, filterStruct:Buffer(), sizeStruct:Buffer(), 1, Citizen.ResultAsInteger())
+    if (collectionId > 0) then
+        local size = sizeStruct:GetInt32(0*8)
 
-    if (Citizen.InvokeNative(0x74F7928816E4E181, key, DataStruct:Buffer(), DataStruct2:Buffer(), 20)) then
-        local index = DataStruct2:GetInt32(0)
-        return true, index
+        return collectionId, size
     end
 
-    return false
+    return -1, 0
 end
 
----@todo Implement ItemdatabaseGetHasSlotInfo
+--[[
+tables:
+- ItemdatabaseFilloutTagData
+- ItemdatabaseFilloutItemEffectIds
+]]
+
 ---
----@param category number
----@param index number
----@return boolean, ?number
-function ItemdatabaseGetHasSlotInfo(category, index)
-    local DataStruct = DataView.ArrayBuffer(256)
-    if (Citizen.InvokeNative(0x8A9BD0DB7E8376CF, category, index, DataStruct:Buffer())) then
-        local hasSlot = DataStruct:GetInt32(0*8)
-    
-        return true, hasSlot
+---@param shopType Hash
+---@param key Hash
+---@param groupIndex integer
+---@param requirementIndex integer
+---@return boolean, Hash, Hash, Hash
+function ItemdatabaseGetShopInventoriesRequirementInfo(shopType, key, groupIndex, requirementIndex)
+    local struct = DataView.ArrayBuffer(3*8)
+    if (Citizen.InvokeNative(0xE0EA5C031AE5539F, shopType, key, groupIndex, requirementIndex, struct:Buffer())) then
+        local inventoryRequirement = struct:GetInt32(0*8)
+        local b = struct:GetInt32(1*8)
+        local c = struct:GetInt32(2*8)
+
+        return true, inventoryRequirement, b, c
     end
 
-    return false
-end
-
----@todo Implement ItemdatabaseCreateItemCollection
----
----@param size number
----@param comparisonType number
----@return boolean
-function ItemdatabaseCreateItemCollection(size, comparisonType)
-    local DataStruct = DataView.ArrayBuffer(8*9)
-
-    if (Citizen.InvokeNative(0x71EFA7999AE79408, DataStruct:Buffer(), size, comparisonType, 0)) then
-
-        return true
-    end
-
-    return false
+    return false, 0, 0, 0
 end

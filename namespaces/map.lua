@@ -21,7 +21,7 @@ end
 ---Return whether a GPS marker is set. [@sarbatore]
 ---@return boolean
 function IsGPSActive()
-    return Citizen.InvokeNative(0xF47A1EB2A538A3A3)
+    return Citizen.InvokeNative(0xF47A1EB2A538A3A3) == 1
 end
 
 ---Check if the entity lockon prompt contains an icon. [@outsider]
@@ -29,7 +29,7 @@ end
 ---@param blipId number
 ---@return boolean
 function IsBlipIconOnLockonEntityPrompt(entity, blipId)
-    return Citizen.InvokeNative(0x3CB8859F04763C78, entity, blipId)
+    return Citizen.InvokeNative(0x3CB8859F04763C78, entity, blipId) == 1
 end
 
 ---Remove the icon from the entity lockon prompt. [@outsider]
@@ -60,5 +60,5 @@ end
 ---Checks if the GPS route to the waypoint is navigable along a road. If a route exists but there is no valid road path, returns false. [@kadir]
 ---@return boolean
 function IsGPSRouteOnRoad()
-    return Citizen.InvokeNative(0xF47A1EB2A538A3A3)
+    return Citizen.InvokeNative(0xF47A1EB2A538A3A3) == 1
 end

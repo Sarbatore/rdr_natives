@@ -4,7 +4,7 @@
 ---@param duration number
 ---@return boolean
 function HasPedBeenShotByPlayerRecently(player, ped, duration)
-    return Citizen.InvokeNative(0x9C81338B2E62CE0A, player, ped, duration)
+    return Citizen.InvokeNative(0x9C81338B2E62CE0A, player, ped, duration) == 1
 end
 
 ---Apply a damagePack to a ped bone index. [@sarbatore]
@@ -43,14 +43,14 @@ end
 ---@param duration number
 ---@return boolean
 function HasPedInteractedWithPlayerRecently(ped, player, interactionFlag, duration)
-    return Citizen.InvokeNative(0x947E43F544B6AB34, ped, player, interactionFlag, duration)
+    return Citizen.InvokeNative(0x947E43F544B6AB34, ped, player, interactionFlag, duration) == 1
 end
 
 ---Returns whether a ped is afloat in water like swimming or in a boat (driving or standing on it). [@outsider]
 ---@param ped Ped
 ---@return boolean
 function IsPedAfloat(ped)
-    return Citizen.InvokeNative(0xDC88D06719070C39, ped)
+    return Citizen.InvokeNative(0xDC88D06719070C39, ped) == 1
 end
 
 ---Only works when you use SET_PED_WETNESS_HEIGHT first , if you do 0.0 or it dries naturally
@@ -117,5 +117,5 @@ end
 ---@param flag boolean
 ---@return boolean
 function CanPedHearTargetPed(target, ped, flag)
-    return Citizen.InvokeNative(0x0EA9EACBA3B01601, target, ped, flag, Citizen.ResultAsInteger()) == 1
+    return Citizen.InvokeNative(0x0EA9EACBA3B01601, target, ped, flag) == 1
 end

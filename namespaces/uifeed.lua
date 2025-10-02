@@ -59,7 +59,7 @@ end
 
 ---Similar to UiFeedPostSampleToastWithAppLink?
 ---@return number
-function N_0xAFF5BE9BA496CE40(data)
+function UiFeedPostCollectorToast(data)
 	return Citizen.InvokeNative(0xAFF5BE9BA496CE40,
         UiFeedPostOptionsBuffer({
             duration = data.duration,
@@ -92,7 +92,7 @@ end
 
 ---2 texts, ring sound
 ---@return number
-function N_0x18D6869FBFFEC0F8(data)
+function UiFeedPostInteractiveToast(data)
 	return Citizen.InvokeNative(0x18D6869FBFFEC0F8, 
         UiFeedPostOptionsBuffer({
             duration = data.duration,
