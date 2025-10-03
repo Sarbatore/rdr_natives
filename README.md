@@ -32,6 +32,17 @@ I hope you guys will participate to this repository. In order to maintain optima
 - Add the function to the references list (alphabetically)
 
 ## References:
+# Exports Documentation
+
+## Aicoverpoint
+
+| Function | Parameters |
+|----------|------------|
+| `ActivateCoverLayer` | `coverLayer` |
+| `DeactivateCoverLayer` | `coverLayer` |
+| `GetPedCoverPointTransitionState` | `ped` |
+| `GetPedFromCoverPoint` | `coverPoint` |
+| `RequestWeaponCoverAnimForPed` | `ped, weaponHash` |
 
 ## Audio
 
@@ -105,15 +116,15 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `ItemdatabaseCreateItemCollection` | `size, comparisonType` |
-| `ItemdatabaseFilloutAcquireCost` | `key, costType` |
-| `ItemdatabaseFilloutBuyAwardUiData` | `award` |
-| `ItemdatabaseFilloutItem` | `key, costType, index` |
+| `ItemdatabaseCreateItemCollection` | `slotId, slotId2, p2, category, cost, p5, p6, itemType, ciTag` |
+| `ItemdatabaseFilloutBundle` | `bundle, costtype, index` |
 | `ItemdatabaseFilloutItemEffectIdInfo` | `effectId` |
-| `ItemdatabaseFilloutItemEffectIds` | `key` |
-| `ItemdatabaseFilloutItemInfo` | `key` |
-| `ItemdatabaseFilloutTagData` | `key` |
-| `ItemdatabaseGetHasSlotInfo` | `category, index` |
+| `ItemdatabaseFilloutItemInfo` | `item` |
+| `ItemdatabaseFilloutModifier` | `modifier, index` |
+| `ItemdatabaseGetBundleItemCount` | `bundleId` |
+| `ItemdatabaseGetBundleItemInfo` | `bundleId, index` |
+| `ItemdatabaseGetFitsSlotInfo` | `category, index` |
+| `ItemdatabaseGetShopInventoriesRequirementInfo` | `shopType, key, groupIndex, requirementIndex` |
 
 ## Map
 
@@ -230,30 +241,41 @@ I hope you guys will participate to this repository. In order to maintain optima
 | Function | Parameters |
 |----------|------------|
 | `ClearVehicleTasks` | `vehicle` |
+| `DoesPedFishingWaitForBite` | `ped` |
+| `FindScenarioAllPointsInVolumeOfType` | `volume, itemset, scenarioType, p3, p4, p5, p6` |
+| `FindScenarioAtObjectOfType` | `object, xOffset, yOffset, zOffset, scenarioType, radius` |
+| `FinishScenarioTransition` | `` |
 | `GetCoverpointFromEntityWithOffset` | `entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8` |
 | `GetDrivingSeat` | `vehicle` |
-| `GetPedWritheBreakFreeProgress` | `ped` |
+| `GetLinkedScenarioPoints` | `scenario, buffer, toggle` |
 | `GetPedMountLeapProgress` | `ped` |
 | `GetPedMountLeapState` | `ped` |
+| `GetPedWritheBreakFreeProgress` | `ped` |
 | `GetScenarioContainerNumCompartments` | `entity` |
 | `GetScenarioContainerNumOpenCompartments` | `entity` |
 | `GetScenarioContainerRemainingLootCount` | `entity` |
-| `GetScenarioPointChained` | `scenario, buffer, toggle` |
 | `GetScenarioPointsInArea` | `x, y, z, radius, size` |
 | `GetTaskCombatReadyToShoot` | `ped` |
 | `HasCarriableConfigHashLoaded` | `carriableConfig` |
+| `HasEntityDirectedTaskActive` | `entity` |
 | `IsPedBeingLed` | `mount` |
 | `IsPedLookingAtCoord` | `ped, x, y, z, radius` |
 | `IsScenarioInUse` | `scenarioHash` |
 | `LoadCarriableConfigHash` | `carriableConfig` |
+| `PedApplyFollowRoadSpeedOverride` | `ped, speed` |
 | `RemoveCarriableConfigHash` | `carriableConfig` |
+| `RemoveTaskCarriable` | `carriable` |
+| `RequestCarriableHatEquipToPed` | `hat, ped` |
 | `ResetScenarioPointsInArea` | `x, y, z, radius` |
 | `SetCarriableConfigPromptEnabled` | `carriableConfig, toggle` |
+| `SetCarriablePickupPromptEnabled` | `carriable, enabled` |
 | `SetDrivingSeat` | `vehicle, seatIndex` |
 | `SetIntimitatedFacingAngle` | `ped, useLimits, minAngle, maxAngle` |
+| `SwapReins` | `vehicle, instant` |
 | `TaskForceAimAtCoord` | `ped, x, y, z, p4, p5, p6` |
 | `TaskPickUpWeapon` | `ped, pickup` |
 | `TaskVehicleIsAtDestination` | `vehicle, x, y, z` |
+| `UpdateTaskVehicleShootAtCoord` | `ped, x, y, z` |
 
 ## Uievents
 
@@ -265,15 +287,14 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `N_0x18D6869FBFFEC0F8` | `data` |
-| `N_0xAFF5BE9BA496CE40` | `data` |
+| `UiFeedPostCollectorToast` | `data` |
 | `UiFeedPostFeedTicker` | `data` |
 | `UiFeedPostHelpText` | `data` |
+| `UiFeedPostInteractiveToast` | `data` |
 | `UiFeedPostLocationShard` | `data` |
 | `UiFeedPostMissionName` | `data` |
 | `UiFeedPostObjective` | `data` |
 | `UiFeedPostOneTextShard` | `data` |
-| `UiFeedPostOptionsBuffer` | `data` |
 | `UiFeedPostRankupToast` | `data` |
 | `UiFeedPostReticleMessage` | `data` |
 | `UiFeedPostSampleNotification` | `data` |
@@ -283,12 +304,9 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `UiFeedPostThreeTextShard` | `data` |
 | `UiFeedPostTwoTextShard` | `data` |
 | `UiFeedPostVoiceChatFeed` | `data` |
-| `UiFeedToastBuffer` | `data` |
-| `UiShardFeedBuffer` | `data` |
 | `UiStickyFeedCreateDeathFailMessage` | `data` |
 | `UiStickyFeedCreateErrorMessage` | `data` |
 | `UiStickyFeedCreateWarningMessage` | `data` |
-| `UiStickyFeedOptionsBuffer` | `sound, firstButtonTextHash, isFirstButtonHold, secondButtonTextHash, isSecondButtonHold, thirdButtonTextHash, isThirdButtonHold, fourthButtonTextHash, isFourthButtonHold` |
 
 ## Vehicle
 
@@ -297,11 +315,11 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `AreAnyVehicleWheelsDestroyed` | `vehicle` |
 | `BreakVehicleStraps` | `vehicle, coords` |
 | `DeleteMissionTrain` | `trainVehicle` |
-| `GetDraftVehicleFallingLog` | `vehicle` |
 | `GetNumDraftVehicleLogs` | `vehicle` |
 | `GetNumDraftVehicleStraps` | `vehicle` |
 | `GetTrainTrackCoordAtJunctionIndex` | `trackConfig, index, p2` |
 | `GetTrainTrackInfos` | `trainVehicle` |
+| `RecoverDraftVehicleFallingLog` | `vehicle` |
 | `SetTrainWhistleEnabled` | `trainVehicle, enable` |
 
 ## Weapon

@@ -6,31 +6,30 @@ function ItemdatabaseFilloutItemInfo(item)
     if (Citizen.InvokeNative(0xFE90ABBCBFDC13B2, item, struct:Buffer())) then
         local category = struct:GetInt32(1*8)
         local itemType = struct:GetInt32(2*8)
-        local unk      = struct:GetInt32(3*8) 
+        local unk      = struct:GetInt32(3*8)
         local model    = struct:GetInt32(4*8)
         local award    = struct:GetInt32(5*8)
     
         return true, category, itemType, unk, model, award
     end
 
-    return false, 0, 0, 0, 0, 0
+    return false
 end
 
 ---
 ---@param effectId number
----@return boolean, ?number, ?number, ?number, ?number, ?number, ?number, ?number
+---@return boolean, Hash, Hash, integer, integer, float, Hash
 function ItemdatabaseFilloutItemEffectIdInfo(effectId)
     local struct = DataView.ArrayBuffer(7*8)
     if (Citizen.InvokeNative(0xCF2D360D27FD1ABF, effectId, struct:Buffer())) then
-        local id = struct:GetInt32(0*8)
-        local type = struct:GetInt32(1*8)
-        local value = struct:GetInt32(2*8)
-        local time = struct:GetInt32(3*8)
-        local timeUnits = struct:GetInt32(4*8)
-        local corePercent = struct:GetFloat32(5*8)
+        local type             = struct:GetInt32(1*8)
+        local value            = struct:GetInt32(2*8)
+        local time             = struct:GetInt32(3*8)
+        local timeUnits        = struct:GetInt32(4*8)
+        local corePercent      = struct:GetFloat32(5*8)
         local durationcategory = struct:GetInt32(6*8)
     
-        return true, id, type, value, time, timeUnits, corePercent, durationcategory
+        return true, type, value, time, timeUnits, corePercent, durationcategory
     end
 
     return false
@@ -54,7 +53,7 @@ function ItemdatabaseGetBundleItemInfo(bundleId, index)
         return true, item, slotId, a, b
     end
 
-    return false, 0, 0, 0, 0
+    return false
 end
 
 ---
@@ -111,7 +110,7 @@ function ItemdatabaseFilloutBundle(bundle, costtype, index)
         return true
     end
 
-    return false, 
+    return false
 end
 
 ---
@@ -190,5 +189,5 @@ function ItemdatabaseGetShopInventoriesRequirementInfo(shopType, key, groupIndex
         return true, inventoryRequirement, b, c
     end
 
-    return false, 0, 0, 0
+    return false
 end

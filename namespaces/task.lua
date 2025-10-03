@@ -258,8 +258,47 @@ function UpdateTaskVehicleShootAtCoord(ped, x, y, z)
     Citizen.InvokeNative(0xAF2EF28CE3084505, ped, x, y, z)
 end
 
----Returns true while the ped has cast the fishing line and is **waiting for a fish to bite**. Once the ped hooks a fish and enters the struggle/reeled-in phase, this returns false.
+---Returns true while the ped has cast the fishing line and is waiting for a fish to bite. Once the ped hooks a fish and enters the struggle/reeled-in phase, this returns false.
 ---@param ped Ped
 function DoesPedFishingWaitForBite(ped)
     return Citizen.InvokeNative(0xB520DBDA7FCF573F, ped) == 1
+end
+
+---Finds all scenario points of a given type that lie inside a Volume and writes them into an Itemset.
+---@param volume Volume
+---@param itemset Itemset
+---@param scenarioType Hash
+---@param p3 integer
+---@param p4 integer
+---@param p5 integer
+---@param p6 integer
+---@return integer
+function FindScenarioAllPointsInVolumeOfType(volume, itemset, scenarioType, p3, p4, p5, p6)
+    return Citizen.InvokeNative(0xB8E213D02F37947D, volume, itemset, scenarioType, p3, p4, p5, p6, Citizen.ResultAsInteger())
+end
+
+---Sets the AI travel speed for a mount (horse). Affects how fast the horse’s AI will move when being controlled by AI logic (not player input), e.g. during escorts, flee, wander, or scripted tasks.
+---@param ped Ped
+---@param speed float
+function PedApplyFollowRoadSpeedOverride(ped, speed)
+    Citizen.InvokeNative(0xBAAB791AA72C2821, ped, speed)
+end
+
+---Returns a scenario point handle of the given scenario type that is associated with / found near the specified object. Useful for “attached” scenarios (e.g., ransackable lockboxes on a prop).
+---@param object Object
+---@param xOffset float
+---@param yOffset float
+---@param zOffset float
+---@param scenarioType Hash
+---@param radius float
+---@return integer
+function FindScenarioAtObjectOfType(object, xOffset, yOffset, zOffset, scenarioType, radius)
+    return Citizen.InvokeNative(0xD508FA229F1C4900, object, xOffset, yOffset, zOffset, scenarioType, radius, Citizen.ResultAsInteger())
+end
+
+---Transfers the driving reins/control of a vehicle (e.g., wagon/coach) to another occupant when there is more than one ped inside. If `instant` is true, the handover happens instantly;
+---@param vehicle Vehicle
+---@param instant boolean
+function SwapReins(vehicle, instant)
+    Citizen.InvokeNative(0xE01F55B2896F6B37, vehicle, instant)
 end
