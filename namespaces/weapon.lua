@@ -104,7 +104,7 @@ function GetAmmoInPedWeaponFromGuid(ped, guid)
     return Citizen.InvokeNative(0x4823F13A21F51964, ped, guid, Citizen.ResultAsInteger())
 end
 
----Take weapon from horse ped?
+---Take weapon from horse ped
 ---@param horseped Ped
 ---@param weaponHash hash
 ---@param ped Ped

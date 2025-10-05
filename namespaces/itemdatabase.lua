@@ -3,7 +3,7 @@
 ---@return boolean, Hash, Hash, Hash, Hash, Hash
 function ItemdatabaseFilloutItemInfo(item)
     local struct = DataView.ArrayBuffer(6*8)
-    if (Citizen.InvokeNative(0xFE90ABBCBFDC13B2, item, struct:Buffer())) then
+    if (Citizen.InvokeNative(0xFE90ABBCBFDC13B2, item, struct:Buffer()) == 1) then
         local category = struct:GetInt32(1*8)
         local itemType = struct:GetInt32(2*8)
         local unk      = struct:GetInt32(3*8)
@@ -21,7 +21,7 @@ end
 ---@return boolean, Hash, Hash, integer, integer, float, Hash
 function ItemdatabaseFilloutItemEffectIdInfo(effectId)
     local struct = DataView.ArrayBuffer(7*8)
-    if (Citizen.InvokeNative(0xCF2D360D27FD1ABF, effectId, struct:Buffer())) then
+    if (Citizen.InvokeNative(0xCF2D360D27FD1ABF, effectId, struct:Buffer()) == 1) then
         local type             = struct:GetInt32(1*8)
         local value            = struct:GetInt32(2*8)
         local time             = struct:GetInt32(3*8)
@@ -35,7 +35,7 @@ function ItemdatabaseFilloutItemEffectIdInfo(effectId)
     return false
 end
 
----
+---Return bundle item info at the selected index (item hash, slot id...)
 ---@param bundleId number
 ---@param index integer
 ---@return boolean, Hash, Hash, integer, integer
@@ -44,7 +44,7 @@ function ItemdatabaseGetBundleItemInfo(bundleId, index)
     bundleStruct:SetInt32(0*8, 1)
     local itemStruct = DataView.ArrayBuffer(4*8)
     
-    if (Citizen.InvokeNative(0x5D48A77E4B668B57, bundleId, bundleStruct:Buffer(), index, itemStruct:Buffer())) then
+    if (Citizen.InvokeNative(0x5D48A77E4B668B57, bundleId, bundleStruct:Buffer(), index, itemStruct:Buffer()) == 1) then
         local item = itemStruct:GetInt32(0 * 8)
         local slotId = itemStruct:GetInt32(1 * 8)
         local a = itemStruct:GetInt32(2 * 8)
@@ -56,7 +56,7 @@ function ItemdatabaseGetBundleItemInfo(bundleId, index)
     return false
 end
 
----
+---Return the slot id for the category at the selected index.
 ---@param category Hash
 ---@param index integer
 ---@return Hash
@@ -75,6 +75,7 @@ function ItemdatabaseGetBundleItemCount(bundleId)
     return bundleSize
 end
 
+---@todo
 ---
 ---@param bundle number
 ---@param costtype number
@@ -84,7 +85,7 @@ function ItemdatabaseFilloutBundle(bundle, costtype, index)
     local struct = DataView.ArrayBuffer(20*8)
     struct:SetInt32(0, 15)
 
-    if (Citizen.InvokeNative(0xB542632693D53408, bundle, costtype, index, struct:Buffer())) then
+    if (Citizen.InvokeNative(0xB542632693D53408, bundle, costtype, index, struct:Buffer()) == 1) then
         local a = struct:GetInt32(0 * 8)
         local b = struct:GetInt32(1 * 8)
         local c = struct:GetInt32(2 * 8)
@@ -106,6 +107,7 @@ function ItemdatabaseFilloutBundle(bundle, costtype, index)
     return false
 end
 
+---@todo
 ---
 ---@param modifier Hash
 ---@param index integer
@@ -113,7 +115,7 @@ end
 function ItemdatabaseFilloutModifier(modifier, index)
     local struct = DataView.ArrayBuffer(5*8)
 
-    if (Citizen.InvokeNative(0x60614A0AB580A2B5, modifier, index, struct:Buffer())) then
+    if (Citizen.InvokeNative(0x60614A0AB580A2B5, modifier, index, struct:Buffer()) == 1) then
         local a = struct:GetInt32(0*8)
         local b = struct:GetInt32(1*8)
         local c = struct:GetInt32(2*8)
@@ -126,7 +128,7 @@ function ItemdatabaseFilloutModifier(modifier, index)
     return false
 end
 
----Create an item collection and return its index and size.
+---Create an item collection and return its id and size.
 ---@param slotId Hash
 ---@param slotId2 Hash
 ---@param tag Hash
@@ -166,6 +168,7 @@ tables:
 - ItemdatabaseFilloutItemEffectIds
 ]]
 
+---@todo
 ---
 ---@param shopType Hash
 ---@param key Hash
@@ -174,7 +177,7 @@ tables:
 ---@return boolean, Hash, Hash, Hash
 function ItemdatabaseGetShopInventoriesRequirementInfo(shopType, key, groupIndex, requirementIndex)
     local struct = DataView.ArrayBuffer(3*8)
-    if (Citizen.InvokeNative(0xE0EA5C031AE5539F, shopType, key, groupIndex, requirementIndex, struct:Buffer())) then
+    if (Citizen.InvokeNative(0xE0EA5C031AE5539F, shopType, key, groupIndex, requirementIndex, struct:Buffer()) == 1) then
         local inventoryRequirement = struct:GetInt32(0*8)
         local b = struct:GetInt32(1*8)
         local c = struct:GetInt32(2*8)

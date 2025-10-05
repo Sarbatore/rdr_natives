@@ -24,7 +24,7 @@ function GetGroundZAndMaterialFor3DCoord(x, y, z, p1)
     local materialStruct = DataView.ArrayBuffer(1*8)
     local flagsStruct = DataView.ArrayBuffer(1*8)
 
-    if (Citizen.InvokeNative(0xBBE5B63EFFB08E68, x, y, z, p1, groundZStruct:Buffer(), materialStruct:Buffer(), flagsStruct:Buffer())) then
+    if (Citizen.InvokeNative(0xBBE5B63EFFB08E68, x, y, z, p1, groundZStruct:Buffer(), materialStruct:Buffer(), flagsStruct:Buffer()) == 1) then
         local groundZ = groundZStruct:GetFloat32(0)
         local materialHash = materialStruct:GetInt32(0)
         local flags = flagsStruct:GetInt32(0)

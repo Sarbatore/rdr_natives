@@ -1,28 +1,31 @@
+---@todo
 ---
 ---@param item number
----@param guid
 ---@param slotId number
----@return boolean, ?table
-function InventoryGetGuidFromItemid(guid, item, slotId)
-	local DataStruct = DataView.ArrayBuffer(13*8)
-    if (Citizen.InvokeNative(0x886DFD3E185C8A89, 1, guid, item, slotId, DataStruct:Buffer())) then
-        return true, DataStruct:Buffer()
+---@return boolean, table
+function InventoryGetGuidFromItemid(item, slotId)
+    local unkStruct = DataView.ArrayBuffer(4*8)
+	local struct = DataView.ArrayBuffer(13*8)
+    if (Citizen.InvokeNative(0x886DFD3E185C8A89, 1, unkStruct:Buffer(), item, slotId, struct:Buffer()) == 1) then
+
+        return true
     end
 
     return false
 end
 
+---@todo
 ---
 ---@param item hash
----@return boolean, ?hash
+---@return boolean, hash
 function InventoryGetInventoryItemInspectionInfo(item)
-    local DataStruct = DataView.ArrayBuffer(32*8)
-    DataStruct:SetInt32(3*8, -1)
-    DataStruct:SetInt32(12*8, 4)
-    DataStruct:SetInt32(17*8, 4)
+    local struct = DataView.ArrayBuffer(32*8)
+    struct:SetInt32(3*8, -1)
+    struct:SetInt32(12*8, 4)
+    struct:SetInt32(17*8, 4)
 
-    if (Citizen.InvokeNative(0x0C093C1787F18519, item, DataStruct:Buffer())) then
-        local model = DataStruct:GetInt32(0*8)
+    if (Citizen.InvokeNative(0x0C093C1787F18519, item, struct:Buffer()) == 1) then
+        local model = struct:GetInt32(0*8)
 
         return true, model
     end
@@ -80,14 +83,14 @@ function InventoryGetInventoryItemLastCreation(inventoryId, item)
     local secondData = DataView.ArrayBuffer(1*8)
 
     if (Citizen.InvokeNative(0X112BCA290D2EB53C, inventoryId, item, yearData:Buffer(), monthData:Buffer(), dayData:Buffer(), hourData:Buffer(), minuteData:Buffer(), secondData:Buffer()) == 1) then
-      local year = yearData:GetInt32(0)
-      local month = monthData:GetInt32(0)
-      local day = dayData:GetInt32(0)
-      local hour = hourData:GetInt32(0)
-      local minute = minuteData:GetInt32(0)
-      local second = secondData:GetInt32(0)
+        local year = yearData:GetInt32(0)
+        local month = monthData:GetInt32(0)
+        local day = dayData:GetInt32(0)
+        local hour = hourData:GetInt32(0)
+        local minute = minuteData:GetInt32(0)
+        local second = secondData:GetInt32(0)
 
-      return true, year, month, day, hour, minute, second
+        return true, year, month, day, hour, minute, second
     end
 
     return false

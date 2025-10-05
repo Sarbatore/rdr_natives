@@ -1,10 +1,10 @@
 ---Returns the ambient speech parameters buffer
 ---@param speechRef string
 ---@param speechName string
----@param speechLine ?integer
----@param speechParam ?Hash
----@param pedListener ?Ped
----@param syncOverNetwork ?boolean
+---@param speechLine integer
+---@param speechParam Hash
+---@param pedListener Ped
+---@param syncOverNetwork boolean
 ---@return Buffer
 local function GetAmbientSpeechBuffer(speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork)
     speechRef = speechRef or 0
@@ -29,12 +29,13 @@ end
 ---@param ped Ped
 ---@param speechRef string
 ---@param speechName string
----@param speechLine ?integer
----@param speechParam ?Hash
----@param pedListener ?Ped
----@param syncOverNetwork ?boolean
+---@param speechLine integer
+---@param speechParam Hash
+---@param pedListener Ped
+---@param syncOverNetwork boolean
+---@return boolean
 function PlayPedAmbientSpeechNative(ped, speechRef, speechName, speechParam, speechLine, pedListener, syncOverNetwork)
-    local buffer = exports.rdr_natives:GetAmbientSpeechBuffer(speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork)
+    local buffer = GetAmbientSpeechBuffer(speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork)
     return Citizen.InvokeNative(0x8E04FEDD28D42462, ped, buffer) == 1
 end
 
@@ -44,13 +45,13 @@ end
 ---@param x float
 ---@param y float
 ---@param z float
----@param speechLine ?integer
----@param speechParam ?Hash
----@param pedListener ?Ped
----@param syncOverNetwork ?boolean
+---@param speechLine integer
+---@param speechParam Hash
+---@param pedListener Ped
+---@param syncOverNetwork boolean
 ---@return boolean
 function PlayAmbientSpeechFromPositionNative(soundRef, soundName, x, y, z, speechLine, speechParam, pedListener, syncOverNetwork)
-    local buffer = exports.rdr_natives:GetAmbientSpeechBuffer(soundRef, soundName, speechLine, speechParam, pedListener, syncOverNetwork)
+    local buffer = GetAmbientSpeechBuffer(soundRef, soundName, speechLine, speechParam, pedListener, syncOverNetwork)
     return Citizen.InvokeNative(0xED640017ED337E45, x, y, z, buffer) == 1
 end
 

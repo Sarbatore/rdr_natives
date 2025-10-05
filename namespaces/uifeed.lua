@@ -57,7 +57,7 @@ function UiFeedPostSampleToastWithAppLink(data)
         }), true, true, false)
 end
 
----Similar to UiFeedPostSampleToastWithAppLink?
+---Similar to UiFeedPostSampleToastWithAppLink
 ---@return number
 function UiFeedPostCollectorToast(data)
 	return Citizen.InvokeNative(0xAFF5BE9BA496CE40,
@@ -122,7 +122,7 @@ function UiFeedPostSampleNotification(data)
         }), true, true)
 end
 
----Same as UiFeedPostSampleNotification ?
+---Same as UiFeedPostSampleNotification 
 ---@return number
 function UiFeedPostSampleToast(data)
     return Citizen.InvokeNative(0x26E87218390E6729,

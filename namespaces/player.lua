@@ -10,14 +10,14 @@ end
 ---@param player Player
 ---@param duration number
 ---@param size number
----@return boolean, ?table
+---@return boolean, table
 function GetPedsInCombatWithRecently(player, duration, size)
-    local DataStruct = DataView.ArrayBuffer(size*8)
+    local struct = DataView.ArrayBuffer(size*8)
 
-    if (Citizen.InvokeNative(0x1A6E84F13C952094, player, duration, DataStruct:Buffer())) then
+    if (Citizen.InvokeNative(0x1A6E84F13C952094, player, duration, struct:Buffer()) == 1) then
         local peds = {}
         for i=1, size do
-            local ped = DataStruct:GetInt32(i*8)
+            local ped = struct:GetInt32(i*8)
             if (DoesEntityExist(ped)) then
                 for _, p in ipairs(peds) do
                     if (p ~= ped) then

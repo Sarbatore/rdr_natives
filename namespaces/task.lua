@@ -4,14 +4,14 @@
 ---@param z float
 ---@param radius float
 ---@param size integer
----@return boolean, ?table
+---@return boolean, table
 function GetScenarioPointsInArea(x, y, z, radius, size)
-    local DataStruct = DataView.ArrayBuffer(size*8 + 8)
-    if (Citizen.InvokeNative(0x345EC3B7EBDE1CB5, x, y, z, radius, DataStruct:Buffer(), size)) then
+    local struct = DataView.ArrayBuffer(size*8 + 8)
+    if (Citizen.InvokeNative(0x345EC3B7EBDE1CB5, x, y, z, radius, struct:Buffer(), size) == 1) then
         local scenarioPoints = {}
         for i=1, size do
-            local scenarioPoint = DataStruct:GetInt32(i*8)
-            if (Citizen.InvokeNative(0x841475AC96E794D1, scenarioPoint)) then -- DOES_SCENARIO_POINT_EXIST
+            local scenarioPoint = struct:GetInt32(i*8)
+            if (Citizen.InvokeNative(0x841475AC96E794D1, scenarioPoint) == 1) then -- DOES_SCENARIO_POINT_EXIST
                 table.insert(scenarioPoints, scenarioPoint)
             end
         end
