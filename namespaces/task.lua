@@ -299,6 +299,40 @@ end
 ---Transfers the driving reins/control of a vehicle (e.g., wagon/coach) to another occupant when there is more than one ped inside. If `instant` is true, the handover happens instantly;
 ---@param vehicle Vehicle
 ---@param instant boolean
-function SwapReins(vehicle, instant)
+function SwapVehicleReins(vehicle, instant)
     Citizen.InvokeNative(0xE01F55B2896F6B37, vehicle, instant)
+end
+
+---Cancels the hogtie state of a ped, releasing them from ropes or restraints.
+---@param ped Ped
+function CancelPedHogtie(ped)
+    Citizen.InvokeNative(0xE2CF104ADD49D4BF, ped)
+end
+
+---Forces the specified animal/ped to have (or not have) its "sampled" state flag set.
+---@param animal Ped
+---@param toggle boolean
+function ForceAnimalSampled(animal, toggle)
+    Citizen.InvokeNative(0xF3C3503276F4A034, animal, toggle)
+end
+
+---Returns true if the specified ped (animal) has been flagged as sampled.
+---@param animal Ped
+---@return boolean
+function HasPedAnimalSampled(animal)
+    return Citizen.InvokeNative(0x7CB99FADDE73CD1B, animal) == 1
+end
+
+---Orders the ped to point at the given entity (finger/upper-body point), similar to a "task point entity" behavior.
+---@param ped Ped
+---@param targetEntity Entity
+---@param duration integer
+function TaskPointAtEntity(ped, targetEntity, duration)
+    Citizen.InvokeNative(0xF40A109B4B79A848, ped, targetEntity, duration)
+end
+
+---Swaps the wagon/coach reins control between the ped and their adjacent front-seat partner.
+---@param ped Ped
+function SwapReins(ped)
+    Citizen.InvokeNative(0xFC7F71CF49F70B6B, ped)
 end

@@ -32,7 +32,6 @@ I hope you guys will participate to this repository. In order to maintain optima
 - Add the function to the references list (alphabetically)
 
 ## References:
-# Exports Documentation
 
 ## Aicoverpoint
 
@@ -110,13 +109,15 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `InventoryGetCatalogItemInspectionEffectsEntry` | `entryId, name, p2, p3` |
 | `InventoryGetCatalogItemInspectionStatsEntry` | `entryId, name, p2, playerId` |
 | `InventoryGetGuidFromItemid` | `guid, item, slotId` |
+| `InventoryGetInventoryItemCompatibleSlots` | `item, guid, maxResults` |
 | `InventoryGetInventoryItemInspectionInfo` | `item` |
+| `InventoryGetInventoryItemLastCreation` | `inventoryId, item` |
 
 ## Itemdatabase
 
 | Function | Parameters |
 |----------|------------|
-| `ItemdatabaseCreateItemCollection` | `slotId, slotId2, p2, category, cost, p5, p6, itemType, ciTag` |
+| `ItemdatabaseCreateItemCollection` | `slotId, slotId2, tag, category, cost, p5, flags, itemType, ciTag` |
 | `ItemdatabaseFilloutBundle` | `bundle, costtype, index` |
 | `ItemdatabaseFilloutItemEffectIdInfo` | `effectId` |
 | `ItemdatabaseFilloutItemInfo` | `item` |
@@ -125,6 +126,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ItemdatabaseGetBundleItemInfo` | `bundleId, index` |
 | `ItemdatabaseGetFitsSlotInfo` | `category, index` |
 | `ItemdatabaseGetShopInventoriesRequirementInfo` | `shopType, key, groupIndex, requirementIndex` |
+| `ItemdatabaseGetShopLayoutPageInfoByIndex` | `layout, index` |
 
 ## Map
 
@@ -175,6 +177,9 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `HasPedBeenShotByPlayerRecently` | `player, ped, duration` |
 | `HasPedInteractedWithPlayerRecently` | `ped, player, interactionFlag, duration` |
 | `IsPedAfloat` | `ped` |
+| `PlayConditionalAnimWithPropItem` | `ped, targetEntity, propItemId, conditionalAnimName` |
+| `RefreshCarriedPedForPed` | `ped, p1, p2` |
+| `RemovePedPropItemConditionalAnim` | `ped, propItemId` |
 | `RequestCarryingStateForPed` | `ped, carryingType, unk3, filter` |
 | `SetPedWetness` | `ped, amount` |
 
@@ -240,11 +245,13 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
+| `CancelPedHogtie` | `ped` |
 | `ClearVehicleTasks` | `vehicle` |
 | `DoesPedFishingWaitForBite` | `ped` |
 | `FindScenarioAllPointsInVolumeOfType` | `volume, itemset, scenarioType, p3, p4, p5, p6` |
 | `FindScenarioAtObjectOfType` | `object, xOffset, yOffset, zOffset, scenarioType, radius` |
 | `FinishScenarioTransition` | `` |
+| `ForceAnimalSampled` | `animal, toggle` |
 | `GetCoverpointFromEntityWithOffset` | `entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8` |
 | `GetDrivingSeat` | `vehicle` |
 | `GetLinkedScenarioPoints` | `scenario, buffer, toggle` |
@@ -258,6 +265,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetTaskCombatReadyToShoot` | `ped` |
 | `HasCarriableConfigHashLoaded` | `carriableConfig` |
 | `HasEntityDirectedTaskActive` | `entity` |
+| `HasPedAnimalSampled` | `animal` |
 | `IsPedBeingLed` | `mount` |
 | `IsPedLookingAtCoord` | `ped, x, y, z, radius` |
 | `IsScenarioInUse` | `scenarioHash` |
@@ -271,9 +279,11 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `SetCarriablePickupPromptEnabled` | `carriable, enabled` |
 | `SetDrivingSeat` | `vehicle, seatIndex` |
 | `SetIntimitatedFacingAngle` | `ped, useLimits, minAngle, maxAngle` |
-| `SwapReins` | `vehicle, instant` |
+| `SwapReins` | `ped` |
+| `SwapVehicleReins` | `vehicle, instant` |
 | `TaskForceAimAtCoord` | `ped, x, y, z, p4, p5, p6` |
 | `TaskPickUpWeapon` | `ped, pickup` |
+| `TaskPointAtEntity` | `ped, targetEntity, duration` |
 | `TaskVehicleIsAtDestination` | `vehicle, x, y, z` |
 | `UpdateTaskVehicleShootAtCoord` | `ped, x, y, z` |
 

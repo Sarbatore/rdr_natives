@@ -57,3 +57,38 @@ end
 function InventoryApplyWeaponStatsToEntry(entryId, weapon, ped)
     Citizen.InvokeNative(0x75CFAC49301E134E, entryId, weapon, ped)
 end
+
+---Outputs the slot ids compatible with the item.
+---@param item Hash
+---@param guid Guid
+---@param maxResults integer
+---@return boolean
+function InventoryGetInventoryItemCompatibleSlots(item, guid, maxResults)
+    return Citizen.InvokeNative(0x9AC53CB6907B4428, item, guid, maxResults) == 1
+end
+
+---Returns the last creation date of the item for the selected inventory.
+---@param inventoryId integer
+---@param item Hash
+---@return boolean, integer, integer, integer, integer, integer, integer
+function InventoryGetInventoryItemLastCreation(inventoryId, item)
+    local yearData = DataView.ArrayBuffer(1*8)
+    local monthData = DataView.ArrayBuffer(1*8)
+    local dayData = DataView.ArrayBuffer(1*8)
+    local hourData = DataView.ArrayBuffer(1*8)
+    local minuteData = DataView.ArrayBuffer(1*8)
+    local secondData = DataView.ArrayBuffer(1*8)
+
+    if (Citizen.InvokeNative(0X112BCA290D2EB53C, inventoryId, item, yearData:Buffer(), monthData:Buffer(), dayData:Buffer(), hourData:Buffer(), minuteData:Buffer(), secondData:Buffer()) == 1) then
+      local year = yearData:GetInt32(0)
+      local month = monthData:GetInt32(0)
+      local day = dayData:GetInt32(0)
+      local hour = hourData:GetInt32(0)
+      local minute = minuteData:GetInt32(0)
+      local second = secondData:GetInt32(0)
+
+      return true, year, month, day, hour, minute, second
+    end
+
+    return false
+end

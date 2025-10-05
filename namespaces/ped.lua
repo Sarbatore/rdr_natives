@@ -119,3 +119,28 @@ end
 function CanPedHearTargetPed(target, ped, flag)
     return Citizen.InvokeNative(0x0EA9EACBA3B01601, target, ped, flag) == 1
 end
+
+---Plays a conditional locomotion animation with an attached prop item. [@sarbatore]
+---@param ped Ped
+---@param targetEntity Entity
+---@param propItemId string
+---@param conditionalAnimName string
+function PlayConditionalAnimWithPropItem(ped, targetEntity, propItemId, conditionalAnimName)
+    Citizen.InvokeNative(0xCE7A6C1D5CDE1F9D, ped, targetEntity, propItemId, conditionalAnimName)
+end
+
+---Stops and clears a running conditional locomotion animation previously started by PlayConditionalAnimWithPropItem. [@sarbatore]
+---@param ped Ped
+---@param propItemId string
+function RemovePedPropItemConditionalAnim(ped, propItemId)
+    Citizen.InvokeNative(0x3A50753042B6891B, ped, propItemId)
+end
+
+---Returns the carried ped for the specified ped.
+---@param ped Ped
+---@param p1 integer
+---@param p2 boolean
+---@return Ped
+function RefreshCarriedPedForPed(ped, p1, p2)
+    return Citizen.InvokeNative(0X6B67320E0D57856A, ped, Citizen.PointerValueInt(), p1, p2)
+end

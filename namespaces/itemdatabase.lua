@@ -38,7 +38,7 @@ end
 ---
 ---@param bundleId number
 ---@param index integer
----@return boolean, 
+---@return boolean, Hash, Hash, integer, integer
 function ItemdatabaseGetBundleItemInfo(bundleId, index)
     local bundleStruct = DataView.ArrayBuffer(1*8)
     bundleStruct:SetInt32(0*8, 1)
@@ -61,14 +61,7 @@ end
 ---@param index integer
 ---@return Hash
 function ItemdatabaseGetFitsSlotInfo(category, index)
-    local struct = DataView.ArrayBuffer(1*8)
-    if (Citizen.InvokeNative(0x77210C146CED5261, category, index, struct:Buffer())) then
-        local slotId = struct:GetInt32(0*8)
-
-        return slotId
-    end
-
-    return 0
+    return Citizen.InvokeNative(0x77210C146CED5261, category, index, Citizen.PointerValueInt())
 end
 
 ---Return the number of items for the bundle
@@ -133,35 +126,35 @@ function ItemdatabaseFilloutModifier(modifier, index)
     return false
 end
 
----Create an item collection and return its id and size.
+---Create an item collection and return its index and size.
 ---@param slotId Hash
 ---@param slotId2 Hash
----@param p2 integer
+---@param tag Hash
 ---@param category Hash
 ---@param cost Hash
----@param p5 integer
----@param p6 integer
+---@param p5 Hash
+---@param flags integer
 ---@param itemType Hash
 ---@param ciTag Hash
 ---@return integer, integer
-function ItemdatabaseCreateItemCollection(slotId, slotId2, p2, category, cost, p5, p6, itemType, ciTag)
+function ItemdatabaseCreateItemCollection(slotId, slotId2, tag, category, cost, p5, flags, itemType, ciTag)
     local filterStruct = DataView.ArrayBuffer(9*8)
     filterStruct:SetInt32(0*8, slotId)
     filterStruct:SetInt32(1*8, slotId2)
-    filterStruct:SetInt32(2*8, p2)
+    filterStruct:SetInt32(2*8, tag)
     filterStruct:SetInt32(3*8, category)
     filterStruct:SetInt32(4*8, cost)
     filterStruct:SetInt32(5*8, p5)
-    filterStruct:SetInt32(6*8, p6)
+    filterStruct:SetInt32(6*8, flags)
     filterStruct:SetInt32(7*8, itemType)
     filterStruct:SetInt32(8*8, ciTag)
     local sizeStruct = DataView.ArrayBuffer(1*8)
 
-    local collectionId = Citizen.InvokeNative(0x71EFA7999AE79408, filterStruct:Buffer(), sizeStruct:Buffer(), 1, Citizen.ResultAsInteger())
-    if (collectionId > 0) then
+    local collectionIndex = Citizen.InvokeNative(0x71EFA7999AE79408, filterStruct:Buffer(), sizeStruct:Buffer(), 1, Citizen.ResultAsInteger())
+    if (collectionIndex > 0) then
         local size = sizeStruct:GetInt32(0*8)
 
-        return collectionId, size
+        return collectionIndex, size
     end
 
     return -1, 0
@@ -187,6 +180,24 @@ function ItemdatabaseGetShopInventoriesRequirementInfo(shopType, key, groupIndex
         local c = struct:GetInt32(2*8)
 
         return true, inventoryRequirement, b, c
+    end
+
+    return false
+end
+
+---Outputs the layout page info at the selected index.
+---@param layout Hash
+---@param index integer
+---@return boolean, Hash, Hash, boolean, integer
+function ItemdatabaseGetShopLayoutPageInfoByIndex(layout, index)
+    local struct = DataView.ArrayBuffer(4*8)
+    if (Citizen.InvokeNative(0xDBEADA0DF5F9AB9F, layout, index, struct:Buffer()) == 1) then
+        local pageKey  = struct:GetInt32(0*8)
+        local unk1     = struct:GetInt32(1*8)
+        local unk2     = struct:GetInt32(2*8) == 1
+        local numItems = struct:GetInt32(3*8)
+
+        return true, pageKey, unk1, unk2, numItems
     end
 
     return false
