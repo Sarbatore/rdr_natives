@@ -336,3 +336,47 @@ end
 function SwapReins(ped)
     Citizen.InvokeNative(0xFC7F71CF49F70B6B, ped)
 end
+
+---Forces a ped to attack a target with **throwable or projectile weapons** (like bows, throwing knives, tomahawks, dynamite) for a specified duration while aiming.
+---@param ped Ped
+---@param target Entity
+---@param durationMs integer
+---@param p3 boolean
+---@param p4 boolean
+function TaskForceThrowableAtEntityWhenAiming(ped, target, durationMs, p3, p4)
+    Citizen.InvokeNative(0x2416EC2F31F75266, ped, target, durationMs, p3, p4)
+end
+
+---Returns `true` if a **revivable horse prompt** is currently **visibled** (i.e., visible and interactable) near the player.
+---@param p0 boolean
+---@return boolean
+function IsRevivableHorsePromptVisible(p0)
+    return Citizen.InvokeNative(0x756C7B4C43DF0422, p0) == 1
+end
+
+---Returns the horse ped currently in a revivable state and within the revive prompt range (if any).
+---@return Ped
+function GetRevivableHorse()
+    return Citizen.InvokeNative(0x351F74ED6177EBE7, Citizen.ResultAsEntity())
+end
+
+---Returns the signed distance along the waypoint recording from its start to the point on the recording that corresponds to the given coordinates.
+---@param waypointName string
+---@param coords Vector3
+---@return float
+function CalculateWaypointDistanceFromStart(waypointName, coords)
+    return Citizen.InvokeNative(0x3ACC128510142B9D, waypointName, coords, Citizen.ResultAsFloat())
+end
+
+---Orders the ped to follow a waypoint recording with control over start/end node indices, optional patrol (back-and-forth) behavior, aiming stance, and total traversal duration.
+---@param ped Ped
+---@param waypointRecording string
+---@param startIndex integer
+---@param flags integer
+---@param endIndex integer
+---@param patrol boolean
+---@param aimWeapon boolean
+---@param durationMs integer
+function TaskFollowWaypointRecording(ped, waypointRecording, startIndex, flags, endIndex, patrol, aimWeapon, durationMs)
+    Citizen.InvokeNative(0x0759591819534F7B, ped, waypointRecording, startIndex, flags, endIndex, patrol, aimWeapon, durationMs)
+end
