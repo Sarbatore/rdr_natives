@@ -380,3 +380,44 @@ end
 function TaskFollowWaypointRecording(ped, waypointRecording, startIndex, flags, endIndex, patrol, aimWeapon, durationMs)
     Citizen.InvokeNative(0x0759591819534F7B, ped, waypointRecording, startIndex, flags, endIndex, patrol, aimWeapon, durationMs)
 end
+
+---Updates the current directed "go to/follow offset" objective of a Ped to a new world position.
+---@param ped Ped
+---@param x float
+---@param y float
+---@param z float
+---@param offsetX float
+---@param offsetY float
+---@param offsetZ float
+---@param speed float
+---@param tolerance float
+function UpdateTaskGoToCoordWithOffset(ped, x, y, z, offsetX, offsetY, offsetZ, speed, tolerance)
+    Citizen.InvokeNative(0x3FFCD7BBA074CC80, ped, x, y, z, offsetX, offsetY, offsetZ, speed, tolerance)
+end
+
+---Adds a new waypoint to the AI driver's active "drive to destination" task.
+---@param vehicle Vehicle
+---@param x float
+---@param y float
+---@param z float
+function TaskVehicleAddNextDestination(vehicle, x, y, z)
+    Citizen.InvokeNative(0x1D125814EBC517EB, vehicle, x, y, z)
+end
+
+---Sets a ped’s standing position and/or facing direction while aboard a boat, using a local offset relative to the boat’s coordinate system. Works only on boats.
+---@param ped Ped
+---@param boat Vehicle
+---@param offsetX float
+---@param offsetY float
+---@param offsetZ float
+---@param heading float
+---@param flags integer
+function SetAboardPedBoatOffset(ped, boat, offsetX, offsetY, offsetZ, heading, flags)
+    Citizen.InvokeNative(0x517D01BF27B682D1, ped, boat, offsetX, offsetY, offsetZ, heading, flags)
+end
+
+---Returns whether the “Hold to Reel [Fishing]” gameplay setting is currently enabled.
+---@return boolean
+function GetHoldToReelSettingEnabled()
+    return Citizen.InvokeNative(0x5952DFA38FA529FE) == 1
+end

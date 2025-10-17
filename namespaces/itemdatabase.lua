@@ -140,13 +140,13 @@ end
 ---@param ciTag Hash
 ---@return integer, integer
 function ItemdatabaseCreateItemCollection(slotId, slotId2, tag, category, cost, p5, flags, itemType, ciTag)
-    local filterStruct = DataView.ArrayBuffer(9*8)
+    local filterStruct = DataView.ArrayBuffer(15*8)
     filterStruct:SetInt32(0*8, slotId)
     filterStruct:SetInt32(1*8, slotId2)
     filterStruct:SetInt32(2*8, tag)
     filterStruct:SetInt32(3*8, category)
     filterStruct:SetInt32(4*8, cost)
-    filterStruct:SetInt32(5*8, p5)
+    filterStruct:SetInt64(5*8, p5)
     filterStruct:SetInt32(6*8, flags)
     filterStruct:SetInt32(7*8, itemType)
     filterStruct:SetInt32(8*8, ciTag)
