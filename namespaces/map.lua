@@ -45,7 +45,7 @@ function SetActiveBlipIconEntityPromptWithoutLockon(entity)
     Citizen.InvokeNative(0x1726963E6049DB53, entity)
 end
 
----Clears the previously set coordinates for the pause map view, removing any specified focal point and radius that were set using `SetPausemapCoordsWithRadius`. Resets the map view, allowing it to open with the default coordinates and view instead of a specific target area. [@kadir]
+---Clears the previously set coordinates for the pause map view, removing any specified focal point and radius that were set using SetPausemapCoordsWithRadius. Resets the map view, allowing it to open with the default coordinates and view instead of a specific target area. [@kadir]
 function ClearPausemapCoords()
     Citizen.InvokeNative(0x7C9F4CDF402CA82A)
 end

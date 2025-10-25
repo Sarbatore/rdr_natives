@@ -1,7 +1,7 @@
 ---Requests a scenario type just like _REQUEST_SCENARIO_TYPE but for a specifc ped p2 is a flag unknown
 ---@param ped Ped
 ---@param scenarioType string
----@param flag number
+---@param flag integer
 ---@param conditionalScenario string
 ---@return number
 function RequestScenarioTypeForPed(ped, scenarioType, flag, conditionalScenario)
@@ -9,14 +9,13 @@ function RequestScenarioTypeForPed(ped, scenarioType, flag, conditionalScenario)
 end
 
 ---Removes the requested scenario type for ped using the id returned by _REQUEST_SCENARIO_TYPE_FOR_PED
----@param scenarioTypeId number
----@return void
+---@param scenarioTypeId integer
 function RemoveScenarioTypeForPed(scenarioTypeId)
     Citizen.InvokeNative(0x66BC28E50E85270E, scenarioTypeId)
 end
 
 ---Returns 1 if the scenario type for ped is loaded using the id returned by _REQUEST_SCENARIO_TYPE_FOR_PED or false
----@param scenarioTypeId number
+---@param scenarioTypeId integer
 ---@return boolean
 function HasScenarioTypeForPedLoaded(scenarioTypeId)
     return Citizen.InvokeNative(0xA0AE7653E8181725, scenarioTypeId) == 1

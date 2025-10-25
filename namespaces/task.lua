@@ -24,14 +24,12 @@ end
 ---
 ---@param ped Ped
 ---@param pickup Pickup
----@return void
 function TaskPickUpWeapon(ped, pickup)
     Citizen.InvokeNative(0x55B0ECFD98596624, ped, pickup)
 end
 
 ---Loads the carriable config hash [@outsider]
 ---@param carriableConfig Hash
----@return void
 function LoadCarriableConfigHash(carriableConfig)
     Citizen.InvokeNative(0xFF745B0346E19E2C, carriableConfig)
 end
@@ -105,14 +103,12 @@ end
 ---@param useLimits boolean
 ---@param minAngle float
 ---@param maxAngle float
----@return void
 function SetIntimitatedFacingAngle(ped, useLimits, minAngle, maxAngle)
     Citizen.InvokeNative(0x0FE797DD9F70DFA6, ped, useLimits, minAngle, maxAngle)
 end
 
 ---Clears all active tasks assigned to the specified vehicle.
 ---@param vehicle Vehicle
----@return void
 function ClearVehicleTasks(vehicle)
     Citizen.InvokeNative(0x141BC64C8D7C5529, vehicle)
 end
@@ -296,7 +292,7 @@ function FindScenarioAtObjectOfType(object, xOffset, yOffset, zOffset, scenarioT
     return Citizen.InvokeNative(0xD508FA229F1C4900, object, xOffset, yOffset, zOffset, scenarioType, radius, Citizen.ResultAsInteger())
 end
 
----Transfers the driving reins/control of a vehicle (e.g., wagon/coach) to another occupant when there is more than one ped inside. If `instant` is true, the handover happens instantly;
+---Transfers the driving reins/control of a vehicle (e.g., wagon/coach) to another occupant when there is more than one ped inside. If instant is true, the handover happens instantly;
 ---@param vehicle Vehicle
 ---@param instant boolean
 function SwapVehicleReins(vehicle, instant)
@@ -337,7 +333,7 @@ function SwapReins(ped)
     Citizen.InvokeNative(0xFC7F71CF49F70B6B, ped)
 end
 
----Forces a ped to attack a target with **throwable or projectile weapons** (like bows, throwing knives, tomahawks, dynamite) for a specified duration while aiming.
+---Forces a ped to attack a target with throwable or projectile weapons (like bows, throwing knives, tomahawks, dynamite) for a specified duration while aiming.
 ---@param ped Ped
 ---@param target Entity
 ---@param durationMs integer
@@ -347,7 +343,7 @@ function TaskForceThrowableAtEntityWhenAiming(ped, target, durationMs, p3, p4)
     Citizen.InvokeNative(0x2416EC2F31F75266, ped, target, durationMs, p3, p4)
 end
 
----Returns `true` if a **revivable horse prompt** is currently **visibled** (i.e., visible and interactable) near the player.
+---Returns true if a revivable horse prompt is currently visibled (i.e., visible and interactable) near the player.
 ---@param p0 boolean
 ---@return boolean
 function IsRevivableHorsePromptVisible(p0)
@@ -420,4 +416,48 @@ end
 ---@return boolean
 function GetHoldToReelSettingEnabled()
     return Citizen.InvokeNative(0x5952DFA38FA529FE) == 1
+end
+
+---Smoothly transitions an active scenario actor (ped) into a specific conditional /clipset defined in the scenario’s conditional-anim graph,  breaking or restarting the scenario. Returns true if the transition was successfully triggered, or false if it failed.
+---@param ped Ped
+---@param scenarioPoint ScenarioPoint
+---@param clipsetDict string
+---@param clipsetName string
+---@param fromConditionalAnim string
+---@param flags integer
+---@return boolean
+function TransitionScenarioToConditionalAnim(ped, scenarioPoint, clipsetDict, clipsetName, fromConditionalAnim, flags)
+    return Citizen.InvokeNative(0x79197F7D2BB5E73A, ped, scenarioPoint, clipsetDict, clipsetName, fromConditionalAnim, flags) == 1
+end
+
+---
+---@param clipset Hash
+---@param clipset2 Hash
+---@param p2 string
+---@param p3 float
+---@param p4 Hash
+---@param p5 string
+---@param p6 float
+---@param p7 Hash
+---@param p8 string
+---@param p9 string
+---@param p10 string
+---@param p11 string
+---@return Buffer
+local function GetTaskMoveNetworkBuffer(clipset, clipset2, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)
+    local struct = DataView.ArrayBuffer(64*8)
+    struct:SetInt32(0*8, clipset)
+    struct:SetInt32(1*8, clipset2)
+    struct:SetInt64(4*8, VarString(10, "LITERAL_STRING", p2, Citizen.ResultAsLong()))
+    struct:SetFloat32(5*8, p3)
+    struct:SetInt32(6*8, p4)
+    struct:SetInt64(7*8, VarString(10, "LITERAL_STRING", p5, Citizen.ResultAsLong()))
+    struct:SetFloat32(8*8, p6)
+    struct:SetInt32(9*8, p7)
+    struct:SetInt64(29*8, VarString(10, "LITERAL_STRING", p8, Citizen.ResultAsLong()))
+    struct:SetInt64(30*8, VarString(10, "LITERAL_STRING", p9, Citizen.ResultAsLong()))
+    struct:SetInt64(32*8, VarString(10, "LITERAL_STRING", p10, Citizen.ResultAsLong()))
+    struct:SetInt64(33*8, VarString(10, "LITERAL_STRING", p11, Citizen.ResultAsLong()))
+
+    return struct:Buffer()
 end

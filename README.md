@@ -57,9 +57,15 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `SetCamDofParams` | `cam, params` |
+| `SetCamDofAndFocalParams` | `cam, dofStrength, dofNear, dofFar, focalLength, minFocal, maxFocal, enableDof, p8, p9, p10` |
 | `SetCameraClosestZoom` | `` |
 | `SetCameraGroundLevelZoom` | `zoom` |
+
+## Databinding
+
+| Function | Parameters |
+|----------|------------|
+| `DatabindingRemoveUiItemFromListByIndex` | `entryId, index` |
 
 ## Entity
 
@@ -106,9 +112,10 @@ I hope you guys will participate to this repository. In order to maintain optima
 | Function | Parameters |
 |----------|------------|
 | `InventoryApplyWeaponStatsToEntry` | `entryId, weapon, ped` |
+| `InventoryCreateItemCollectionWithFilter` | `inventoryId, p1, slotId, slotId2, slotId3, p5, p6, p7, p8, itemType, p10, p11, p12, p13, p14, p15, p16, p17` |
 | `InventoryGetCatalogItemInspectionEffectsEntry` | `entryId, name, p2, p3` |
 | `InventoryGetCatalogItemInspectionStatsEntry` | `entryId, name, p2, playerId` |
-| `InventoryGetGuidFromItemid` | `guid, item, slotId` |
+| `InventoryGetGuidFromItemid` | `item, slotId` |
 | `InventoryGetInventoryItemCompatibleSlots` | `item, guid, maxResults` |
 | `InventoryGetInventoryItemInspectionInfo` | `item` |
 | `InventoryGetInventoryItemLastCreation` | `inventoryId, item` |
@@ -156,7 +163,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `NetworkLeaveSession` | `` |
+| `NetworkSessionRequestTerminate` | `` |
 | `NetworkUnregisterNetworkedEntity` | `entity` |
 
 ## Object
@@ -245,6 +252,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
+| `CalculateWaypointDistanceFromStart` | `waypointName, coords` |
 | `CancelPedHogtie` | `ped` |
 | `ClearVehicleTasks` | `vehicle` |
 | `DoesPedFishingWaitForBite` | `ped` |
@@ -254,10 +262,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ForceAnimalSampled` | `animal, toggle` |
 | `GetCoverpointFromEntityWithOffset` | `entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8` |
 | `GetDrivingSeat` | `vehicle` |
+| `GetHoldToReelSettingEnabled` | `` |
 | `GetLinkedScenarioPoints` | `scenario, buffer, toggle` |
 | `GetPedMountLeapProgress` | `ped` |
 | `GetPedMountLeapState` | `ped` |
 | `GetPedWritheBreakFreeProgress` | `ped` |
+| `GetRevivableHorse` | `` |
 | `GetScenarioContainerNumCompartments` | `entity` |
 | `GetScenarioContainerNumOpenCompartments` | `entity` |
 | `GetScenarioContainerRemainingLootCount` | `entity` |
@@ -268,6 +278,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `HasPedAnimalSampled` | `animal` |
 | `IsPedBeingLed` | `mount` |
 | `IsPedLookingAtCoord` | `ped, x, y, z, radius` |
+| `IsRevivableHorsePromptVisible` | `p0` |
 | `IsScenarioInUse` | `scenarioHash` |
 | `LoadCarriableConfigHash` | `carriableConfig` |
 | `PedApplyFollowRoadSpeedOverride` | `ped, speed` |
@@ -275,16 +286,22 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `RemoveTaskCarriable` | `carriable` |
 | `RequestCarriableHatEquipToPed` | `hat, ped` |
 | `ResetScenarioPointsInArea` | `x, y, z, radius` |
+| `SetAboardPedBoatOffset` | `ped, boat, offsetX, offsetY, offsetZ, heading, flags` |
 | `SetCarriableConfigPromptEnabled` | `carriableConfig, toggle` |
 | `SetCarriablePickupPromptEnabled` | `carriable, enabled` |
 | `SetDrivingSeat` | `vehicle, seatIndex` |
 | `SetIntimitatedFacingAngle` | `ped, useLimits, minAngle, maxAngle` |
 | `SwapReins` | `ped` |
 | `SwapVehicleReins` | `vehicle, instant` |
+| `TaskFollowWaypointRecording` | `ped, waypointRecording, startIndex, flags, endIndex, patrol, aimWeapon, durationMs` |
 | `TaskForceAimAtCoord` | `ped, x, y, z, p4, p5, p6` |
+| `TaskForceThrowableAtEntityWhenAiming` | `ped, target, durationMs, p3, p4` |
 | `TaskPickUpWeapon` | `ped, pickup` |
 | `TaskPointAtEntity` | `ped, targetEntity, duration` |
+| `TaskVehicleAddNextDestination` | `vehicle, x, y, z` |
 | `TaskVehicleIsAtDestination` | `vehicle, x, y, z` |
+| `TransitionScenarioToConditionalAnim` | `ped, scenarioPoint, clipsetDict, clipsetName, fromConditionalAnim, flags` |
+| `UpdateTaskGoToCoordWithOffset` | `ped, x, y, z, offsetX, offsetY, offsetZ, speed, tolerance` |
 | `UpdateTaskVehicleShootAtCoord` | `ped, x, y, z` |
 
 ## Uievents

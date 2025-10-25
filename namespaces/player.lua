@@ -257,20 +257,20 @@ function IsPlayerSprintingOnHorseOnRoad(player)
 end
 
 
----Returns the depletion delay value for the Deadeye ability that was previously set using `SetDeadeyeAbilityDepletionDelay - 0x870634493CB4372C`. Provides a float value representing the delay, allowing the game to retrieve the current Deadeye depletion setting for a specific player. [@kadir]
+---Returns the depletion delay value for the Deadeye ability that was previously set using SetDeadeyeAbilityDepletionDelay - 0x870634493CB4372C. Provides a float value representing the delay, allowing the game to retrieve the current Deadeye depletion setting for a specific player. [@kadir]
 ---@param player Player
 ---@return number
 function GetDeadeyeAbilityDepletionDelay(player)
     return Citizen.InvokeNative(0xE92261BD28C0878F, player)
 end
 
----Clears the intensity of aura effects applied to entities for a specific player in Deadeye mode based on a flag parameter. Used to reset any intensity modifications set by `_SET_DEADEYE_ENTITY_AURA_INTENSITY_WITH_FLAG - 0x131E294EF60160DF`, restoring affected entities' aura intensity to their default state. [@kadir]
+---Clears the intensity of aura effects applied to entities for a specific player in Deadeye mode based on a flag parameter. Used to reset any intensity modifications set by _SET_DEADEYE_ENTITY_AURA_INTENSITY_WITH_FLAG - 0x131E294EF60160DF, restoring affected entities' aura intensity to their default state. [@kadir]
 ---@param player Player
 function ClearDeadeyeAuraIntensityWithFlag(player)
     Citizen.InvokeNative(0x0E9057A9DA78D0F8, player)
 end
 
----Resets any aura effects applied to entities for a specific player in Deadeye mode, returning all aura-related visuals to their default state. Primarily used to remove any highlighting or aura effects set by `_SET_DEADEYE_ENTITY_AURA_WITH_FLAG - 0x2B12B6FC8B8772AB` and `_SET_DEADEYE_ENTITY_AURA_INTENSITY_WITH_FLAG - 0x131E294EF60160DF`. [@kadir]
+---Resets any aura effects applied to entities for a specific player in Deadeye mode, returning all aura-related visuals to their default state. Primarily used to remove any highlighting or aura effects set by _SET_DEADEYE_ENTITY_AURA_WITH_FLAG - 0x2B12B6FC8B8772AB and _SET_DEADEYE_ENTITY_AURA_INTENSITY_WITH_FLAG - 0x131E294EF60160DF. [@kadir]
 ---@param player Player
 function ResetDeadeyeAuraEffect(player)
     Citizen.InvokeNative(0xE910932F4B30BE23, player)

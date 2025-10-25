@@ -13,9 +13,12 @@ exports("PlayAmbientSpeechFromPositionNative", PlayAmbientSpeechFromPositionNati
 exports("PlayPedAmbientSpeechNative", PlayPedAmbientSpeechNative)
 
 -- Cam
-exports("SetCamDofParams", SetCamDofParams)
+exports("SetCamDofAndFocalParams", SetCamDofAndFocalParams)
 exports("SetCameraClosestZoom", SetCameraClosestZoom)
 exports("SetCameraGroundLevelZoom", SetCameraGroundLevelZoom)
+
+-- Databinding
+exports("DatabindingRemoveUiItemFromListByIndex", DatabindingRemoveUiItemFromListByIndex)
 
 -- Entity
 exports("AttachEntityToCoordsPhysically", AttachEntityToCoordsPhysically)
@@ -44,6 +47,7 @@ exports("UiPromptHasMashModeJustPressed", UiPromptHasMashModeJustPressed)
 
 -- Inventory
 exports("InventoryApplyWeaponStatsToEntry", InventoryApplyWeaponStatsToEntry)
+exports("InventoryCreateItemCollectionWithFilter", InventoryCreateItemCollectionWithFilter)
 exports("InventoryGetCatalogItemInspectionEffectsEntry", InventoryGetCatalogItemInspectionEffectsEntry)
 exports("InventoryGetCatalogItemInspectionStatsEntry", InventoryGetCatalogItemInspectionStatsEntry)
 exports("InventoryGetGuidFromItemid", InventoryGetGuidFromItemid)
@@ -82,7 +86,7 @@ exports("DisableCompositePickPromptThisFrame", DisableCompositePickPromptThisFra
 exports("GetGroundZAndMaterialFor3DCoord", GetGroundZAndMaterialFor3DCoord)
 
 -- Network
-exports("NetworkLeaveSession", NetworkLeaveSession)
+exports("NetworkSessionRequestTerminate", NetworkSessionRequestTerminate)
 exports("NetworkUnregisterNetworkedEntity", NetworkUnregisterNetworkedEntity)
 
 -- Object
@@ -153,6 +157,7 @@ exports("RequestClipSet_2", RequestClipSet_2)
 exports("RequestScenarioTypeForPed", RequestScenarioTypeForPed)
 
 -- Task
+exports("CalculateWaypointDistanceFromStart", CalculateWaypointDistanceFromStart)
 exports("CancelPedHogtie", CancelPedHogtie)
 exports("ClearVehicleTasks", ClearVehicleTasks)
 exports("DoesPedFishingWaitForBite", DoesPedFishingWaitForBite)
@@ -162,10 +167,12 @@ exports("FinishScenarioTransition", FinishScenarioTransition)
 exports("ForceAnimalSampled", ForceAnimalSampled)
 exports("GetCoverpointFromEntityWithOffset", GetCoverpointFromEntityWithOffset)
 exports("GetDrivingSeat", GetDrivingSeat)
+exports("GetHoldToReelSettingEnabled", GetHoldToReelSettingEnabled)
 exports("GetLinkedScenarioPoints", GetLinkedScenarioPoints)
 exports("GetPedMountLeapProgress", GetPedMountLeapProgress)
 exports("GetPedMountLeapState", GetPedMountLeapState)
 exports("GetPedWritheBreakFreeProgress", GetPedWritheBreakFreeProgress)
+exports("GetRevivableHorse", GetRevivableHorse)
 exports("GetScenarioContainerNumCompartments", GetScenarioContainerNumCompartments)
 exports("GetScenarioContainerNumOpenCompartments", GetScenarioContainerNumOpenCompartments)
 exports("GetScenarioContainerRemainingLootCount", GetScenarioContainerRemainingLootCount)
@@ -176,6 +183,7 @@ exports("HasEntityDirectedTaskActive", HasEntityDirectedTaskActive)
 exports("HasPedAnimalSampled", HasPedAnimalSampled)
 exports("IsPedBeingLed", IsPedBeingLed)
 exports("IsPedLookingAtCoord", IsPedLookingAtCoord)
+exports("IsRevivableHorsePromptVisible", IsRevivableHorsePromptVisible)
 exports("IsScenarioInUse", IsScenarioInUse)
 exports("LoadCarriableConfigHash", LoadCarriableConfigHash)
 exports("PedApplyFollowRoadSpeedOverride", PedApplyFollowRoadSpeedOverride)
@@ -183,16 +191,22 @@ exports("RemoveCarriableConfigHash", RemoveCarriableConfigHash)
 exports("RemoveTaskCarriable", RemoveTaskCarriable)
 exports("RequestCarriableHatEquipToPed", RequestCarriableHatEquipToPed)
 exports("ResetScenarioPointsInArea", ResetScenarioPointsInArea)
+exports("SetAboardPedBoatOffset", SetAboardPedBoatOffset)
 exports("SetCarriableConfigPromptEnabled", SetCarriableConfigPromptEnabled)
 exports("SetCarriablePickupPromptEnabled", SetCarriablePickupPromptEnabled)
 exports("SetDrivingSeat", SetDrivingSeat)
 exports("SetIntimitatedFacingAngle", SetIntimitatedFacingAngle)
 exports("SwapReins", SwapReins)
 exports("SwapVehicleReins", SwapVehicleReins)
+exports("TaskFollowWaypointRecording", TaskFollowWaypointRecording)
 exports("TaskForceAimAtCoord", TaskForceAimAtCoord)
+exports("TaskForceThrowableAtEntityWhenAiming", TaskForceThrowableAtEntityWhenAiming)
 exports("TaskPickUpWeapon", TaskPickUpWeapon)
 exports("TaskPointAtEntity", TaskPointAtEntity)
+exports("TaskVehicleAddNextDestination", TaskVehicleAddNextDestination)
 exports("TaskVehicleIsAtDestination", TaskVehicleIsAtDestination)
+exports("TransitionScenarioToConditionalAnim", TransitionScenarioToConditionalAnim)
+exports("UpdateTaskGoToCoordWithOffset", UpdateTaskGoToCoordWithOffset)
 exports("UpdateTaskVehicleShootAtCoord", UpdateTaskVehicleShootAtCoord)
 
 -- Uievents
