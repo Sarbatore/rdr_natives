@@ -1,3 +1,29 @@
+---@param dofStrength float
+---@param dofNear float
+---@param dofFar float
+---@param focalLength float
+---@param minFocal float
+---@param maxFocal float
+---@param enableDof boolean
+---@param p8 boolean
+---@param p9 boolean
+---@param p10 boolean
+local function GetCamParamsBuffer(dofStrength, dofNear, dofFar, focalLength, minFocal, maxFocal, enableDof, p8, p9, p10)
+    local struct = DataView.ArrayBuffer(10*8)
+    struct:SetFloat32(0*8, dofStrength)
+    struct:SetFloat32(1*8, dofNear)
+    struct:SetFloat32(2*8, dofFar)
+    struct:SetFloat32(3*8, focalLength)
+    struct:SetFloat32(4*8, minFocal)
+    struct:SetFloat32(5*8, maxFocal)
+    struct:SetInt32(6*8, BoolToNumber(enableDof))
+    struct:SetInt32(7*8, BoolToNumber(p8))
+    struct:SetInt32(8*8, BoolToNumber(p9))
+    struct:SetInt32(9*8, BoolToNumber(p10))
+
+    return struct:Buffer()
+end
+
 ---Zooms in the third person camera closer to ground level (call every frame) [@aaron1a12]
 ---@param zoom number
 function SetCameraGroundLevelZoom(zoom)
@@ -9,6 +35,7 @@ function SetCameraClosestZoom()
     Citizen.InvokeNative(0x718C6ECF5E8CBDD4)
 end
 
+---Sets the depth of field and focal parameters for a camera.
 ---@param cam Cam
 ---@param dofStrength float
 ---@param dofNear float
@@ -21,17 +48,6 @@ end
 ---@param p9 boolean
 ---@param p10 boolean
 function SetCamDofAndFocalParams(cam, dofStrength, dofNear, dofFar, focalLength, minFocal, maxFocal, enableDof, p8, p9, p10)
-    local struct = DataView.ArrayBuffer(10*8)
-    struct:SetFloat32(0*8, dofStrength)
-    struct:SetFloat32(1*8, dofNear)
-    struct:SetFloat32(2*8, dofFar)
-    struct:SetFloat32(3*8, focalLength)
-    struct:SetFloat32(4*8, minFocal)
-    struct:SetFloat32(5*8, maxFocal)
-    struct:SetInt32(6*8, enableDof and 1 or 0)
-    struct:SetInt32(7*8, p8 and 1 or 0)
-    struct:SetInt32(8*8, p9 and 1 or 0)
-    struct:SetInt32(9*8, p10 and 1 or 0)
-
-    Citizen.InvokeNative(0xE4B7945EF4F1BFB2, cam, struct:Buffer())
+    local buffer = GetCamParamsBuffer(dofStrength, dofNear, dofFar, focalLength, minFocal, maxFocal, enableDof, p8, p9, p10)
+    Citizen.InvokeNative(0xE4B7945EF4F1BFB2, cam, buffer)
 end

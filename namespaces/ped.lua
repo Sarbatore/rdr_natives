@@ -144,3 +144,27 @@ end
 function RefreshCarriedPedForPed(ped, p1, p2)
     return Citizen.InvokeNative(0X6B67320E0D57856A, ped, Citizen.PointerValueInt(), p1, p2)
 end
+
+---Return the ped move blend ratio corresponding to the specified speed.
+---@param ped Ped
+---@param speed number
+---@return float
+function ComputeSpeedForPedMoveBlendRatio(ped, speed)
+    return Citizen.InvokeNative(0xCA95924C893A0C91, ped, speed, Citizen.ResultAsFloat())
+end
+
+---Return an estimated max speed (m/s) for the ped move blend ratio. Move blend ratio is in a range of 0.0-3.0
+---@param ped Ped
+---@param moveBlendRatio float
+---@return float
+function ComputePedMoveBlendRatioForMaxSpeed(ped, moveBlendRatio)
+    return Citizen.InvokeNative(0x46BF2A810679D6E6, ped, moveBlendRatio, Citizen.ResultAsFloat())
+end
+
+---Returns the ped dirt level
+---@param ped Ped
+---@param p1 integer
+---@return float
+function GetPedDirtLevel(ped, p1)
+    return Citizen.InvokeNative(0x0105FEE8F9091255, ped, p1, Citizen.ResultAsFloat())
+end

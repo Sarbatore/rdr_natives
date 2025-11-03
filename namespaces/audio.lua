@@ -1,31 +1,30 @@
----Returns the ambient speech parameters buffer
----@param speechRef string
+---Returns a speech buffer
 ---@param speechName string
+---@param speechRef string
 ---@param speechLine integer
 ---@param speechParam Hash
----@param pedListener Ped
+---@param listener Ped
 ---@param syncOverNetwork boolean
+---@param p6 boolean
 ---@return Buffer
-local function GetAmbientSpeechBuffer(speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork)
-    speechRef = speechRef or 0
-    speechLine = speechLine or 0
-    speechParam = speechParam or 291934926
-    pedListener = pedListener or 0
-    syncOverNetwork = syncOverNetwork and 1 or 0
-    
+local function GetSpeechBuffer(speechName, speechRef, speechLine, speechParam, listener, syncOverNetwork, p6)
     local struct = DataView.ArrayBuffer(7*8)
     struct:SetInt64(0*8, VarString(10, "LITERAL_STRING", speechName, Citizen.ResultAsLong()))
     struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", speechRef, Citizen.ResultAsLong()))
     struct:SetInt32(2*8, speechLine)
     struct:SetInt64(3*8, speechParam)
-    struct:SetInt32(4*8, pedListener)
-    struct:SetInt32(5*8, syncOverNetwork)
-    struct:SetInt32(6*8, 1)
+    struct:SetInt32(4*8, listener)
+    struct:SetInt32(5*8, BoolToNumber(syncOverNetwork))
+    struct:SetInt32(6*8, BoolToNumber(p6))
 
     return struct:Buffer()
 end
 
---- Play an ambient speech from a ped
+--[[
+
+]]
+
+---Play ambient speech for a ped and return true if successful.
 ---@param ped Ped
 ---@param speechRef string
 ---@param speechName string
@@ -33,25 +32,27 @@ end
 ---@param speechParam Hash
 ---@param pedListener Ped
 ---@param syncOverNetwork boolean
+---@param p7 boolean
 ---@return boolean
-function PlayPedAmbientSpeechNative(ped, speechRef, speechName, speechParam, speechLine, pedListener, syncOverNetwork)
-    local buffer = GetAmbientSpeechBuffer(speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork)
+function PlayPedAmbientSpeechNative(ped, speechRef, speechName, speechParam, speechLine, pedListener, syncOverNetwork, p7)
+    local buffer = GetSpeechBuffer(speechName, speechRef, speechLine, speechParam, pedListener, syncOverNetwork, p7)
     return Citizen.InvokeNative(0x8E04FEDD28D42462, ped, buffer) == 1
 end
 
---- Play an ambient speech from a position
----@param soundRef string
----@param soundName string
+---Play ambient speech from a position and return true if successful.
 ---@param x float
 ---@param y float
 ---@param z float
+---@param soundRef string
+---@param soundName string
 ---@param speechLine integer
 ---@param speechParam Hash
 ---@param pedListener Ped
----@param syncOverNetwork boolean
+---@param syncOverNetwork, boolean
+---@param p9 boolean
 ---@return boolean
-function PlayAmbientSpeechFromPositionNative(soundRef, soundName, x, y, z, speechLine, speechParam, pedListener, syncOverNetwork)
-    local buffer = GetAmbientSpeechBuffer(soundRef, soundName, speechLine, speechParam, pedListener, syncOverNetwork)
+function PlayAmbientSpeechFromPositionNative(x, y, z, soundRef, soundName,  speechLine, speechParam, pedListener, syncOverNetwork, p9)
+    local buffer = GetSpeechBuffer(soundName, soundRef, speechLine, speechParam, pedListener, syncOverNetwork, p9)
     return Citizen.InvokeNative(0xED640017ED337E45, x, y, z, buffer) == 1
 end
 
@@ -77,4 +78,25 @@ end
 ---@return boolean
 function CanPedSaySpeech(ped, soundName, speechParam, speechLine)
     return Citizen.InvokeNative(0x9D6DEC9791A4E501, ped, soundName, speechParam, speechLine) == 1
+end
+
+---Creates a new scripted speech instance for a ped and returns its identifier
+---@param ped Ped
+---@param speechRef string
+---@param speechName string
+---@param speechLine integer
+---@param speechParam Hash
+---@param pedListener Ped
+---@param syncOverNetwork boolean
+---@param p7 boolean
+---@return integer
+function CreateNewScriptedSpeech(ped, speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork, p7)
+    local buffer = GetSpeechBuffer(speechName, speechRef, speechLine, speechParam, pedListener, syncOverNetwork, p7)
+    return Citizen.InvokeNative(0x72E4D1C4639BC465, ped, buffer, Citizen.ResultAsInteger())
+end
+
+---Play the scripted speech.
+---@param scriptedSpeech integer
+function PlaySoundFromScriptedSpeech(scriptedSpeech)
+    Citizen.InvokeNative(0xB18FEC133C7C6C69, scriptedSpeech)
 end

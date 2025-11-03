@@ -16,3 +16,10 @@ end
 function RemoveMpGamerTag(gamerTag)
     Citizen.InvokeNative(0x839BFD7D7E49FE09, Citizen.PointerValueIntInitialized(gamerTag));
 end
+
+---Returns the state of a specific HUD component.
+---@param hudComponent integer
+---@return integer
+function GetHudState(hudComponent)
+    return Citizen.InvokeNative(0x7EC0D68233E391AC, hudComponent, Citizen.ResultAsInteger())
+end

@@ -5,16 +5,10 @@ lua54 "yes"
 
 author "Sarbatore"
 description "Natives discovered by community"
-version "1.1.0"
+version "1.2.0"
 
 client_scripts {
-	"lib/dataview.lua",
-	"namespaces/*.lua",
-	"exports.lua",
-}
-
-escrow_ignore {
-	"lib/dataview.lua",
+	"lib/*.lua",
 	"namespaces/*.lua",
 	"exports.lua",
 }

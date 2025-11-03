@@ -45,10 +45,10 @@ function ItemdatabaseGetBundleItemInfo(bundleId, index)
     local itemStruct = DataView.ArrayBuffer(4*8)
     
     if (Citizen.InvokeNative(0x5D48A77E4B668B57, bundleId, bundleStruct:Buffer(), index, itemStruct:Buffer()) == 1) then
-        local item = itemStruct:GetInt32(0 * 8)
-        local slotId = itemStruct:GetInt32(1 * 8)
-        local a = itemStruct:GetInt32(2 * 8)
-        local b = itemStruct:GetInt32(3 * 8)
+        local item = itemStruct:GetInt32(0*8)
+        local slotId = itemStruct:GetInt32(1*8)
+        local a = itemStruct:GetInt32(2*8)
+        local b = itemStruct:GetInt32(3*8)
 
         return true, item, slotId, a, b
     end
@@ -86,20 +86,20 @@ function ItemdatabaseFilloutBundle(bundle, costtype, index)
     struct:SetInt32(0, 15)
 
     if (Citizen.InvokeNative(0xB542632693D53408, bundle, costtype, index, struct:Buffer()) == 1) then
-        local a = struct:GetInt32(0 * 8)
-        local b = struct:GetInt32(1 * 8)
-        local c = struct:GetInt32(2 * 8)
-        local d = struct:GetInt32(3 * 8)
-        local e = struct:GetInt32(4 * 8)
-        local f = struct:GetInt32(5 * 8)
-        local g = struct:GetInt32(6 * 8)
-        local h = struct:GetInt32(7 * 8)
-        local i = struct:GetInt32(8 * 8)
-        local j = struct:GetInt32(9 * 8)
-        local k = struct:GetInt32(10 * 8)
-        local l = struct:GetInt32(11 * 8)
-        local m = struct:GetInt32(12 * 8)
-        local n = struct:GetInt32(13 * 8)
+        local a = struct:GetInt32(0*8)
+        local b = struct:GetInt32(1*8)
+        local c = struct:GetInt32(2*8)
+        local d = struct:GetInt32(3*8)
+        local e = struct:GetInt32(4*8)
+        local f = struct:GetInt32(5*8)
+        local g = struct:GetInt32(6*8)
+        local h = struct:GetInt32(7*8)
+        local i = struct:GetInt32(8*8)
+        local j = struct:GetInt32(9*8)
+        local k = struct:GetInt32(10*8)
+        local l = struct:GetInt32(11*8)
+        local m = struct:GetInt32(12*8)
+        local n = struct:GetInt32(13*8)
         
         return true
     end
