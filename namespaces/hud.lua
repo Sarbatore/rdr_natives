@@ -1,5 +1,5 @@
 ---Returns the hash of the currently highlighted item in the weapon wheel. [@aaron1a12]
----@return hash
+---@return Hash
 function GetWeaponWheelHighlightedWeaponHash()
     return Citizen.InvokeNative(0x9C409BBC492CB5B1, Citizen.ResultAsInteger())
 end
@@ -12,7 +12,7 @@ function UiPromptHasMashModeJustPressed(prompt)
 end
 
 ---
----@param gamerTag number
+---@param gamerTag integer
 function RemoveMpGamerTag(gamerTag)
     Citizen.InvokeNative(0x839BFD7D7E49FE09, Citizen.PointerValueIntInitialized(gamerTag));
 end

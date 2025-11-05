@@ -1,6 +1,6 @@
 ---Returns wether the player has damaged any ped recently. [@kadir]
 ---@param player Player
----@param duration number
+---@param duration integer
 ---@return boolean
 function HasPlayerDamagedRecentlyAttackedPed(player, duration)
     return Citizen.InvokeNative(0x72AD59F7B7FB6E24, player, duration) == 1
@@ -8,8 +8,8 @@ end
 
 ---Returns a list of peds that the player has damaged recently. [@kadir]
 ---@param player Player
----@param duration number
----@param size number
+---@param duration integer
+---@param size integer
 ---@return boolean, table
 function GetPedsInCombatWithRecently(player, duration, size)
     local struct = DataView.ArrayBuffer(size*8)
@@ -47,7 +47,7 @@ end
 
 ---Sets the player's hat access. [@kadir]
 ---@param player Player
----@param flag number
+---@param flag integer
 ---@param allow boolean
 function SetPlayerHatAccess(player, flag, allow)
     Citizen.InvokeNative(0xA0C683284DF027C7, player, flag, allow)
@@ -62,7 +62,7 @@ end
 
 ---Sets the player's aim weapon. [@kadir]
 ---@param player Player
----@param weaponHash number
+---@param weaponHash Hash
 ---@param attachSlotId number
 function SetPlayerAimWeapon(player, weaponHash, attachSlotId)
     Citizen.InvokeNative(0xCFFC3ECCD7A5CCEB, player, weaponHash, attachSlotId)
@@ -71,7 +71,7 @@ end
 ---Sets the player's surrender prompt this frame. [@kadir]
 ---@param player Player
 ---@param targetped Ped
----@param promptOrder number
+---@param promptOrder integer
 ---@param unknownFlag boolean
 function SetPlayerSurrenderPromptThisFrame(player, targetPed, promptOrder, unknownFlag)
     Citizen.InvokeNative(0xCBB54CC7FFFFAB86, player, targetPed, promptOrder, unknownFlag)
@@ -86,8 +86,8 @@ end
 
 ---Sets the player's weapon draw speed.
 ---@param player Player
----@param weapon hash
----@param speed number
+---@param weapon Hash
+---@param speed float
 function SetPlayerWeaponDrawSpeed(player, weapon, speed)
     Citizen.InvokeNative(0x00EB5A760638DB55, player, speed)
 end
@@ -96,10 +96,10 @@ end
 ---@param player Player
 ---@param ped Ped
 ---@param preset string
----@param x number
----@param y number
----@param z number
----@param targetEntity number
+---@param x float
+---@param y float
+---@param z float
+---@param targetEntity Entity
 ---@param name string
 function AddPlayerInteractiveFocusPreset(player, ped, preset, x, y, z, targetEntity, name)
     Citizen.InvokeNative(0x3946FC742AC305CD, player, ped, preset, x, y, z, targetEntity, name)
@@ -107,9 +107,9 @@ end
 
 ---Gets the tracked ped id for eagle eye. [@kadir]
 ---@param player Player
----@return number
+---@return Ped
 function EagleEyeGetTrackedPedId(player)
-    return Citizen.InvokeNative(0x3813E11A378958A5, player)
+    return Citizen.InvokeNative(0x3813E11A378958A5, player, Citizen.ResultAsInteger())
 end
 
 ---Returns whether all trails are hidden in eagle eye. [@kadir]
@@ -129,9 +129,9 @@ end
 ---Returns the number of dead eye marks on a ped. [@kadir]
 ---@param player Player
 ---@param ped Ped
----@return number
-function GetNumDeadEyeMarksOnPed(player, ped)
-    return Citizen.InvokeNative(0x27AD7162D3FED01E, player, ped)
+---@return integer
+function GetNumDeadeyeMarksOnPed(player, ped)
+    return Citizen.InvokeNative(0x27AD7162D3FED01E, player, ped, Citizen.ResultAsInteger())
 end
 
 ---Returns whether the player can focus on a track in eagle eye. [@kadir]
@@ -143,19 +143,19 @@ end
 
 ---Sets the dead eye entity glow intensity with flag. [@kadir]
 ---@param player Player
----@param param2 number
----@param param3 number
----@param param4 number
----@param glowIntensity number
----@param flag number
-function SetDeadEyeEntityGlowIntensityWithFlag(player, param2, param3, param4, glowIntensity, flag)
-    Citizen.InvokeNative(0x131E294EF60160DF, player, param2, param3, param4, glowIntensity, flag)
+---@param p1 float
+---@param p2 float
+---@param p3 float
+---@param glowIntensity float
+---@param flag integer
+function SetDeadeyeEntityAuraIntensityWithFlag(player, p1, p2, p3, glowIntensity, flag)
+    Citizen.InvokeNative(0x131E294EF60160DF, player, p1, p2, p3, glowIntensity, flag)
 end
 
 ---Sets the dead eye entity glow with flag. [@kadir]
 ---@param player Player
----@param flag number
-function SetDeadEyeEntityGlowWithFlag(player, flag)
+---@param flag integer
+function SetDeadeyeEntityGlowWithFlag(player, flag)
     Citizen.InvokeNative(0x2B12B6FC8B8772AB, player, flag)
 end
 
@@ -189,14 +189,17 @@ end
 
 ---Adds a player interactive focus preset at coordinates. [@kadir]
 ---@param player Player
----@param x number
----@param y number
----@param z number
+---@param p1 float
+---@param p2 float
+---@param p3 float
 ---@param preset string
----@param targetEntity number
+---@param x float
+---@param y float
+---@param z float
+---@param targetEntity Entity
 ---@param name string
-function AddAmbientPlayerInteractiveFocusPresetAtCoords(player, x, y, z, preset, targetEntity, name)
-    Citizen.InvokeNative(0xD48227263E3D06AE, player, x, y, z, preset, targetEntity, name)
+function AddAmbientPlayerInteractiveFocusPresetAtCoords(player, p1, p2, p3, preset, x, y, z, targetEntity, name)
+    Citizen.InvokeNative(0xD48227263E3D06AE, player, p1, p2, p3, preset, x, y, z, targetEntity, name)
 end
 
 ---Returns whether the player has a jump to active prompt. [@kadir]
@@ -215,7 +218,7 @@ end
 
 ---Add yellow particles to the entity. [@sarbatore]
 ---@param entity Entity
----@param entity2 number
+---@param entity2 Entity
 ---@param p2 number
 ---@param p3 number
 function EagleEyeAddParticleEffectToEntity(entity, entity2, p2, p3)
@@ -230,7 +233,7 @@ end
 
 ---Remove yellow particles from the entity. [@sarbatore]
 ---@param entity Entity
----@param entity2 number
+---@param entity2 Entity
 ---@param p2 number
 function EagleEyeRemoveParticleEffectFromEntity_2(entity, entity2, p2)
     Citizen.InvokeNative(0xDC5E09D012D759C4, entity, entity2, p2)
@@ -278,22 +281,14 @@ end
 
 ---Sets the aura color for entities that the player can target in Deadeye mode, based on a specific hash value. [@kadir]
 ---@param player Player
----@param auraHash number
-function SetPlayerDeadEyeAuraByHash(player, auraHash)
-    Citizen.InvokeNative(0x768E81AE285A4B67, player, auraHash)
+---@param auraColorHash Hash
+function SetPlayerDeadeyeAuraByHash(player, auraColorHash)
+    Citizen.InvokeNative(0x768E81AE285A4B67, player, auraColorHash)
 end
 
 ---Gets the entity the player is aiming at with/without weapon. [@sarbatore]
 ---@param player Player
----@return boolean, Entity
+---@return Entity
 function GetPlayerInteractionAimEntity(player)
-    local struct = DataView.ArrayBuffer(1*8)
-    local retval = Citizen.InvokeNative(0x3C06B5C839B38F7B, player, struct:Buffer())
-    
-    if (retval) then
-        local entity = struct:GetInt32(0)
-        return true, entity
-    end
-    
-    return false, 0
+    return Citizen.InvokeNative(0xBEA3A6E5F5F79A6F, player, Citizen.PointerValueInt())
 end

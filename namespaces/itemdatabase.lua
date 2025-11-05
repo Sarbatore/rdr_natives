@@ -2,37 +2,37 @@
 ---@param item Hash
 ---@return boolean, Hash, Hash, Hash, Hash, Hash
 function ItemdatabaseFilloutItemInfo(item)
-    local struct = DataView.ArrayBuffer(6*8)
-    if (Citizen.InvokeNative(0xFE90ABBCBFDC13B2, item, struct:Buffer()) == 1) then
-        local category = struct:GetInt32(1*8)
-        local itemType = struct:GetInt32(2*8)
-        local unk      = struct:GetInt32(3*8)
-        local model    = struct:GetInt32(4*8)
-        local award    = struct:GetInt32(5*8)
-    
-        return true, category, itemType, unk, model, award
-    end
+    local res, category, itemType, unk, model, award
 
-    return false
+    local struct = DataView.ArrayBuffer(6*8)
+    
+    res      = Citizen.InvokeNative(0xFE90ABBCBFDC13B2, item, struct:Buffer()) == 1
+    category = struct:GetInt32(1*8)
+    itemType = struct:GetInt32(2*8)
+    unk      = struct:GetInt32(3*8)
+    model    = struct:GetInt32(4*8)
+    award    = struct:GetInt32(5*8)
+
+    return res, category, itemType, unk, model, award
 end
 
 ---
 ---@param effectId number
 ---@return boolean, Hash, Hash, integer, integer, float, Hash
 function ItemdatabaseFilloutItemEffectIdInfo(effectId)
-    local struct = DataView.ArrayBuffer(7*8)
-    if (Citizen.InvokeNative(0xCF2D360D27FD1ABF, effectId, struct:Buffer()) == 1) then
-        local type             = struct:GetInt32(1*8)
-        local value            = struct:GetInt32(2*8)
-        local time             = struct:GetInt32(3*8)
-        local timeUnits        = struct:GetInt32(4*8)
-        local corePercent      = struct:GetFloat32(5*8)
-        local durationcategory = struct:GetInt32(6*8)
+    local res, type, value, time, timeUnits, corePercent, durationcategory
     
-        return true, type, value, time, timeUnits, corePercent, durationcategory
-    end
+    local struct = DataView.ArrayBuffer(7*8)
 
-    return false
+    res              = Citizen.InvokeNative(0xCF2D360D27FD1ABF, effectId, struct:Buffer()) == 1
+    type             = struct:GetInt32(1*8)
+    value            = struct:GetInt32(2*8)
+    time             = struct:GetInt32(3*8)
+    timeUnits        = struct:GetInt32(4*8)
+    corePercent      = struct:GetFloat32(5*8)
+    durationcategory = struct:GetInt32(6*8) 
+
+    return res, type, value, time, timeUnits, corePercent, durationcategory
 end
 
 ---Return bundle item info at the selected index (item hash, slot id...)
@@ -40,20 +40,19 @@ end
 ---@param index integer
 ---@return boolean, Hash, Hash, integer, integer
 function ItemdatabaseGetBundleItemInfo(bundleId, index)
+    local res, item, slotId, unk2, unk3
+
     local bundleStruct = DataView.ArrayBuffer(1*8)
     bundleStruct:SetInt32(0*8, 1)
     local itemStruct = DataView.ArrayBuffer(4*8)
     
-    if (Citizen.InvokeNative(0x5D48A77E4B668B57, bundleId, bundleStruct:Buffer(), index, itemStruct:Buffer()) == 1) then
-        local item = itemStruct:GetInt32(0*8)
-        local slotId = itemStruct:GetInt32(1*8)
-        local a = itemStruct:GetInt32(2*8)
-        local b = itemStruct:GetInt32(3*8)
+    res    = Citizen.InvokeNative(0x5D48A77E4B668B57, bundleId, bundleStruct:Buffer(), index, itemStruct:Buffer()) == 1
+    item   = itemStruct:GetInt32(0*8)
+    slotId = itemStruct:GetInt32(1*8)
+    unk2   = itemStruct:GetInt32(2*8)
+    unk3   = itemStruct:GetInt32(3*8)
 
-        return true, item, slotId, a, b
-    end
-
-    return false
+    return res, item, slotId, unk2, unk3
 end
 
 ---Return the slot id for the category at the selected index.
@@ -65,46 +64,42 @@ function ItemdatabaseGetFitsSlotInfo(category, index)
 end
 
 ---Return the number of items for the bundle
----@param bundleId number
+---@param bundleId integer
 ---@return integer
 function ItemdatabaseGetBundleItemCount(bundleId)
+    local itemCount
+
     local struct = DataView.ArrayBuffer(8*8)
     struct:SetInt32(0*8, 1)
-    local bundleSize = Citizen.InvokeNative(0x3332695B01015DF9, bundleId, struct:Buffer(), Citizen.ResultAsInteger())
-    
-    return bundleSize
+
+    itemCount = Citizen.InvokeNative(0x3332695B01015DF9, bundleId, struct:Buffer(), Citizen.ResultAsInteger())
+
+    return itemCount
 end
 
 ---@todo
 ---
----@param bundle number
----@param costtype number
+---@param bundle Hash
+---@param costtype Hash
+function N_0x388088BFF3681189(bundle, costtype)
+    return Citizen.InvokeNative(0x388088BFF3681189, bundle, costtype, Citizen.ResultAsInteger())
+end
+
+---@todo
+---
+---@param bundle Hash
+---@param costtype Hash
 ---@param index integer
 ---@return boolean, 
 function ItemdatabaseFilloutBundle(bundle, costtype, index)
+    local res
+
     local struct = DataView.ArrayBuffer(20*8)
     struct:SetInt32(0, 15)
 
-    if (Citizen.InvokeNative(0xB542632693D53408, bundle, costtype, index, struct:Buffer()) == 1) then
-        local a = struct:GetInt32(0*8)
-        local b = struct:GetInt32(1*8)
-        local c = struct:GetInt32(2*8)
-        local d = struct:GetInt32(3*8)
-        local e = struct:GetInt32(4*8)
-        local f = struct:GetInt32(5*8)
-        local g = struct:GetInt32(6*8)
-        local h = struct:GetInt32(7*8)
-        local i = struct:GetInt32(8*8)
-        local j = struct:GetInt32(9*8)
-        local k = struct:GetInt32(10*8)
-        local l = struct:GetInt32(11*8)
-        local m = struct:GetInt32(12*8)
-        local n = struct:GetInt32(13*8)
-        
-        return true
-    end
+    res = Citizen.InvokeNative(0xB542632693D53408, bundle, costtype, index, struct:Buffer()) == 1
 
-    return false
+    return res
 end
 
 ---@todo
@@ -140,6 +135,8 @@ end
 ---@param ciTag Hash
 ---@return integer, integer
 function ItemdatabaseCreateItemCollection(slotId, slotId2, tag, category, cost, p5, flags, itemType, ciTag)
+    local collectionIndex, size
+
     local filterStruct = DataView.ArrayBuffer(15*8)
     filterStruct:SetInt32(0*8, slotId)
     filterStruct:SetInt32(1*8, slotId2)
@@ -152,14 +149,10 @@ function ItemdatabaseCreateItemCollection(slotId, slotId2, tag, category, cost, 
     filterStruct:SetInt32(8*8, ciTag)
     local sizeStruct = DataView.ArrayBuffer(1*8)
 
-    local collectionIndex = Citizen.InvokeNative(0x71EFA7999AE79408, filterStruct:Buffer(), sizeStruct:Buffer(), 1, Citizen.ResultAsInteger())
-    if (collectionIndex > 0) then
-        local size = sizeStruct:GetInt32(0*8)
+    collectionIndex = Citizen.InvokeNative(0x71EFA7999AE79408, filterStruct:Buffer(), sizeStruct:Buffer(), 1, Citizen.ResultAsInteger())
+    size = sizeStruct:GetInt32(0*8)
 
-        return collectionIndex, size
-    end
-
-    return -1, 0
+    return collectionIndex, size
 end
 
 --[[
@@ -176,16 +169,16 @@ tables:
 ---@param requirementIndex integer
 ---@return boolean, Hash, Hash, Hash
 function ItemdatabaseGetShopInventoriesRequirementInfo(shopType, key, groupIndex, requirementIndex)
+    local res, inventoryRequirement, unk1, unk2
+
     local struct = DataView.ArrayBuffer(3*8)
-    if (Citizen.InvokeNative(0xE0EA5C031AE5539F, shopType, key, groupIndex, requirementIndex, struct:Buffer()) == 1) then
-        local inventoryRequirement = struct:GetInt32(0*8)
-        local b = struct:GetInt32(1*8)
-        local c = struct:GetInt32(2*8)
 
-        return true, inventoryRequirement, b, c
-    end
+    res = Citizen.InvokeNative(0xE0EA5C031AE5539F, shopType, key, groupIndex, requirementIndex, struct:Buffer()) == 1
+    inventoryRequirement = struct:GetInt32(0*8)
+    unk1                 = struct:GetInt32(1*8)
+    unk2                 = struct:GetInt32(2*8)
 
-    return false
+    return res, inventoryRequirement, unk1, unk2
 end
 
 ---Outputs the layout page info at the selected index.
@@ -193,15 +186,15 @@ end
 ---@param index integer
 ---@return boolean, Hash, Hash, boolean, integer
 function ItemdatabaseGetShopLayoutPageInfoByIndex(layout, index)
+    local res, pageKey, unk1, unk2, numItems
+
     local struct = DataView.ArrayBuffer(4*8)
-    if (Citizen.InvokeNative(0xDBEADA0DF5F9AB9F, layout, index, struct:Buffer()) == 1) then
-        local pageKey  = struct:GetInt32(0*8)
-        local unk1     = struct:GetInt32(1*8)
-        local unk2     = struct:GetInt32(2*8) == 1
-        local numItems = struct:GetInt32(3*8)
+    
+    res = Citizen.InvokeNative(0xDBEADA0DF5F9AB9F, layout, index, struct:Buffer()) == 1
+    pageKey  = struct:GetInt32(0*8)
+    unk1     = struct:GetInt32(1*8)
+    unk2     = struct:GetInt32(2*8) == 1
+    numItems = struct:GetInt32(3*8)
 
-        return true, pageKey, unk1, unk2, numItems
-    end
-
-    return false
+    return res, pageKey, unk1, unk2, numItems
 end

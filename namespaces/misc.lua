@@ -20,17 +20,16 @@ end
 ---@param p1 integer
 ---@return boolean, float, Hash, integer
 function GetGroundZAndMaterialFor3DCoord(x, y, z, p1)
+    local res, groundZ, material, flags
+
     local groundZStruct = DataView.ArrayBuffer(1*8)
     local materialStruct = DataView.ArrayBuffer(1*8)
     local flagsStruct = DataView.ArrayBuffer(1*8)
+    
+    res = Citizen.InvokeNative(0xBBE5B63EFFB08E68, x, y, z, p1, groundZStruct:Buffer(), materialStruct:Buffer(), flagsStruct:Buffer()) == 1
+    groundZ = groundZStruct:GetFloat32(0)
+    material = materialStruct:GetInt32(0)
+    flags = flagsStruct:GetInt32(0)
 
-    if (Citizen.InvokeNative(0xBBE5B63EFFB08E68, x, y, z, p1, groundZStruct:Buffer(), materialStruct:Buffer(), flagsStruct:Buffer()) == 1) then
-        local groundZ = groundZStruct:GetFloat32(0)
-        local materialHash = materialStruct:GetInt32(0)
-        local flags = flagsStruct:GetInt32(0)
-
-        return true, groundZ, materialHash, flags
-    end
-
-    return false, 0.0, 0, -1
+    return res, groundZ, material, flags
 end

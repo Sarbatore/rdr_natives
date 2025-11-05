@@ -1,8 +1,8 @@
----
+---Return mission train track and junction index
 ---@param train Vehicle
----@return number
-function GetTrainTrackInfos(trainVehicle)
-    return N_0x09034479e6e3e269(trainVehicle)
+---@return Hash, integer
+function ReturnTrainInfoFromHandle(trainVehicle)
+    return Citizen.InvokeNative(0x09034479E6E3E269, trainVehicle, Citizen.PointerValueInt(), Citizen.PointerValueInt())
 end
 
 ---Return wether any wheel of the vehicle is destroyed.

@@ -16,21 +16,20 @@ end
 
 ---@todo
 ---
----@param item hash
----@return boolean, hash
+---@param item Hash
+---@return boolean, Hash
 function InventoryGetInventoryItemInspectionInfo(item)
+    local res, model
+
     local struct = DataView.ArrayBuffer(32*8)
     struct:SetInt32(3*8, -1)
     struct:SetInt32(12*8, 4)
     struct:SetInt32(17*8, 4)
 
-    if (Citizen.InvokeNative(0x0C093C1787F18519, item, struct:Buffer()) == 1) then
-        local model = struct:GetInt32(0*8)
+    res = Citizen.InvokeNative(0x0C093C1787F18519, item, struct:Buffer()) == 1
+    model = struct:GetInt32(0*8)
 
-        return true, model
-    end
-
-    return false
+    return res, model
 end
 
 --- Returns the effects entry id for "CatalogItemInspection" container [@sarbatore]
@@ -55,10 +54,10 @@ end
 
 --- Applies the weapon stats to the stats entry id [@sarbatore]
 ---@param entryId number
----@param weapon hash
+---@param weaponHash Hash
 ---@param ped Ped
-function InventoryApplyWeaponStatsToEntry(entryId, weapon, ped)
-    Citizen.InvokeNative(0x75CFAC49301E134E, entryId, weapon, ped)
+function InventoryApplyWeaponStatsToEntry(entryId, weaponHash, ped)
+    Citizen.InvokeNative(0x75CFAC49301E134E, entryId, weaponHash, ped)
 end
 
 ---Outputs the slot ids compatible with the item.
@@ -75,25 +74,24 @@ end
 ---@param item Hash
 ---@return boolean, integer, integer, integer, integer, integer, integer
 function InventoryGetInventoryItemLastCreation(inventoryId, item)
-    local yearData = DataView.ArrayBuffer(1*8)
-    local monthData = DataView.ArrayBuffer(1*8)
-    local dayData = DataView.ArrayBuffer(1*8)
-    local hourData = DataView.ArrayBuffer(1*8)
-    local minuteData = DataView.ArrayBuffer(1*8)
-    local secondData = DataView.ArrayBuffer(1*8)
+    local res, year, month, day, hour, minute, second
 
-    if (Citizen.InvokeNative(0X112BCA290D2EB53C, inventoryId, item, yearData:Buffer(), monthData:Buffer(), dayData:Buffer(), hourData:Buffer(), minuteData:Buffer(), secondData:Buffer()) == 1) then
-        local year = yearData:GetInt32(0)
-        local month = monthData:GetInt32(0)
-        local day = dayData:GetInt32(0)
-        local hour = hourData:GetInt32(0)
-        local minute = minuteData:GetInt32(0)
-        local second = secondData:GetInt32(0)
+    local yearOut   = DataView.ArrayBuffer(1*8)
+    local monthOut  = DataView.ArrayBuffer(1*8)
+    local dayOut    = DataView.ArrayBuffer(1*8)
+    local hourOut   = DataView.ArrayBuffer(1*8)
+    local minuteOut = DataView.ArrayBuffer(1*8)
+    local secondOut = DataView.ArrayBuffer(1*8)
 
-        return true, year, month, day, hour, minute, second
-    end
-
-    return false
+    res    = Citizen.InvokeNative(0X112BCA290D2EB53C, inventoryId, item, yearOut:Buffer(), monthOut:Buffer(), dayOut:Buffer(), hourOut:Buffer(), minuteOut:Buffer(), secondOut:Buffer()) == 1
+    year   = yearOut:GetInt32(0)
+    month  = monthOut:GetInt32(0)
+    day    = dayOut:GetInt32(0)
+    hour   = hourOut:GetInt32(0)
+    minute = minuteOut:GetInt32(0)
+    second = secondOut:GetInt32(0)
+        
+    return res, year, month, day, hour, minute, second
 end
 
 ---@todo

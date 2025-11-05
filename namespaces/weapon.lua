@@ -13,32 +13,32 @@ function SetPedWeaponOnBack(ped, disableAnim)
 end
 
 ---Get the weapon hash from the default ped weapon collection [@outsider]
----@param pedWeaponCollection number
----@param weaponGroupHash Hash
----@return hash
-function GetWeaponHashFromPedWeapon(pedWeaponCollection, weaponGroupHash)
-    return Citizen.InvokeNative(0x9EEFD670F10656D7, pedWeaponCollection, weaponGroupHash)
+---@param weaponCollection integer
+---@param weaponGroup Hash
+---@return Hash
+function GetWeaponFromDefaultPedWeaponCollection(weaponCollection, weaponGroup)
+    return Citizen.InvokeNative(0x9EEFD670F10656D7, weaponCollection, weaponGroup, Citizen.ResultAsInteger())
 end
 
 ---Returns the number of peds that were restrained with the weapon thrown bolas. [@outsider]
 ---@param ped Ped
 ---@return integer
 function GetNumPedsRestrainedFromWeaponBolas(ped)
-    return Citizen.InvokeNative(0x46D42883E873C1D7, ped)
+    return Citizen.InvokeNative(0x46D42883E873C1D7, ped, Citizen.ResultAsInteger())
 end
 
 ---Returns whether the weapon has several ammo types.
----@param weaponHash number
+---@param weaponHash Hash
 ---@return boolean
 function GetWeaponHasMultipleAmmoTypes(weaponHash)
     return Citizen.InvokeNative(0x58425FCA3D3A2D15, weaponHash) == 1
 end
 
 ---Return the attachpoint for a weapon hash. [@sarbatore]
----@param weaponHash number
+---@param weaponHash Hash
 ---@return integer
 function GetDefaultWeaponAttachPoint(weaponHash)
-    return Citizen.InvokeNative(0x65DC4AC5B96614CB, weaponHash)
+    return Citizen.InvokeNative(0x65DC4AC5B96614CB, weaponHash, Citizen.ResultAsInteger())
 end
 
 ---Return wether the ped has a rifle. [@sarbatore]
@@ -106,7 +106,7 @@ end
 
 ---Take weapon from horse ped
 ---@param horseped Ped
----@param weaponHash hash
+---@param weaponHash Hash
 ---@param ped Ped
 function N_0x14FF0C2545527F9B(horsePed, weaponHash, ped)
     Citizen.InvokeNative(0x14FF0C2545527F9B, horsePed, weaponHash, ped)
@@ -131,5 +131,5 @@ WEAPON_THROWN_MOLOTOV]]
 ---@param ped Ped
 ---@param weaponHash number
 function IsPedHoldingWeapon(ped, weaponHash)
-    return Citizen.InvokeNative(0x07E1C35F0078C3F9, ped, weaponHash)
+    return Citizen.InvokeNative(0x07E1C35F0078C3F9, ped, weaponHash) == 1
 end

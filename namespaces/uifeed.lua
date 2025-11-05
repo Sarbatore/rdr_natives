@@ -1,3 +1,9 @@
+--[[
+
+Ui feeds are in experiment for the moment.
+
+]]
+
 local function UiFeedPostExtrasBuffer(duration, soundDict, soundName, p3, subCategoryToastAppId, p5, text, p7, p8, p9, p10, p11, p12)
     local struct = DataView.ArrayBuffer(13*8)
     struct:SetInt32(0*8, duration)

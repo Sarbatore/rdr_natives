@@ -1,11 +1,11 @@
 ---Attach an entity to coordinates physically [@sarbatore]
 ---@param entity Entity
----@param x number
----@param y number
----@param z number
----@param p4 number
----@param p5 number
----@param p6 number
+---@param x float
+---@param y float
+---@param z float
+---@param xOffset float
+---@param yOffset float
+---@param zOffset float
 ---@param p7 number
 ---@param p8 boolean
 ---@param p9 number
@@ -14,20 +14,20 @@
 ---@param p12 number
 ---@param p13 number
 ---@param p14 number
-function AttachEntityToCoordsPhysically(entity, x, y, z, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
-    Citizen.InvokeNative(0x445D7D8EA66E373E, entity, x, y, z, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
+function AttachEntityToCoordsPhysically(entity, x, y, z, xOffset, yOffset, zOffset, p7, p8, p9, p10, p11, p12, p13, p14)
+    Citizen.InvokeNative(0x445D7D8EA66E373E, entity, x, y, z, xOffset, yOffset, zOffset, p7, p8, p9, p10, p11, p12, p13, p14)
 end
 
 ---Return the entity which is looting the ped [@sarbatore]
 ---@param ped Ped
----@return number
+---@return integer
 function GetEntityLootingPed(ped)
     return Citizen.InvokeNative(0xEF2D9ED7CE684F08, ped, Citizen.ResultAsInteger())
 end
 
 ---Get the offset from the entity for the selected bone index [@sarbatore]
 ---@param entity Entity
----@param boneIndex number
+---@param boneIndex integer
 ---@return vector
 function GetOffsetFromEntityBone(entity, boneIndex)
     return Citizen.InvokeNative(0x5E214112806591EA, entity, boneIndex, Citizen.ResultAsVector())

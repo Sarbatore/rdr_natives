@@ -26,7 +26,7 @@ end
 
 ---Check if the entity lockon prompt contains an icon. [@outsider]
 ---@param entity Entity
----@param blipId number
+---@param blipId integer
 ---@return boolean
 function IsBlipIconOnLockonEntityPrompt(entity, blipId)
     return Citizen.InvokeNative(0x3CB8859F04763C78, entity, blipId) == 1
@@ -34,9 +34,9 @@ end
 
 ---Remove the icon from the entity lockon prompt. [@outsider]
 ---@param entity Entity
----@param integer number
-function RemoveBlipIconFromEntityLockonPrompt(entity, integer)
-    Citizen.InvokeNative(0xBB68D4D3CA3DE402, entity, integer)
+---@param p1 integer
+function RemoveBlipIconFromEntityLockonPrompt(entity, p1)
+    Citizen.InvokeNative(0xBB68D4D3CA3DE402, entity, p1)
 end
 
 ---Activates a blip icon prompt for a specific entity, allowing it to be displayed without requiring a lock-on. Enables the blip to appear associated with the given entity, making it visible without the need to focus or target the entity directly. [@kadir]
@@ -51,7 +51,7 @@ function ClearPausemapCoords()
 end
 
 ---Returns the x and y coordinates of the waypoint. [@kadir]
----@return number, number
+---@return float, float
 function GetWaypointPosition()
     local x, y = Citizen.InvokeNative(0xF08E42BFA46BDFF8, Citizen.PointerValueFloat(), Citizen.PointerValueFloat())
     return x, y

@@ -461,3 +461,17 @@ local function GetTaskMoveNetworkBuffer(clipset, clipset2, p2, p3, p4, p5, p6, p
 
     return struct:Buffer()
 end
+
+---Returns the minimum (baseline) whistle/call distance for the given horse bonding level. This value represents the lower bound used when computing whether a horse is considered "near" or "far" relative to the player, and is interpolated against the next level's max.
+---@param bondingLevel int
+---@return float
+function GetWhistleRangeMinForBondingLevel(bondingLevel)
+    return Citizen.InvokeNative(0xEB67D4E056C85A81, bondingLevel, Citizen.ResultAsFloat())
+end
+
+---Returns the maximum (target) whistle/call distance associated with the next horse bonding level. Used together with the current level's minimum to derive an effective whistle range based on the horse's bonding progress toward the next rank.
+---@param bondingLevel int
+---@return float
+function GetWhistleRangeMaxForBondingLevel(bondingLevel)
+    return Citizen.InvokeNative(0x78D8C1D4EB80C588, bondingLevel, Citizen.ResultAsFloat())
+end

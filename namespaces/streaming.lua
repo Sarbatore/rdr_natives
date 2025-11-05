@@ -3,7 +3,7 @@
 ---@param scenarioType string
 ---@param flag integer
 ---@param conditionalScenario string
----@return number
+---@return integer
 function RequestScenarioTypeForPed(ped, scenarioType, flag, conditionalScenario)
     return Citizen.InvokeNative(0xB223249B7798EEED, ped, scenarioType, flag, conditionalScenario, Citizen.ResultAsInteger())
 end

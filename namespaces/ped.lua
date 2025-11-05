@@ -1,7 +1,7 @@
 ---Returns whether a ped has been shot by a player recently. [@outsider]
 ---@param player Player
 ---@param ped Ped
----@param duration number
+---@param duration integer
 ---@return boolean
 function HasPedBeenShotByPlayerRecently(player, ped, duration)
     return Citizen.InvokeNative(0x9C81338B2E62CE0A, player, ped, duration) == 1
@@ -9,13 +9,13 @@ end
 
 ---Apply a damagePack to a ped bone index. [@sarbatore]
 ---@param ped Ped
----@param boneIndex number
----@param x number
----@param y number
----@param z number
----@param xRot number
----@param yRot number
----@param zRot number
+---@param boneIndex integer
+---@param xOffset float
+---@param yOffset float
+---@param zOffset float
+---@param xRot float
+---@param yRot float
+---@param zRot float
 ---@param damagePack string
 function ApplyPedDamagePackToBone(ped, boneIndex, xOffset, yOffset, zOffset, xRot, yRot, zRot, damagePack)
     Citizen.InvokeNative(0x58D32261AE0F0843, ped, boneIndex, xOffset, yOffset, zOffset, xRot, yRot, zRot, damagePack)
@@ -23,7 +23,7 @@ end
 
 ---Set ped cold from 0.0 to 1.0. [@sarbatore]
 ---@param ped Ped
----@param intensity number
+---@param intensity float
 ---@param p2 number
 function ApplyColdToPed(ped, intensity, p2)
     Citizen.InvokeNative(0x1F8215D0E446F593, ped, intensity, p2)
@@ -31,19 +31,19 @@ end
 
 ---Returns the number of reserved stamina. [@outsider]
 ---@param ped Ped
----@return number
+---@return integer
 function GetNumReservedStamina(ped)
-    return Citizen.InvokeNative(0xFC3B580C4380B5B7, ped)
+    return Citizen.InvokeNative(0xFC3B580C4380B5B7, ped, Citizen.ResultAsInteger())
 end
 
 ---Return wether a ped has interacted with a player recently. [@sarbatore]
 ---@param ped Ped
 ---@param player Player
----@param interactionFlag number
----@param duration number
+---@param flag integer
+---@param duration integer
 ---@return boolean
-function HasPedInteractedWithPlayerRecently(ped, player, interactionFlag, duration)
-    return Citizen.InvokeNative(0x947E43F544B6AB34, ped, player, interactionFlag, duration) == 1
+function HasPedInteractedWithPlayerRecently(ped, player, flag, duration)
+    return Citizen.InvokeNative(0x947E43F544B6AB34, ped, player, flag, duration) == 1
 end
 
 ---Returns whether a ped is afloat in water like swimming or in a boat (driving or standing on it). [@outsider]
@@ -55,7 +55,7 @@ end
 
 ---Only works when you use SET_PED_WETNESS_HEIGHT first , if you do 0.0 or it dries naturally
 ---@param ped Ped
----@param amount number
+---@param amount float
 function SetPedWetness(ped, amount)
     Citizen.InvokeNative(0xF9CFF5BB70E8A2CB, ped, amount)
 end
@@ -147,7 +147,7 @@ end
 
 ---Return the ped move blend ratio corresponding to the specified speed.
 ---@param ped Ped
----@param speed number
+---@param speed float
 ---@return float
 function ComputeSpeedForPedMoveBlendRatio(ped, speed)
     return Citizen.InvokeNative(0xCA95924C893A0C91, ped, speed, Citizen.ResultAsFloat())
