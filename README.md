@@ -48,10 +48,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 | Function | Parameters |
 |----------|------------|
 | `CanPedSaySpeech` | `ped, soundName, speechParam, speechLine` |
+| `CreateNewScriptedSpeech` | `ped, speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork, p7` |
 | `GetCurrentAmbientSpeechHash` | `ped` |
 | `GetLastAmbientSpeechHash` | `ped` |
-| `PlayAmbientSpeechFromPositionNative` | `soundRef, soundName, x, y, z, speechLine, speechParam, pedListener, syncOverNetwork` |
-| `PlayPedAmbientSpeechNative` | `ped, speechRef, speechName, speechParam, speechLine, pedListener, syncOverNetwork` |
+| `PlayAmbientSpeechFromPositionNative` | `x, y, z, soundRef, soundName,  speechLine, speechParam, pedListener, syncOverNetwork, p9` |
+| `PlayPedAmbientSpeechNative` | `ped, speechRef, speechName, speechParam, speechLine, pedListener, syncOverNetwork, p7` |
+| `PlaySoundFromScriptedSpeech` | `scriptedSpeech` |
 
 ## Cam
 
@@ -71,7 +73,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `AttachEntityToCoordsPhysically` | `entity, x, y, z, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14` |
+| `AttachEntityToCoordsPhysically` | `entity, x, y, z, xOffset, yOffset, zOffset, p7, p8, p9, p10, p11, p12, p13, p14` |
 | `GetEntityLootingPed` | `ped` |
 | `GetOffsetFromEntityBone` | `entity, boneIndex` |
 
@@ -81,7 +83,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 |----------|------------|
 | `AddExplosionWithDamageCauser` | `entity, p1, x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake` |
 | `AddExplosionWithUserVfxAndDamageCauser` | `entity, p1, x, y, z, explosionType, explosionFx, damageScale, isAudible, isInvisible, cameraShake` |
-| `DoesFireExistCloseToPlayerAtVolumePos` | `playerX, playerY, playerZ, volumePosX, volumePosY, volumePosZ, volumeRotX, volumeRotY, volumeRotZ` |
+| `GetClosestFirePosInVolume` | `xPos, yPos, zPos, xRot, yRot, zRot, xScale, yScale, zScale` |
 | `IsEntityDamagedByFire` | `entity` |
 
 ## Flock
@@ -103,6 +105,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
+| `GetHudState` | `hudComponent` |
 | `GetWeaponWheelHighlightedWeaponHash` | `` |
 | `RemoveMpGamerTag` | `gamerTag` |
 | `UiPromptHasMashModeJustPressed` | `prompt` |
@@ -111,7 +114,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `InventoryApplyWeaponStatsToEntry` | `entryId, weapon, ped` |
+| `InventoryApplyWeaponStatsToEntry` | `entryId, weaponHash, ped` |
 | `InventoryCreateItemCollectionWithFilter` | `inventoryId, p1, slotId, slotId2, slotId3, p5, p6, p7, p8, itemType, p10, p11, p12, p13, p14, p15, p16, p17` |
 | `InventoryGetCatalogItemInspectionEffectsEntry` | `entryId, name, p2, p3` |
 | `InventoryGetCatalogItemInspectionStatsEntry` | `entryId, name, p2, playerId` |
@@ -134,6 +137,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ItemdatabaseGetFitsSlotInfo` | `category, index` |
 | `ItemdatabaseGetShopInventoriesRequirementInfo` | `shopType, key, groupIndex, requirementIndex` |
 | `ItemdatabaseGetShopLayoutPageInfoByIndex` | `layout, index` |
+| `N_0x388088BFF3681189` | `bundle, costtype` |
 
 ## Map
 
@@ -146,7 +150,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `IsBlipIconOnLockonEntityPrompt` | `entity, blipId` |
 | `IsGPSActive` | `` |
 | `IsGPSRouteOnRoad` | `` |
-| `RemoveBlipIconFromEntityLockonPrompt` | `entity, integer` |
+| `RemoveBlipIconFromEntityLockonPrompt` | `entity, p1` |
 | `SetActiveBlipIconEntityPromptWithoutLockon` | `entity` |
 | `SetBlipIconLockonEntityPrompt` | `entity, blipHash` |
 | `SetExistingBlipLockonEntityPrompt` | `entity, blipId` |
@@ -180,9 +184,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ApplyPedDamagePackToBone` | `ped, boneIndex, xOffset, yOffset, zOffset, xRot, yRot, zRot, damagePack` |
 | `CanPedHearTargetPed` | `target, ped, flag` |
 | `ComputeLootForPedCarcass` | `struct, model, damageCleanliness, skinningQuality` |
+| `ComputePedMoveBlendRatioForMaxSpeed` | `ped, moveBlendRatio` |
+| `ComputeSpeedForPedMoveBlendRatio` | `ped, speed` |
 | `GetNumReservedStamina` | `ped` |
+| `GetPedDirtLevel` | `ped, p1` |
 | `HasPedBeenShotByPlayerRecently` | `player, ped, duration` |
-| `HasPedInteractedWithPlayerRecently` | `ped, player, interactionFlag, duration` |
+| `HasPedInteractedWithPlayerRecently` | `ped, player, flag, duration` |
 | `IsPedAfloat` | `ped` |
 | `PlayConditionalAnimWithPropItem` | `ped, targetEntity, propItemId, conditionalAnimName` |
 | `RefreshCarriedPedForPed` | `ped, p1, p2` |
@@ -194,7 +201,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `AddAmbientPlayerInteractiveFocusPresetAtCoords` | `player, x, y, z, preset, targetEntity, name` |
+| `AddAmbientPlayerInteractiveFocusPresetAtCoords` | `player, p1, p2, p3, preset, x, y, z, targetEntity, name` |
 | `AddPlayerInteractiveFocusPreset` | `player, ped, preset, x, y, z, targetEntity, name` |
 | `ClearDeadeyeAuraIntensityWithFlag` | `player` |
 | `DisablePlayerInteractiveFocusPreset` | `player, name` |
@@ -209,7 +216,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `EagleEyeSetHideAllTrails` | `player, hideTrails` |
 | `EagleEyeSetSprintBehavior` | `player, disableSprint` |
 | `GetDeadeyeAbilityDepletionDelay` | `player` |
-| `GetNumDeadEyeMarksOnPed` | `player, ped` |
+| `GetNumDeadeyeMarksOnPed` | `player, ped` |
 | `GetPedsInCombatWithRecently` | `player, duration, size` |
 | `GetPlayerInteractionAimEntity` | `player` |
 | `HasPlayerDamagedRecentlyAttackedPed` | `player, duration` |
@@ -217,12 +224,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `IsPlayerSprintingOnHorseOnRoad` | `player` |
 | `IsSpecialAbilityEnabled` | `player` |
 | `ResetDeadeyeAuraEffect` | `player` |
-| `SetDeadEyeEntityGlowIntensityWithFlag` | `player, param2, param3, param4, glowIntensity, flag` |
-| `SetDeadEyeEntityGlowWithFlag` | `player, flag` |
+| `SetDeadeyeEntityAuraIntensityWithFlag` | `player, p1, p2, p3, glowIntensity, flag` |
+| `SetDeadeyeEntityGlowWithFlag` | `player, flag` |
 | `SetPlayerAimWeapon` | `player, weaponHash, attachSlotId` |
 | `SetPlayerCanPickupAbility` | `player, isVisible` |
 | `SetPlayerCanPickupHat` | `player, canPickup` |
-| `SetPlayerDeadEyeAuraByHash` | `player, auraHash` |
+| `SetPlayerDeadeyeAuraByHash` | `player, auraColorHash` |
 | `SetPlayerHatAccess` | `player, flag, allow` |
 | `SetPlayerPromptLeaveText` | `player, promptText` |
 | `SetPlayerPromptMeleeText` | `player, promptText` |
@@ -235,7 +242,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `ModifyPropSetCoordsAndHeading` | `propSet, coordsX, coordsY, coordsZ, onGroundProperly, heading` |
+| `ModifyPropSetCoordsAndHeading` | `propSet, x, y, z, onGroundProperly, heading` |
 
 ## Streaming
 
@@ -273,6 +280,8 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetScenarioContainerRemainingLootCount` | `entity` |
 | `GetScenarioPointsInArea` | `x, y, z, radius, size` |
 | `GetTaskCombatReadyToShoot` | `ped` |
+| `GetWhistleRangeMaxForBondingLevel` | `bondingLevel` |
+| `GetWhistleRangeMinForBondingLevel` | `bondingLevel` |
 | `HasCarriableConfigHashLoaded` | `carriableConfig` |
 | `HasEntityDirectedTaskActive` | `entity` |
 | `HasPedAnimalSampled` | `animal` |
@@ -314,20 +323,20 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `UiFeedPostCollectorToast` | `data` |
+| `UiFeedPostCollectorToast` | `duration, title, text, textureDict, textureName, collectableCategory, extraText, p7` |
 | `UiFeedPostFeedTicker` | `data` |
 | `UiFeedPostHelpText` | `data` |
-| `UiFeedPostInteractiveToast` | `data` |
+| `UiFeedPostInteractiveToast` | `` |
 | `UiFeedPostLocationShard` | `data` |
 | `UiFeedPostMissionName` | `data` |
 | `UiFeedPostObjective` | `data` |
 | `UiFeedPostOneTextShard` | `data` |
-| `UiFeedPostRankupToast` | `data` |
+| `UiFeedPostRankupToast` | `duration, title, text, textureDict, textureName, textureColor, subCategoryToastAppId, extraText, p8, p9, p10, p11, p12, p13, p14, p15` |
 | `UiFeedPostReticleMessage` | `data` |
-| `UiFeedPostSampleNotification` | `data` |
-| `UiFeedPostSampleToast` | `data` |
+| `UiFeedPostSampleNotification` | `` |
+| `UiFeedPostSampleToast` | `` |
 | `UiFeedPostSampleToastRight` | `data` |
-| `UiFeedPostSampleToastWithAppLink` | `data` |
+| `UiFeedPostSampleToastWithAppLink` | `duration, title, text, textureDict, textureName, subCategoryToastAppId, p6, p7, extraText` |
 | `UiFeedPostThreeTextShard` | `data` |
 | `UiFeedPostTwoTextShard` | `data` |
 | `UiFeedPostVoiceChatFeed` | `data` |
@@ -345,8 +354,8 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetNumDraftVehicleLogs` | `vehicle` |
 | `GetNumDraftVehicleStraps` | `vehicle` |
 | `GetTrainTrackCoordAtJunctionIndex` | `trackConfig, index, p2` |
-| `GetTrainTrackInfos` | `trainVehicle` |
 | `RecoverDraftVehicleFallingLog` | `vehicle` |
+| `ReturnTrainInfoFromHandle` | `trainVehicle` |
 | `SetTrainWhistleEnabled` | `trainVehicle, enable` |
 
 ## Weapon
@@ -363,8 +372,8 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetAmmoTypeForWeapon_2` | `weaponHash` |
 | `GetDefaultWeaponAttachPoint` | `weaponHash` |
 | `GetNumPedsRestrainedFromWeaponBolas` | `ped` |
+| `GetWeaponFromDefaultPedWeaponCollection` | `weaponCollection, weaponGroup` |
 | `GetWeaponHasMultipleAmmoTypes` | `weaponHash` |
-| `GetWeaponHashFromPedWeapon` | `pedWeaponCollection, weaponGroupHash` |
 | `IsPedHoldingWeapon` | `ped, weaponHash` |
 | `IsWeaponCloseRange` | `weapon` |
 | `N_0x14FF0C2545527F9B` | `horsePed, weaponHash, ped` |

@@ -142,3 +142,30 @@ function InventoryCreateItemCollectionWithFilter(inventoryId, p1, slotId, slotId
 
     return collectionId, size
 end
+
+function InventoryAddItemWithGuid(inventoryId, guid2, item, itemSlotId, p3, addItemReason)
+    local res
+
+    local guid = DataView.ArrayBuffer(64*8)
+
+    res = Citizen.InvokeNative(0xCB5D11F9508A928D, inventoryId, guid:Buffer(), guid2, item, itemSlotId, p3, addItemReason) == 1
+
+    return res
+end
+
+---@todo
+---
+---@param inventoryId any
+---@param p1 Hash
+---@param slotId Hash
+---@return boolean
+function InventoryGetGuidFromItemid(inventoryId, p1, slotId)
+    local res
+
+    local guid = DataView.ArrayBuffer(64*8)
+    local outGuid = DataView.ArrayBuffer(64*8)
+
+    res = Citizen.InvokeNative(0x886DFD3E185C8A89, inventoryId, guid:Buffer(), p1, slotId, outGuid:Buffer()) == 1
+
+    return res, outGuid:GetInt32(0)
+end
