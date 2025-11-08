@@ -133,3 +133,38 @@ WEAPON_THROWN_MOLOTOV]]
 function IsPedHoldingWeapon(ped, weaponHash)
     return Citizen.InvokeNative(0x07E1C35F0078C3F9, ped, weaponHash) == 1
 end
+
+---Checks whether the given ped is currently taking damage from poisonous gas/fog volumes (e.g., toxic moonshine cloud, scripted poison fog). [@outsider]
+---@param ped Ped
+---@return boolean
+function IsPedTakingPoisonGasDamage(ped)
+    return Citizen.InvokeNative(0x0DE0944ECCB3DF5D, ped) == 1
+end
+
+---Returns true if the given ped is in a valid state to stow or retrieve weapons from their *owned* mount. [@outsider]
+---@param ped Ped
+---@return boolean
+function CanPedAccessMountWeapons(ped)
+    return Citizen.InvokeNative(0x23BF601A42F329A0, ped) == 1
+end
+
+---Sets the visual trail FX for arrows fired from a Bow by the given ped.
+---@param ped Ped
+---@param trailHash Hash
+function SetArrowTrail(ped, trailHash)
+    Citizen.InvokeNative(0x2EBF70E1D8C06683, ped, trailHash)
+end
+
+---Returns the effective lock-on or targeting range for the ped’s current weapon.
+---@param ped Ped
+---@return float
+function GetLockonRangeCurrentWeapon(ped)
+    return Citizen.InvokeNative(0x3799EFCC3C8CD5E1, ped, Citizen.ResultAsFloat())
+end
+
+---Forces the detonation or effect of a throwable ammo type owned or placed by the specified ped. [@outsider]
+---@param ped Ped
+---@param ammoHash Hash
+function ExplodePedAmmoType(ped, ammoHash)
+    Citizen.InvokeNative(0x44C8F4908F1B2622, ped, ammoHash)
+end

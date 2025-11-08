@@ -32,3 +32,20 @@ end
 function GetOffsetFromEntityBone(entity, boneIndex)
     return Citizen.InvokeNative(0x5E214112806591EA, entity, boneIndex, Citizen.ResultAsVector())
 end
+
+---
+---@param hash Hash
+---@return boolean, Hash, Hash, Hash
+function N_0x5744562E973E33CD(hash)
+    local res, txdHash, txdHash2, txdHash3
+    local outData = DataView.ArrayBuffer(1*8)
+    local outData2 = DataView.ArrayBuffer(1*8)
+    local outData3 = DataView.ArrayBuffer(1*8)
+
+    res = Citizen.InvokeNative(0x5744562E973E33CD, hash, outData:Buffer(), outData2:Buffer(), outData2:Buffer()) == 1
+    txdHash  = outData:GetInt32(0*8)
+    txdHash2 = outData2:GetInt32(0*8)
+    txdHash3 = outData3:GetInt32(0*8)
+
+    return res, txdHash, txdHash2, txdHash3
+end

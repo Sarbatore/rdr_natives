@@ -61,3 +61,11 @@ end
 function RecoverDraftVehicleFallingLog(vehicle)
     return Citizen.InvokeNative(0x42404D57D621601A, vehicle)
 end
+
+---Return the station hash for a track and station index.
+---@param trackIndex integer
+---@param stationIndex integer
+---@return Hash
+function GetStationFromTrainStationData(trackIndex, stationIndex)
+    return Citizen.InvokeNative(0x9CC94A948EAF5372, trackIndex, stationIndex, Citizen.ResultAsInteger())
+end
