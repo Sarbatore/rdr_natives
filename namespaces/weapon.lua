@@ -168,3 +168,53 @@ end
 function ExplodePedAmmoType(ped, ammoHash)
     Citizen.InvokeNative(0x44C8F4908F1B2622, ped, ammoHash)
 end
+
+---Returns whether the ped can keeps longarm weapons on the horse when dismounting.
+---@param ped Ped
+---@param p1 int
+---@return boolean
+function GetLongarmStoreOnDismountState(ped, p1)
+    return Citizen.InvokeNative(0x5A695BD328586B44, ped, p1) == 1
+end
+
+---Sets the explosion or impact effect radius of a projectile entity (e.g., thrown dynamite or similar explosives).
+---@param projectile Entity
+---@param radius float
+function SetProjectileEffectRadius(projectile, radius)
+    Citizen.InvokeNative(0x74C9080FDD1BB48F, projectile, radius)
+end
+
+---Returns whether the ped can keeps longarm weapons on the horse when dismounting.
+---@param volume Volume
+---@return Entity
+function GetProjectileInVolume(volume)
+    return Citizen.InvokeNative(0x74C8000FDD1BB222, volume, Citizen.PointerValueInt()) 
+end
+
+---Returns the first ignited (lit/fused) explosive projectile entity found within the specified Volume.
+---@param volume Volume
+---@return Entity
+function GetIgnitedProjectileInVolume(volume)
+    return Citizen.InvokeNative(0x74C8000FDD1BB111, volume, Citizen.PointerValueInt()) 
+end
+
+---Sets the remaining fuse time (in seconds) for an ignited explosive projectile entity, such as a thrown dynamite.
+---@param projectile Entity
+---@param time float
+function SetProjectileFuseTime(projectile, time)
+    Citizen.InvokeNative(0x74C9080FDD1BB48E, projectile, time)
+end
+
+---Marks a created weapon object (e.g., a dynamite weapon object) as ignitable so it can be lit and detonate.
+---@param weaponObject Entity
+function RegisterWeaponObjectForIgnition(weaponObject)
+    Citizen.InvokeNative(0x74C90AAACC1DD48F, weaponObject)
+end
+
+---Enables/disables reload behavior for vehicle-mounted cannons.
+---@param vehicle Vehicle
+---@param disableReload boolean
+---@param p2 int
+function SetVehicleWeaponReloadMode(vehicle, disableReload, p2)
+    Citizen.InvokeNative(0x8A779706DA5CA3DD, vehicle, disableReload, p2)
+end
