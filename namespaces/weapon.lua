@@ -218,3 +218,47 @@ end
 function SetVehicleWeaponReloadMode(vehicle, disableReload, p2)
     Citizen.InvokeNative(0x8A779706DA5CA3DD, vehicle, disableReload, p2)
 end
+
+---Returns the hash of the weapon that was replaced when a new weapon of the same slot/type is given to a ped.
+---@param p0 boolean
+---@return Hash
+function GetWeaponReplacedHash(p0)
+    return Citizen.InvokeNative(0x9F0E1892C7F228A8, p0, Citizen.ResultAsInteger())
+end
+
+---Returns the weapon hash stored in the first holster slot of the specified horse or mount.
+---@param horse Ped
+---@return Hash
+function GetWeaponFromHorseHolster(horse)
+    return Citizen.InvokeNative(0xAFFD0CCF31F469B8, horse, Citizen.ResultAsInteger())
+end
+
+---
+---@param ped Ped
+---@param weapon Hash
+---@param slotId Hash
+---@param attachPoint integer
+---@param addReason Hash
+---@param p4 float
+---@param p5 float
+---@param forceInHand boolean
+---@param forceInHolster boolean
+---@param p8 integer
+---@return DataView.ArrayBuffer
+function GiveWeaponToPedWithOptions(ped, weapon, slotId, attachPoint, addReason, p4, p5, forceInHand, forceInHolster, p8)
+    local data = DataView.ArrayBuffer(32*8)
+    data:SetInt32(4*8, weapon)
+    data:SetInt32(5*8, slotId)
+    data:SetInt32(6*8, attachPoint)
+    data:SetInt32(7*8, addReason)
+    data:SetFloat32(8*8, p4)
+    data:SetFloat32(9*8, p5)
+    data:SetInt32(11*8, BoolToNumber(forceInHand))
+    data:SetInt32(12*8, BoolToNumber(forceInHolster))
+    data:SetInt32(14*8, p8)
+    local outData = DataView.ArrayBuffer(32*8)
+
+    Citizen.InvokeNative(0xBE7E42B07FD317AC, ped, data:Buffer(), outData:Buffer())
+
+    return outData
+end

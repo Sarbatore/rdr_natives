@@ -76,6 +76,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `AttachEntityToCoordsPhysically` | `entity, x, y, z, xOffset, yOffset, zOffset, p7, p8, p9, p10, p11, p12, p13, p14` |
 | `GetEntityLootingPed` | `ped` |
 | `GetOffsetFromEntityBone` | `entity, boneIndex` |
+| `N_0x5744562E973E33CD` | `hash` |
 
 ## Fire
 
@@ -114,11 +115,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
+| `InventoryAddItemWithGuid` | `inventoryId, guid2, item, itemSlotId, p3, addItemReason` |
 | `InventoryApplyWeaponStatsToEntry` | `entryId, weaponHash, ped` |
 | `InventoryCreateItemCollectionWithFilter` | `inventoryId, p1, slotId, slotId2, slotId3, p5, p6, p7, p8, itemType, p10, p11, p12, p13, p14, p15, p16, p17` |
 | `InventoryGetCatalogItemInspectionEffectsEntry` | `entryId, name, p2, p3` |
 | `InventoryGetCatalogItemInspectionStatsEntry` | `entryId, name, p2, playerId` |
-| `InventoryGetGuidFromItemid` | `item, slotId` |
+| `InventoryGetGuidFromItemid` | `inventoryId, p1, slotId` |
 | `InventoryGetInventoryItemCompatibleSlots` | `item, guid, maxResults` |
 | `InventoryGetInventoryItemInspectionInfo` | `item` |
 | `InventoryGetInventoryItemLastCreation` | `inventoryId, item` |
@@ -128,16 +130,24 @@ I hope you guys will participate to this repository. In order to maintain optima
 | Function | Parameters |
 |----------|------------|
 | `ItemdatabaseCreateItemCollection` | `slotId, slotId2, tag, category, cost, p5, flags, itemType, ciTag` |
+| `ItemdatabaseFilloutAcquireCost` | `item, costType` |
+| `ItemdatabaseFilloutAwardItemInfo` | `award, index` |
 | `ItemdatabaseFilloutBundle` | `bundle, costtype, index` |
+| `ItemdatabaseFilloutItem` | `item, costtype, index` |
+| `ItemdatabaseFilloutItemByName` | `item` |
 | `ItemdatabaseFilloutItemEffectIdInfo` | `effectId` |
+| `ItemdatabaseFilloutItemEffectIds` | `item` |
 | `ItemdatabaseFilloutItemInfo` | `item` |
 | `ItemdatabaseFilloutModifier` | `modifier, index` |
+| `ItemdatabaseFilloutSellPrice` | `item, sellType` |
+| `ItemdatabaseFilloutTagData` | `item` |
+| `ItemdatabaseGetAwardCostModifiers` | `award` |
 | `ItemdatabaseGetBundleItemCount` | `bundleId` |
 | `ItemdatabaseGetBundleItemInfo` | `bundleId, index` |
 | `ItemdatabaseGetFitsSlotInfo` | `category, index` |
 | `ItemdatabaseGetShopInventoriesRequirementInfo` | `shopType, key, groupIndex, requirementIndex` |
 | `ItemdatabaseGetShopLayoutPageInfoByIndex` | `layout, index` |
-| `N_0x388088BFF3681189` | `bundle, costtype` |
+| `N_0x388088BFF3681189` | `item, costtype` |
 
 ## Map
 
@@ -353,6 +363,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `DeleteMissionTrain` | `trainVehicle` |
 | `GetNumDraftVehicleLogs` | `vehicle` |
 | `GetNumDraftVehicleStraps` | `vehicle` |
+| `GetStationFromTrainStationData` | `trackIndex, stationIndex` |
 | `GetTrainTrackCoordAtJunctionIndex` | `trackConfig, index, p2` |
 | `RecoverDraftVehicleFallingLog` | `vehicle` |
 | `ReturnTrainInfoFromHandle` | `trainVehicle` |
@@ -362,19 +373,34 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
+| `CanPedAccessMountWeapons` | `ped` |
 | `DoesPedHavePistol` | `ped, p1` |
 | `DoesPedHaveRepeater` | `ped, p1` |
 | `DoesPedHaveRevolver` | `ped, p1` |
 | `DoesPedHaveRifle` | `ped, p1` |
 | `DoesPedHaveShotgun` | `ped, p1` |
 | `DoesPedHaveSniper` | `ped, p1` |
+| `ExplodePedAmmoType` | `ped, ammoHash` |
 | `GetAmmoInPedWeaponFromGuid` | `ped, guid` |
 | `GetAmmoTypeForWeapon_2` | `weaponHash` |
 | `GetDefaultWeaponAttachPoint` | `weaponHash` |
+| `GetIgnitedProjectileInVolume` | `volume` |
+| `GetLockonRangeCurrentWeapon` | `ped` |
+| `GetLongarmStoreOnDismountState` | `ped, p1` |
 | `GetNumPedsRestrainedFromWeaponBolas` | `ped` |
+| `GetProjectileInVolume` | `volume` |
 | `GetWeaponFromDefaultPedWeaponCollection` | `weaponCollection, weaponGroup` |
+| `GetWeaponFromHorseHolster` | `horse` |
 | `GetWeaponHasMultipleAmmoTypes` | `weaponHash` |
+| `GetWeaponReplacedHash` | `p0` |
+| `GiveWeaponToPedWithOptions` | `ped, weapon, slotId, attachPoint, addReason, p4, p5, forceInHand, forceInHolster, p8` |
 | `IsPedHoldingWeapon` | `ped, weaponHash` |
+| `IsPedTakingPoisonGasDamage` | `ped` |
 | `IsWeaponCloseRange` | `weapon` |
 | `N_0x14FF0C2545527F9B` | `horsePed, weaponHash, ped` |
+| `RegisterWeaponObjectForIgnition` | `weaponObject` |
+| `SetArrowTrail` | `ped, trailHash` |
 | `SetPedWeaponOnBack` | `ped, disableAnim` |
+| `SetProjectileEffectRadius` | `projectile, radius` |
+| `SetProjectileFuseTime` | `projectile, time` |
+| `SetVehicleWeaponReloadMode` | `vehicle, disableReload, p2` |
