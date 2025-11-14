@@ -76,7 +76,6 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `AttachEntityToCoordsPhysically` | `entity, x, y, z, xOffset, yOffset, zOffset, p7, p8, p9, p10, p11, p12, p13, p14` |
 | `GetEntityLootingPed` | `ped` |
 | `GetOffsetFromEntityBone` | `entity, boneIndex` |
-| `N_0x5744562E973E33CD` | `hash` |
 
 ## Fire
 
@@ -147,7 +146,6 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ItemdatabaseGetFitsSlotInfo` | `category, index` |
 | `ItemdatabaseGetShopInventoriesRequirementInfo` | `shopType, key, groupIndex, requirementIndex` |
 | `ItemdatabaseGetShopLayoutPageInfoByIndex` | `layout, index` |
-| `N_0x388088BFF3681189` | `item, costtype` |
 
 ## Map
 
@@ -373,16 +371,21 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
+| `AttachWeaponToHorseHolster` | `horsePed, weaponHash, ped` |
 | `CanPedAccessMountWeapons` | `ped` |
+| `DeleteWeaponObjectsOnHorse` | `horse` |
+| `DisableAllSpecialAmmoForPed` | `ped, weaponHash` |
 | `DoesPedHavePistol` | `ped, p1` |
 | `DoesPedHaveRepeater` | `ped, p1` |
 | `DoesPedHaveRevolver` | `ped, p1` |
 | `DoesPedHaveRifle` | `ped, p1` |
 | `DoesPedHaveShotgun` | `ped, p1` |
 | `DoesPedHaveSniper` | `ped, p1` |
+| `EnableAllSpecialAmmoForPed` | `ped, weaponHash` |
 | `ExplodePedAmmoType` | `ped, ammoHash` |
 | `GetAmmoInPedWeaponFromGuid` | `ped, guid` |
 | `GetAmmoTypeForWeapon_2` | `weaponHash` |
+| `GetCanSwitchWeapon` | `ped` |
 | `GetDefaultWeaponAttachPoint` | `weaponHash` |
 | `GetIgnitedProjectileInVolume` | `volume` |
 | `GetLockonRangeCurrentWeapon` | `ped` |
@@ -394,10 +397,10 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetWeaponHasMultipleAmmoTypes` | `weaponHash` |
 | `GetWeaponReplacedHash` | `p0` |
 | `GiveWeaponToPedWithOptions` | `ped, weapon, slotId, attachPoint, addReason, p4, p5, forceInHand, forceInHolster, p8` |
+| `IsPedCarryingWeaponSniperAtAttachPoint` | `ped, attachPoint` |
 | `IsPedHoldingWeapon` | `ped, weaponHash` |
 | `IsPedTakingPoisonGasDamage` | `ped` |
 | `IsWeaponCloseRange` | `weapon` |
-| `N_0x14FF0C2545527F9B` | `horsePed, weaponHash, ped` |
 | `RegisterWeaponObjectForIgnition` | `weaponObject` |
 | `SetArrowTrail` | `ped, trailHash` |
 | `SetPedWeaponOnBack` | `ped, disableAnim` |

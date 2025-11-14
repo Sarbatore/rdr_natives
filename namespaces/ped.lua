@@ -168,3 +168,73 @@ end
 function GetPedDirtLevel(ped, p1)
     return Citizen.InvokeNative(0x0105FEE8F9091255, ped, p1, Citizen.ResultAsFloat())
 end
+
+--[[
+
+TO DISCOVER:
+
+]]
+
+---
+---@param ped Ped
+---@return boolean
+function N_0X7EE3A8660F38797E(ped)
+    return Citizen.InvokeNative(0X7EE3A8660F38797E, ped) == 1
+end
+
+---
+---@param ped Ped
+---@return boolean
+function N_0X758F081DB204DDDE(ped)
+    return Citizen.InvokeNative(0X758F081DB204DDDE, ped) == 1
+end
+
+---
+---@param ped Ped
+---@param p1 integer
+---@return integer
+function N_0xE76687023D8C8505(ped, p1)
+    return Citizen.InvokeNative(0xE76687023D8C8505, ped, p1, Citizen.ResultAsInteger())
+end
+
+---
+---@param ped Ped
+---@return boolean
+function N_0X12EB4E31F092C9B3(ped)
+    return Citizen.InvokeNative(0X12EB4E31F092C9B3, ped) == 1
+end
+
+---
+---@param ped Ped
+---@return integer
+function N_0XA31D350D66FA1855(ped)
+    return Citizen.InvokeNative(0XA31D350D66FA1855, ped, Citizen.ResultAsInteger())
+end
+
+---
+---@param ped Ped
+---@return float
+function N_0X900CA00CE703E1E2(ped)
+    return Citizen.InvokeNative(0X900CA00CE703E1E2, ped, Citizen.ResultAsFloat())
+end
+
+---
+---@param ped Ped
+---@return float
+function N_0X2BA9D7BF629F920C(ped)
+    return Citizen.InvokeNative(0X2BA9D7BF629F920C, ped, Citizen.ResultAsFloat())
+end
+
+---
+---@param ped Ped
+---@return Ped
+function N_0X4B19F171450E0D4F(ped)
+    return Citizen.InvokeNative(0X4B19F171450E0D4F, ped, Citizen.ResultAsInteger())
+end
+
+---
+---@param ped Ped
+---@return boolean
+function N_0x88A5564B19C15391(ped)
+    return Citizen.InvokeNative(0x88A5564B19C15391, ped) == 1
+end
