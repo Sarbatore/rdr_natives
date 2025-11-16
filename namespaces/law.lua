@@ -19,11 +19,10 @@ end
 ---@param player Player
 ---@return
 function N_0XCBFB4951F2E3934C(player)
-    local unk0
     local outData = DataView.ArrayBuffer(16*8)
     
     Citizen.InvokeNative(0xCBFB4951F2E3934C, player, outData:Buffer())
-    unk0 = outData:GetInt32(10*8)
+    local unk0 = outData:GetInt32(10*8)
 
     return unk0
 end

@@ -49,9 +49,9 @@ function N_0x5744562E973E33CD(hash)
     local outData3 = DataView.ArrayBuffer(1*8)
 
     local res = Citizen.InvokeNative(0x5744562E973E33CD, hash, outData:Buffer(), outData2:Buffer(), outData2:Buffer()) == 1
-    local txdHash  = outData:GetInt32(0*8)
-    local txdHash2 = outData2:GetInt32(0*8)
-    local txdHash3 = outData3:GetInt32(0*8)
+    local txdHash  = outData:GetInt32(0)
+    local txdHash2 = outData2:GetInt32(0)
+    local txdHash3 = outData3:GetInt32(0)
 
     return res, txdHash, txdHash2, txdHash3
 end

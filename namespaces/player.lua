@@ -11,25 +11,19 @@ end
 ---@param duration integer
 ---@param size integer
 ---@return boolean, table
-function GetPedsInCombatWithRecently(player, duration, size)
-    local struct = DataView.ArrayBuffer(size*8)
+function GetPedsDamagedByPlayerRecently(player, duration, size)
+    local outData = DataView.ArrayBuffer((size+1)*8)
+    outData:SetInt32(0*8, size)
 
-    if (Citizen.InvokeNative(0x1A6E84F13C952094, player, duration, struct:Buffer()) == 1) then
-        local peds = {}
-        for i=1, size do
-            local ped = struct:GetInt32(i*8)
-            if (DoesEntityExist(ped)) then
-                for _, p in ipairs(peds) do
-                    if (p ~= ped) then
-                        table.insert(peds, ped)
-                    end
-                end
-            end
-        end
-        return true, peds
+    local res = Citizen.InvokeNative(0x1A6E84F13C952094, player, duration, outData:Buffer()) == 1
+    local peds = {}
+    local i = 1
+    while (i <= size and DoesEntityExist(outData:GetInt32(i*8))) do
+        table.insert(peds, outData:GetInt32(i*8))
+        i = i + 1
     end
 
-    return false
+    return res, peds
 end
 
 ---Activates the special ability for the specified player. [@kadir]
@@ -300,7 +294,7 @@ function N_0X7AE93C45EC14A166(player)
     local outEntity = DataView.ArrayBuffer(1*8)
 
     local res = Citizen.InvokeNative(0x7AE93C45EC14A166, player, outEntity:Buffer()) == 1
-    local entity = outEntity:GetInt32(0*8)
+    local entity = outEntity:GetInt32(0)
 
     return res, entity
 end

@@ -42,13 +42,22 @@ function InventoryApplyWeaponStatsToEntry(entryId, weaponHash, ped)
     Citizen.InvokeNative(0x75CFAC49301E134E, entryId, weaponHash, ped)
 end
 
----Outputs the slot ids compatible with the item.
+---Returns a list of compatible SLOTID
 ---@param item Hash
----@param guid Guid
----@param maxResults integer
----@return boolean
-function InventoryGetInventoryItemCompatibleSlots(item, guid, maxResults)
-    return Citizen.InvokeNative(0x9AC53CB6907B4428, item, guid, maxResults) == 1
+---@param size integer
+---@return boolean, table
+function InventoryGetInventoryItemCompatibleSlots(item, size)
+    size = size or 1
+    local outData = DataView.ArrayBuffer((size+1)*8)
+    outData:SetInt32(0*8, size)
+    
+    local res = Citizen.InvokeNative(0x9AC53CB6907B4428, item, outData:Buffer(), size) == 1
+    local slots = {}
+    for i = 1, size do
+        table.insert(slots, outData:GetInt32(i*8))
+    end
+
+    return res, slots
 end
 
 ---Returns the last creation date of the item for the selected inventory.

@@ -108,13 +108,16 @@ end
 ---@param skinningQuality integer
 ---@return integer, table
 function ComputeLootForPedCarcass(model, damageCleanliness, skinningQuality, size)
-    local outData = DataView.ArrayBuffer((1+size)*8)
+    size = size or 1
+    local outData = DataView.ArrayBuffer((size+1)*8)
     outData:SetInt32(0*8, size)
     
     local numLoots = Citizen.InvokeNative(0xB29C553BA582D09E, outData:Buffer(), model, damageCleanliness, skinningQuality, Citizen.ResultAsInteger())
     local loots = {}
-    for i = 1, 1 + numLoots do
-        table.insert(loots, outData:GetInt32(i*8))
+    if (numLoots > 0) then
+        for i = 1, numLoots do
+            table.insert(loots, outData:GetInt32(i*8))
+        end
     end
 
     return numLoots, loots

@@ -232,7 +232,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `EagleEyeSetSprintBehavior` | `player, disableSprint` |
 | `GetDeadeyeAbilityDepletionDelay` | `player` |
 | `GetNumDeadeyeMarksOnPed` | `player, ped` |
-| `GetPedsInCombatWithRecently` | `player, duration, size` |
+| `GetPedsDamagedByPlayerRecently` | `player, duration, size` |
 | `GetPlayerInteractionAimEntity` | `player` |
 | `HasPlayerDamagedRecentlyAttackedPed` | `player, duration` |
 | `IsPlayerPromptJumpToActive` | `player` |

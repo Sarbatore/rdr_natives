@@ -6,19 +6,18 @@
 ---@param size integer
 ---@return boolean, table
 function GetScenarioPointsInArea(x, y, z, radius, size)
-    local struct = DataView.ArrayBuffer(size*8 + 8)
-    if (Citizen.InvokeNative(0x345EC3B7EBDE1CB5, x, y, z, radius, struct:Buffer(), size) == 1) then
-        local scenarioPoints = {}
-        for i=1, size do
-            local scenarioPoint = struct:GetInt32(i*8)
-            if (Citizen.InvokeNative(0x841475AC96E794D1, scenarioPoint) == 1) then -- DOES_SCENARIO_POINT_EXIST
-                table.insert(scenarioPoints, scenarioPoint)
-            end
-        end
-        return true, scenarioPoints
-    end
+    local outData = DataView.ArrayBuffer((size+1)*8)
+    outData:SetInt32(0*8, size)
 
-    return false
+    local res = Citizen.InvokeNative(0x345EC3B7EBDE1CB5, x, y, z, radius, outData:Buffer(), size) == 1
+    local scenarioPoints = {}
+    local i = 1
+    while (i <= size and DoesScenarioPointExist(outData:GetInt32(i*8)) == 1) do
+        table.insert(scenarioPoints, outData:GetInt32(i*8))
+        i = i + 1
+    end
+    
+    return res, scenarioPoints
 end
 
 ---
@@ -53,7 +52,7 @@ end
 ---@param p8 integer
 ---@return integer
 function GetCoverpointFromEntityWithOffset(entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8)
-    return Citizen.InvokeNative(0x59872EA4CBD11C56, entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8, Citizen.ResultAsint())
+    return Citizen.InvokeNative(0x59872EA4CBD11C56, entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8, Citizen.ResultAsInteger())
 end
 
 ---Return whether the scenario is in use or not.
@@ -74,21 +73,21 @@ end
 ---@param entity Entity
 ---@return integer
 function GetScenarioContainerNumCompartments(entity)
-    return Citizen.InvokeNative(0x640A602946A8C972, entity, Citizen.ResultAsint())
+    return Citizen.InvokeNative(0x640A602946A8C972, entity, Citizen.ResultAsInteger())
 end
 
 ---Returns the number of currently open compartments for the specified scenario container entity.
 ---@param entity Entity
 ---@return integer
 function GetScenarioContainerNumOpenCompartments(entity)
-    return Citizen.InvokeNative(0x849791EBBDBA0362, entity, Citizen.ResultAsint())
+    return Citizen.InvokeNative(0x849791EBBDBA0362, entity, Citizen.ResultAsInteger())
 end
 
 ---Returns the total number of lootable items currently inside the specified scenario container entity.
 ---@param entity Entity
 ---@return integer
 function GetScenarioContainerRemainingLootCount(entity)
-    return Citizen.InvokeNative(0x01AF8A3729231A43, entity, Citizen.ResultAsint())
+    return Citizen.InvokeNative(0x01AF8A3729231A43, entity, Citizen.ResultAsInteger())
 end
 
 ---Returns the current progress of the "Break Free" prompt when the specified ped is hogtied or knocked out.
@@ -178,11 +177,18 @@ end
 
 ---Retrieves chained scenario points linked to the given parent scenario.
 ---@param scenario Hash
----@param buffer DataView.ArrayBuffer
 ---@param toggle boolean
----@return integer
-function GetLinkedScenarioPoints(scenario, buffer, toggle)
-    return Citizen.InvokeNative(0xE7BBC4E56B989449, scenario, buffer, toggle, Citizen.ResultAsInteger())
+---@return integer, table
+function GetLinkedScenarioPoints(scenario, toggle)
+    local outData = DataView.ArrayBuffer(16*8)
+    
+    local numScenarioPoints = Citizen.InvokeNative(0xE7BBC4E56B989449, scenario, outData:Buffer(), toggle, Citizen.ResultAsInteger())
+    local scenarioPoints = {}
+    for i = 0, numScenarioPoints - 1 do
+        table.insert(scenarioPoints, outData:GetInt32(i*8))
+    end
+
+    return numScenarioPoints, scenarioPoints
 end
 
 ---Remove/unload a previously loaded carriable config.
@@ -513,11 +519,11 @@ end
 ---@param p0 integer
 ---@return integer, integer
 function N_0XEFD875C2791EBEFD(p0, p1, p2)
-    local data = DataView.ArrayBuffer(32*8)
-    data:SetInt32(0*8, 1)
+    local outData = DataView.ArrayBuffer(32*8)
+    outData:SetInt32(0*8, 1)
     
-    local num = Citizen.InvokeNative(0XEFD875C2791EBEFD, p0, data:Buffer(), p1, p2, Citizen.ResultAsInteger())
-    local handle = data:GetInt32(0*8)
+    local num = Citizen.InvokeNative(0XEFD875C2791EBEFD, p0, outData:Buffer(), p1, p2, Citizen.ResultAsInteger())
+    local handle = outData:GetInt32(0*8)
 
     return num, handle
 end
