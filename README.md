@@ -74,6 +74,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | Function | Parameters |
 |----------|------------|
 | `AttachEntityToCoordsPhysically` | `entity, x, y, z, xOffset, yOffset, zOffset, p7, p8, p9, p10, p11, p12, p13, p14` |
+| `ForceTrainWagonPopulation` | `trainWagon, toggle` |
 | `GetEntityLootingPed` | `ped` |
 | `GetOffsetFromEntityBone` | `entity, boneIndex` |
 
@@ -138,7 +139,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ItemdatabaseFilloutItemEffectIds` | `item` |
 | `ItemdatabaseFilloutItemInfo` | `item` |
 | `ItemdatabaseFilloutModifier` | `modifier, index` |
-| `ItemdatabaseFilloutSellPrice` | `item, sellType` |
+| `ItemdatabaseFilloutSellPrice` | `item, sellType, size` |
 | `ItemdatabaseFilloutTagData` | `item` |
 | `ItemdatabaseGetAwardCostModifiers` | `award` |
 | `ItemdatabaseGetBundleItemCount` | `bundleId` |
@@ -146,6 +147,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ItemdatabaseGetFitsSlotInfo` | `category, index` |
 | `ItemdatabaseGetShopInventoriesRequirementInfo` | `shopType, key, groupIndex, requirementIndex` |
 | `ItemdatabaseGetShopLayoutPageInfoByIndex` | `layout, index` |
+
+## Law
+
+| Function | Parameters |
+|----------|------------|
+| `GetPlayerRegisteredCrime` | `player, index` |
 
 ## Map
 
@@ -191,7 +198,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ApplyColdToPed` | `ped, intensity, p2` |
 | `ApplyPedDamagePackToBone` | `ped, boneIndex, xOffset, yOffset, zOffset, xRot, yRot, zRot, damagePack` |
 | `CanPedHearTargetPed` | `target, ped, flag` |
-| `ComputeLootForPedCarcass` | `struct, model, damageCleanliness, skinningQuality` |
+| `ComputeLootForPedCarcass` | `model, damageCleanliness, skinningQuality, size` |
 | `ComputePedMoveBlendRatioForMaxSpeed` | `ped, moveBlendRatio` |
 | `ComputeSpeedForPedMoveBlendRatio` | `ped, speed` |
 | `GetNumReservedStamina` | `ped` |
@@ -359,6 +366,8 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `AreAnyVehicleWheelsDestroyed` | `vehicle` |
 | `BreakVehicleStraps` | `vehicle, coords` |
 | `DeleteMissionTrain` | `trainVehicle` |
+| `GetAllWagonPassengers` | `wagon, itemSet` |
+| `GetBalloonObjectFromVehicle` | `vehicle` |
 | `GetNumDraftVehicleLogs` | `vehicle` |
 | `GetNumDraftVehicleStraps` | `vehicle` |
 | `GetStationFromTrainStationData` | `trackIndex, stationIndex` |

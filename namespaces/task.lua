@@ -292,7 +292,7 @@ function FindScenarioAtObjectOfType(object, xOffset, yOffset, zOffset, scenarioT
     return Citizen.InvokeNative(0xD508FA229F1C4900, object, xOffset, yOffset, zOffset, scenarioType, radius, Citizen.ResultAsInteger())
 end
 
----Transfers the driving reins/control of a vehicle (e.g., wagon/coach) to another occupant when there is more than one ped inside. If instant is true, the handover happens instantly;
+---Transfers the driving reins/control of a vehicle (e.g., wagon/coach) to another occupant when there is more than one ped inside. If instant is true, the handover happens instantly
 ---@param vehicle Vehicle
 ---@param instant boolean
 function SwapVehicleReins(vehicle, instant)
@@ -474,4 +474,50 @@ end
 ---@return float
 function GetWhistleRangeMaxForBondingLevel(bondingLevel)
     return Citizen.InvokeNative(0x78D8C1D4EB80C588, bondingLevel, Citizen.ResultAsFloat())
+end
+
+---
+---@param x float
+---@param y float
+---@param z float
+---@param p3 float
+---@param p4 integer
+---@param p5 integer
+---@return integer
+function N_0X152664AA3188B193(x, y, z, p3, p4, p5)
+    return Citizen.InvokeNative(0X152664AA3188B193, x, y, z, p3, p4, p5, Citizen.ResultAsInteger())
+end
+
+---p0 is the handle returned by N_0x152664AA3188B193
+---@param p0 integer
+---@return boolean
+function N_0X22CD2C33ED4467A1(p0)
+    return Citizen.InvokeNative(0X22CD2C33ED4467A1, p0) == 1
+end
+
+---p0 is the handle returned by N_0x152664AA3188B193
+---@param p0 integer
+---@return vector3
+function N_0x91CB5E431F579BA1(p0)
+    return Citizen.InvokeNative(0X91CB5E431F579BA1, p0, Citizen.ResultAsVector())
+end
+
+---p0 is the handle returned by N_0x152664AA3188B193
+---@param p0 integer
+---@return integer
+function N_0X370F57C47F68EBCA(p0)
+    return Citizen.InvokeNative(0X370F57C47F68EBCA, p0, Citizen.ResultAsInteger())
+end
+
+---p0 is the handle returned by N_0x152664AA3188B193
+---@param p0 integer
+---@return integer, integer
+function N_0XEFD875C2791EBEFD(p0, p1, p2)
+    local data = DataView.ArrayBuffer(32*8)
+    data:SetInt32(0*8, 1)
+    
+    local num = Citizen.InvokeNative(0XEFD875C2791EBEFD, p0, data:Buffer(), p1, p2, Citizen.ResultAsInteger())
+    local handle = data:GetInt32(0*8)
+
+    return num, handle
 end

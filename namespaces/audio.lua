@@ -100,3 +100,16 @@ end
 function PlaySoundFromScriptedSpeech(scriptedSpeech)
     Citizen.InvokeNative(0xB18FEC133C7C6C69, scriptedSpeech)
 end
+
+---
+---@param p0 float
+---@return integer
+function N_0X7678FE0455ED1145(p0)
+    local outData = DataView.ArrayBuffer(10*8)
+    local outData2 = DataView.ArrayBuffer(10*8)
+    Citizen.InvokeNative(0X7678FE0455ED1145, outData:Buffer(), p0, outData2:Buffer())
+
+    local unk = outData2:GetInt32(0*8)
+
+    return unk
+end

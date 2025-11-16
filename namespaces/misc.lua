@@ -20,16 +20,38 @@ end
 ---@param p1 integer
 ---@return boolean, float, Hash, integer
 function GetGroundZAndMaterialFor3DCoord(x, y, z, p1)
-    local res, groundZ, material, flags
-
     local groundZStruct = DataView.ArrayBuffer(1*8)
     local materialStruct = DataView.ArrayBuffer(1*8)
     local flagsStruct = DataView.ArrayBuffer(1*8)
     
-    res = Citizen.InvokeNative(0xBBE5B63EFFB08E68, x, y, z, p1, groundZStruct:Buffer(), materialStruct:Buffer(), flagsStruct:Buffer()) == 1
-    groundZ = groundZStruct:GetFloat32(0)
-    material = materialStruct:GetInt32(0)
-    flags = flagsStruct:GetInt32(0)
+    local res = Citizen.InvokeNative(0xBBE5B63EFFB08E68, x, y, z, p1, groundZStruct:Buffer(), materialStruct:Buffer(), flagsStruct:Buffer()) == 1
+    local groundZ = groundZStruct:GetFloat32(0)
+    local material = materialStruct:GetInt32(0)
+    local flags = flagsStruct:GetInt32(0)
 
     return res, groundZ, material, flags
+end
+
+---
+---@param p0 integer
+function N_0X49F3241C28EBBFBC(p0)
+    Citizen.InvokeNative(0X49F3241C28EBBFBC, p0)
+end
+
+---
+---@param currencyType integer
+---@param p1 float
+---@param p3 integer
+function N_0X183672FE838A661B(currencyType, p1, p3)
+    local data = DataView.ArrayBuffer(4*8)
+    data:SetInt32(0*8, currencyType)
+    data:SetFloat32(1*8, p1)
+    data:SetInt32(3*8, p3)
+    Citizen.InvokeNative(0x183672FE838A661B, data:Buffer())
+end
+
+---
+---@param reward Hash
+function N_0X38C0C9CAE1544500(reward)
+    Citizen.InvokeNative(0X38C0C9CAE1544500, reward)
 end

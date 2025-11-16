@@ -69,3 +69,18 @@ end
 function GetStationFromTrainStationData(trackIndex, stationIndex)
     return Citizen.InvokeNative(0x9CC94A948EAF5372, trackIndex, stationIndex, Citizen.ResultAsInteger())
 end
+
+---Returns the balloon object attached to a hot air balloon vehicle.
+---@param vehicle Vehicle
+---@return Entity
+function GetBalloonObjectFromVehicle(vehicle)
+    return Citizen.InvokeNative(0x0BA4250D20007C2E, vehicle, Citizen.ResultAsInteger())
+end
+
+---Collects all passenger peds (excluding the driver) from the specified wagon-type vehicle and adds them as indexed items to the provided itemset.
+---@param wagon Vehicle
+---@param itemSet ItemSet
+---@return integer
+function GetAllWagonPassengers(wagon, itemSet)
+    return Citizen.InvokeNative(0x0E558D3A49D759D6, wagon, itemSet, Citizen.ResultAsInteger())
+end

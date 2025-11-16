@@ -93,22 +93,31 @@ ENTITY_AND_TAKEN_FROM_ENTITY = 2
 ---@param filter integer
 ---@return integer, Entity, Entity
 function RequestCarryingStateForPed(ped, carryingType, unk3, filter)
-    local struct = DataView.ArrayBuffer(2*8)
-    local res = Citizen.InvokeNative(0x4642182A298187D0, ped, carryingType, struct:Buffer(), unk3, filter, Citizen.ResultAsInteger())
-    local carriedEntity = struct:GetInt32(0*8)
-    local takenFromEntity = struct:GetInt32(1*8)
+    local outData = DataView.ArrayBuffer(2*8)
+    
+    local res = Citizen.InvokeNative(0x4642182A298187D0, ped, carryingType, outData:Buffer(), unk3, filter, Citizen.ResultAsInteger())
+    local carriedEntity = outData:GetInt32(0*8)
+    local takenFromEntity = outData:GetInt32(1*8)
 
     return res, carriedEntity, takenFromEntity
 end
 
 ---Return the number of loot items for a ped carcass of given model, damage cleanliness and skinning quality. The first index of the buffer is required, it's the max size of loot (always 15 in R* scripts) outLoot is an array of loot hash, its size is returned by the native (it starts at the index 1).. [@sarbatore]
----@param struct DataView.ArrayBuffer
 ---@param model Hash
 ---@param damageCleanliness integer
 ---@param skinningQuality integer
----@return integer
-function ComputeLootForPedCarcass(struct, model, damageCleanliness, skinningQuality)
-    return Citizen.InvokeNative(0xB29C553BA582D09E, struct:Buffer(), model, damageCleanliness, skinningQuality, Citizen.ResultAsInteger())
+---@return integer, table
+function ComputeLootForPedCarcass(model, damageCleanliness, skinningQuality, size)
+    local outData = DataView.ArrayBuffer((1+size)*8)
+    outData:SetInt32(0*8, size)
+    
+    local numLoots = Citizen.InvokeNative(0xB29C553BA582D09E, outData:Buffer(), model, damageCleanliness, skinningQuality, Citizen.ResultAsInteger())
+    local loots = {}
+    for i = 1, 1 + numLoots do
+        table.insert(loots, outData:GetInt32(i*8))
+    end
+
+    return numLoots, loots
 end
 
 ---Return wheter a ped is heard by a target ped. Usually flag is set to false when the ped is in stealth mode. [@sarbatore]
@@ -237,4 +246,13 @@ end
 ---@return boolean
 function N_0x88A5564B19C15391(ped)
     return Citizen.InvokeNative(0x88A5564B19C15391, ped) == 1
+end
+
+---
+---@param ped Ped
+---@param p1 Ped
+function N_0X34EDDD59364AD74A(ped, p1)
+    local data = DataView.ArrayBuffer(1*8)
+    data:SetInt32(0*8, p1)
+    Citizen.InvokeNative(0X34EDDD59364AD74A, ped, data:Buffer())
 end

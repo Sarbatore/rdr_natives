@@ -292,3 +292,15 @@ end
 function GetPlayerInteractionAimEntity(player)
     return Citizen.InvokeNative(0xBEA3A6E5F5F79A6F, player, Citizen.PointerValueInt())
 end
+
+---
+---@param player Player
+---@return boolean, Entity
+function N_0X7AE93C45EC14A166(player)
+    local outEntity = DataView.ArrayBuffer(1*8)
+
+    local res = Citizen.InvokeNative(0x7AE93C45EC14A166, player, outEntity:Buffer()) == 1
+    local entity = outEntity:GetInt32(0*8)
+
+    return res, entity
+end

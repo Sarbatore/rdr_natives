@@ -263,7 +263,7 @@ function IsPedCarryingWeaponSniperAtAttachPoint(ped, attachPoint)
     return Citizen.InvokeNative(0XD2209866B0CB72EA, ped, attachPoint) == 1
 end
 
----Deletes all visible weapon PROP objects attached to the horse’s holsters. This ONLY removes objects; the weapons remain in inventory and are still accessible.
+---Deletes all visible weapon PROP objects attached to the horse’s holsters. This ONLY removes objects, the weapons remain in inventory and are still accessible.
 ---@param horse Ped
 function DeleteWeaponObjectsOnHorse(horse)
     Citizen.InvokeNative(0XD4C6E24D955FF061, horse)

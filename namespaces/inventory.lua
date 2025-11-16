@@ -3,15 +3,13 @@
 ---@param item Hash
 ---@return boolean, Hash
 function InventoryGetInventoryItemInspectionInfo(item)
-    local res, model
-
     local struct = DataView.ArrayBuffer(32*8)
     struct:SetInt32(3*8, -1)
     struct:SetInt32(12*8, 4)
     struct:SetInt32(17*8, 4)
 
-    res = Citizen.InvokeNative(0x0C093C1787F18519, item, struct:Buffer()) == 1
-    model = struct:GetInt32(0*8)
+    local res = Citizen.InvokeNative(0x0C093C1787F18519, item, struct:Buffer()) == 1
+    local model = struct:GetInt32(0*8)
 
     return res, model
 end
@@ -58,8 +56,6 @@ end
 ---@param item Hash
 ---@return boolean, integer, integer, integer, integer, integer, integer
 function InventoryGetInventoryItemLastCreation(inventoryId, item)
-    local res, year, month, day, hour, minute, second
-
     local yearOut   = DataView.ArrayBuffer(1*8)
     local monthOut  = DataView.ArrayBuffer(1*8)
     local dayOut    = DataView.ArrayBuffer(1*8)
@@ -67,13 +63,13 @@ function InventoryGetInventoryItemLastCreation(inventoryId, item)
     local minuteOut = DataView.ArrayBuffer(1*8)
     local secondOut = DataView.ArrayBuffer(1*8)
 
-    res    = Citizen.InvokeNative(0X112BCA290D2EB53C, inventoryId, item, yearOut:Buffer(), monthOut:Buffer(), dayOut:Buffer(), hourOut:Buffer(), minuteOut:Buffer(), secondOut:Buffer()) == 1
-    year   = yearOut:GetInt32(0)
-    month  = monthOut:GetInt32(0)
-    day    = dayOut:GetInt32(0)
-    hour   = hourOut:GetInt32(0)
-    minute = minuteOut:GetInt32(0)
-    second = secondOut:GetInt32(0)
+    local res    = Citizen.InvokeNative(0X112BCA290D2EB53C, inventoryId, item, yearOut:Buffer(), monthOut:Buffer(), dayOut:Buffer(), hourOut:Buffer(), minuteOut:Buffer(), secondOut:Buffer()) == 1
+    local year   = yearOut:GetInt32(0)
+    local month  = monthOut:GetInt32(0)
+    local day    = dayOut:GetInt32(0)
+    local hour   = hourOut:GetInt32(0)
+    local minute = minuteOut:GetInt32(0)
+    local second = secondOut:GetInt32(0)
         
     return res, year, month, day, hour, minute, second
 end

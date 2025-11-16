@@ -33,19 +33,41 @@ function GetOffsetFromEntityBone(entity, boneIndex)
     return Citizen.InvokeNative(0x5E214112806591EA, entity, boneIndex, Citizen.ResultAsVector())
 end
 
+---Enables or disables automatic passenger population on a specific train wagon (carriage).
+---@param trainWagon Vehicle
+---@param toggle boolean
+function ForceTrainWagonPopulation(trainWagon, toggle)
+    Citizen.InvokeNative(0x119A5714578F4E05, trainWagon, toggle)
+end
+
 ---
 ---@param hash Hash
 ---@return boolean, Hash, Hash, Hash
 function N_0x5744562E973E33CD(hash)
-    local res, txdHash, txdHash2, txdHash3
     local outData = DataView.ArrayBuffer(1*8)
     local outData2 = DataView.ArrayBuffer(1*8)
     local outData3 = DataView.ArrayBuffer(1*8)
 
-    res = Citizen.InvokeNative(0x5744562E973E33CD, hash, outData:Buffer(), outData2:Buffer(), outData2:Buffer()) == 1
-    txdHash  = outData:GetInt32(0*8)
-    txdHash2 = outData2:GetInt32(0*8)
-    txdHash3 = outData3:GetInt32(0*8)
+    local res = Citizen.InvokeNative(0x5744562E973E33CD, hash, outData:Buffer(), outData2:Buffer(), outData2:Buffer()) == 1
+    local txdHash  = outData:GetInt32(0*8)
+    local txdHash2 = outData2:GetInt32(0*8)
+    local txdHash3 = outData3:GetInt32(0*8)
 
     return res, txdHash, txdHash2, txdHash3
+end
+
+---
+---@param object Object
+---@param p1 integer
+---@param ped Ped
+---@param p3 integer
+---@param p4 integer
+---@return boolean
+function N_0X383F64263F946E45(object, p1, ped, p3, p4)
+    local res
+    local outData = DataView.ArrayBuffer(10*8)
+
+    res = Citizen.InvokeNative(0X383F64263F946E45, outData:Buffer(), object, p1, ped, p3, p4) == 1
+
+    return res
 end

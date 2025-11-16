@@ -24,6 +24,7 @@ exports("DatabindingRemoveUiItemFromListByIndex", DatabindingRemoveUiItemFromLis
 
 -- Entity
 exports("AttachEntityToCoordsPhysically", AttachEntityToCoordsPhysically)
+exports("ForceTrainWagonPopulation", ForceTrainWagonPopulation)
 exports("GetEntityLootingPed", GetEntityLootingPed)
 exports("GetOffsetFromEntityBone", GetOffsetFromEntityBone)
 
@@ -78,6 +79,9 @@ exports("ItemdatabaseGetBundleItemInfo", ItemdatabaseGetBundleItemInfo)
 exports("ItemdatabaseGetFitsSlotInfo", ItemdatabaseGetFitsSlotInfo)
 exports("ItemdatabaseGetShopInventoriesRequirementInfo", ItemdatabaseGetShopInventoriesRequirementInfo)
 exports("ItemdatabaseGetShopLayoutPageInfoByIndex", ItemdatabaseGetShopLayoutPageInfoByIndex)
+
+-- Law
+exports("GetPlayerRegisteredCrime", GetPlayerRegisteredCrime)
 
 -- Map
 exports("ClearBlip", ClearBlip)
@@ -255,6 +259,8 @@ exports("UiStickyFeedCreateWarningMessage", UiStickyFeedCreateWarningMessage)
 exports("AreAnyVehicleWheelsDestroyed", AreAnyVehicleWheelsDestroyed)
 exports("BreakVehicleStraps", BreakVehicleStraps)
 exports("DeleteMissionTrain", DeleteMissionTrain)
+exports("GetAllWagonPassengers", GetAllWagonPassengers)
+exports("GetBalloonObjectFromVehicle", GetBalloonObjectFromVehicle)
 exports("GetNumDraftVehicleLogs", GetNumDraftVehicleLogs)
 exports("GetNumDraftVehicleStraps", GetNumDraftVehicleStraps)
 exports("GetStationFromTrainStationData", GetStationFromTrainStationData)
