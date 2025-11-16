@@ -163,6 +163,40 @@ function ItemdatabaseCreateItemCollection(slotId, slotId2, tag, category, cost, 
     return collectionIndex, size
 end
 
+---@todo
+---@param key Hash
+---@return boolean, integer, table
+function ItemdatabaseGetItemPriceModifiers(key)
+    local outData = DataView.ArrayBuffer(32*8)
+    outData:SetInt32(1*8, 10)
+
+    local res = Citizen.InvokeNative(0x4EB37AAB79AB0C48, key, outData:Buffer()) == 1
+    local numModifiers = outData:GetInt32(0*8)
+    local modifiers = {}
+    if (numModifiers > 0) then
+        local startOffset = 2
+        for i = startOffset, startOffset + (numModifiers - 1) do
+            table.insert(modifiers, outData:GetInt32(i*8))
+        end
+    end
+
+    return res, numModifiers, modifiers
+end
+
+---@todo
+---@param key Hash
+---@return boolean, Hash
+function ItemdatabaseFilloutPriceModifierByKey(key)
+    local outData = DataView.ArrayBuffer(32*8)
+    outData:SetInt32(3*8, 10)
+    outData:SetInt32(15*8, 10)
+
+    local res = Citizen.InvokeNative(0x40C5D95818823C94, key, outData:Buffer()) == 1
+    local hash = outData:GetInt32(1*8) -- can be: -1626069400, -1406468552, -468109055, -416870516, -195968340, -144780764, 381795783, 1632947550
+
+    return res, hash
+end
+
 ---Return a list of tag data for the given item. [CI_TAG_, TAG_]
 ---@param item Hash
 ---@param size integer
@@ -200,10 +234,10 @@ function ItemdatabaseGetShopInventoriesRequirementInfo(shopType, key, groupIndex
 
     local res    = Citizen.InvokeNative(0xE0EA5C031AE5539F, shopType, key, groupIndex, requirementIndex, outData:Buffer()) == 1
     local invReq = outData:GetInt32(0*8)
-    local unk1   = outData:GetInt32(1*8)
+    local unlockHash   = outData:GetInt32(1*8)
     local unk2   = outData:GetInt32(2*8)
 
-    return res, invReq, unk1, unk2
+    return res, invReq, unlockHash, unk2
 end
 
 ---Outputs the layout page info at the selected index.
@@ -247,6 +281,21 @@ function ItemdatabaseFilloutSellPrice(item, sellType)
     end
 
     return res, o0, o1, numPrices, prices
+end
+
+---@todo
+---@param award Hash
+---@param index integer
+---@return boolean, Hash
+function ItemdatabaseGetAwardAcquireCost(award, index)
+    local outData = DataView.ArrayBuffer(64*8)
+    outData:SetInt32(4*8, 15)
+    outData:SetInt32(36*8, 10)
+
+    local res = Citizen.InvokeNative(0x1FC25AEB5F76B38D, award, index, outData:Buffer()) == 1
+    local hash = outData:GetInt32(2*8)
+   
+    return res, hash
 end
 
 ---Return a list of modifiers for the given award.

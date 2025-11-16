@@ -121,7 +121,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `InventoryGetCatalogItemInspectionEffectsEntry` | `entryId, name, p2, p3` |
 | `InventoryGetCatalogItemInspectionStatsEntry` | `entryId, name, p2, playerId` |
 | `InventoryGetGuidFromItemid` | `inventoryId, p1, slotId` |
-| `InventoryGetInventoryItemCompatibleSlots` | `item, guid, maxResults` |
+| `InventoryGetInventoryItemCompatibleSlots` | `item, size` |
 | `InventoryGetInventoryItemInspectionInfo` | `item` |
 | `InventoryGetInventoryItemLastCreation` | `inventoryId, item` |
 
@@ -139,12 +139,16 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ItemdatabaseFilloutItemEffectIds` | `item` |
 | `ItemdatabaseFilloutItemInfo` | `item` |
 | `ItemdatabaseFilloutModifier` | `modifier, index` |
-| `ItemdatabaseFilloutSellPrice` | `item, sellType, size` |
-| `ItemdatabaseFilloutTagData` | `item` |
+| `ItemdatabaseFilloutPriceModifierByKey` | `key` |
+| `ItemdatabaseFilloutSellPrice` | `item, sellType` |
+| `ItemdatabaseFilloutTagData` | `item, size` |
+| `ItemdatabaseFilloutUiData` | `item` |
+| `ItemdatabaseGetAwardAcquireCost` | `award, index` |
 | `ItemdatabaseGetAwardCostModifiers` | `award` |
 | `ItemdatabaseGetBundleItemCount` | `bundleId` |
 | `ItemdatabaseGetBundleItemInfo` | `bundleId, index` |
 | `ItemdatabaseGetFitsSlotInfo` | `category, index` |
+| `ItemdatabaseGetItemPriceModifiers` | `key` |
 | `ItemdatabaseGetShopInventoriesRequirementInfo` | `shopType, key, groupIndex, requirementIndex` |
 | `ItemdatabaseGetShopLayoutPageInfoByIndex` | `layout, index` |
 
@@ -285,7 +289,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetCoverpointFromEntityWithOffset` | `entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8` |
 | `GetDrivingSeat` | `vehicle` |
 | `GetHoldToReelSettingEnabled` | `` |
-| `GetLinkedScenarioPoints` | `scenario, buffer, toggle` |
+| `GetLinkedScenarioPoints` | `scenario, toggle` |
 | `GetPedMountLeapProgress` | `ped` |
 | `GetPedMountLeapState` | `ped` |
 | `GetPedWritheBreakFreeProgress` | `ped` |
