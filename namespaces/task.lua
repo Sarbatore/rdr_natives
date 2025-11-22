@@ -437,35 +437,48 @@ function TransitionScenarioToConditionalAnim(ped, scenarioPoint, clipsetDict, cl
 end
 
 ---
+---@param ped Ped
+---@param moveNetworkDefName string
 ---@param clipset Hash
----@param clipset2 Hash
----@param p2 string
----@param p3 float
----@param p4 Hash
----@param p5 string
----@param p6 float
----@param p7 Hash
----@param p8 string
----@param p9 string
----@param p10 string
----@param p11 string
----@return Buffer
-local function GetTaskMoveNetworkBuffer(clipset, clipset2, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)
-    local struct = DataView.ArrayBuffer(64*8)
-    struct:SetInt32(0*8, clipset)
-    struct:SetInt32(1*8, clipset2)
-    struct:SetInt64(4*8, VarString(10, "LITERAL_STRING", p2, Citizen.ResultAsLong()))
-    struct:SetFloat32(5*8, p3)
-    struct:SetInt32(6*8, p4)
-    struct:SetInt64(7*8, VarString(10, "LITERAL_STRING", p5, Citizen.ResultAsLong()))
-    struct:SetFloat32(8*8, p6)
-    struct:SetInt32(9*8, p7)
-    struct:SetInt64(29*8, VarString(10, "LITERAL_STRING", p8, Citizen.ResultAsLong()))
-    struct:SetInt64(30*8, VarString(10, "LITERAL_STRING", p9, Citizen.ResultAsLong()))
-    struct:SetInt64(32*8, VarString(10, "LITERAL_STRING", p10, Citizen.ResultAsLong()))
-    struct:SetInt64(33*8, VarString(10, "LITERAL_STRING", p11, Citizen.ResultAsLong()))
+---@param eventName string
+---@param stateName string
+---@param phaseName string
+---@param xPos float
+---@param yPos float
+---@param zPos float
+---@param xRot float
+---@param yRot float
+---@param zRot float
+---@param p12 integer
+---@param p13 float
+---@param p14 integer
+---@param p15 integer
+---@param flag integer
+---@param p17 integer
+function TaskMoveNetworkAdvancedByNameWithInitParams(ped, moveNetworkDefName, clipset, eventName, stateName, phaseName, xPos, yPos, zPos, xRot, yRot, zRot, p12, p13, p14, p15, flag, p17)
+    local params = DataView.ArrayBuffer(64*8)
+    params:SetInt32(0*8, clipset)
+    params:SetInt32(1*8, `DEFAULT`)
+    if (false) then
+        params:SetInt64(4*8, VarString(10, "LITERAL_STRING", "", Citizen.ResultAsLong())) -- ANGLE_OF_PIECE
+    end
+    params:SetFloat32(5*8, 0.0)
+    params:SetInt32(6*8, 0) -- -1082130432
+    params:SetInt32(9*8, 0) -- -1082130432
+    if (eventName ~= "") then
+        params:SetInt64(29*8, VarString(10, "LITERAL_STRING", eventName, Citizen.ResultAsLong()))
+    end
+    if (stateName ~= "") then
+        params:SetInt64(30*8, VarString(10, "LITERAL_STRING", stateName, Citizen.ResultAsLong()))
+    end
+    if (false) then
+        params:SetInt64(32*8, VarString(10, "LITERAL_STRING", "", Citizen.ResultAsLong())) -- CurrentClip
+    end
+    if (phaseName ~= "") then
+        params:SetInt64(33*8, VarString(10, "LITERAL_STRING", phaseName, Citizen.ResultAsLong()))
+    end
 
-    return struct:Buffer()
+    Citizen.InvokeNative(0x7B6A04F98BBAFB2C, ped, moveNetworkDefName, params:Buffer(), xPos, yPos, zPos, xRot, yRot, zRot, p12, p13, p14, p15, flag, p17)
 end
 
 ---Returns the minimum (baseline) whistle/call distance for the given horse bonding level. This value represents the lower bound used when computing whether a horse is considered "near" or "far" relative to the player, and is interpolated against the next level's max.
