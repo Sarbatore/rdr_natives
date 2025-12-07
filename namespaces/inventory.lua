@@ -88,7 +88,7 @@ end
 ---@todo
 ---
 ---@param inventoryId integer
----@param p1 integer
+---@param item Hash
 ---@param slotId Hash
 ---@param slotId2 Hash
 ---@param slotId3 Hash
@@ -106,9 +106,9 @@ end
 ---@param p16 Hash
 ---@param p17 Hash
 ---@return integer, integer
-function InventoryCreateItemCollectionWithFilter(inventoryId, p1, slotId, slotId2, slotId3, p5, p6, p7, p8, itemType, p10, p11, p12, p13, p14, p15, p16, p17)
+function InventoryCreateItemCollectionWithFilter(inventoryId, item, slotId, slotId2, slotId3, p5, p6, p7, p8, itemType, p10, p11, p12, p13, p14, p15, p16, p17)
     local filterStruct = DataView.ArrayBuffer(18*8)
-    filterStruct:SetInt32(0*8, -1)
+    filterStruct:SetInt32(0*8, item)
     filterStruct:SetInt32(1*8, slotId)
     filterStruct:SetInt32(2*8, slotId2)
     filterStruct:SetInt32(3*8, slotId3)
