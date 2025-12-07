@@ -181,6 +181,21 @@ function GetPedDirtLevel(ped, p1)
     return Citizen.InvokeNative(0x0105FEE8F9091255, ped, p1, Citizen.ResultAsFloat())
 end
 
+---Returns information about the carried attached entity for the specified carriable slot.
+---@param ped Ped
+---@param carriableSlot integer
+---@return boolean, Hash, Hash, Entity
+function GetCarriedAttachedInfoForSlot(ped, carriableSlot)
+    local outData = DataView.ArrayBuffer(4*8)
+
+    local res         = Citizen.InvokeNative(0x608BC6A6AACD5036, outData:Buffer(), ped, carriableSlot, 0) == 1
+    local model       = outData:GetInt32(0*8)
+    local carryConfig = outData:GetInt32(1*8)
+    local entity      = outData:GetInt32(3*8)
+
+    return res, model, carryConfig, entity
+end
+
 --[[
 
 TO DISCOVER:

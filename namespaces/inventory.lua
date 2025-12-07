@@ -53,8 +53,10 @@ function InventoryGetInventoryItemCompatibleSlots(item, size)
     
     local res = Citizen.InvokeNative(0x9AC53CB6907B4428, item, outData:Buffer(), size) == 1
     local slots = {}
-    for i = 1, size do
+    local i = 1
+    while i <= size and outData:GetInt32(i*8) ~= 0 do
         table.insert(slots, outData:GetInt32(i*8))
+        i = i + 1
     end
 
     return res, slots
@@ -130,6 +132,34 @@ function InventoryCreateItemCollectionWithFilter(inventoryId, p1, slotId, slotId
     local size = sizeStruct:GetInt32(0)
 
     return collectionId, size
+end
+
+---
+---SetItemPromptInfoRequest(0, `AMMO_REVOLVER`, `AMMO_REVOLVER_AMMOBOX`, "", 0, 0, 0.0, 0.0, 0.0, 0)
+---@param p0 any
+---@param item Hash
+---@param p2 Hash
+---@param p3 string
+---@param flags integer
+---@param p5 integer
+---@param p6 float
+---@param p7 float
+---@param p8 float
+---@param p9 integer
+function SetItemPromptInfoRequest(p0, item, p2, p3, flags, p5, p6, p7, p8, p9)
+    local data = DataView.ArrayBuffer(16*8)
+    data:SetInt32(0*8, p0) -- index 0 of event data 2099179610
+    data:SetInt32(1*8, item) -- Hash: item from index 1 of event data 2099179610
+    data:SetInt32(2*8, p2) -- Hash: consumable_cigarette_box
+    data:SetInt64(3*8, VarString(10, "LITERAL_STRING", p3, Citizen.ResultAsLong())) -- CANNED_* or MEAT, FISH, VEGETABLE, FRUIT, DAIRY, CANDY, JERKY, LETTER
+    data:SetInt32(6*8, flags) -- flags
+    data:SetInt32(7*8, p5) -- 1, 2
+    data:SetFloat32(8*8, p6) -- vector3
+    data:SetFloat32(9*8, p7)
+    data:SetFloat32(10*8, p8)
+    data:SetInt32(11*8, p9) -- 0, 10
+
+    Citizen.InvokeNative(0xFD41D1D4350F6413, data:Buffer())
 end
 
 function InventoryAddItemWithGuid(inventoryId, guid2, item, itemSlotId, p3, addItemReason)

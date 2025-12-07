@@ -124,6 +124,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `InventoryGetInventoryItemCompatibleSlots` | `item, size` |
 | `InventoryGetInventoryItemInspectionInfo` | `item` |
 | `InventoryGetInventoryItemLastCreation` | `inventoryId, item` |
+| `SetItemPromptInfoRequest` | `p0, item, p2, p3, flags, p5, p6, p7, p8, p9` |
 
 ## Itemdatabase
 
@@ -205,6 +206,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ComputeLootForPedCarcass` | `model, damageCleanliness, skinningQuality, size` |
 | `ComputePedMoveBlendRatioForMaxSpeed` | `ped, moveBlendRatio` |
 | `ComputeSpeedForPedMoveBlendRatio` | `ped, speed` |
+| `GetCarriedAttachedInfoForSlot` | `ped, carriableSlot` |
 | `GetNumReservedStamina` | `ped` |
 | `GetPedDirtLevel` | `ped, p1` |
 | `HasPedBeenShotByPlayerRecently` | `player, ped, duration` |
