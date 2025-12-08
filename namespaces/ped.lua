@@ -196,6 +196,26 @@ function GetCarriedAttachedInfoForSlot(ped, carriableSlot)
     return res, model, carryConfig, entity
 end
 
+---
+---@param ped Ped
+---@param size integer
+---@return boolean, table
+function GetPedNearbyVehicles(ped, size)
+    local outData = DataView.ArrayBuffer(16*8)
+    outData:SetInt32(0*8, size or 3)
+
+    local res = Citizen.InvokeNative(0xCFF869CBFA210D82, ped, outData:Buffer()) == 1
+    local numVehicles = outData:GetInt32(0*8)
+    local vehicles = {}
+    if (numVehicles > 0) then
+        for i = 1, numVehicles do
+            table.insert(vehicles, outData:GetInt32(i*8))
+        end
+    end
+
+    return res, vehicles
+end
+
 --[[
 
 TO DISCOVER:

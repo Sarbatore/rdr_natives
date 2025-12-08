@@ -43,6 +43,13 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetPedFromCoverPoint` | `coverPoint` |
 | `RequestWeaponCoverAnimForPed` | `ped, weaponHash` |
 
+## Aitransport
+
+| Function | Parameters |
+|----------|------------|
+| `TaskEnterTransport` | `ped, vehicle, seatIndex, timer, pedSpeed, flags` |
+| `TaskExitTransport` | `ped, vehicle, pedSpeed, flags` |
+
 ## Audio
 
 | Function | Parameters |
@@ -54,6 +61,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `PlayAmbientSpeechFromPositionNative` | `x, y, z, soundRef, soundName,  speechLine, speechParam, pedListener, syncOverNetwork, p9` |
 | `PlayPedAmbientSpeechNative` | `ped, speechRef, speechName, speechParam, speechLine, pedListener, syncOverNetwork, p7` |
 | `PlaySoundFromScriptedSpeech` | `scriptedSpeech` |
+
+## Bounty
+
+| Function | Parameters |
+|----------|------------|
+| `GetBountyOnPlayer` | `playerId` |
 
 ## Cam
 
@@ -117,7 +130,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 |----------|------------|
 | `InventoryAddItemWithGuid` | `inventoryId, guid2, item, itemSlotId, p3, addItemReason` |
 | `InventoryApplyWeaponStatsToEntry` | `entryId, weaponHash, ped` |
-| `InventoryCreateItemCollectionWithFilter` | `inventoryId, p1, slotId, slotId2, slotId3, p5, p6, p7, p8, itemType, p10, p11, p12, p13, p14, p15, p16, p17` |
+| `InventoryCreateItemCollectionWithFilter` | `inventoryId, item, slotId, slotId2, slotId3, p5, p6, p7, p8, itemType, p10, p11, p12, p13, p14, p15, p16, p17` |
 | `InventoryGetCatalogItemInspectionEffectsEntry` | `entryId, name, p2, p3` |
 | `InventoryGetCatalogItemInspectionStatsEntry` | `entryId, name, p2, playerId` |
 | `InventoryGetGuidFromItemid` | `inventoryId, p1, slotId` |
@@ -209,6 +222,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetCarriedAttachedInfoForSlot` | `ped, carriableSlot` |
 | `GetNumReservedStamina` | `ped` |
 | `GetPedDirtLevel` | `ped, p1` |
+| `GetPedNearbyVehicles` | `ped, size` |
 | `HasPedBeenShotByPlayerRecently` | `player, ped, duration` |
 | `HasPedInteractedWithPlayerRecently` | `ped, player, flag, duration` |
 | `IsPedAfloat` | `ped` |
@@ -326,6 +340,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `TaskFollowWaypointRecording` | `ped, waypointRecording, startIndex, flags, endIndex, patrol, aimWeapon, durationMs` |
 | `TaskForceAimAtCoord` | `ped, x, y, z, p4, p5, p6` |
 | `TaskForceThrowableAtEntityWhenAiming` | `ped, target, durationMs, p3, p4` |
+| `TaskMoveNetworkAdvancedByNameWithInitParams` | `ped, moveNetworkDefName, clipset, eventName, stateName, phaseName, xPos, yPos, zPos, xRot, yRot, zRot, p12, p13, p14, p15, flag, p17` |
 | `TaskPickUpWeapon` | `ped, pickup` |
 | `TaskPointAtEntity` | `ped, targetEntity, duration` |
 | `TaskVehicleAddNextDestination` | `vehicle, x, y, z` |

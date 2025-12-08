@@ -5,6 +5,10 @@ exports("GetPedCoverPointTransitionState", GetPedCoverPointTransitionState)
 exports("GetPedFromCoverPoint", GetPedFromCoverPoint)
 exports("RequestWeaponCoverAnimForPed", RequestWeaponCoverAnimForPed)
 
+-- Aitransport
+exports("TaskEnterTransport", TaskEnterTransport)
+exports("TaskExitTransport", TaskExitTransport)
+
 -- Audio
 exports("CanPedSaySpeech", CanPedSaySpeech)
 exports("CreateNewScriptedSpeech", CreateNewScriptedSpeech)
@@ -13,6 +17,9 @@ exports("GetLastAmbientSpeechHash", GetLastAmbientSpeechHash)
 exports("PlayAmbientSpeechFromPositionNative", PlayAmbientSpeechFromPositionNative)
 exports("PlayPedAmbientSpeechNative", PlayPedAmbientSpeechNative)
 exports("PlaySoundFromScriptedSpeech", PlaySoundFromScriptedSpeech)
+
+-- Bounty
+exports("GetBountyOnPlayer", GetBountyOnPlayer)
 
 -- Cam
 exports("SetCamDofAndFocalParams", SetCamDofAndFocalParams)
@@ -123,6 +130,7 @@ exports("ComputeSpeedForPedMoveBlendRatio", ComputeSpeedForPedMoveBlendRatio)
 exports("GetCarriedAttachedInfoForSlot", GetCarriedAttachedInfoForSlot)
 exports("GetNumReservedStamina", GetNumReservedStamina)
 exports("GetPedDirtLevel", GetPedDirtLevel)
+exports("GetPedNearbyVehicles", GetPedNearbyVehicles)
 exports("HasPedBeenShotByPlayerRecently", HasPedBeenShotByPlayerRecently)
 exports("HasPedInteractedWithPlayerRecently", HasPedInteractedWithPlayerRecently)
 exports("IsPedAfloat", IsPedAfloat)
@@ -228,6 +236,7 @@ exports("SwapVehicleReins", SwapVehicleReins)
 exports("TaskFollowWaypointRecording", TaskFollowWaypointRecording)
 exports("TaskForceAimAtCoord", TaskForceAimAtCoord)
 exports("TaskForceThrowableAtEntityWhenAiming", TaskForceThrowableAtEntityWhenAiming)
+exports("TaskMoveNetworkAdvancedByNameWithInitParams", TaskMoveNetworkAdvancedByNameWithInitParams)
 exports("TaskPickUpWeapon", TaskPickUpWeapon)
 exports("TaskPointAtEntity", TaskPointAtEntity)
 exports("TaskVehicleAddNextDestination", TaskVehicleAddNextDestination)
