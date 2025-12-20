@@ -83,6 +83,7 @@ exports("ItemdatabaseFilloutPriceModifierByKey", ItemdatabaseFilloutPriceModifie
 exports("ItemdatabaseFilloutSellPrice", ItemdatabaseFilloutSellPrice)
 exports("ItemdatabaseFilloutTagData", ItemdatabaseFilloutTagData)
 exports("ItemdatabaseFilloutUiData", ItemdatabaseFilloutUiData)
+exports("ItemdatabaseGetAcquireCost", ItemdatabaseGetAcquireCost)
 exports("ItemdatabaseGetAwardAcquireCost", ItemdatabaseGetAwardAcquireCost)
 exports("ItemdatabaseGetAwardCostModifiers", ItemdatabaseGetAwardCostModifiers)
 exports("ItemdatabaseGetBundleItemCount", ItemdatabaseGetBundleItemCount)
