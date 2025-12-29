@@ -29,10 +29,10 @@ function ItemdatabaseFilloutItemByName(item)
     outData:SetInt32(732*8 + 2*8, 5)
     outData:SetInt32(732*8 + 18*8, 8)
 
-    local res         = Citizen.InvokeNative(0x2A610BEE7D341CC4, item, outData:Buffer()) == 1
-    local ciCategory  = outData:GetInt32(1*8)
-    local category    = outData:GetInt32(2*8)
-    local model       = outData:GetInt32(3*8)
+    local res        = Citizen.InvokeNative(0x2A610BEE7D341CC4, item, outData:Buffer()) == 1
+    local ciCategory = outData:GetInt32(1*8)
+    local category   = outData:GetInt32(2*8)
+    local model      = outData:GetInt32(3*8)
 
     return res, ciCategory, category, model
 end
@@ -59,11 +59,12 @@ end
 ---@param item Hash
 ---@return boolean, table
 function ItemdatabaseFilloutItemEffectIds(item)
-    local effects    = {}
     local outData = DataView.ArrayBuffer(32*8)
     outData:SetInt32(1*8, 20)
+    
+    local res     = Citizen.InvokeNative(0x9379BE60DC55BBE6, item, outData:Buffer()) == 1
+    local effects = {}
 
-    local res        = Citizen.InvokeNative(0x9379BE60DC55BBE6, item, outData:Buffer()) == 1
     local numEffects = outData:GetInt32(0*8)
     if (numEffects > 0) then
         local startOffset = 2
@@ -82,14 +83,14 @@ function ItemdatabaseFilloutItemEffectIdInfo(effectId)
     local outData = DataView.ArrayBuffer(7*8)
 
     local res              = Citizen.InvokeNative(0xCF2D360D27FD1ABF, effectId, outData:Buffer()) == 1
-    local type             = outData:GetInt32(1*8)
+    local effect             = outData:GetInt32(1*8)
     local value            = outData:GetInt32(2*8)
     local time             = outData:GetInt32(3*8)
     local timeUnits        = outData:GetInt32(4*8)
     local corePercent      = outData:GetFloat32(5*8)
     local durationcategory = outData:GetInt32(6*8)
 
-    return res, type, value, time, timeUnits, corePercent, durationcategory
+    return res, effect, value, time, timeUnits, corePercent, durationcategory
 end
 
 ---Return bundle item info at the selected index (item hash, slot id...)
@@ -117,7 +118,7 @@ end
 function ItemdatabaseGetFitsSlotInfo(category, index)
     local outData = DataView.ArrayBuffer(1*8)
 
-    local res = Citizen.InvokeNative(0x77210C146CED5261, category, index, outData:Buffer()) == 1
+    local res    = Citizen.InvokeNative(0x77210C146CED5261, category, index, outData:Buffer()) == 1
     local slotId = outData:GetInt32(0)
 
     return res, slotId
@@ -159,21 +160,22 @@ function ItemdatabaseCreateItemCollection(slotId, slotId2, tag, category, cost, 
     filterData:SetInt32(8*8, ciTag)
     local sizeData = DataView.ArrayBuffer(1*8)
 
-    local collectionIndex = Citizen.InvokeNative(0x71EFA7999AE79408, filterData:Buffer(), sizeData:Buffer(), 1, Citizen.ResultAsInteger())
-    local size = sizeData:GetInt32(0)
+    local collectionId = Citizen.InvokeNative(0x71EFA7999AE79408, filterData:Buffer(), sizeData:Buffer(), 1, Citizen.ResultAsInteger())
+    local size         = sizeData:GetInt32(0)
 
-    return collectionIndex, size
+    return collectionId, size
 end
 
 ---@todo
 ---@param key Hash
 ---@return boolean, table
 function ItemdatabaseGetItemPriceModifiers(key)
-    local modifiers = {}
     local outData = DataView.ArrayBuffer(32*8)
     outData:SetInt32(1*8, 10)
+    
+    local res       = Citizen.InvokeNative(0x4EB37AAB79AB0C48, key, outData:Buffer()) == 1
+    local modifiers = {}
 
-    local res = Citizen.InvokeNative(0x4EB37AAB79AB0C48, key, outData:Buffer()) == 1
     local numModifiers = outData:GetInt32(0*8)
     if (numModifiers > 0) then
         local startOffset = 2
@@ -193,7 +195,7 @@ function ItemdatabaseFilloutPriceModifierByKey(key)
     outData:SetInt32(3*8, 10)
     outData:SetInt32(15*8, 10)
 
-    local res = Citizen.InvokeNative(0x40C5D95818823C94, key, outData:Buffer()) == 1
+    local res  = Citizen.InvokeNative(0x40C5D95818823C94, key, outData:Buffer()) == 1
     local hash = outData:GetInt32(1*8) -- can be: -1626069400, -1406468552, -468109055, -416870516, -195968340, -144780764, 381795783, 1632947550
 
     return res, hash
@@ -209,9 +211,10 @@ function ItemdatabaseFilloutTagData(item, size)
     outData:SetInt32(0*8, size)
     local outSize = DataView.ArrayBuffer(1*8)
 
-    local res     = Citizen.InvokeNative(0x5A11D6EEA17165B0, item, outData:Buffer(), outSize:Buffer(), size) == 1
+    local res  = Citizen.InvokeNative(0x5A11D6EEA17165B0, item, outData:Buffer(), outSize:Buffer(), size) == 1
+    local tags = {}
+    
     local numTags = outSize:GetInt32(0*8)
-    local tags    = {}
     if (numTags > 0) then
         local tblSize = 2
         for i = 1, numTags*tblSize, tblSize do
@@ -222,7 +225,7 @@ function ItemdatabaseFilloutTagData(item, size)
         end
     end
 
-    return res, numTags, tags
+    return res, tags
 end
 
 ---
@@ -230,10 +233,11 @@ end
 ---@param shopInventoryIndex integer
 ---@return boolean, Hash, any, integer
 function ItemdatabaseGetShopInventoriesItemInfo(shopType, shopInventoryIndex)
-    local outData             = DataView.ArrayBuffer(3*8)
+    local outData = DataView.ArrayBuffer(3*8)
+
     local res                 = Citizen.InvokeNative(0x4A79B41B4EB91F4E, shopType, shopInventoryIndex, outData:Buffer()) == 1
     local item                = outData:GetInt32(0*8)
-    local unk                = outData:GetInt32(1*8)
+    local unk                 = outData:GetInt32(1*8)
     local numRequirementGroup = outData:GetInt32(2*8)
 
     return res, item, unk, numRequirementGroup
@@ -244,9 +248,10 @@ end
 ---@param item Hash
 ---@return boolean, any, integer
 function ItemdatabaseGetShopInventoriesItemInfoByKey(shopType, item)
-    local outData             = DataView.ArrayBuffer(3*8)
+    local outData = DataView.ArrayBuffer(3*8)
+
     local res                 = Citizen.InvokeNative(0xCFB06801F5099B25, shopType, item, outData:Buffer()) == 1
-    local unk                = outData:GetInt32(1*8)
+    local unk                 = outData:GetInt32(1*8)
     local numRequirementGroup = outData:GetInt32(2*8)
 
     return res, unk, numRequirementGroup
@@ -258,7 +263,8 @@ end
 ---@param groupIndex integer
 ---@return boolean, integer, integer
 function ItemdatabaseGetShopInventoriesRequirementGroupInfo(shopType, item, groupIndex)
-    local outData         = DataView.ArrayBuffer(2*8)
+    local outData = DataView.ArrayBuffer(2*8)
+
     local res             = Citizen.InvokeNative(0x76C752D788A76813, shopType, item, groupIndex, outData:Buffer()) == 1
     local unk             = outData:GetInt32(0*8)
     local numRequirements = outData:GetInt32(1*8)
@@ -273,7 +279,8 @@ end
 ---@param requirementIndex integer
 ---@return boolean, Hash, Hash, integer, boolean
 function ItemdatabaseGetShopInventoriesRequirementInfo(shopType, key, groupIndex, requirementIndex)
-    local outData         = DataView.ArrayBuffer(4*8)
+    local outData = DataView.ArrayBuffer(4*8)
+
     local res             = Citizen.InvokeNative(0xE0EA5C031AE5539F, shopType, key, groupIndex, requirementIndex, outData:Buffer()) == 1
     local requirementType = outData:GetInt32(0*8)
     local requirement     = outData:GetInt32(1*8)
@@ -288,7 +295,8 @@ end
 ---@param index integer
 ---@return boolean, Hash, Hash, boolean, integer
 function ItemdatabaseGetShopLayoutPageInfoByIndex(layoutHash, index)
-    local outData  = DataView.ArrayBuffer(4*8)
+    local outData = DataView.ArrayBuffer(4*8)
+
     local res      = Citizen.InvokeNative(0xDBEADA0DF5F9AB9F, layoutHash, index, outData:Buffer()) == 1
     local pageKey  = outData:GetInt32(0*8)
     local unk1     = outData:GetInt32(1*8)
@@ -303,6 +311,7 @@ end
 ---@return boolean, integer, integer
 function ItemdatabaseGetShopLayoutInfo(layoutHash)
     local outData = DataView.ArrayBuffer(4*8)
+
     local res     = Citizen.InvokeNative(0x66A6D76B6BB999B4, layoutHash, outData:Buffer()) == 1
     local numMenu = outData:GetInt32(2*8)
     local unk2    = outData:GetInt32(3*8)
@@ -317,7 +326,7 @@ end
 function ItemdatabaseGetShopLayoutRootMenuInfo(layoutHash, index)
     local outData = DataView.ArrayBuffer(7*8)
 
-    local res = Citizen.InvokeNative(0x86FCB565CCA0CFA7, layoutHash, index, outData:Buffer()) == 1
+    local res  = Citizen.InvokeNative(0x86FCB565CCA0CFA7, layoutHash, index, outData:Buffer()) == 1
     local menu = outData:GetInt32(0*8)
     local unk1 = outData:GetInt32(6*8)
 
@@ -331,9 +340,9 @@ end
 function ItemdatabaseGetShopLayoutMenuInfoById(layoutHash, menuHash)
     local outData = DataView.ArrayBuffer(8*8)
 
-    local res = Citizen.InvokeNative(0xD66114469978B55B, layoutHash, menuHash, outData:Buffer()) == 1
-    local unk1 = outData:GetInt32(1*8)
-    local unk3 = outData:GetInt32(3*8)
+    local res     = Citizen.InvokeNative(0xD66114469978B55B, layoutHash, menuHash, outData:Buffer()) == 1
+    local unk1    = outData:GetInt32(1*8)
+    local unk3    = outData:GetInt32(3*8)
     local numPage = outData:GetInt32(5*8)
     local numInfo = outData:GetInt32(6*8)
 
@@ -347,14 +356,14 @@ end
 function ItemdatabaseGetShopLayoutMenuInfoByIndex(layoutHash, menuHash, index)
     local outData = DataView.ArrayBuffer(7*8)
 
-    local res = Citizen.InvokeNative(0xF04247092F193B75, layoutHash, menuHash, index, outData:Buffer()) == 1
+    local res   = Citizen.InvokeNative(0xF04247092F193B75, layoutHash, menuHash, index, outData:Buffer()) == 1
     local hash1 = outData:GetInt32(0*8) -- hash
     local hash2 = outData:GetInt32(1*8) -- hash
     local hash3 = outData:GetInt32(2*8) -- hash
-    local unk4 = outData:GetInt32(3*8) -- count
-    local unk5 = outData:GetInt32(4*8)
-    local unk6 = outData:GetInt32(5*8) -- count
-    local unk7 = outData:GetInt32(6*8) -- count
+    local unk4  = outData:GetInt32(3*8) -- count
+    local unk5  = outData:GetInt32(4*8)
+    local unk6  = outData:GetInt32(5*8) -- count
+    local unk7  = outData:GetInt32(6*8) -- count
 
     return res, hash1, hash2, hash3, unk4, unk5, unk6, unk7
 end
@@ -383,7 +392,8 @@ end
 ---@return boolean, integer, integer, integer
 function ItemdatabaseGetShopLayoutPageInfoByKey(layoutHash, pageHash)
     local outData = DataView.ArrayBuffer(4*8)
-    local res = Citizen.InvokeNative(0xB347C100DF0C9B7F, layoutHash, pageHash, outData:Buffer()) == 1
+    
+    local res  = Citizen.InvokeNative(0xB347C100DF0C9B7F, layoutHash, pageHash, outData:Buffer()) == 1
     local unk1 = outData:GetInt32(1*8)
     local unk2 = outData:GetInt32(2*8)
     local unk3 = outData:GetInt32(3*8)
@@ -396,22 +406,22 @@ end
 ---@param sellType integer
 ---@return boolean, Hash, table
 function ItemdatabaseFilloutSellPrice(itemHash, sellType)
-    local prices = {}
-
     local outData = DataView.ArrayBuffer(64*8)
     outData:SetInt32(4*8, 10)
 
-    local res = Citizen.InvokeNative(0x7A62A2EEDE1C3766, itemHash, sellType, outData:Buffer()) == 1
-    local o1 = outData:GetInt32(2*8)
+    local res    = Citizen.InvokeNative(0x7A62A2EEDE1C3766, itemHash, sellType, outData:Buffer()) == 1
+    local o1     = outData:GetInt32(2*8)
+    local prices = {}
+
     local numPrices = outData:GetInt32(3*8)
     if (numPrices > 0) then
         local startOffset = 5
         local tblSize = 2
         for i = startOffset, startOffset + (numPrices-1)*tblSize, tblSize do
-            local price = {}
-            price[1] = outData:GetInt32(i*8) -- currency type
-            price[2] = outData:GetInt32((i+1)*8) -- amount
-            table.insert(prices, price)
+            table.insert(prices, {
+                outData:GetInt32(i*8), -- currency type
+                outData:GetInt32((i+1)*8) -- amount
+            })
         end
     end
 
@@ -445,7 +455,7 @@ function ItemdatabaseGetAwardAcquireCost(award, index)
     outData:SetInt32(4*8, 15)
     outData:SetInt32(36*8, 10)
 
-    local res = Citizen.InvokeNative(0x1FC25AEB5F76B38D, award, index, outData:Buffer()) == 1
+    local res  = Citizen.InvokeNative(0x1FC25AEB5F76B38D, award, index, outData:Buffer()) == 1
     local hash = outData:GetInt32(2*8)
    
     return res, hash
@@ -455,11 +465,12 @@ end
 ---@param award Hash
 ---@return boolean, table
 function ItemdatabaseGetAwardCostModifiers(award)
-    local modifiers    = {}
     local outData = DataView.ArrayBuffer(32*8)
     outData:SetInt32(1*8, 10)
+    
+    local res       = Citizen.InvokeNative(0xE81D0378A384E755, award, outData:Buffer()) == 1
+    local modifiers = {}
 
-    local res          = Citizen.InvokeNative(0xE81D0378A384E755, award, outData:Buffer()) == 1
     local numModifiers = outData:GetInt32(0*8)
     if (numModifiers > 0) then
         local startOffset = 2
@@ -494,11 +505,11 @@ function ItemdatabaseFilloutAcquireCost(item, costType)
     outData:SetInt32(4*8, 15)
     outData:SetInt32(36*8, 10)
 
-    local res = Citizen.InvokeNative(0x74F7928816E4E181, item, costType, outData:Buffer()) == 1
-    local o0 = outData:GetInt32(2*8) -- same as ItemdatabaseFilloutSellPrice offset 2
+    local res          = Citizen.InvokeNative(0x74F7928816E4E181, item, costType, outData:Buffer()) == 1
+    local o0           = outData:GetInt32(2*8) -- same as ItemdatabaseFilloutSellPrice offset 2
     local currencyType = outData:GetInt32(5*8)
-    local amount = outData:GetInt32(6*8)
-    local o2 = outData:GetInt32(37*8)
+    local amount       = outData:GetInt32(6*8)
+    local o2           = outData:GetInt32(37*8)
 
     return res, o0, currencyType, amount, o2
 end
@@ -527,8 +538,9 @@ function ItemdatabaseFilloutUiData(item)
     outData:SetInt32(18*8, 8)
 
     local res = Citizen.InvokeNative(0xB86F7CC2DC67AC60, item, outData:Buffer()) == 1
-    
     local tbl = {}
+    local tbl2 = {}
+
     local startOffset = 3
     local tblSize = 3
     local i = startOffset
@@ -541,7 +553,6 @@ function ItemdatabaseFilloutUiData(item)
         i = i + tblSize
     end
     
-    local tbl2 = {}
     local startOffset = 19
     local tblSize = 2
     local i = startOffset
@@ -615,26 +626,26 @@ end
 ---Return num rewards and rewards data of the hash
 ---@param p0 Hash
 ---@param size integer
----@return boolean, Hash, integer, table
+---@return boolean, Hash, table
 function N_0xD076DB9B96FAADF1(p0)
     local outData = DataView.ArrayBuffer(64*8)
     outData:SetInt32(3*8, 10)
 
-    local res = Citizen.InvokeNative(0xD076DB9B96FAADF1, p0, outData:Buffer()) == 1
-    local o0 = outData:GetInt32(1*8)
-    local numRewards = outData:GetInt32(2*8)
-
+    local res     = Citizen.InvokeNative(0xD076DB9B96FAADF1, p0, outData:Buffer()) == 1
+    local o0      = outData:GetInt32(1*8)
     local rewards = {}
+
+    local numRewards = outData:GetInt32(2*8)
     if (numRewards > 0) then
         local startOffset = 4
         local tblSize = 2
         for i = startOffset, startOffset + (numRewards - 1)*tblSize, tblSize do
-            local reward = {}
-            reward[1] = outData:GetInt32(i*8)
-            reward[2] = outData:GetFloat32((i+1)*8)
-            table.insert(rewards, reward)
+            table.insert(rewards, {
+                outData:GetInt32(i*8),
+                outData:GetFloat32((i+1)*8)
+            })
         end
     end
 
-    return res, o0, numRewards, rewards
+    return res, o0, rewards
 end
