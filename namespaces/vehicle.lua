@@ -84,3 +84,33 @@ end
 function GetAllWagonPassengers(wagon, itemSet)
     return Citizen.InvokeNative(0x0E558D3A49D759D6, wagon, itemSet, Citizen.ResultAsInteger())
 end
+
+function GetClosestVehicle(x, y, z, radius, modelHash)
+    local itemSet = CreateItemset(true)
+
+    if (not IsItemsetValid(itemSet)) then
+        return 0
+    end
+
+    local itemSetSize = GetEntitiesNearPoint(x, y, z, radius, itemSet, 2)
+    local nearestVehicle = 0
+    local nearestDistance = -1.0
+    local coords = vector3(x, y, z)
+
+    for i = 0, itemSetSize - 1 do
+        local vehicle = GetVehicleFromIndexedItem(GetIndexedItemInItemset(i, itemSet))
+        if (modelHash == 0 or GetEntityModel(vehicle) == modelHash) then
+            local distance = #(GetEntityCoords(vehicle) - coords)
+            if (nearestDistance == -1.0 or distance < nearestDistance) then
+                nearestDistance = distance
+                nearestVehicle = vehicle
+            end
+        end
+    end
+    
+    if (IsItemsetValid(itemSet)) then
+        DestroyItemset(itemSet)
+    end
+
+    return nearestVehicle
+end
