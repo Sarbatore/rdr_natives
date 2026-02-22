@@ -112,6 +112,7 @@ exports("SetExistingBlipLockonEntityPrompt", SetExistingBlipLockonEntityPrompt)
 -- Misc
 exports("DisableCompositeEatPromptThisFrame", DisableCompositeEatPromptThisFrame)
 exports("DisableCompositePickPromptThisFrame", DisableCompositePickPromptThisFrame)
+exports("FireSingleBullet", FireSingleBullet)
 exports("GetGroundZAndMaterialFor3DCoord", GetGroundZAndMaterialFor3DCoord)
 
 -- Network
