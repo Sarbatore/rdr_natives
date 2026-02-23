@@ -21,7 +21,7 @@ function GetScenarioPointsInArea(x, y, z, radius, size)
 end
 
 ---
----@param ped Ped
+---@param entity1 Ped
 ---@param pickup Pickup
 function TaskPickUpWeapon(ped, pickup)
     Citizen.InvokeNative(0x55B0ECFD98596624, ped, pickup)
@@ -436,74 +436,7 @@ function TransitionScenarioToConditionalAnim(ped, scenarioPoint, clipsetDict, cl
     return Citizen.InvokeNative(0x79197F7D2BB5E73A, ped, scenarioPoint, clipsetDict, clipsetName, fromConditionalAnim, flags) == 1
 end
 
----
----@param ped integer
----@param moveNetworkDefName string
----@param params table
----@param entity integer
----@param boneIndex integer
----@param xPos number
----@param yPos number
----@param zPos number
----@param xRot number
----@param yRot number
----@param zRot number
----@param p12 any
----@param p13 any
----@param p14 any
----@param flags integer
----@param p16 any
----@param p17 any
-function TaskMoveNetworkAdvancedByNameWithInitParamsAttached(entity1, moveNetworkDefName, params, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p12, p13, p14, flags, p16, p17, p18)
-    assert(type(params) == "table", "Expected params to be a table of key-value pairs for move network initialization parameters.")
-
-    local paramsStruct = DataView.ArrayBuffer(64*8)
-    if (params[0]) then
-        paramsStruct:SetInt32(0*8, params[0])
-    end
-    paramsStruct:SetInt32(1*8, `DEFAULT`)
-    if (params[2]) then
-        paramsStruct:SetInt32(2*8, params[2])
-    end
-    if (params[3]) then
-        paramsStruct:SetInt32(3*8, params[3])
-    end
-    if (params[4]) then
-        paramsStruct:SetInt64(4*8, VarString(10, "LITERAL_STRING", params[4], Citizen.ResultAsLong()))
-    end
-    if (params[5]) then
-        paramsStruct:SetFloat32(5*8, params[5])
-    end
-    if (params[6]) then
-        paramsStruct:SetInt32(6*8, params[6])
-    end
-    if (params[9]) then
-        paramsStruct:SetInt32(9*8, params[9])
-    end
-    if (params[30]) then
-        paramsStruct:SetInt64(30*8, VarString(10, "LITERAL_STRING", params[30], Citizen.ResultAsLong()))
-    end
-
-    Citizen.InvokeNative(0x7B6A04F98BBAFB2C, entity1, moveNetworkDefName, paramsStruct:Buffer(), entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p12, p13, p14, flags, p16, p17, p18)
-end
-
----
----@param ped Ped
----@param moveNetworkDefName string
----@param params table
----@param xPos float
----@param yPos float
----@param zPos float
----@param xRot float
----@param yRot float
----@param zRot float
----@param p12 integer
----@param p13 float
----@param p14 integer
----@param p15 integer
----@param flags integer
----@param p17 integer
-function TaskMoveNetworkAdvancedByNameWithInitParams(ped, moveNetworkDefName, params, xPos, yPos, zPos, xRot, yRot, zRot, p12, p13, p14, p15, flags, p17)
+local function GetTaskMoveNetworkParamsStruct(params)
     assert(type(params) == "table", "Expected params to be a table of key-value pairs for move network initialization parameters.")
 
     local paramsStruct = DataView.ArrayBuffer(64*8)
@@ -539,8 +472,67 @@ function TaskMoveNetworkAdvancedByNameWithInitParams(ped, moveNetworkDefName, pa
         paramsStruct:SetInt64(33*8, VarString(10, "LITERAL_STRING", params[33], Citizen.ResultAsLong()))
     end
 
-    Citizen.InvokeNative(0x7B6A04F98BBAFB2C, ped, moveNetworkDefName, paramsStruct:Buffer(), xPos, yPos, zPos, xRot, yRot, zRot, p12, p13, p14, p15, flags, p17)
+    return paramsStruct
 end
+
+---
+---@param entity1 integer
+---@param moveNetworkDefName string
+---@param params table
+---@param entity2 integer
+---@param boneIndex integer
+---@param xPos number
+---@param yPos number
+---@param zPos number
+---@param xRot number
+---@param yRot number
+---@param zRot number
+---@param p12 integer
+---@param multiplier number
+---@param p14 integer
+---@param flags integer
+---@param p16 integer
+---@param p17 integer
+function TaskMoveNetworkAdvancedByNameWithInitParamsAttached(entity1, moveNetworkDefName, params, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p12, multiplier, p14, flags, p16, p17, p18)
+    local paramsStruct = GetTaskMoveNetworkParamsStruct(params)
+    Citizen.InvokeNative(0x7B6A04F98BBAFB2C, entity1, moveNetworkDefName, paramsStruct:Buffer(), entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p12, multiplier, p14, flags, p16, p17, p18)
+end
+
+---
+---@param entity integer
+---@param moveNetworkDefName string
+---@param params table
+---@param xPos number
+---@param yPos number
+---@param zPos number
+---@param xRot number
+---@param yRot number
+---@param zRot number
+---@param p12 integer
+---@param multiplier number
+---@param p14 integer
+---@param p15 integer
+---@param flags integer
+---@param p17 integer
+function TaskMoveNetworkAdvancedByNameWithInitParams(entity, moveNetworkDefName, params, xPos, yPos, zPos, xRot, yRot, zRot, p12, multiplier, p14, p15, flags, p17)
+    local paramsStruct = GetTaskMoveNetworkParamsStruct(params)
+    Citizen.InvokeNative(0x7B6A04F98BBAFB2C, entity, moveNetworkDefName, paramsStruct:Buffer(), xPos, yPos, zPos, xRot, yRot, zRot, p12, multiplier, p14, p15, flags, p17)
+end
+
+---
+---@param entity integer
+---@param moveNetworkDefName string
+---@param params table
+---@param multiplier number
+---@param p4 boolean
+---@param animDict string
+---@param flags integer
+function TaskMoveNetworkByNameWithInitParams(entity, moveNetworkDefName, params, multiplier, p4, animDict, flags)
+    local paramsStruct = GetTaskMoveNetworkParamsStruct(params)
+    Citizen.InvokeNative(0x139805C2A67C4795, entity, moveNetworkDefName, paramsStruct:Buffer(), multiplier, p4, animDict, flags)
+end
+
+--TASK::TASK_MOVE_NETWORK_BY_NAME_WITH_INIT_PARAMS(panParam0->f_78, "Script_MUD5_Safecrack_Safe", &(panParam0->f_34), 0, false, 0, 0)
 
 ---Returns the minimum (baseline) whistle/call distance for the given horse bonding level. This value represents the lower bound used when computing whether a horse is considered "near" or "far" relative to the player, and is interpolated against the next level's max.
 ---@param bondingLevel int
