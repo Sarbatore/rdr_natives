@@ -216,6 +216,28 @@ function GetPedNearbyVehicles(ped, size)
     return res, vehicles
 end
 
+
+---
+---@param ped integer
+---@param size integer
+---@param ignoredPedType integer
+---@param p3 integer
+---@return boolean, table
+function GetPedNearbyPeds(ped, size, ignoredPedType, p3)
+    local outData = DataView.ArrayBuffer(16*8)
+    outData:SetInt32(0*8, size or 20)
+
+    local res = Citizen.InvokeNative(0x23F8F5FC7E8C4A6B, ped, outData:Buffer(), ignoredPedType, p3) == 1
+    local numPeds = outData:GetInt32(0*8)
+    local peds = {}
+    if (numPeds > 0) then
+        for i = 1, numPeds do
+            table.insert(peds, outData:GetInt32(i*8))
+        end
+    end
+
+    return res, peds
+end
 --[[
 
 TO DISCOVER:
