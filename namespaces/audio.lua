@@ -14,8 +14,8 @@ local function GetSpeechBuffer(speechName, speechRef, speechLine, speechParam, l
     struct:SetInt32(2*8, speechLine)
     struct:SetInt64(3*8, speechParam)
     struct:SetInt32(4*8, listener)
-    struct:SetInt32(5*8, BoolToNumber(syncOverNetwork))
-    struct:SetInt32(6*8, BoolToNumber(p6))
+    struct:SetInt32(5*8, syncOverNetwork and 1 or 0)
+    struct:SetInt32(6*8, p6 and 1 or 0)
 
     return struct:Buffer()
 end

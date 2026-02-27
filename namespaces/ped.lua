@@ -197,7 +197,7 @@ function GetCarriedAttachedInfoForSlot(ped, carriableSlot)
 end
 
 ---
----@param ped Ped
+---@param ped integer
 ---@param size integer
 ---@return boolean, table
 function GetPedNearbyVehicles(ped, size)

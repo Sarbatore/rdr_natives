@@ -245,8 +245,8 @@ function GiveWeaponToPedWithOptions(ped, weapon, slotId, attachPoint, addReason,
     data:SetInt32(7*8, addReason)
     data:SetFloat32(8*8, p4)
     data:SetFloat32(9*8, p5)
-    data:SetInt32(11*8, BoolToNumber(forceInHand))
-    data:SetInt32(12*8, BoolToNumber(forceInHolster))
+    data:SetInt32(11*8, forceInHand and 1 or 0)
+    data:SetInt32(12*8, forceInHolster and 1 or 0)
     data:SetInt32(14*8, p8)
     local outData = DataView.ArrayBuffer(32*8)
 

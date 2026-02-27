@@ -4,6 +4,8 @@ exports("DeactivateCoverLayer", DeactivateCoverLayer)
 exports("GetPedCoverPointTransitionState", GetPedCoverPointTransitionState)
 exports("GetPedFromCoverPoint", GetPedFromCoverPoint)
 exports("RequestWeaponCoverAnimForPed", RequestWeaponCoverAnimForPed)
+exports("TaskEnterCover", TaskEnterCover)
+exports("TaskExitCover", TaskExitCover)
 
 -- Aitransport
 exports("TaskEnterTransport", TaskEnterTransport)
@@ -19,7 +21,7 @@ exports("PlayPedAmbientSpeechNative", PlayPedAmbientSpeechNative)
 exports("PlaySoundFromScriptedSpeech", PlaySoundFromScriptedSpeech)
 
 -- Bounty
-exports("GetBountyOnPlayer", GetBountyOnPlayer)
+exports("BountyGetBountyOnPlayer", BountyGetBountyOnPlayer)
 
 -- Cam
 exports("SetCamDofAndFocalParams", SetCamDofAndFocalParams)
@@ -117,6 +119,7 @@ exports("GetGroundZAndMaterialFor3DCoord", GetGroundZAndMaterialFor3DCoord)
 
 -- Network
 exports("NetworkSessionRequestTerminate", NetworkSessionRequestTerminate)
+exports("NetworkHandleFromPlayer", NetworkHandleFromPlayer)
 exports("NetworkUnregisterNetworkedEntity", NetworkUnregisterNetworkedEntity)
 
 -- Object
@@ -132,6 +135,7 @@ exports("ComputeSpeedForPedMoveBlendRatio", ComputeSpeedForPedMoveBlendRatio)
 exports("GetCarriedAttachedInfoForSlot", GetCarriedAttachedInfoForSlot)
 exports("GetNumReservedStamina", GetNumReservedStamina)
 exports("GetPedDirtLevel", GetPedDirtLevel)
+exports("GetPedNearbyPeds", GetPedNearbyPeds)
 exports("GetPedNearbyVehicles", GetPedNearbyVehicles)
 exports("HasPedBeenShotByPlayerRecently", HasPedBeenShotByPlayerRecently)
 exports("HasPedInteractedWithPlayerRecently", HasPedInteractedWithPlayerRecently)

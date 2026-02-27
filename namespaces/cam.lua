@@ -29,10 +29,10 @@ function SetCamDofAndFocalParams(cam, dofStrength, dofNear, dofFar, focalLength,
     inData:SetFloat32(3*8, focalLength)
     inData:SetFloat32(4*8, minFocal)
     inData:SetFloat32(5*8, maxFocal)
-    inData:SetInt32(6*8, BoolToNumber(enableDof))
-    inData:SetInt32(7*8, BoolToNumber(p8))
-    inData:SetInt32(8*8, BoolToNumber(p9))
-    inData:SetInt32(9*8, BoolToNumber(p10))
+    inData:SetInt32(6*8, enableDof and 1 or 0)
+    inData:SetInt32(7*8, p8 and 1 or 0)
+    inData:SetInt32(8*8, p9 and 1 or 0)
+    inData:SetInt32(9*8, p10 and 1 or 0)
 
     Citizen.InvokeNative(0xE4B7945EF4F1BFB2, cam, inData:Buffer())
 end
