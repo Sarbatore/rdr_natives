@@ -58,6 +58,9 @@ exports("GetWeaponWheelHighlightedWeaponHash", GetWeaponWheelHighlightedWeaponHa
 exports("RemoveMpGamerTag", RemoveMpGamerTag)
 exports("UiPromptHasMashModeJustPressed", UiPromptHasMashModeJustPressed)
 
+-- Ik
+exports("InverseKinematicsRequestLookAt", InverseKinematicsRequestLookAt)
+
 -- Inventory
 exports("InventoryAddItemWithGuid", InventoryAddItemWithGuid)
 exports("InventoryApplyWeaponStatsToEntry", InventoryApplyWeaponStatsToEntry)
@@ -282,6 +285,7 @@ exports("UiStickyFeedCreateWarningMessage", UiStickyFeedCreateWarningMessage)
 exports("AreAnyVehicleWheelsDestroyed", AreAnyVehicleWheelsDestroyed)
 exports("BreakVehicleStraps", BreakVehicleStraps)
 exports("DeleteMissionTrain", DeleteMissionTrain)
+exports("DetermineVehicleCompartmentState", DetermineVehicleCompartmentState)
 exports("GetAllWagonPassengers", GetAllWagonPassengers)
 exports("GetBalloonObjectFromVehicle", GetBalloonObjectFromVehicle)
 exports("GetClosestVehicle", GetClosestVehicle)
@@ -291,6 +295,7 @@ exports("GetStationFromTrainStationData", GetStationFromTrainStationData)
 exports("GetTrainTrackCoordAtJunctionIndex", GetTrainTrackCoordAtJunctionIndex)
 exports("RecoverDraftVehicleFallingLog", RecoverDraftVehicleFallingLog)
 exports("ReturnTrainInfoFromHandle", ReturnTrainInfoFromHandle)
+exports("SetTrainCollisionAvoidanceEnabled", SetTrainCollisionAvoidanceEnabled)
 exports("SetTrainWhistleEnabled", SetTrainWhistleEnabled)
 
 -- Weapon

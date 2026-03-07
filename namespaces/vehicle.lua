@@ -85,6 +85,28 @@ function GetAllWagonPassengers(wagon, itemSet)
     return Citizen.InvokeNative(0x0E558D3A49D759D6, wagon, itemSet, Citizen.ResultAsInteger())
 end
 
+---
+---@param vehicle integer
+---@param ped integer
+---@return integer
+function DetermineVehicleCompartmentState(vehicle, ped)
+    return Citizen.InvokeNative(0x877EA24EB1614495, Citizen.PointerValueInt(), vehicle, ped)
+end
+
+---
+---@param trainVehicle integer
+---@param enable integer
+function SetTrainCollisionAvoidanceEnabled(trainVehicle, enable)
+    Citizen.InvokeNative(0xE6BD7DD3FD474415, trainVehicle, enable)
+end
+
+---
+---@param x number
+---@param y number
+---@param z number
+---@param radius number
+---@param modelHash integer
+---@return integer vehicle
 function GetClosestVehicle(x, y, z, radius, modelHash)
     local itemSet = CreateItemset(true)
 
