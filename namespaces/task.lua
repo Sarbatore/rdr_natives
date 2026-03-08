@@ -549,6 +549,25 @@ function GetWhistleRangeMaxForBondingLevel(bondingLevel)
 end
 
 ---
+---@param ped integer
+---@param targetEntity integer
+---@param x number
+---@param y number
+---@param z number
+---@param duration integer
+---@param firingPattern integer
+function TaskShootWithWeapon(ped, targetEntity, x, y, z, duration, firingPattern)
+    local data = DataView.ArrayBuffer(16*8)
+    data:SetInt32(0*8, targetEntity)
+    data:SetFloat32(1*8, x)
+    data:SetFloat32(2*8, y)
+    data:SetFloat32(3*8, z)
+    data:SetInt32(4*8, duration)
+    data:SetInt32(5*8, firingPattern)
+    Citizen.InvokeNative(0x08AA95E8298AE772, ped, data:Buffer())
+end
+
+---
 ---@param x float
 ---@param y float
 ---@param z float

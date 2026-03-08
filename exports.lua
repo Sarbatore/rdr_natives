@@ -250,6 +250,7 @@ exports("TaskMoveNetworkAdvancedByNameWithInitParamsAttached", TaskMoveNetworkAd
 exports("TaskMoveNetworkByNameWithInitParams", TaskMoveNetworkByNameWithInitParams)
 exports("TaskPickUpWeapon", TaskPickUpWeapon)
 exports("TaskPointAtEntity", TaskPointAtEntity)
+exports("TaskShootWithWeapon", TaskShootWithWeapon)
 exports("TaskVehicleAddNextDestination", TaskVehicleAddNextDestination)
 exports("TaskVehicleIsAtDestination", TaskVehicleIsAtDestination)
 exports("TransitionScenarioToConditionalAnim", TransitionScenarioToConditionalAnim)

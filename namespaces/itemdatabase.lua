@@ -143,7 +143,7 @@ end
 ---@param category Hash
 ---@param cost Hash
 ---@param p5 Hash
----@param flags integer
+---@param flags integer Number from 0 to 3
 ---@param itemType Hash
 ---@param ciTag Hash
 ---@return integer, integer
@@ -648,4 +648,18 @@ function N_0xD076DB9B96FAADF1(p0)
     end
 
     return res, o0, rewards
+end
+
+function N_0x799FCD53358ED5FA(hash, p1)
+    local data = DataView.ArrayBuffer(16*8)
+    data:SetInt32(0*8, p1)
+    local num = Citizen.InvokeNative(0x799FCD53358ED5FA, hash, data:Buffer(), Citizen.ResultAsInteger())
+    return num
+end
+
+function N_0xC4146375D8A0B374(hash, index)
+    local data = DataView.ArrayBuffer(16*8)
+    local outData = DataView.ArrayBuffer(16*8)--
+    local retval = Citizen.InvokeNative(0xC4146375D8A0B374, hash, data:Buffer(), index, outData:Buffer())
+    return retval
 end
