@@ -42,6 +42,8 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetPedCoverPointTransitionState` | `ped` |
 | `GetPedFromCoverPoint` | `coverPoint` |
 | `RequestWeaponCoverAnimForPed` | `ped, weaponHash` |
+| `TaskEnterCover` | `ped, coverPoint, x, y, z` |
+| `TaskExitCover` | `ped, p1, x, y, z` |
 
 ## Aitransport
 
@@ -66,7 +68,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `GetBountyOnPlayer` | `playerId` |
+| `BountyGetBountyOnPlayer` | `playerId` |
 
 ## Cam
 
@@ -124,6 +126,13 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `RemoveMpGamerTag` | `gamerTag` |
 | `UiPromptHasMashModeJustPressed` | `prompt` |
 
+## Ik
+
+| Function | Parameters |
+|----------|------------|
+| `InverseKinematicsIsActive` | `ped, ik` |
+| `InverseKinematicsRequestLookAt` | `ped, x, y, z, lookAtEntity, flags, p6, duration` |
+
 ## Inventory
 
 | Function | Parameters |
@@ -146,6 +155,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ItemdatabaseCreateItemCollection` | `slotId, slotId2, tag, category, cost, p5, flags, itemType, ciTag` |
 | `ItemdatabaseFilloutAcquireCost` | `item, costType` |
 | `ItemdatabaseFilloutAwardItemInfo` | `award, index` |
+| `ItemdatabaseFilloutAwardUnlockFlag` | `award, index` |
 | `ItemdatabaseFilloutBundle` | `bundle, costtype, index` |
 | `ItemdatabaseFilloutItem` | `item, costtype, index` |
 | `ItemdatabaseFilloutItemByName` | `item` |
@@ -154,17 +164,29 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ItemdatabaseFilloutItemInfo` | `item` |
 | `ItemdatabaseFilloutModifier` | `modifier, index` |
 | `ItemdatabaseFilloutPriceModifierByKey` | `key` |
-| `ItemdatabaseFilloutSellPrice` | `item, sellType` |
+| `ItemdatabaseFilloutSellPrice` | `itemHash, sellType` |
 | `ItemdatabaseFilloutTagData` | `item, size` |
 | `ItemdatabaseFilloutUiData` | `item` |
+| `ItemdatabaseGetAcquireCost` | `itemHash, index` |
 | `ItemdatabaseGetAwardAcquireCost` | `award, index` |
 | `ItemdatabaseGetAwardCostModifiers` | `award` |
+| `ItemdatabaseGetAwardUnlockFlagCount` | `award` |
 | `ItemdatabaseGetBundleItemCount` | `bundleId` |
 | `ItemdatabaseGetBundleItemInfo` | `bundleId, index` |
 | `ItemdatabaseGetFitsSlotInfo` | `category, index` |
 | `ItemdatabaseGetItemPriceModifiers` | `key` |
+| `ItemdatabaseGetShopInventoriesItemInfo` | `shopType, shopInventoryIndex` |
+| `ItemdatabaseGetShopInventoriesItemInfoByKey` | `shopType, item` |
+| `ItemdatabaseGetShopInventoriesRequirementGroupInfo` | `shopType, item, groupIndex` |
 | `ItemdatabaseGetShopInventoriesRequirementInfo` | `shopType, key, groupIndex, requirementIndex` |
-| `ItemdatabaseGetShopLayoutPageInfoByIndex` | `layout, index` |
+| `ItemdatabaseGetShopLayoutInfo` | `layoutHash` |
+| `ItemdatabaseGetShopLayoutMenuInfoById` | `layoutHash, menuHash` |
+| `ItemdatabaseGetShopLayoutMenuInfoByIndex` | `layoutHash, menuHash, index` |
+| `ItemdatabaseGetShopLayoutMenuPageKey` | `layoutHash, menuHash, index` |
+| `ItemdatabaseGetShopLayoutPageInfoByIndex` | `layoutHash, index` |
+| `ItemdatabaseGetShopLayoutPageInfoByKey` | `layoutHash, pageHash` |
+| `ItemdatabaseGetShopLayoutPageItemKey` | `layoutHash, pageHash, index` |
+| `ItemdatabaseGetShopLayoutRootMenuInfo` | `layoutHash, index` |
 
 ## Law
 
@@ -194,12 +216,14 @@ I hope you guys will participate to this repository. In order to maintain optima
 |----------|------------|
 | `DisableCompositeEatPromptThisFrame` | `composite, disable` |
 | `DisableCompositePickPromptThisFrame` | `composite, disable` |
+| `FireSingleBullet` | `xStart, yStart, zStart, xEnd, yEnd, zEnd, weaponHash, damage, p8, investigator, entity2, entity3, p12, p13, p14, p15, p16, p18, p19` |
 | `GetGroundZAndMaterialFor3DCoord` | `x, y, z, p1` |
 
 ## Network
 
 | Function | Parameters |
 |----------|------------|
+| `NetworkHandleFromPlayer` | `player` |
 | `NetworkSessionRequestTerminate` | `` |
 | `NetworkUnregisterNetworkedEntity` | `entity` |
 
@@ -222,6 +246,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetCarriedAttachedInfoForSlot` | `ped, carriableSlot` |
 | `GetNumReservedStamina` | `ped` |
 | `GetPedDirtLevel` | `ped, p1` |
+| `GetPedNearbyPeds` | `ped, size, ignoredPedType, p3` |
 | `GetPedNearbyVehicles` | `ped, size` |
 | `HasPedBeenShotByPlayerRecently` | `player, ped, duration` |
 | `HasPedInteractedWithPlayerRecently` | `ped, player, flag, duration` |
@@ -340,9 +365,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `TaskFollowWaypointRecording` | `ped, waypointRecording, startIndex, flags, endIndex, patrol, aimWeapon, durationMs` |
 | `TaskForceAimAtCoord` | `ped, x, y, z, p4, p5, p6` |
 | `TaskForceThrowableAtEntityWhenAiming` | `ped, target, durationMs, p3, p4` |
-| `TaskMoveNetworkAdvancedByNameWithInitParams` | `ped, moveNetworkDefName, clipset, eventName, stateName, phaseName, xPos, yPos, zPos, xRot, yRot, zRot, p12, p13, p14, p15, flag, p17` |
+| `TaskMoveNetworkAdvancedByNameWithInitParams` | `entity, moveNetworkDefName, params, xPos, yPos, zPos, xRot, yRot, zRot, p12, multiplier, p14, p15, flags, p17` |
+| `TaskMoveNetworkAdvancedByNameWithInitParamsAttached` | `entity1, moveNetworkDefName, params, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p12, multiplier, p14, flags, p16, p17, p18` |
+| `TaskMoveNetworkByNameWithInitParams` | `entity, moveNetworkDefName, params, multiplier, p4, animDict, flags` |
 | `TaskPickUpWeapon` | `ped, pickup` |
 | `TaskPointAtEntity` | `ped, targetEntity, duration` |
+| `TaskShootWithWeapon` | `ped, targetEntity, x, y, z, duration, firingPattern` |
 | `TaskVehicleAddNextDestination` | `vehicle, x, y, z` |
 | `TaskVehicleIsAtDestination` | `vehicle, x, y, z` |
 | `TransitionScenarioToConditionalAnim` | `ped, scenarioPoint, clipsetDict, clipsetName, fromConditionalAnim, flags` |
@@ -380,6 +408,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `UiStickyFeedCreateErrorMessage` | `data` |
 | `UiStickyFeedCreateWarningMessage` | `data` |
 
+## Uilog
+
+| Function | Parameters |
+|----------|------------|
+| `UilogPostNotification` | `toast, body, p2, p3, p4, p5` |
+
 ## Vehicle
 
 | Function | Parameters |
@@ -387,14 +421,18 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `AreAnyVehicleWheelsDestroyed` | `vehicle` |
 | `BreakVehicleStraps` | `vehicle, coords` |
 | `DeleteMissionTrain` | `trainVehicle` |
+| `DetermineVehicleCompartmentState` | `vehicle, ped` |
 | `GetAllWagonPassengers` | `wagon, itemSet` |
 | `GetBalloonObjectFromVehicle` | `vehicle` |
+| `GetClosestVehicle` | `x, y, z, radius, modelHash` |
 | `GetNumDraftVehicleLogs` | `vehicle` |
 | `GetNumDraftVehicleStraps` | `vehicle` |
 | `GetStationFromTrainStationData` | `trackIndex, stationIndex` |
 | `GetTrainTrackCoordAtJunctionIndex` | `trackConfig, index, p2` |
 | `RecoverDraftVehicleFallingLog` | `vehicle` |
 | `ReturnTrainInfoFromHandle` | `trainVehicle` |
+| `SetBalloonRoute` | `balloonVehicle, x, y, z, autoPower, speed` |
+| `SetTrainCollisionAvoidanceEnabled` | `trainVehicle, enable` |
 | `SetTrainWhistleEnabled` | `trainVehicle, enable` |
 
 ## Weapon

@@ -136,3 +136,14 @@ function GetClosestVehicle(x, y, z, radius, modelHash)
 
     return nearestVehicle
 end
+
+---Sets a hot air balloon's travel target position.
+---@param balloonVehicle integer
+---@param x number
+---@param y number
+---@param z number
+---@param autoPower boolean
+---@param speed number
+function SetBalloonRoute(balloonVehicle, x, y, z, autoPower, speed)
+    Citizen.InvokeNative(0x2200AB13CBD10F4E, balloonVehicle, x, y, z, autoPower, speed)
+end

@@ -59,6 +59,7 @@ exports("RemoveMpGamerTag", RemoveMpGamerTag)
 exports("UiPromptHasMashModeJustPressed", UiPromptHasMashModeJustPressed)
 
 -- Ik
+exports("InverseKinematicsIsActive", InverseKinematicsIsActive)
 exports("InverseKinematicsRequestLookAt", InverseKinematicsRequestLookAt)
 
 -- Inventory
@@ -77,6 +78,7 @@ exports("SetItemPromptInfoRequest", SetItemPromptInfoRequest)
 exports("ItemdatabaseCreateItemCollection", ItemdatabaseCreateItemCollection)
 exports("ItemdatabaseFilloutAcquireCost", ItemdatabaseFilloutAcquireCost)
 exports("ItemdatabaseFilloutAwardItemInfo", ItemdatabaseFilloutAwardItemInfo)
+exports("ItemdatabaseFilloutAwardUnlockFlag", ItemdatabaseFilloutAwardUnlockFlag)
 exports("ItemdatabaseFilloutBundle", ItemdatabaseFilloutBundle)
 exports("ItemdatabaseFilloutItem", ItemdatabaseFilloutItem)
 exports("ItemdatabaseFilloutItemByName", ItemdatabaseFilloutItemByName)
@@ -91,12 +93,23 @@ exports("ItemdatabaseFilloutUiData", ItemdatabaseFilloutUiData)
 exports("ItemdatabaseGetAcquireCost", ItemdatabaseGetAcquireCost)
 exports("ItemdatabaseGetAwardAcquireCost", ItemdatabaseGetAwardAcquireCost)
 exports("ItemdatabaseGetAwardCostModifiers", ItemdatabaseGetAwardCostModifiers)
+exports("ItemdatabaseGetAwardUnlockFlagCount", ItemdatabaseGetAwardUnlockFlagCount)
 exports("ItemdatabaseGetBundleItemCount", ItemdatabaseGetBundleItemCount)
 exports("ItemdatabaseGetBundleItemInfo", ItemdatabaseGetBundleItemInfo)
 exports("ItemdatabaseGetFitsSlotInfo", ItemdatabaseGetFitsSlotInfo)
 exports("ItemdatabaseGetItemPriceModifiers", ItemdatabaseGetItemPriceModifiers)
+exports("ItemdatabaseGetShopInventoriesItemInfo", ItemdatabaseGetShopInventoriesItemInfo)
+exports("ItemdatabaseGetShopInventoriesItemInfoByKey", ItemdatabaseGetShopInventoriesItemInfoByKey)
+exports("ItemdatabaseGetShopInventoriesRequirementGroupInfo", ItemdatabaseGetShopInventoriesRequirementGroupInfo)
 exports("ItemdatabaseGetShopInventoriesRequirementInfo", ItemdatabaseGetShopInventoriesRequirementInfo)
+exports("ItemdatabaseGetShopLayoutInfo", ItemdatabaseGetShopLayoutInfo)
+exports("ItemdatabaseGetShopLayoutMenuInfoById", ItemdatabaseGetShopLayoutMenuInfoById)
+exports("ItemdatabaseGetShopLayoutMenuInfoByIndex", ItemdatabaseGetShopLayoutMenuInfoByIndex)
+exports("ItemdatabaseGetShopLayoutMenuPageKey", ItemdatabaseGetShopLayoutMenuPageKey)
 exports("ItemdatabaseGetShopLayoutPageInfoByIndex", ItemdatabaseGetShopLayoutPageInfoByIndex)
+exports("ItemdatabaseGetShopLayoutPageInfoByKey", ItemdatabaseGetShopLayoutPageInfoByKey)
+exports("ItemdatabaseGetShopLayoutPageItemKey", ItemdatabaseGetShopLayoutPageItemKey)
+exports("ItemdatabaseGetShopLayoutRootMenuInfo", ItemdatabaseGetShopLayoutRootMenuInfo)
 
 -- Law
 exports("GetPlayerRegisteredCrime", GetPlayerRegisteredCrime)
@@ -121,8 +134,8 @@ exports("FireSingleBullet", FireSingleBullet)
 exports("GetGroundZAndMaterialFor3DCoord", GetGroundZAndMaterialFor3DCoord)
 
 -- Network
-exports("NetworkSessionRequestTerminate", NetworkSessionRequestTerminate)
 exports("NetworkHandleFromPlayer", NetworkHandleFromPlayer)
+exports("NetworkSessionRequestTerminate", NetworkSessionRequestTerminate)
 exports("NetworkUnregisterNetworkedEntity", NetworkUnregisterNetworkedEntity)
 
 -- Object
@@ -282,6 +295,9 @@ exports("UiStickyFeedCreateDeathFailMessage", UiStickyFeedCreateDeathFailMessage
 exports("UiStickyFeedCreateErrorMessage", UiStickyFeedCreateErrorMessage)
 exports("UiStickyFeedCreateWarningMessage", UiStickyFeedCreateWarningMessage)
 
+-- Uilog
+exports("UilogPostNotification", UilogPostNotification)
+
 -- Vehicle
 exports("AreAnyVehicleWheelsDestroyed", AreAnyVehicleWheelsDestroyed)
 exports("BreakVehicleStraps", BreakVehicleStraps)
@@ -296,6 +312,7 @@ exports("GetStationFromTrainStationData", GetStationFromTrainStationData)
 exports("GetTrainTrackCoordAtJunctionIndex", GetTrainTrackCoordAtJunctionIndex)
 exports("RecoverDraftVehicleFallingLog", RecoverDraftVehicleFallingLog)
 exports("ReturnTrainInfoFromHandle", ReturnTrainInfoFromHandle)
+exports("SetBalloonRoute", SetBalloonRoute)
 exports("SetTrainCollisionAvoidanceEnabled", SetTrainCollisionAvoidanceEnabled)
 exports("SetTrainWhistleEnabled", SetTrainWhistleEnabled)
 
@@ -336,4 +353,3 @@ exports("SetPedWeaponOnBack", SetPedWeaponOnBack)
 exports("SetProjectileEffectRadius", SetProjectileEffectRadius)
 exports("SetProjectileFuseTime", SetProjectileFuseTime)
 exports("SetVehicleWeaponReloadMode", SetVehicleWeaponReloadMode)
-
