@@ -5,6 +5,21 @@ function IsModelAPortablePickup(model)
     return Citizen.InvokeNative(0x20135AF9C10D2A3D, model) == 1
 end
 
+---Returns the number of breakable fragments (indexed sections) defined for the specified object.
+---@param object integer
+---@return integer
+function GetObjectFragmentCount(object)
+    return Citizen.InvokeNative(0x58DE624FA7FB0E7F, object, Citizen.ResultAsInteger())
+end
+
+---Damages or breaks a specific predefined fragment/section of an object using the provided fragment index.
+---@param object integer
+---@param index integer
+function DamageObjectFragmentByIndex(object, index)
+    Citizen.InvokeNative(0xAAACF33CBF9B990A, object, index)
+end
+
+
 ---@param p0 Any
 ---@return integer
 function N_0X08C5825A2932EA7B(p0)

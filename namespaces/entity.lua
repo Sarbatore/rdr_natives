@@ -41,14 +41,58 @@ function ForceTrainWagonPopulation(trainWagon, toggle)
 end
 
 ---
----@param hash Hash
----@return boolean, Hash, Hash, Hash
-function N_0x5744562E973E33CD(hash)
+---@param entity1 integer
+---@param entity2 integer
+---@return float
+function GetEntityCollisionIntensity(entity1, entity2)
+    return Citizen.InvokeNative(0xDFC2B226D56D85F6, entity1, entity2, Citizen.ResultAsFloat())
+end
+
+---
+---@param entity integer
+---@param peltAsset integer
+---@param albedoHash integer
+---@param p3 integer
+function SetAnimalPeltTexture(entity, peltAsset, albedoHash, p3)
+    Citizen.InvokeNative(0xDD03FC2089AD093C, entity, peltAsset, albedoHash, p3)
+end
+
+---Checks whether the specified model can be handled through the vegetation modifier path.
+---@param modelHash integer
+---@return boolean
+function IsCanModelUseVegModifier(modelHash)
+    return Citizen.InvokeNative(0xD4636C2EDB0DEA8A, modelHash) == 1
+end
+
+---Set entity anim age, only used with torch weapon in R* scripts
+---@param entity integer
+---@param alpha number
+function SetEntityAnimAge(entity, alpha)
+    Citizen.InvokeNative(0xC0EDEF16D90661EE, entity, alpha)
+end
+
+---
+---@param entity1 integer
+---@param entity2 integer
+---@param p2 boolean
+---@param p3 boolean
+---@return boolean
+function N_0x3EC28DA1FFAC9DDD(entity1, entity2, p2, p3)
+    return Citizen.InvokeNative(0x3EC28DA1FFAC9DDD, entity1, entity2, p2, p3) == 1
+end
+
+---
+---@param albedoHash integer
+---@return boolean
+---@return integer txdHash
+---@return integer txdHash2
+---@return integer txdHash3
+function N_0x5744562E973E33CD(albedoHash)
     local outData = DataView.ArrayBuffer(1*8)
     local outData2 = DataView.ArrayBuffer(1*8)
     local outData3 = DataView.ArrayBuffer(1*8)
 
-    local res = Citizen.InvokeNative(0x5744562E973E33CD, hash, outData:Buffer(), outData2:Buffer(), outData2:Buffer()) == 1
+    local res = Citizen.InvokeNative(0x5744562E973E33CD, albedoHash, outData:Buffer(), outData2:Buffer(), outData3:Buffer(), 0) == 1
     local txdHash  = outData:GetInt32(0)
     local txdHash2 = outData2:GetInt32(0)
     local txdHash3 = outData3:GetInt32(0)
@@ -70,4 +114,18 @@ function N_0X383F64263F946E45(object, p1, ped, p3, p4)
     res = Citizen.InvokeNative(0X383F64263F946E45, outData:Buffer(), object, p1, ped, p3, p4) == 1
 
     return res
+end
+
+---
+---@param entity1 integer
+---@param p1 integer
+---@param entity2 integer
+---@return retval boolean
+---@return unk integer
+function N_0x0CCEFC6C2C95DA2A(entity1, p1, entity2)
+    local outData = DataView.ArrayBuffer(1*8)
+    local retval = Citizen.InvokeNative(0x0CCEFC6C2C95DA2A, outData:Buffer(), entity1, p1, entity2, Citizen.ResultAsInteger())
+    local unk = outData:GetInt32(0)
+
+    return retval, unk
 end

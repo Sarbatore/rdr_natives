@@ -34,8 +34,12 @@ exports("DatabindingRemoveUiItemFromListByIndex", DatabindingRemoveUiItemFromLis
 -- Entity
 exports("AttachEntityToCoordsPhysically", AttachEntityToCoordsPhysically)
 exports("ForceTrainWagonPopulation", ForceTrainWagonPopulation)
+exports("GetEntityCollisionIntensity", GetEntityCollisionIntensity)
 exports("GetEntityLootingPed", GetEntityLootingPed)
 exports("GetOffsetFromEntityBone", GetOffsetFromEntityBone)
+exports("IsCanModelUseVegModifier", IsCanModelUseVegModifier)
+exports("SetAnimalPeltTexture", SetAnimalPeltTexture)
+exports("SetEntityAnimAge", SetEntityAnimAge)
 
 -- Fire
 exports("AddExplosionWithDamageCauser", AddExplosionWithDamageCauser)
@@ -139,6 +143,8 @@ exports("NetworkSessionRequestTerminate", NetworkSessionRequestTerminate)
 exports("NetworkUnregisterNetworkedEntity", NetworkUnregisterNetworkedEntity)
 
 -- Object
+exports("DamageObjectFragmentByIndex", DamageObjectFragmentByIndex)
+exports("GetObjectFragmentCount", GetObjectFragmentCount)
 exports("IsModelAPortablePickup", IsModelAPortablePickup)
 
 -- Ped
@@ -313,6 +319,7 @@ exports("GetTrainTrackCoordAtJunctionIndex", GetTrainTrackCoordAtJunctionIndex)
 exports("RecoverDraftVehicleFallingLog", RecoverDraftVehicleFallingLog)
 exports("ReturnTrainInfoFromHandle", ReturnTrainInfoFromHandle)
 exports("SetBalloonRoute", SetBalloonRoute)
+exports("SetOarsRowingSpeed", SetOarsRowingSpeed)
 exports("SetTrainCollisionAvoidanceEnabled", SetTrainCollisionAvoidanceEnabled)
 exports("SetTrainWhistleEnabled", SetTrainWhistleEnabled)
 

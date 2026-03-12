@@ -39,31 +39,6 @@ local function UiFeedToastBuffer(p0, title, text, p3, textureDict, textureName, 
 	return struct:Buffer()
 end
 
---[[
-
-]]
-
-RegisterCommand("notif", function()
-    local title = VarString(2, "NATURALIST_CATEGORY_TRADE_IN_TITLE")
-    local text = VarString(2, "NATURALIST_CATEGORY_TRADE_IN_DESC")
-    local textureDict = `inventory_items_mp`
-    local textureName = `clothing_generic_f_chemise`
-    local textureColor = `COLOR_BLUE`
-
-    local extraText = VarString(2, "RECIPE_COLLECT_VIEW")
-    local duration = 1000
-    local soundDict = "Mission_Complete_Sounds"
-    local soundName = "Mission_Complete_Enter"
-    local subCategoryToastAppId = CompendiumGetSubcategoryToastAppId(`ANIMALS`, `DESERT`)
-
-    --UiFeedPostSampleToastWithAppLink(duration, title, text, textureDict, textureName, subCategoryToastAppId, 0, false, extraText)
-    --UiFeedPostCollectorToast(duration, title, text, textureDict, textureName, 773314749, extraText, `collectors_bag_details`)
-    --UiFeedPostRankupToast(duration, title, text, textureDict, textureName, textureColor, subCategoryToastAppId, extraText, 0, 0, 0, 0, 0, 0, 0, 0)
-    --UiFeedPostInteractiveToast()
-    --UiFeedPostSampleNotification()
-    --UiFeedPostSampleToast()
-end)
-
 ---@param duration integer
 ---@param title long
 ---@param text long
