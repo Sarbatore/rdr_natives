@@ -34,11 +34,15 @@ exports("DatabindingRemoveUiItemFromListByIndex", DatabindingRemoveUiItemFromLis
 -- Entity
 exports("AttachEntityToCoordsPhysically", AttachEntityToCoordsPhysically)
 exports("ForceTrainWagonPopulation", ForceTrainWagonPopulation)
+exports("GetCollisionIntensity", GetCollisionIntensity)
 exports("GetEntityCollisionIntensity", GetEntityCollisionIntensity)
 exports("GetEntityLootingPed", GetEntityLootingPed)
 exports("GetOffsetFromEntityBone", GetOffsetFromEntityBone)
 exports("IsCanModelUseVegModifier", IsCanModelUseVegModifier)
+exports("IsTrainInteriorLoaded", IsTrainInteriorLoaded)
+exports("PreloadEntityInterior", PreloadEntityInterior)
 exports("SetAnimalPeltTexture", SetAnimalPeltTexture)
+exports("SetAutoPickup", SetAutoPickup)
 exports("SetEntityAnimAge", SetEntityAnimAge)
 
 -- Fire
@@ -146,6 +150,7 @@ exports("NetworkUnregisterNetworkedEntity", NetworkUnregisterNetworkedEntity)
 exports("DamageObjectFragmentByIndex", DamageObjectFragmentByIndex)
 exports("GetObjectFragmentCount", GetObjectFragmentCount)
 exports("IsModelAPortablePickup", IsModelAPortablePickup)
+exports("IsPickupPickableForTeam", IsPickupPickableForTeam)
 
 -- Ped
 exports("ApplyColdToPed", ApplyColdToPed)
@@ -360,3 +365,4 @@ exports("SetPedWeaponOnBack", SetPedWeaponOnBack)
 exports("SetProjectileEffectRadius", SetProjectileEffectRadius)
 exports("SetProjectileFuseTime", SetProjectileFuseTime)
 exports("SetVehicleWeaponReloadMode", SetVehicleWeaponReloadMode)
+

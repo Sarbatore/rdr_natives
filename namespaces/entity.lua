@@ -71,6 +71,38 @@ function SetEntityAnimAge(entity, alpha)
     Citizen.InvokeNative(0xC0EDEF16D90661EE, entity, alpha)
 end
 
+---Checks whether the entity's interior is currently loaded by the game engine.
+---@param entity integer
+---@return boolean
+function IsTrainInteriorLoaded(entity)
+    return Citizen.InvokeNative(0xC2E71D7E0A7B4C89, entity) == 1
+end
+
+---Enable interiors for train carriages that the game engine has disabled due to distance-based optimization.
+---@param entity integer Entity whose interior state will be changed
+---@param toggle boolean true = load interior, false = unload interior
+function PreloadEntityInterior(entity, toggle)
+    Citizen.InvokeNative(0x6C31B06E91518269, entity, toggle)
+end
+
+---Configures automatic pickup behavior for a carriable entity.
+---@param entity integer
+---@param noPickupAnim boolean
+---@param autoPickupRange number
+---@param p3 number
+---@param p4 number
+---@param enablePickupPrompt boolean
+function SetAutoPickup(entity, noPickupAnim, autoPickupRange, p3, p4, enablePickupPrompt)
+    Citizen.InvokeNative(0xBD94CECFB2D65119, entity, noPickupAnim, autoPickupRange, p3, p4, enablePickupPrompt)
+end
+
+---Returns the collision intensity currently registered on the specified entity.
+---@param entity integer
+---@return number
+function GetCollisionIntensity(entity)
+    return Citizen.InvokeNative(0x6D58167F62238284, entity, Citizen.ResultAsFloat())
+end
+
 ---
 ---@param entity1 integer
 ---@param entity2 integer
