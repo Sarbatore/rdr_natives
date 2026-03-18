@@ -150,6 +150,7 @@ exports("NetworkUnregisterNetworkedEntity", NetworkUnregisterNetworkedEntity)
 
 -- Object
 exports("DamageObjectFragmentByIndex", DamageObjectFragmentByIndex)
+exports("GetClosestObjectOfType", GetClosestObjectOfType)
 exports("GetObjectFragmentCount", GetObjectFragmentCount)
 exports("IsModelAPortablePickup", IsModelAPortablePickup)
 exports("IsPickupPickableForTeam", IsPickupPickableForTeam)

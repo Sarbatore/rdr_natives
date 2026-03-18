@@ -27,6 +27,37 @@ function IsPickupPickableForTeam(object, teamId)
     return Citizen.InvokeNative(0x9F52AD67D1A91BAD, object, teamId) == 1
 end
 
+function GetClosestObjectOfType(x, y, z, radius, modelHash)
+    local itemset = CreateItemset(true)
+
+    if (not IsItemsetValid(itemset)) then
+        return 0
+    end
+
+    local itemSetSize = GetEntitiesNearPoint(x, y, z, radius, itemset, 3)
+    local nearestEntity = 0
+    local nearestDistance = -1.0
+    local coords = vector3(x, y, z)
+
+    for i = 0, itemSetSize - 1 do
+        local entity = GetObjectFromIndexedItem(GetIndexedItemInItemset(i, itemset))
+        local entityModelHash = GetEntityModel(entity)
+        if (modelHash == 0 or entityModelHash == modelHash) then
+            local distance = #(GetEntityCoords(entity) - coords)
+            if (nearestDistance == -1.0 or distance < nearestDistance) then
+                nearestDistance = distance
+                nearestEntity = entity
+            end
+        end
+    end
+    
+    if (IsItemsetValid(itemset)) then
+        DestroyItemset(itemset)
+    end
+
+    return nearestEntity
+end
+
 ---@param p0 Any
 ---@return integer
 function N_0X08C5825A2932EA7B(p0)
