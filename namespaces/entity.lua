@@ -71,6 +71,19 @@ function SetEntityAnimAge(entity, alpha)
     Citizen.InvokeNative(0xC0EDEF16D90661EE, entity, alpha)
 end
 
+---Disables or re-enables the visible fire effect on a burning entity.
+---@param entity integer
+---@param toggle boolean
+function SetEntityDisableFire(entity, toggle)
+    Citizen.InvokeNative(0x56E0735D6273B227, entity, toggle)
+end
+
+---Enables visibility tracking for the specified entity.
+---@param entity integer
+function RequestEntityVisibilityTracking(entity)
+    Citizen.InvokeNative(0x3F08C6163A4AB1D6, entity)
+end
+
 ---
 ---@param entity1 integer
 ---@param entity2 integer

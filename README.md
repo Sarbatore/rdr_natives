@@ -94,8 +94,10 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetEntityLootingPed` | `ped` |
 | `GetOffsetFromEntityBone` | `entity, boneIndex` |
 | `IsCanModelUseVegModifier` | `modelHash` |
+| `RequestEntityVisibilityTracking` | `entity` |
 | `SetAnimalPeltTexture` | `entity, peltAsset, albedoHash, p3` |
 | `SetEntityAnimAge` | `entity, alpha` |
+| `SetEntityDisableFire` | `entity, toggle` |
 
 ## Fire
 
@@ -440,6 +442,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `SetBalloonRoute` | `balloonVehicle, x, y, z, autoPower, speed` |
 | `SetOarsRowingSpeed` | `boatVehicle, speed` |
 | `SetTrainCollisionAvoidanceEnabled` | `trainVehicle, enable` |
+| `SetTrainReverseEnabled` | `missionTrain, enable` |
 | `SetTrainWhistleEnabled` | `trainVehicle, enable` |
 
 ## Weapon

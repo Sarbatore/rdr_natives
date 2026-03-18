@@ -155,6 +155,48 @@ function SetOarsRowingSpeed(boatVehicle, speed)
     Citizen.InvokeNative(0x6835AFEA10E186F4, boatVehicle, speed)
 end
 
+---Set true to enable train reverse or false to forbid it.
+---@param missionTrain integer
+---@param enable boolean
+function SetTrainReverseEnabled(missionTrain, enable)
+    Citizen.InvokeNative(0x06A09A6E0C6D2A84, missionTrain, enable)
+end
+
+---
+---@param trainCarriage integer
+---@param enable boolean
+function N_0x762FDC4C19E5A981(trainCarriage, enable)
+    Citizen.InvokeNative(0x762FDC4C19E5A981, trainCarriage, enable)
+end
+
+---
+---@param missionTrain integer
+---@param enable boolean
+function N_0xAE7E66A61E7C17A5(missionTrain, enable)
+    Citizen.InvokeNative(0xAE7E66A61E7C17A5, missionTrain, enable)
+end
+
+---
+---@param missionTrain integer
+---@param enable boolean
+function N_0xEF28A614B4B264B8(missionTrain, enable)
+    Citizen.InvokeNative(0xEF28A614B4B264B8, missionTrain, enable)
+end
+
+---
+---@param missionTrain integer
+---@param enable boolean
+function N_0xA72B1BF3857B94D7(missionTrain, enable)
+    Citizen.InvokeNative(0xA72B1BF3857B94D7, missionTrain, enable)
+end
+
+---
+---@param missionTrain integer
+---@param enable boolean
+function N_0xDD100CE1EBBF37E3(missionTrain, enable)
+    Citizen.InvokeNative(0xDD100CE1EBBF37E3, missionTrain, enable)
+end
+
 ---
 ---@param trainConfig integer
 ---@param x number

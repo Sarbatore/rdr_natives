@@ -38,8 +38,10 @@ exports("GetEntityCollisionIntensity", GetEntityCollisionIntensity)
 exports("GetEntityLootingPed", GetEntityLootingPed)
 exports("GetOffsetFromEntityBone", GetOffsetFromEntityBone)
 exports("IsCanModelUseVegModifier", IsCanModelUseVegModifier)
+exports("RequestEntityVisibilityTracking", RequestEntityVisibilityTracking)
 exports("SetAnimalPeltTexture", SetAnimalPeltTexture)
 exports("SetEntityAnimAge", SetEntityAnimAge)
+exports("SetEntityDisableFire", SetEntityDisableFire)
 
 -- Fire
 exports("AddExplosionWithDamageCauser", AddExplosionWithDamageCauser)
@@ -321,6 +323,7 @@ exports("ReturnTrainInfoFromHandle", ReturnTrainInfoFromHandle)
 exports("SetBalloonRoute", SetBalloonRoute)
 exports("SetOarsRowingSpeed", SetOarsRowingSpeed)
 exports("SetTrainCollisionAvoidanceEnabled", SetTrainCollisionAvoidanceEnabled)
+exports("SetTrainReverseEnabled", SetTrainReverseEnabled)
 exports("SetTrainWhistleEnabled", SetTrainWhistleEnabled)
 
 -- Weapon
