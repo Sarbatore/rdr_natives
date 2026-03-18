@@ -90,12 +90,16 @@ I hope you guys will participate to this repository. In order to maintain optima
 |----------|------------|
 | `AttachEntityToCoordsPhysically` | `entity, x, y, z, xOffset, yOffset, zOffset, p7, p8, p9, p10, p11, p12, p13, p14` |
 | `ForceTrainWagonPopulation` | `trainWagon, toggle` |
+| `GetCollisionIntensity` | `entity` |
 | `GetEntityCollisionIntensity` | `entity1, entity2` |
 | `GetEntityLootingPed` | `ped` |
 | `GetOffsetFromEntityBone` | `entity, boneIndex` |
 | `IsCanModelUseVegModifier` | `modelHash` |
+| `IsTrainInteriorLoaded` | `entity` |
+| `PreloadEntityInterior` | `entity, toggle` |
 | `RequestEntityVisibilityTracking` | `entity` |
 | `SetAnimalPeltTexture` | `entity, peltAsset, albedoHash, p3` |
+| `SetAutoPickup` | `entity, noPickupAnim, autoPickupRange, p3, p4, enablePickupPrompt` |
 | `SetEntityAnimAge` | `entity, alpha` |
 | `SetEntityDisableFire` | `entity, toggle` |
 
@@ -240,6 +244,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `DamageObjectFragmentByIndex` | `object, index` |
 | `GetObjectFragmentCount` | `object` |
 | `IsModelAPortablePickup` | `model` |
+| `IsPickupPickableForTeam` | `object, teamId` |
 
 ## Ped
 

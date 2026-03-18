@@ -19,6 +19,13 @@ function DamageObjectFragmentByIndex(object, index)
     Citizen.InvokeNative(0xAAACF33CBF9B990A, object, index)
 end
 
+---
+---@param object integer
+---@param teamId integer
+---@return boolean
+function IsPickupPickableForTeam(object, teamId)
+    return Citizen.InvokeNative(0x9F52AD67D1A91BAD, object, teamId) == 1
+end
 
 ---@param p0 Any
 ---@return integer
@@ -42,12 +49,6 @@ end
 ---@return integer
 function N_0X7D4411D6736CD295(p0)
     return Citizen.InvokeNative(0X7D4411D6736CD295, p0, Citizen.PointerValueInt())
-end
-
----@param model Hash
----@return boolean
-function N_0X20135AF9C10D2A3D(model)
-    return Citizen.InvokeNative(0X20135AF9C10D2A3D, model) == 1
 end
 
 ---@param player Player
