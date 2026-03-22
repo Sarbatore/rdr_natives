@@ -165,7 +165,7 @@ end
 ---
 ---@param trainCarriage integer
 ---@param enable boolean
-function N_0x762FDC4C19E5A981(trainCarriage, enable)
+function SetTrainCarriageInteriorCollisionAvoidance(trainCarriage, enable)
     Citizen.InvokeNative(0x762FDC4C19E5A981, trainCarriage, enable)
 end
 

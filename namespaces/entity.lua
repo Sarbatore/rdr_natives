@@ -71,6 +71,19 @@ function SetEntityAnimAge(entity, alpha)
     Citizen.InvokeNative(0xC0EDEF16D90661EE, entity, alpha)
 end
 
+---Sets the entity's rotation so that it becomes parallel to the direction defined by the line between coords1 and coords2, without moving the entity from its current position.
+---@param entity integer
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param p7 integer
+function SetEntityRotationParallelToLine(entity, x1, y1, z1, x2, y2, z2, p7)
+    Citizen.InvokeNative(0xD45BB89B53FC0CFD, entity, x1, y1, z1, x2, y2, z2, p7)
+end
+
 ---Checks whether the entity's interior is currently loaded by the game engine.
 ---@param entity integer
 ---@return boolean
