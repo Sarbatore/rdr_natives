@@ -129,6 +129,27 @@ function RequestEntityVisibilityTracking(entity)
     Citizen.InvokeNative(0x3F08C6163A4AB1D6, entity)
 end
 
+---Controls a forced "lights off" state for entities that have built-in light sources.
+---@param entity integer
+---@param toggle boolean
+function SetEntityLightsOff(entity, toggle)
+    Citizen.InvokeNative(0x2D40BCBFE9305DEA, entity, toggle)
+end
+
+---
+---@param entity integer
+---@param toggle boolean
+function SetEntityLightsAlwaysEnabled(entity, toggle)
+    Citizen.InvokeNative(0xEBDC12861D079ABA, entity, toggle)
+end
+
+---Returns the original animal (carcass) entity from which a pelt entity was obtained.
+---@param entity integer
+---@return integer carcassEntity
+function GetCarcassFromPelt(entity)
+    return Citizen.InvokeNative(0x2A77EF9BEC8518F4, entity, Citizen.ResultAsInteger())
+end
+
 ---
 ---@param entity1 integer
 ---@param entity2 integer
