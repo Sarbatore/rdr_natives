@@ -90,6 +90,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 |----------|------------|
 | `AttachEntityToCoordsPhysically` | `entity, x, y, z, xOffset, yOffset, zOffset, p7, p8, p9, p10, p11, p12, p13, p14` |
 | `ForceTrainWagonPopulation` | `trainWagon, toggle` |
+| `GetCarcassFromPelt` | `entity` |
 | `GetCollisionIntensity` | `entity` |
 | `GetEntityCollisionIntensity` | `entity1, entity2` |
 | `GetEntityLootingPed` | `ped` |
@@ -102,6 +103,9 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `SetAutoPickup` | `entity, noPickupAnim, autoPickupRange, p3, p4, enablePickupPrompt` |
 | `SetEntityAnimAge` | `entity, alpha` |
 | `SetEntityDisableFire` | `entity, toggle` |
+| `SetEntityLightsAlwaysEnabled` | `entity, toggle` |
+| `SetEntityLightsOff` | `entity, toggle` |
+| `SetEntityRotationParallelToLine` | `entity, x1, y1, z1, x2, y2, z2, p7` |
 
 ## Fire
 
@@ -242,6 +246,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | Function | Parameters |
 |----------|------------|
 | `DamageObjectFragmentByIndex` | `object, index` |
+| `GetClosestObjectOfType` | `x, y, z, radius, modelHash` |
 | `GetObjectFragmentCount` | `object` |
 | `IsModelAPortablePickup` | `model` |
 | `IsPickupPickableForTeam` | `object, teamId` |
@@ -442,10 +447,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetNumDraftVehicleStraps` | `vehicle` |
 | `GetStationFromTrainStationData` | `trackIndex, stationIndex` |
 | `GetTrainTrackCoordAtJunctionIndex` | `trackConfig, index, p2` |
+| `IsPositionValidForTrain` | `trainConfig, x, y, z, direction, p5` |
 | `RecoverDraftVehicleFallingLog` | `vehicle` |
 | `ReturnTrainInfoFromHandle` | `trainVehicle` |
 | `SetBalloonRoute` | `balloonVehicle, x, y, z, autoPower, speed` |
 | `SetOarsRowingSpeed` | `boatVehicle, speed` |
+| `SetTrainCarriageInteriorCollisionAvoidance` | `trainCarriage, enable` |
 | `SetTrainCollisionAvoidanceEnabled` | `trainVehicle, enable` |
 | `SetTrainReverseEnabled` | `missionTrain, enable` |
 | `SetTrainWhistleEnabled` | `trainVehicle, enable` |

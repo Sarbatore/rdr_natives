@@ -170,6 +170,53 @@ function SetTrainCarriageInteriorCollisionAvoidance(trainCarriage, enable)
 end
 
 ---
+---@param trainConfig integer
+---@param x number
+---@param y number
+---@param z number
+---@param direction boolean
+---@param p5 boolean
+---@return boolean
+function IsPositionValidForTrain(trainConfig, x, y, z, direction, p5)
+    return Citizen.InvokeNative(0xF05DFAF1ADFEF2CD, trainConfig, x, y, z, direction, p5) == 1
+end
+
+---
+---@param missionTrain integer
+---@param p1 integer
+function N_0x6703872EC09BC158(missionTrain, p1)
+    Citizen.InvokeNative(0x6703872EC09BC158, missionTrain, p1)
+end
+
+---
+---@param missionTrain integer
+---@param enable boolean
+function N_0x6DE072AC8A95FFC1(missionTrain, enable)
+    Citizen.InvokeNative(0x6DE072AC8A95FFC1, missionTrain, enable)
+end
+
+---
+---@param missionTrain integer
+---@param enable boolean
+function N_0xDC69F6913CCA0B99(missionTrain, enable)
+    Citizen.InvokeNative(0xDC69F6913CCA0B99, missionTrain, enable)
+end
+
+---
+---@param missionTrain integer
+---@param enable boolean
+function N_0x7840576C50A13DBA(missionTrain, enable)
+    Citizen.InvokeNative(0x7840576C50A13DBA, missionTrain, enable)
+end
+
+---
+---@param missionTrain integer
+---@param enable boolean
+function N_0x1A861F899EBBE17C(missionTrain, enable)
+    Citizen.InvokeNative(0x1A861F899EBBE17C, missionTrain, enable)
+end
+
+---
 ---@param missionTrain integer
 ---@param enable boolean
 function N_0xAE7E66A61E7C17A5(missionTrain, enable)
@@ -192,6 +239,26 @@ end
 
 ---
 ---@param missionTrain integer
+---@param p1 number
+function N_0x160C1B5AB48AB87C(missionTrain, p1)
+    Citizen.InvokeNative(0x160C1B5AB48AB87C, missionTrain, p1)
+end
+
+---
+---@param trainCarriage integer
+---@param alpha number
+function N_0xD0116DF21E6C7B36(trainCarriage, alpha)
+    Citizen.InvokeNative(0xD0116DF21E6C7B36, trainCarriage, alpha)
+end
+
+---Used after 0xD0116DF21E6C7B36
+---@param missionTrain integer
+function N_0x0F7F603BDE08C4D3(missionTrain)
+    Citizen.InvokeNative(0x0F7F603BDE08C4D3, missionTrain)
+end
+
+---
+---@param missionTrain integer
 ---@param enable boolean
 function N_0xDD100CE1EBBF37E3(missionTrain, enable)
     Citizen.InvokeNative(0xDD100CE1EBBF37E3, missionTrain, enable)
@@ -210,29 +277,22 @@ function N_0x331CBD247FC5DAA8(trainConfig, x, y, z, direction, p5)
 end
 
 ---
----@param trainConfig integer
----@param x number
----@param y number
----@param z number
----@param direction boolean
----@param p5 boolean
----@return boolean
-function N_0xF05DFAF1ADFEF2CD(trainConfig, x, y, z, direction, p5)
-    return Citizen.InvokeNative(0xF05DFAF1ADFEF2CD, trainConfig, x, y, z, direction, p5) == 1
-end
-
----
 ---@param trackIndex integer
 ---@param p1 integer
 function N_0x34BCF6209B9668A7(trackIndex, p1)
     Citizen.InvokeNative(0x34BCF6209B9668A7, trackIndex, p1)
 end
 
-
 ---
 ---@param trackIndex integer
 function N_0x0D5FDF0D36FA10CD(trackIndex)
     Citizen.InvokeNative(0x0D5FDF0D36FA10CD, trackIndex)
+end
+
+---
+---@param trackIndex integer
+function N_0x718EB706B6E998A0(trackIndex)
+    Citizen.InvokeNative(0x718EB706B6E998A0, trackIndex)
 end
 
 ---
@@ -292,6 +352,36 @@ function N_0x38E7DD70A242D5CB(trackIndex, p1)
 end
 
 ---
+---@param missionTrain integer
+---@return integer trainStationId
+function N_0x1180A2974D251B7B(missionTrain)
+    return Citizen.InvokeNative(0x1180A2974D251B7B, missionTrain, Citizen.ResultAsInteger())
+end
+
+---
+---@param missionTrain integer
+---@return integer count
+function N_0xDE8C5B9F65017FA1(missionTrain)
+    return Citizen.InvokeNative(0xDE8C5B9F65017FA1, missionTrain, Citizen.ResultAsInteger())
+end
+
+---
+---@param x number
+---@param y number
+---@param z number
+---@return integer trackIndex
+function N_0x6C87F49BFA181DB5(x, y, z)
+    return Citizen.InvokeNative(0x6C87F49BFA181DB5, x, y, z, Citizen.ResultAsInteger())
+end
+
+---
+---@param missionTrain integer
+---@param enable integer
+function N_0x2BB2B5BCF0DF8008(missionTrain, enable)
+    Citizen.InvokeNative(0x2BB2B5BCF0DF8008, missionTrain, enable)
+end
+
+---
 ---@param trackIndex integer
 ---@param p1 integer
 function N_0x63509DDF102E08E8(trackIndex, p1)
@@ -307,10 +397,17 @@ function N_0xCAFF2C9747103C02(trackIndex)
 end
 
 ---
----@param trackIndex integer
+---@param trackHash integer
 ---@return boolean
-function N_0x0516FAE561276EFC(trackIndex)
-    return Citizen.InvokeNative(0x0516FAE561276EFC, trackIndex) == 1
+function N_0x0516FAE561276EFC(trackHash)
+    return Citizen.InvokeNative(0x0516FAE561276EFC, trackHash) == 1
+end
+
+---
+---@param trackHash integer
+---@return boolean
+function N_0x37D238BE69F7378A(trackHash)
+    return Citizen.InvokeNative(0x37D238BE69F7378A, trackHash) == 1
 end
 
 ---
