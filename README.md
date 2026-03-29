@@ -89,25 +89,31 @@ I hope you guys will participate to this repository. In order to maintain optima
 | Function | Parameters |
 |----------|------------|
 | `AttachEntityToCoordsPhysically` | `entity, x, y, z, xOffset, yOffset, zOffset, p7, p8, p9, p10, p11, p12, p13, p14` |
+| `DisableStairsStepForVolume` | `volume` |
+| `EnableStairsStepForVolume` | `volume` |
 | `ForceTrainWagonPopulation` | `trainWagon, toggle` |
 | `GetCarcassFromPelt` | `entity` |
 | `GetCollisionIntensity` | `entity` |
 | `GetEntityCollisionIntensity` | `entity1, entity2` |
 | `GetEntityLootingPed` | `ped` |
+| `GetHeadingOfEntityBone` | `entity, boneId, p2, p3` |
 | `GetLastEntityToDamageEntity` | `entity` |
 | `GetOffsetFromEntityBone` | `entity, boneIndex` |
 | `IsCanModelUseVegModifier` | `modelHash` |
 | `IsTrainInteriorLoaded` | `entity` |
+| `PinMapEntity` | `entity` |
 | `PreloadEntityInterior` | `entity, toggle` |
 | `RequestEntityVisibilityTracking` | `entity` |
 | `SetAnimalPeltTexture` | `entity, peltAsset, albedoHash, p3` |
 | `SetAutoPickup` | `entity, noPickupAnim, autoPickupRange, p3, p4, enablePickupPrompt` |
+| `SetCarriablePickupLight` | `entity, toggle` |
 | `SetEntityAnimAge` | `entity, alpha` |
 | `SetEntityDisableFire` | `entity, toggle` |
 | `SetEntityLightsAlwaysEnabled` | `entity, toggle` |
 | `SetEntityLightsOff` | `entity, toggle` |
 | `SetEntityLockonPointOffset` | `entity, offsetX, offsetY, offsetZ` |
 | `SetEntityRotationParallelToLine` | `entity, x1, y1, z1, x2, y2, z2, p7` |
+| `UnpinMapEntity` | `pinId` |
 
 ## Fire
 

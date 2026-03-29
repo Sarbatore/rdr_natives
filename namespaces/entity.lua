@@ -129,6 +129,28 @@ function RequestEntityVisibilityTracking(entity)
     Citizen.InvokeNative(0x3F08C6163A4AB1D6, entity)
 end
 
+---
+---@param entity integer
+---@param boneId integer
+---@param p2 integer
+---@param p3 integer
+---@return vector3
+function GetHeadingOfEntityBone(entity, boneId, p2, p3)
+    return Citizen.InvokeNative(0x3AB3A77672F6473F, entity, boneId, p2, p3, Citizen.ResultAsVector())
+end
+
+---Re-enables normal stair stepping behavior within the specified volume.
+---@param volume integer
+function EnableStairsStepForVolume(volume)
+    Citizen.InvokeNative(0xEAB3D91D30A344F1, volume)
+end
+
+---Disables stair stepping behavior within the specified volume.
+---@param volume integer
+function DisableStairsStepForVolume(volume)
+    Citizen.InvokeNative(0x37CEB637BA3B1A47, volume)
+end
+
 ---Controls a forced "lights off" state for entities that have built-in light sources.
 ---@param entity integer
 ---@param toggle boolean
@@ -164,6 +186,26 @@ end
 ---@return integer
 function GetLastEntityToDamageEntity(entity)
     return Citizen.InvokeNative(0xAF72EC7E1B54539B, entity, Citizen.ResultAsInteger())
+end
+
+---Pins the given entity and returns the created pin ID.
+---@param entity integer
+---@return integer
+function PinMapEntity(entity)
+    return Citizen.InvokeNative(0xAAACB74442C1BED3, entity, Citizen.ResultAsInteger())
+end
+
+---Removes/unpins a map pin using its pin ID.
+---@param pinId integer
+function UnpinMapEntity(pinId)
+    Citizen.InvokeNative(0xD2B9C78537ED5759, pinId)
+end
+
+---Enables or disables the pickup light effect for carriable/interactable entities.
+---@param entity integer
+---@param toggle boolean
+function SetCarriablePickupLight(entity, toggle)
+    Citizen.InvokeNative(0xA48E4801DEBDF7E4, entity, toggle)
 end
 
 ---
