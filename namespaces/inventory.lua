@@ -134,32 +134,44 @@ function InventoryCreateItemCollectionWithFilter(inventoryId, item, slotId, slot
     return collectionId, size
 end
 
----
----SetItemPromptInfoRequest(0, `AMMO_REVOLVER`, `AMMO_REVOLVER_AMMOBOX`, "", 0, 0, 0.0, 0.0, 0.0, 0)
----@param p0 any
----@param item Hash
----@param p2 Hash
----@param p3 string
----@param flags integer
----@param p5 integer
----@param p6 float
----@param p7 float
----@param p8 float
----@param p9 integer
-function SetItemPromptInfoRequest(p0, item, p2, p3, flags, p5, p6, p7, p8, p9)
-    local data = DataView.ArrayBuffer(16*8)
-    data:SetInt32(0*8, p0) -- index 0 of event data 2099179610
-    data:SetInt32(1*8, item) -- Hash: item from index 1 of event data 2099179610
-    data:SetInt32(2*8, p2) -- Hash: consumable_cigarette_box
-    data:SetInt64(3*8, VarString(10, "LITERAL_STRING", p3, Citizen.ResultAsLong())) -- CANNED_* or MEAT, FISH, VEGETABLE, FRUIT, DAIRY, CANDY, JERKY, LETTER
-    data:SetInt32(6*8, flags) -- flags
-    data:SetInt32(7*8, p5) -- 1, 2
-    data:SetFloat32(8*8, p6) -- vector3
-    data:SetFloat32(9*8, p7)
-    data:SetFloat32(10*8, p8)
-    data:SetInt32(11*8, p9) -- 0, 10
-
+---Update item prompt info
+---@param object integer
+---@param itemHash integer
+---@param consumableHash integer
+---@param label string -- MEAT, FISH, VEGETABLE, FRUIT, DAIRY, CANDY, JERKY, LETTER
+---@param price integer
+---@param modifiedPrice integer
+---@param flags integer -- 1: can take, 2: can examine, 4: unknown, 8: unknown, 16: infinite interaction
+---@param p5 integer -- 0, 1, or 2
+---@param x number
+---@param y number
+---@param z number
+---@param p9 integer -- 0 or 10
+function SetItemPromptInfoRequest(object, itemHash, consumableHash, label, price, modifiedPrice, flags, p5, x, y, z, p9)
+    local data = DataView.ArrayBuffer(13*8)
+    data:SetInt32(0*8, object)
+    data:SetInt32(1*8, itemHash) -- Hash: item from index 1 of event data 2099179610
+    data:SetInt32(2*8, consumableHash) -- Hash: consumable_cigarette_box
+    if (label ~= "") then
+        data:SetInt64(3*8, VarString(10, "LITERAL_STRING", label, Citizen.ResultAsLong()))
+    end
+    data:SetInt32(4*8, price)
+    data:SetInt32(5*8, modifiedPrice)
+    data:SetInt32(6*8, flags)
+    data:SetInt32(7*8, p5)
+    data:SetFloat32(8*8, x)
+    data:SetFloat32(9*8, y)
+    data:SetFloat32(10*8, z)
+    data:SetInt32(11*8, p9)
     Citizen.InvokeNative(0xFD41D1D4350F6413, data:Buffer())
+
+    --[[
+    AddEventHandler("gameEventTriggered", function(eventName, args)
+        if (eventName == "EventItemPromptInfoRequest") then
+            SetItemPromptInfoRequest(args[1], args[2], args[2], "", 0, 0, 2 | 16, 0, 0.0, 0.0, 0.0, 0)
+        end
+    end)
+    ]]
 end
 
 function InventoryAddItemWithGuid(inventoryId, guid2, item, itemSlotId, p3, addItemReason)

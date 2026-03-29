@@ -94,6 +94,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetCollisionIntensity` | `entity` |
 | `GetEntityCollisionIntensity` | `entity1, entity2` |
 | `GetEntityLootingPed` | `ped` |
+| `GetLastEntityToDamageEntity` | `entity` |
 | `GetOffsetFromEntityBone` | `entity, boneIndex` |
 | `IsCanModelUseVegModifier` | `modelHash` |
 | `IsTrainInteriorLoaded` | `entity` |
@@ -105,6 +106,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `SetEntityDisableFire` | `entity, toggle` |
 | `SetEntityLightsAlwaysEnabled` | `entity, toggle` |
 | `SetEntityLightsOff` | `entity, toggle` |
+| `SetEntityLockonPointOffset` | `entity, offsetX, offsetY, offsetZ` |
 | `SetEntityRotationParallelToLine` | `entity, x1, y1, z1, x2, y2, z2, p7` |
 
 ## Fire
@@ -160,7 +162,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `InventoryGetInventoryItemCompatibleSlots` | `item, size` |
 | `InventoryGetInventoryItemInspectionInfo` | `item` |
 | `InventoryGetInventoryItemLastCreation` | `inventoryId, item` |
-| `SetItemPromptInfoRequest` | `p0, item, p2, p3, flags, p5, p6, p7, p8, p9` |
+| `SetItemPromptInfoRequest` | `object, itemHash, consumableHash, label, price, modifiedPrice, flags, p5, x, y, z, p9` |
 
 ## Itemdatabase
 
@@ -268,6 +270,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetPedNearbyVehicles` | `ped, size` |
 | `HasPedBeenShotByPlayerRecently` | `player, ped, duration` |
 | `HasPedInteractedWithPlayerRecently` | `ped, player, flag, duration` |
+| `HidePedReins` | `ped` |
 | `IsPedAfloat` | `ped` |
 | `PlayConditionalAnimWithPropItem` | `ped, targetEntity, propItemId, conditionalAnimName` |
 | `RefreshCarriedPedForPed` | `ped, p1, p2` |
@@ -443,10 +446,10 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetAllWagonPassengers` | `wagon, itemSet` |
 | `GetBalloonObjectFromVehicle` | `vehicle` |
 | `GetClosestVehicle` | `x, y, z, radius, modelHash` |
+| `GetJunctionCoordsForTrainTrack` | `trackConfig, junctionIndex` |
 | `GetNumDraftVehicleLogs` | `vehicle` |
 | `GetNumDraftVehicleStraps` | `vehicle` |
 | `GetStationFromTrainStationData` | `trackIndex, stationIndex` |
-| `GetTrainTrackCoordAtJunctionIndex` | `trackConfig, index, p2` |
 | `IsPositionValidForTrain` | `trainConfig, x, y, z, direction, p5` |
 | `RecoverDraftVehicleFallingLog` | `vehicle` |
 | `ReturnTrainInfoFromHandle` | `trainVehicle` |

@@ -345,10 +345,7 @@ end
 ---
 ---@return number
 function UiFeedPostHelpText(data)
-	local optionsBuffer = UiFeedPostExtrasBuffer({
-        duration = data.duration,
-        sound = data.sound
-    })
+	local optionsBuffer = UiFeedPostExtrasBuffer(data.duration)
 
     local struct = DataView.ArrayBuffer(2*8)
     struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", data.text, Citizen.ResultAsLong()))

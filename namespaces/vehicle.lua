@@ -1,6 +1,7 @@
 ---Return mission train track and junction index
----@param train Vehicle
----@return Hash, integer
+---@param trainVehicle integer
+---@return integer trackHash
+---@return integer junctionIndex
 function ReturnTrainInfoFromHandle(trainVehicle)
     return Citizen.InvokeNative(0x09034479E6E3E269, trainVehicle, Citizen.PointerValueInt(), Citizen.PointerValueInt())
 end
@@ -27,11 +28,10 @@ end
 
 ---Return the world coordinate of the given train track configuration at the specified index.
 ---@param trackConfig Hash
----@param index integer
----@param p2 integer
+---@param junctionIndex integer
 ---@return vector3
-function GetTrainTrackCoordAtJunctionIndex(trackConfig, index, p2)
-    return Citizen.InvokeNative(0x785639D89F8451AB, trackConfig, index, p2, Citizen.ResultAsVector())
+function GetJunctionCoordsForTrainTrack(trackConfig, junctionIndex)
+    return Citizen.InvokeNative(0x785639D89F8451AB, trackConfig, junctionIndex, Citizen.ResultAsVector())
 end
 
 ---Return the number of logs on a draft vehicle.

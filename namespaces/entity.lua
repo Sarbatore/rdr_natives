@@ -150,6 +150,22 @@ function GetCarcassFromPelt(entity)
     return Citizen.InvokeNative(0x2A77EF9BEC8518F4, entity, Citizen.ResultAsInteger())
 end
 
+---Sets an offset for the entity's lock-on / target focus point.
+---@param entity integer
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+function SetEntityLockonPointOffset(entity, offsetX, offsetY, offsetZ)
+    Citizen.InvokeNative(0xAF7F3099B9FEB535, entity, offsetX, offsetY, offsetZ)
+end
+
+---Returns the last entity that dealt any damage to the specified entity.
+---@param entity integer
+---@return integer
+function GetLastEntityToDamageEntity(entity)
+    return Citizen.InvokeNative(0xAF72EC7E1B54539B, entity, Citizen.ResultAsInteger())
+end
+
 ---
 ---@param entity1 integer
 ---@param entity2 integer

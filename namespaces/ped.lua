@@ -238,6 +238,13 @@ function GetPedNearbyPeds(ped, size, ignoredPedType, p3)
 
     return res, peds
 end
+
+---Hides the visible reins/lead straps associated with the specified ped. When the ped is a horse, this makes the hanging rein geometry disappear.
+---@param ped integer
+function HidePedReins(ped)
+    Citizen.InvokeNative(0xCAC43D060099EA72, ped)
+end
+
 --[[
 
 TO DISCOVER:
