@@ -208,6 +208,23 @@ function SetCarriablePickupLight(entity, toggle)
     Citizen.InvokeNative(0xA48E4801DEBDF7E4, entity, toggle)
 end
 
+---Applies and updates the positional offset of an entity relative to the entity it is attached to, while also controlling whether the offset is interpreted horizontally or vertically.
+---@param entity integer
+---@param horizontalMode boolean
+---@param x number
+---@param y number
+---@param z number
+function SetEntityAttachedOffset(entity, horizontalMode, x, y, z)
+    Citizen.InvokeNative(0x16908E859C3AB698, entity, horizontalMode, x, y, z)
+end
+
+---Gets the albedo/material variant hash currently associated with the specified entity.
+---@param entity integer
+---@return integer albedoHash
+function GetEntityAlbedo(entity)
+    return Citizen.InvokeNative(0x120376C23F019C6C, entity, Citizen.PointerValueInt())
+end
+
 ---
 ---@param entity1 integer
 ---@param entity2 integer

@@ -94,6 +94,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `ForceTrainWagonPopulation` | `trainWagon, toggle` |
 | `GetCarcassFromPelt` | `entity` |
 | `GetCollisionIntensity` | `entity` |
+| `GetEntityAlbedo` | `entity` |
 | `GetEntityCollisionIntensity` | `entity1, entity2` |
 | `GetEntityLootingPed` | `ped` |
 | `GetHeadingOfEntityBone` | `entity, boneId, p2, p3` |
@@ -108,6 +109,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `SetAutoPickup` | `entity, noPickupAnim, autoPickupRange, p3, p4, enablePickupPrompt` |
 | `SetCarriablePickupLight` | `entity, toggle` |
 | `SetEntityAnimAge` | `entity, alpha` |
+| `SetEntityAttachedOffset` | `entity, horizontalMode, x, y, z` |
 | `SetEntityDisableFire` | `entity, toggle` |
 | `SetEntityLightsAlwaysEnabled` | `entity, toggle` |
 | `SetEntityLightsOff` | `entity, toggle` |
