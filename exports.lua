@@ -163,11 +163,14 @@ exports("NetworkSessionRequestTerminate", NetworkSessionRequestTerminate)
 exports("NetworkUnregisterNetworkedEntity", NetworkUnregisterNetworkedEntity)
 
 -- Object
+exports("CheckDoorActionFlag", CheckDoorActionFlag)
 exports("DamageObjectFragmentByIndex", DamageObjectFragmentByIndex)
 exports("GetClosestObjectOfType", GetClosestObjectOfType)
+exports("GetForcedOpenPlayer", GetForcedOpenPlayer)
 exports("GetObjectFragmentCount", GetObjectFragmentCount)
 exports("IsModelAPortablePickup", IsModelAPortablePickup)
 exports("IsPickupPickableForTeam", IsPickupPickableForTeam)
+exports("SetDoorKnockingWhenLocked", SetDoorKnockingWhenLocked)
 
 -- Ped
 exports("ApplyColdToPed", ApplyColdToPed)
@@ -183,6 +186,7 @@ exports("GetPedNearbyPeds", GetPedNearbyPeds)
 exports("GetPedNearbyVehicles", GetPedNearbyVehicles)
 exports("HasPedBeenShotByPlayerRecently", HasPedBeenShotByPlayerRecently)
 exports("HasPedInteractedWithPlayerRecently", HasPedInteractedWithPlayerRecently)
+exports("HasPedKnockedOnDoor", HasPedKnockedOnDoor)
 exports("HidePedReins", HidePedReins)
 exports("IsPedAfloat", IsPedAfloat)
 exports("PlayConditionalAnimWithPropItem", PlayConditionalAnimWithPropItem)

@@ -27,6 +27,32 @@ function IsPickupPickableForTeam(object, teamId)
     return Citizen.InvokeNative(0x9F52AD67D1A91BAD, object, teamId) == 1
 end
 
+---Checks whether a specific door-related action/state flag is active for the given door object.
+---Observed behavior:
+---- flag 32: returns true when the door is being kicked (kick action event)
+---- flag 23: returns true if the door has been previously opened by kicking (post-kick state)
+---- flag 8:  returns true when attempting to open the door while it is locked
+---@param doorObject integer
+---@param flag integer
+---@return boolean
+function CheckDoorActionFlag(doorObject, flag)
+    return Citizen.InvokeNative(0x0943113E02322164, doorObject, flag) == 1
+end
+
+---Returns the player who forced the specified door open using physical interaction.
+---@param doorHash integer
+---@return integer playerId
+function GetForcedOpenPlayer(doorHash)
+    return Citizen.InvokeNative(0xEBA314768FB35D58, doorHash, Citizen.ResultAsInteger())
+end
+
+---Changes the interaction behavior for a locked door.
+---@param doorHash integer
+---@param toggle boolean
+function SetDoorKnockingWhenLocked(doorHash, toggle)
+    Citizen.InvokeNative(0xA93F925F1942E434, doorHash, toggle)
+end
+
 function GetClosestObjectOfType(x, y, z, radius, modelHash)
     local itemset = CreateItemset(true)
 
@@ -36,15 +62,14 @@ function GetClosestObjectOfType(x, y, z, radius, modelHash)
 
     local itemSetSize = GetEntitiesNearPoint(x, y, z, radius, itemset, 3)
     local nearestEntity = 0
-    local nearestDistance = -1.0
-    local coords = vector3(x, y, z)
+    local nearestDistance = math.huge
 
     for i = 0, itemSetSize - 1 do
         local entity = GetObjectFromIndexedItem(GetIndexedItemInItemset(i, itemset))
-        local entityModelHash = GetEntityModel(entity)
-        if (modelHash == 0 or entityModelHash == modelHash) then
-            local distance = #(GetEntityCoords(entity) - coords)
-            if (nearestDistance == -1.0 or distance < nearestDistance) then
+        if (modelHash == 0 or GetEntityModel(entity) == modelHash) then
+            local coords = GetEntityCoords(entity)
+            local distance = Vdist(x, y, z, coords.x, coords.y, coords.z)
+            if (distance < nearestDistance) then
                 nearestDistance = distance
                 nearestEntity = entity
             end

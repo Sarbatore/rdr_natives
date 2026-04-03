@@ -255,11 +255,14 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
+| `CheckDoorActionFlag` | `doorObject, flag` |
 | `DamageObjectFragmentByIndex` | `object, index` |
 | `GetClosestObjectOfType` | `x, y, z, radius, modelHash` |
+| `GetForcedOpenPlayer` | `doorHash` |
 | `GetObjectFragmentCount` | `object` |
 | `IsModelAPortablePickup` | `model` |
 | `IsPickupPickableForTeam` | `object, teamId` |
+| `SetDoorKnockingWhenLocked` | `doorHash, toggle` |
 
 ## Ped
 
@@ -278,6 +281,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetPedNearbyVehicles` | `ped, size` |
 | `HasPedBeenShotByPlayerRecently` | `player, ped, duration` |
 | `HasPedInteractedWithPlayerRecently` | `ped, player, flag, duration` |
+| `HasPedKnockedOnDoor` | `ped` |
 | `HidePedReins` | `ped` |
 | `IsPedAfloat` | `ped` |
 | `PlayConditionalAnimWithPropItem` | `ped, targetEntity, propItemId, conditionalAnimName` |

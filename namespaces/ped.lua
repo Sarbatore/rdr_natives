@@ -245,6 +245,13 @@ function HidePedReins(ped)
     Citizen.InvokeNative(0xCAC43D060099EA72, ped)
 end
 
+---Checks whether the specified ped has performed a door knocking interaction.
+---@param ped integer
+---@return boolean
+function HasPedKnockedOnDoor(ped)
+    return Citizen.InvokeNative(0xFA8C10DCE0706D43, ped) == 1
+end
+
 --[[
 
 TO DISCOVER:
