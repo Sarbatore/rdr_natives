@@ -1,8 +1,8 @@
 ---Returns true if the model hash is a portable pickup its used before creating a portable pick up for example.
----@param model Hash
+---@param modelHash integer
 ---@return boolean
-function IsModelAPortablePickup(model)
-    return Citizen.InvokeNative(0x20135AF9C10D2A3D, model) == 1
+function IsModelAPortablePickup(modelHash)
+    return Citizen.InvokeNative(0x20135AF9C10D2A3D, modelHash) == 1
 end
 
 ---Returns the number of breakable fragments (indexed sections) defined for the specified object.
@@ -53,34 +53,49 @@ function SetDoorKnockingWhenLocked(doorHash, toggle)
     Citizen.InvokeNative(0xA93F925F1942E434, doorHash, toggle)
 end
 
-function GetClosestObjectOfType(x, y, z, radius, modelHash)
-    local itemset = CreateItemset(true)
+---Checks whether the specified door has the "knocking when locked" interaction enabled.
+---@param doorHash integer
+---@return boolean
+function GetDoorKnockingWhenLocked(doorHash)
+    return Citizen.InvokeNative(0x4D8611DFE1126478, doorHash) == 1
+end
 
-    if (not IsItemsetValid(itemset)) then
-        return 0
-    end
+---Clears the stored player ID for a door that was force-opened via physical interaction.
+---@param doorHash integer
+function DoorSystemClearForcedOpenPlayer(doorHash)
+    Citizen.InvokeNative(0x5230BF34EB0EC645, doorHash)
+end
 
-    local itemSetSize = GetEntitiesNearPoint(x, y, z, radius, itemset, 3)
-    local nearestEntity = 0
-    local nearestDistance = math.huge
+---Checks whether a specific door action/state flag is active for the given door hash.
+---@param doorHash integer
+---@param flag integer
+---@return boolean
+function DoorSystemCheckActionFlag(doorHash, flag)
+    return Citizen.InvokeNative(0x6E2AA80BB0C03728, doorHash, flag) == 1
+end
 
-    for i = 0, itemSetSize - 1 do
-        local entity = GetObjectFromIndexedItem(GetIndexedItemInItemset(i, itemset))
-        if (modelHash == 0 or GetEntityModel(entity) == modelHash) then
-            local coords = GetEntityCoords(entity)
-            local distance = Vdist(x, y, z, coords.x, coords.y, coords.z)
-            if (distance < nearestDistance) then
-                nearestDistance = distance
-                nearestEntity = entity
-            end
-        end
-    end
-    
-    if (IsItemsetValid(itemset)) then
-        DestroyItemset(itemset)
-    end
+---Applies an impulse to a door, causing it to swing open with animation.
+---@param doorHash integer
+---@param dirX number
+---@param dirY number
+---@param dirZ number
+---@param reverseDirection boolean
+function DoorSystemSwingOpen(doorHash, dirX, dirY, dirZ, reverseDirection)
+    Citizen.InvokeNative(0xB3B1546D23DF8DE1, doorHash, dirX, dirY, dirZ, reverseDirection)
+end
 
-    return nearestEntity
+---Enables or disables the light emission of a lantern object. This native does NOT affect lanterns while they are being held by a ped.
+---@param object integer
+---@param toggle boolean
+function SetObjectLanternLightDisabled(object, toggle)
+    Citizen.InvokeNative(0x7FCD49388BC9B775, object, toggle)
+end
+
+---Enables or disables the "Kick" interaction prompt for a specific door.
+---@param doorHash integer
+---@param toggle boolean
+function SetDoorKickPromptEnabled(doorHash, toggle)
+    Citizen.InvokeNative(0xC07B91B996C1DE89, doorHash, toggle)
 end
 
 ---@param p0 Any
@@ -89,7 +104,7 @@ function N_0X08C5825A2932EA7B(p0)
     return Citizen.InvokeNative(0x08C5825A2932EA7B, p0, Citizen.ResultAsInteger())
 end
 
----@param object Object
+---@param object integer
 ---@return integer
 function N_0X250EBB11E81A10BE(object)
     return Citizen.InvokeNative(0X250EBB11E81A10BE, object, Citizen.ResultAsInteger())
@@ -107,14 +122,14 @@ function N_0X7D4411D6736CD295(p0)
     return Citizen.InvokeNative(0X7D4411D6736CD295, p0, Citizen.PointerValueInt())
 end
 
----@param player Player
+---@param player integer
 ---@return integer
 function N_0X3E2616E7EA539480(player)
     return Citizen.InvokeNative(0X3E2616E7EA539480, player, Citizen.ResultAsInteger())
 end
 
----@param object Object
----@param p1 float
+---@param object integer
+---@param p1 number
 function N_0XCBFBD38F2E0A263B(object, p1)
     return Citizen.InvokeNative(0XCBFBD38F2E0A263B, object, p1)
 end

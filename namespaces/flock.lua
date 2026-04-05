@@ -1,6 +1,6 @@
 ---Return whether the ped is in the herd or not
 ---@param herd Herd
----@param ped Ped
+---@param ped integer
 ---@return boolean
 function IsPedInHerd(herd, ped)
 	return Citizen.InvokeNative(0x9E13ACC38BA8F9C3, herd, ped) == 1
@@ -8,7 +8,7 @@ end
 
 ---Remove a ped from a herd.
 ---@param herd Herd
----@param ped Ped
+---@param ped integer
 function RemoveHerdPed(herd, ped)
 	Citizen.InvokeNative(0x408D1149C5E39C1E, herd, ped)
 end

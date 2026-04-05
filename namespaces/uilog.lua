@@ -14,10 +14,10 @@ function UilogPostNotification(toast, body, p2, p3, p4, p5)
     if (body ~= "") then
         data:SetInt64(1*8, VarString(10, "LITERAL_STRING", body, Citizen.ResultAsLong()))
     end
-    data:SetInt32(2*8, p2 or 0) -- toast_rpg_level_health, toast_rpg_level_stamina, toast_rpg_level_deadeye
-    data:SetInt32(3*8, p3 or 0) -- TOAST_RPG_LEVEL_<+0>_<+0>
-    data:SetInt32(4*8, p4 or 1)
-    data:SetInt32(5*8, p5 or 0) -- 0, 1, 2, 3
+    data:SetInt32(2*8, p2) -- toast_rpg_level_health, toast_rpg_level_stamina, toast_rpg_level_deadeye
+    data:SetInt32(3*8, p3) -- TOAST_RPG_LEVEL_<+0>_<+0>
+    data:SetInt32(4*8, p4)
+    data:SetInt32(5*8, p5) -- 0, 1, 2, 3
     local res = Citizen.InvokeNative(0x49E58FE6EF40B987, data:Buffer()) == 1
 
     return res

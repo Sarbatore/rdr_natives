@@ -1,7 +1,7 @@
 ---
----@param x float
----@param y float
----@param z float
+---@param x number
+---@param y number
+---@param z number
 ---@param p3 integer
 ---@return boolean
 function N_0x870E9981ED27C815(x, y, z, p3)
@@ -17,10 +17,10 @@ function N_0x870E9981ED27C815(x, y, z, p3)
 end
 
 ---
----@param x float
----@param y float
----@param z float
----@param p3 float
+---@param x number
+---@param y number
+---@param z number
+---@param p3 number
 ---@param p4 integer
 ---@return boolean
 function N_0X51E52C9687FCDEEC(x, y, z, p3, p4)

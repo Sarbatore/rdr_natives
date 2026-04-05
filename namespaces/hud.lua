@@ -1,11 +1,11 @@
----Returns the hash of the currently highlighted item in the weapon wheel. [@aaron1a12]
----@return Hash
+---Returns the hash of the currently highlighted item in the weapon wheel.
+---@return integer weaponHash
 function GetWeaponWheelHighlightedWeaponHash()
     return Citizen.InvokeNative(0x9C409BBC492CB5B1, Citizen.ResultAsInteger())
 end
 
----Returns true if the mash prompt have just been pressed [@Sarbatore]
----@param prompt Prompt
+---Returns true if the mash prompt have just been pressed.
+---@param prompt integer
 ---@return boolean
 function UiPromptHasMashModeJustPressed(prompt)
     return Citizen.InvokeNative(0xB0E8599243B3F568, prompt) == 1
@@ -26,21 +26,21 @@ end
 
 ---
 ---@param p0 integer
----@param weaponHash Hash
----@param p2 Hash
-function N_0X8A59D44189AF2BC5(p0, weaponHash, p2)
+---@param weaponHash integer
+---@param p2Hash integer
+function N_0X8A59D44189AF2BC5(p0, weaponHash, p2Hash)
     local data = DataView.ArrayBuffer(2*8)
     data:SetInt32(0*8, p0)
     data:SetInt32(1*8, weaponHash)
-    Citizen.InvokeNative(0x8A59D44189AF2BC5, data:Buffer(), p2)
+    Citizen.InvokeNative(0x8A59D44189AF2BC5, data:Buffer(), p2Hash)
 end
 
 ---
 ---@param checkpoint integer
 ---@param p1 integer
----@param x float
----@param y float
----@param z float
+---@param x number
+---@param y number
+---@param z number
 function N_0XCC3B787E73E64160(checkpoint, p1, x, y, z)
     Citizen.InvokeNative(0XCC3B787E73E64160, checkpoint, p1, x, y, z)
 end

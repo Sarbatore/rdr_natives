@@ -165,12 +165,17 @@ exports("NetworkUnregisterNetworkedEntity", NetworkUnregisterNetworkedEntity)
 -- Object
 exports("CheckDoorActionFlag", CheckDoorActionFlag)
 exports("DamageObjectFragmentByIndex", DamageObjectFragmentByIndex)
-exports("GetClosestObjectOfType", GetClosestObjectOfType)
+exports("DoorSystemCheckActionFlag", DoorSystemCheckActionFlag)
+exports("DoorSystemClearForcedOpenPlayer", DoorSystemClearForcedOpenPlayer)
+exports("DoorSystemSwingOpen", DoorSystemSwingOpen)
+exports("GetDoorKnockingWhenLocked", GetDoorKnockingWhenLocked)
 exports("GetForcedOpenPlayer", GetForcedOpenPlayer)
 exports("GetObjectFragmentCount", GetObjectFragmentCount)
 exports("IsModelAPortablePickup", IsModelAPortablePickup)
 exports("IsPickupPickableForTeam", IsPickupPickableForTeam)
+exports("SetDoorKickPromptEnabled", SetDoorKickPromptEnabled)
 exports("SetDoorKnockingWhenLocked", SetDoorKnockingWhenLocked)
+exports("SetObjectLanternLightDisabled", SetObjectLanternLightDisabled)
 
 -- Ped
 exports("ApplyColdToPed", ApplyColdToPed)

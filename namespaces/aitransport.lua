@@ -1,9 +1,9 @@
 ---
----@param ped Ped
----@param vehicle Vehicle
+---@param ped integer
+---@param vehicle integer
 ---@param seatIndex eVehicleSeat
 ---@param timer integer
----@param pedSpeed float
+---@param pedSpeed number
 ---@param flags integer
 function TaskEnterTransport(ped, vehicle, seatIndex, timer, pedSpeed, flags)
     local data = DataView.ArrayBuffer(9*8)
@@ -17,9 +17,9 @@ function TaskEnterTransport(ped, vehicle, seatIndex, timer, pedSpeed, flags)
 end
 
 ---
----@param ped Ped
----@param vehicle Vehicle
----@param pedSpeed float
+---@param ped integer
+---@param vehicle integer
+---@param pedSpeed number
 ---@param flags integer
 function TaskExitTransport(ped, vehicle, pedSpeed, flags)
     local data = DataView.ArrayBuffer(7*8)

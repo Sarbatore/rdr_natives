@@ -1,5 +1,5 @@
 ---Requests a scenario type just like _REQUEST_SCENARIO_TYPE but for a specifc ped p2 is a flag unknown
----@param ped Ped
+---@param ped integer
 ---@param scenarioType string
 ---@param flag integer
 ---@param conditionalScenario string

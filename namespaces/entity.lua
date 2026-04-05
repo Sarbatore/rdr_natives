@@ -1,11 +1,11 @@
----Attach an entity to coordinates physically [@sarbatore]
----@param entity Entity
----@param x float
----@param y float
----@param z float
----@param xOffset float
----@param yOffset float
----@param zOffset float
+---Attach an entity to coordinates physically
+---@param entity integer
+---@param x number
+---@param y number
+---@param z number
+---@param xOffset number
+---@param yOffset number
+---@param zOffset number
 ---@param p7 number
 ---@param p8 boolean
 ---@param p9 number
@@ -18,15 +18,15 @@ function AttachEntityToCoordsPhysically(entity, x, y, z, xOffset, yOffset, zOffs
     Citizen.InvokeNative(0x445D7D8EA66E373E, entity, x, y, z, xOffset, yOffset, zOffset, p7, p8, p9, p10, p11, p12, p13, p14)
 end
 
----Return the entity which is looting the ped [@sarbatore]
----@param ped Ped
+---Return the entity which is looting the ped
+---@param ped integer
 ---@return integer
 function GetEntityLootingPed(ped)
     return Citizen.InvokeNative(0xEF2D9ED7CE684F08, ped, Citizen.ResultAsInteger())
 end
 
----Get the offset from the entity for the selected bone index [@sarbatore]
----@param entity Entity
+---Get the offset from the entity for the selected bone index
+---@param entity integer
 ---@param boneIndex integer
 ---@return vector
 function GetOffsetFromEntityBone(entity, boneIndex)
@@ -34,7 +34,7 @@ function GetOffsetFromEntityBone(entity, boneIndex)
 end
 
 ---Enables or disables automatic passenger population on a specific train wagon (carriage).
----@param trainWagon Vehicle
+---@param trainWagon integer
 ---@param toggle boolean
 function ForceTrainWagonPopulation(trainWagon, toggle)
     Citizen.InvokeNative(0x119A5714578F4E05, trainWagon, toggle)
@@ -43,7 +43,7 @@ end
 ---
 ---@param entity1 integer
 ---@param entity2 integer
----@return float
+---@return number
 function GetEntityCollisionIntensity(entity1, entity2)
     return Citizen.InvokeNative(0xDFC2B226D56D85F6, entity1, entity2, Citizen.ResultAsFloat())
 end
@@ -92,7 +92,7 @@ function IsTrainInteriorLoaded(entity)
 end
 
 ---Enable interiors for train carriages that the game engine has disabled due to distance-based optimization.
----@param entity integer Entity whose interior state will be changed
+---@param entity integer integer whose interior state will be changed
 ---@param toggle boolean true = load interior, false = unload interior
 function PreloadEntityInterior(entity, toggle)
     Citizen.InvokeNative(0x6C31B06E91518269, entity, toggle)
@@ -255,9 +255,9 @@ function N_0x5744562E973E33CD(albedoHash)
 end
 
 ---
----@param object Object
+---@param object integer
 ---@param p1 integer
----@param ped Ped
+---@param ped integer
 ---@param p3 integer
 ---@param p4 integer
 ---@return boolean

@@ -1,22 +1,22 @@
----Zooms in the third person camera closer to ground level (call every frame) [@aaron1a12]
+---Zooms in the third person camera closer to ground level (call every frame)
 ---@param zoom number
 function SetCameraGroundLevelZoom(zoom)
     Citizen.InvokeNative(0x71D71E08A7ED5BD7, zoom)
 end
 
----Forces the third person gameplay camera at closest zoom. [@aaron1a12]
+---Forces the third person gameplay camera at closest zoom.
 function SetCameraClosestZoom()
     Citizen.InvokeNative(0x718C6ECF5E8CBDD4)
 end
 
 ---Sets the depth of field and focal parameters for a camera.
----@param cam Cam
----@param dofStrength float
----@param dofNear float
----@param dofFar float
----@param focalLength float
----@param minFocal float
----@param maxFocal float
+---@param cam integer
+---@param dofStrength number
+---@param dofNear number
+---@param dofFar number
+---@param focalLength number
+---@param minFocal number
+---@param maxFocal number
 ---@param enableDof boolean
 ---@param p8 boolean
 ---@param p9 boolean

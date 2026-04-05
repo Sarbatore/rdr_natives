@@ -42,16 +42,16 @@ end
 ---@param duration integer
 ---@param title long
 ---@param text long
----@param textureDict Hash
----@param textureName Hash
+---@param textureDictHash integer
+---@param textureNameHash integer
 ---@param subCategoryToastAppId integer
 ---@param p6 integer
 ---@param p7 boolean
 ---@param extraText long
 ---@return integer
-function UiFeedPostSampleToastWithAppLink(duration, title, text, textureDict, textureName, subCategoryToastAppId, p6, p7, extraText)
+function UiFeedPostSampleToastWithAppLink(duration, title, text, textureDictHash, textureNameHash, subCategoryToastAppId, p6, p7, extraText)
     local extrasBuffer = UiFeedPostExtrasBuffer(duration, "Mission_Complete_Sounds", "Mission_Complete_Enter", 0, subCategoryToastAppId, p6, extraText, 1, 0, 0, 0, 0, 0)
-    local buffer = UiFeedToastBuffer(0, title, text, 0, textureDict, textureName, 0, 1, 0, 0)
+    local buffer = UiFeedToastBuffer(0, title, text, 0, textureDictHash, textureNameHash, 0, 1, 0, 0)
 
 	return Citizen.InvokeNative(0x38838A646FB30AAE, extrasBuffer, buffer, true, true, p7)
 end

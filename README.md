@@ -23,14 +23,6 @@ myscript/client.lua
     PlayPedAmbientSpeechNative(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0)
 ```
 
-## Contributions
-I hope you guys will participate to this repository. In order to maintain optimal readability, we keep certain conventions:
-- A file for a namespace
-- Function name must be the LUA equivalent of the C function name or you invent a name for those who are unknown
-- Comment on the functions (short description, parameters and return value)
-- Export your function in exports.lua
-- Add the function to the references list (alphabetically)
-
 ## References:
 
 ## Aicoverpoint
@@ -56,12 +48,12 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `CanPedSaySpeech` | `ped, soundName, speechParam, speechLine` |
-| `CreateNewScriptedSpeech` | `ped, speechRef, speechName, speechLine, speechParam, pedListener, syncOverNetwork, p7` |
+| `CanPedSaySpeech` | `ped, soundName, speechParamHash, speechLine` |
+| `CreateNewScriptedSpeech` | `ped, speechRef, speechName, speechLine, speechParamHash, pedListener, syncOverNetwork, p7` |
 | `GetCurrentAmbientSpeechHash` | `ped` |
 | `GetLastAmbientSpeechHash` | `ped` |
-| `PlayAmbientSpeechFromPositionNative` | `x, y, z, soundRef, soundName,  speechLine, speechParam, pedListener, syncOverNetwork, p9` |
-| `PlayPedAmbientSpeechNative` | `ped, speechRef, speechName, speechParam, speechLine, pedListener, syncOverNetwork, p7` |
+| `PlayAmbientSpeechFromPositionNative` | `x, y, z, soundRef, soundName,  speechLine, speechParamHash, pedListener, syncOverNetwork, p9` |
+| `PlayPedAmbientSpeechNative` | `ped, speechRef, speechName, speechParamHash, speechLine, pedListener, syncOverNetwork, p7` |
 | `PlaySoundFromScriptedSpeech` | `scriptedSpeech` |
 
 ## Bounty
@@ -122,7 +114,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | Function | Parameters |
 |----------|------------|
 | `AddExplosionWithDamageCauser` | `entity, p1, x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake` |
-| `AddExplosionWithUserVfxAndDamageCauser` | `entity, p1, x, y, z, explosionType, explosionFx, damageScale, isAudible, isInvisible, cameraShake` |
+| `AddExplosionWithUserVfxAndDamageCauser` | `entity, p1, x, y, z, explosionType, explosionFxHash, damageScale, isAudible, isInvisible, cameraShake` |
 | `GetClosestFirePosInVolume` | `xPos, yPos, zPos, xRot, yRot, zRot, xScale, yScale, zScale` |
 | `IsEntityDamagedByFire` | `entity` |
 
@@ -161,48 +153,48 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `InventoryAddItemWithGuid` | `inventoryId, guid2, item, itemSlotId, p3, addItemReason` |
+| `InventoryAddItemWithGuid` | `inventoryId, guid2, itemHash, slotIdHash, p3, addReasonHash` |
 | `InventoryApplyWeaponStatsToEntry` | `entryId, weaponHash, ped` |
-| `InventoryCreateItemCollectionWithFilter` | `inventoryId, item, slotId, slotId2, slotId3, p5, p6, p7, p8, itemType, p10, p11, p12, p13, p14, p15, p16, p17` |
+| `InventoryCreateItemCollectionWithFilter` | `inventoryId, itemHash, slotIdHash, slotId2Hash, slotId3Hash, p5, p6, p7, p8, itemTypeHash, p10, p11, p12, p13, p14, p15, p16, p17` |
 | `InventoryGetCatalogItemInspectionEffectsEntry` | `entryId, name, p2, p3` |
 | `InventoryGetCatalogItemInspectionStatsEntry` | `entryId, name, p2, playerId` |
-| `InventoryGetGuidFromItemid` | `inventoryId, p1, slotId` |
-| `InventoryGetInventoryItemCompatibleSlots` | `item, size` |
-| `InventoryGetInventoryItemInspectionInfo` | `item` |
-| `InventoryGetInventoryItemLastCreation` | `inventoryId, item` |
+| `InventoryGetGuidFromItemid` | `inventoryId, itemHash, slotIdHash` |
+| `InventoryGetInventoryItemCompatibleSlots` | `itemHash, size` |
+| `InventoryGetInventoryItemInspectionInfo` | `itemHash` |
+| `InventoryGetInventoryItemLastCreation` | `inventoryId, itemHash` |
 | `SetItemPromptInfoRequest` | `object, itemHash, consumableHash, label, price, modifiedPrice, flags, p5, x, y, z, p9` |
 
 ## Itemdatabase
 
 | Function | Parameters |
 |----------|------------|
-| `ItemdatabaseCreateItemCollection` | `slotId, slotId2, tag, category, cost, p5, flags, itemType, ciTag` |
-| `ItemdatabaseFilloutAcquireCost` | `item, costType` |
-| `ItemdatabaseFilloutAwardItemInfo` | `award, index` |
-| `ItemdatabaseFilloutAwardUnlockFlag` | `award, index` |
-| `ItemdatabaseFilloutBundle` | `bundle, costtype, index` |
-| `ItemdatabaseFilloutItem` | `item, costtype, index` |
-| `ItemdatabaseFilloutItemByName` | `item` |
+| `ItemdatabaseCreateItemCollection` | `slotIdHash, slotId2Hash, tagHash, categoryHash, costHash, unkHash, flags, itemTypeHash, ciTagHash` |
+| `ItemdatabaseFilloutAcquireCost` | `itemHash, costTypeHash` |
+| `ItemdatabaseFilloutAwardItemInfo` | `awardHash, index` |
+| `ItemdatabaseFilloutAwardUnlockFlag` | `awardHash, index` |
+| `ItemdatabaseFilloutBundle` | `bundleHash, costtypeHash, index` |
+| `ItemdatabaseFilloutItem` | `itemHash, costHash, index` |
+| `ItemdatabaseFilloutItemByName` | `itemHash` |
 | `ItemdatabaseFilloutItemEffectIdInfo` | `effectId` |
-| `ItemdatabaseFilloutItemEffectIds` | `item` |
-| `ItemdatabaseFilloutItemInfo` | `item` |
-| `ItemdatabaseFilloutModifier` | `modifier, index` |
-| `ItemdatabaseFilloutPriceModifierByKey` | `key` |
-| `ItemdatabaseFilloutSellPrice` | `itemHash, sellType` |
-| `ItemdatabaseFilloutTagData` | `item, size` |
-| `ItemdatabaseFilloutUiData` | `item` |
+| `ItemdatabaseFilloutItemEffectIds` | `itemHash` |
+| `ItemdatabaseFilloutItemInfo` | `itemHash` |
+| `ItemdatabaseFilloutModifier` | `modifierHash, index` |
+| `ItemdatabaseFilloutPriceModifierByKey` | `itemHash` |
+| `ItemdatabaseFilloutSellPrice` | `itemHash, sellTypeHash` |
+| `ItemdatabaseFilloutTagData` | `itemHash, size` |
+| `ItemdatabaseFilloutUiData` | `itemHash` |
 | `ItemdatabaseGetAcquireCost` | `itemHash, index` |
-| `ItemdatabaseGetAwardAcquireCost` | `award, index` |
-| `ItemdatabaseGetAwardCostModifiers` | `award` |
+| `ItemdatabaseGetAwardAcquireCost` | `awardHash, index` |
+| `ItemdatabaseGetAwardCostModifiers` | `awardHash` |
 | `ItemdatabaseGetAwardUnlockFlagCount` | `award` |
 | `ItemdatabaseGetBundleItemCount` | `bundleId` |
 | `ItemdatabaseGetBundleItemInfo` | `bundleId, index` |
-| `ItemdatabaseGetFitsSlotInfo` | `category, index` |
-| `ItemdatabaseGetItemPriceModifiers` | `key` |
-| `ItemdatabaseGetShopInventoriesItemInfo` | `shopType, shopInventoryIndex` |
-| `ItemdatabaseGetShopInventoriesItemInfoByKey` | `shopType, item` |
-| `ItemdatabaseGetShopInventoriesRequirementGroupInfo` | `shopType, item, groupIndex` |
-| `ItemdatabaseGetShopInventoriesRequirementInfo` | `shopType, key, groupIndex, requirementIndex` |
+| `ItemdatabaseGetFitsSlotInfo` | `categoryHash, index` |
+| `ItemdatabaseGetItemPriceModifiers` | `itemHash` |
+| `ItemdatabaseGetShopInventoriesItemInfo` | `shopTypeHash, shopInventoryIndex` |
+| `ItemdatabaseGetShopInventoriesItemInfoByKey` | `shopTypeHash, itemHash` |
+| `ItemdatabaseGetShopInventoriesRequirementGroupInfo` | `shopTypeHash, itemHash, groupIndex` |
+| `ItemdatabaseGetShopInventoriesRequirementInfo` | `shopTypeHash, unkHash, groupIndex, requirementIndex` |
 | `ItemdatabaseGetShopLayoutInfo` | `layoutHash` |
 | `ItemdatabaseGetShopLayoutMenuInfoById` | `layoutHash, menuHash` |
 | `ItemdatabaseGetShopLayoutMenuInfoByIndex` | `layoutHash, menuHash, index` |
@@ -257,12 +249,17 @@ I hope you guys will participate to this repository. In order to maintain optima
 |----------|------------|
 | `CheckDoorActionFlag` | `doorObject, flag` |
 | `DamageObjectFragmentByIndex` | `object, index` |
-| `GetClosestObjectOfType` | `x, y, z, radius, modelHash` |
+| `DoorSystemCheckActionFlag` | `doorHash, flag` |
+| `DoorSystemClearForcedOpenPlayer` | `doorHash` |
+| `DoorSystemSwingOpen` | `doorHash, dirX, dirY, dirZ, reverseDirection` |
+| `GetDoorKnockingWhenLocked` | `doorHash` |
 | `GetForcedOpenPlayer` | `doorHash` |
 | `GetObjectFragmentCount` | `object` |
-| `IsModelAPortablePickup` | `model` |
+| `IsModelAPortablePickup` | `modelHash` |
 | `IsPickupPickableForTeam` | `object, teamId` |
+| `SetDoorKickPromptEnabled` | `doorHash, toggle` |
 | `SetDoorKnockingWhenLocked` | `doorHash, toggle` |
+| `SetObjectLanternLightDisabled` | `object, toggle` |
 
 ## Ped
 
@@ -270,8 +267,8 @@ I hope you guys will participate to this repository. In order to maintain optima
 |----------|------------|
 | `ApplyColdToPed` | `ped, intensity, p2` |
 | `ApplyPedDamagePackToBone` | `ped, boneIndex, xOffset, yOffset, zOffset, xRot, yRot, zRot, damagePack` |
-| `CanPedHearTargetPed` | `target, ped, flag` |
-| `ComputeLootForPedCarcass` | `model, damageCleanliness, skinningQuality, size` |
+| `CanPedHearTargetPed` | `targetPed, ped, flag` |
+| `ComputeLootForPedCarcass` | `modelHash, damageCleanliness, skinningQuality, size` |
 | `ComputePedMoveBlendRatioForMaxSpeed` | `ped, moveBlendRatio` |
 | `ComputeSpeedForPedMoveBlendRatio` | `ped, speed` |
 | `GetCarriedAttachedInfoForSlot` | `ped, carriableSlot` |
@@ -328,7 +325,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `SetPlayerPromptMeleeText` | `player, promptText` |
 | `SetPlayerPromptSitText` | `player, promptText` |
 | `SetPlayerSurrenderPromptThisFrame` | `player, targetPed, promptOrder, unknownFlag` |
-| `SetPlayerWeaponDrawSpeed` | `player, weapon, speed` |
+| `SetPlayerWeaponDrawSpeed` | `player, weaponHash, speed` |
 | `SpecialAbilitySetActivate` | `player` |
 
 ## Propset
@@ -356,48 +353,48 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `CancelPedHogtie` | `ped` |
 | `ClearVehicleTasks` | `vehicle` |
 | `DoesPedFishingWaitForBite` | `ped` |
-| `FindScenarioAllPointsInVolumeOfType` | `volume, itemset, scenarioType, p3, p4, p5, p6` |
-| `FindScenarioAtObjectOfType` | `object, xOffset, yOffset, zOffset, scenarioType, radius` |
-| `FinishScenarioTransition` | `` |
-| `ForceAnimalSampled` | `animal, toggle` |
+| `FindScenarioAllPointsInVolumeOfType` | `volume, itemSet, scenarioTypeHash, p3, p4, p5, p6` |
+| `FindScenarioAtObjectOfType` | `object, xOffset, yOffset, zOffset, scenarioTypeHash, radius` |
+| `FinishScenarioTransition` | `ped, phaseOrDelta` |
+| `ForceAnimalSampled` | `animalPed, toggle` |
 | `GetCoverpointFromEntityWithOffset` | `entity, xOffset, yOffset, zOffset, heading, p5, p6, p7, p8` |
 | `GetDrivingSeat` | `vehicle` |
 | `GetHoldToReelSettingEnabled` | `` |
-| `GetLinkedScenarioPoints` | `scenario, toggle` |
+| `GetLinkedScenarioPoints` | `scenarioHash, toggle` |
 | `GetPedMountLeapProgress` | `ped` |
 | `GetPedMountLeapState` | `ped` |
 | `GetPedWritheBreakFreeProgress` | `ped` |
 | `GetRevivableHorse` | `` |
-| `GetScenarioContainerNumCompartments` | `entity` |
-| `GetScenarioContainerNumOpenCompartments` | `entity` |
-| `GetScenarioContainerRemainingLootCount` | `entity` |
+| `GetScenarioContainerNumCompartments` | `object` |
+| `GetScenarioContainerNumOpenCompartments` | `object` |
+| `GetScenarioContainerRemainingLootCount` | `object` |
 | `GetScenarioPointsInArea` | `x, y, z, radius, size` |
 | `GetTaskCombatReadyToShoot` | `ped` |
 | `GetWhistleRangeMaxForBondingLevel` | `bondingLevel` |
 | `GetWhistleRangeMinForBondingLevel` | `bondingLevel` |
-| `HasCarriableConfigHashLoaded` | `carriableConfig` |
+| `HasCarriableConfigHashLoaded` | `carriableConfigHash` |
 | `HasEntityDirectedTaskActive` | `entity` |
-| `HasPedAnimalSampled` | `animal` |
-| `IsPedBeingLed` | `mount` |
+| `HasPedAnimalSampled` | `animalPed` |
+| `IsPedBeingLed` | `horsePed` |
 | `IsPedLookingAtCoord` | `ped, x, y, z, radius` |
 | `IsRevivableHorsePromptVisible` | `p0` |
 | `IsScenarioInUse` | `scenarioHash` |
-| `LoadCarriableConfigHash` | `carriableConfig` |
+| `LoadCarriableConfigHash` | `carriableConfigHash` |
 | `PedApplyFollowRoadSpeedOverride` | `ped, speed` |
-| `RemoveCarriableConfigHash` | `carriableConfig` |
-| `RemoveTaskCarriable` | `carriable` |
-| `RequestCarriableHatEquipToPed` | `hat, ped` |
+| `RemoveCarriableConfigHash` | `carriableConfigHash` |
+| `RemoveTaskCarriable` | `entity` |
+| `RequestCarriableHatEquipToPed` | `hatObject, ped` |
 | `ResetScenarioPointsInArea` | `x, y, z, radius` |
 | `SetAboardPedBoatOffset` | `ped, boat, offsetX, offsetY, offsetZ, heading, flags` |
-| `SetCarriableConfigPromptEnabled` | `carriableConfig, toggle` |
-| `SetCarriablePickupPromptEnabled` | `carriable, enabled` |
+| `SetCarriableConfigPromptEnabled` | `carriableConfigHash, toggle` |
+| `SetCarriablePickupPromptEnabled` | `carriableObject, enabled` |
 | `SetDrivingSeat` | `vehicle, seatIndex` |
 | `SetIntimitatedFacingAngle` | `ped, useLimits, minAngle, maxAngle` |
 | `SwapReins` | `ped` |
 | `SwapVehicleReins` | `vehicle, instant` |
 | `TaskFollowWaypointRecording` | `ped, waypointRecording, startIndex, flags, endIndex, patrol, aimWeapon, durationMs` |
 | `TaskForceAimAtCoord` | `ped, x, y, z, p4, p5, p6` |
-| `TaskForceThrowableAtEntityWhenAiming` | `ped, target, durationMs, p3, p4` |
+| `TaskForceThrowableAtEntityWhenAiming` | `ped, targetEntity, durationMs, p3, p4` |
 | `TaskMoveNetworkAdvancedByNameWithInitParams` | `entity, moveNetworkDefName, params, xPos, yPos, zPos, xRot, yRot, zRot, p12, multiplier, p14, p15, flags, p17` |
 | `TaskMoveNetworkAdvancedByNameWithInitParamsAttached` | `entity1, moveNetworkDefName, params, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p12, multiplier, p14, flags, p16, p17, p18` |
 | `TaskMoveNetworkByNameWithInitParams` | `entity, moveNetworkDefName, params, multiplier, p4, animDict, flags` |
@@ -414,7 +411,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 
 | Function | Parameters |
 |----------|------------|
-| `EventsUiPeekMessage` | `uiapp` |
+| `EventsUiPeekMessage` | `uiappHash` |
 
 ## Uifeed
 
@@ -433,7 +430,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `UiFeedPostSampleNotification` | `` |
 | `UiFeedPostSampleToast` | `` |
 | `UiFeedPostSampleToastRight` | `data` |
-| `UiFeedPostSampleToastWithAppLink` | `duration, title, text, textureDict, textureName, subCategoryToastAppId, p6, p7, extraText` |
+| `UiFeedPostSampleToastWithAppLink` | `duration, title, text, textureDictHash, textureNameHash, subCategoryToastAppId, p6, p7, extraText` |
 | `UiFeedPostThreeTextShard` | `data` |
 | `UiFeedPostTwoTextShard` | `data` |
 | `UiFeedPostVoiceChatFeed` | `data` |
@@ -458,7 +455,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetAllWagonPassengers` | `wagon, itemSet` |
 | `GetBalloonObjectFromVehicle` | `vehicle` |
 | `GetClosestVehicle` | `x, y, z, radius, modelHash` |
-| `GetJunctionCoordsForTrainTrack` | `trackConfig, junctionIndex` |
+| `GetJunctionCoordsForTrainTrack` | `trackHash, junctionIndex` |
 | `GetNumDraftVehicleLogs` | `vehicle` |
 | `GetNumDraftVehicleStraps` | `vehicle` |
 | `GetStationFromTrainStationData` | `trackIndex, stationIndex` |
@@ -478,7 +475,7 @@ I hope you guys will participate to this repository. In order to maintain optima
 |----------|------------|
 | `AttachWeaponToHorseHolster` | `horsePed, weaponHash, ped` |
 | `CanPedAccessMountWeapons` | `ped` |
-| `DeleteWeaponObjectsOnHorse` | `horse` |
+| `DeleteWeaponObjectsOnHorse` | `horsePed` |
 | `DisableAllSpecialAmmoForPed` | `ped, weaponHash` |
 | `DoesPedHavePistol` | `ped, p1` |
 | `DoesPedHaveRepeater` | `ped, p1` |
@@ -497,15 +494,15 @@ I hope you guys will participate to this repository. In order to maintain optima
 | `GetLongarmStoreOnDismountState` | `ped, p1` |
 | `GetNumPedsRestrainedFromWeaponBolas` | `ped` |
 | `GetProjectileInVolume` | `volume` |
-| `GetWeaponFromDefaultPedWeaponCollection` | `weaponCollection, weaponGroup` |
-| `GetWeaponFromHorseHolster` | `horse` |
+| `GetWeaponFromDefaultPedWeaponCollection` | `weaponCollection, weaponGroupHash` |
+| `GetWeaponFromHorseHolster` | `horsePed` |
 | `GetWeaponHasMultipleAmmoTypes` | `weaponHash` |
 | `GetWeaponReplacedHash` | `p0` |
-| `GiveWeaponToPedWithOptions` | `ped, weapon, slotId, attachPoint, addReason, p4, p5, forceInHand, forceInHolster, p8` |
+| `GiveWeaponToPedWithOptions` | `ped, weaponHash, slotIdHash, attachPoint, addReasonHash, p4, p5, forceInHand, forceInHolster, p8` |
 | `IsPedCarryingWeaponSniperAtAttachPoint` | `ped, attachPoint` |
 | `IsPedHoldingWeapon` | `ped, weaponHash` |
 | `IsPedTakingPoisonGasDamage` | `ped` |
-| `IsWeaponCloseRange` | `weapon` |
+| `IsWeaponCloseRange` | `weaponHash` |
 | `RegisterWeaponObjectForIgnition` | `weaponObject` |
 | `SetArrowTrail` | `ped, trailHash` |
 | `SetPedWeaponOnBack` | `ped, disableAnim` |

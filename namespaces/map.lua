@@ -1,63 +1,63 @@
---- Will add a blip icon to the entity lockon prompt. [@outsider]
+--- Will add a blip icon to the entity lockon prompt.
 function SetBlipIconLockonEntityPrompt(entity, blipHash) 
     Citizen.InvokeNative(0x7563CBCA99253D1A, entity, blipHash)
 end
 
---- Will remove the blip icon from the entity lockon prompt. [@outsider]
+--- Will remove the blip icon from the entity lockon prompt.
 function ClearExistingBlipFromLockonEntityPrompt(entity, blipId)
     Citizen.InvokeNative(0x44813684F72B563C, entity, blipId)
 end
 
---- Will add a blip icon to the entity lockon prompt, if wrong param will remove the icon if had any. [@outsider]
+--- Will add a blip icon to the entity lockon prompt, if wrong param will remove the icon if had any.
 function SetExistingBlipLockonEntityPrompt(entity, blipId)
     Citizen.InvokeNative(0x97F6F158CC5B5CA2, entity, blipId)
 end
 
----Free up memory from the blip. [@sarbatore]
+---Free up memory from the blip.
 function ClearBlip(blip)
     Citizen.InvokeNative(0x01B928CA2E198B01, blip)
 end
 
----Return whether a GPS marker is set. [@sarbatore]
+---Return whether a GPS marker is set.
 ---@return boolean
 function IsGPSActive()
     return Citizen.InvokeNative(0xF47A1EB2A538A3A3) == 1
 end
 
----Check if the entity lockon prompt contains an icon. [@outsider]
----@param entity Entity
+---Check if the entity lockon prompt contains an icon.
+---@param entity integer
 ---@param blipId integer
 ---@return boolean
 function IsBlipIconOnLockonEntityPrompt(entity, blipId)
     return Citizen.InvokeNative(0x3CB8859F04763C78, entity, blipId) == 1
 end
 
----Remove the icon from the entity lockon prompt. [@outsider]
----@param entity Entity
+---Remove the icon from the entity lockon prompt.
+---@param entity integer
 ---@param p1 integer
 function RemoveBlipIconFromEntityLockonPrompt(entity, p1)
     Citizen.InvokeNative(0xBB68D4D3CA3DE402, entity, p1)
 end
 
----Activates a blip icon prompt for a specific entity, allowing it to be displayed without requiring a lock-on. Enables the blip to appear associated with the given entity, making it visible without the need to focus or target the entity directly. [@kadir]
----@param entity Entity
+---Activates a blip icon prompt for a specific entity, allowing it to be displayed without requiring a lock-on. Enables the blip to appear associated with the given entity, making it visible without the need to focus or target the entity directly.
+---@param entity integer
 function SetActiveBlipIconEntityPromptWithoutLockon(entity)
     Citizen.InvokeNative(0x1726963E6049DB53, entity)
 end
 
----Clears the previously set coordinates for the pause map view, removing any specified focal point and radius that were set using SetPausemapCoordsWithRadius. Resets the map view, allowing it to open with the default coordinates and view instead of a specific target area. [@kadir]
+---Clears the previously set coordinates for the pause map view, removing any specified focal point and radius that were set using SetPausemapCoordsWithRadius. Resets the map view, allowing it to open with the default coordinates and view instead of a specific target area.
 function ClearPausemapCoords()
     Citizen.InvokeNative(0x7C9F4CDF402CA82A)
 end
 
----Returns the x and y coordinates of the waypoint. [@kadir]
----@return float, float
+---Returns the x and y coordinates of the waypoint.
+---@return number, number
 function GetWaypointPosition()
     local x, y = Citizen.InvokeNative(0xF08E42BFA46BDFF8, Citizen.PointerValueFloat(), Citizen.PointerValueFloat())
     return x, y
 end
 
----Checks if the GPS route to the waypoint is navigable along a road. If a route exists but there is no valid road path, returns false. [@kadir]
+---Checks if the GPS route to the waypoint is navigable along a road. If a route exists but there is no valid road path, returns false.
 ---@return boolean
 function IsGPSRouteOnRoad()
     return Citizen.InvokeNative(0xF47A1EB2A538A3A3) == 1

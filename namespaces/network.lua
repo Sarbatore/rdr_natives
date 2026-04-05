@@ -1,5 +1,5 @@
 ---Unregisters the entity from the network.
----@param entity Entity
+---@param entity integer
 function NetworkUnregisterNetworkedEntity(entity)
     Citizen.InvokeNative(0xE31A04513237DC89, entity)
 end
