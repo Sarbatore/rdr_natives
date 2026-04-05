@@ -98,6 +98,13 @@ function SetDoorKickPromptEnabled(doorHash, toggle)
     Citizen.InvokeNative(0xC07B91B996C1DE89, doorHash, toggle)
 end
 
+---Sets whether the specified object can be marked while Dead Eye is active.
+---@param object integer
+---@param toggle boolean
+function SetObjectMarkableInDeadEye(object, toggle)
+    Citizen.InvokeNative(0xE157A8A336C7F04A, object, toggle)
+end
+
 ---@param p0 Any
 ---@return integer
 function N_0X08C5825A2932EA7B(p0)

@@ -172,7 +172,7 @@ myscript/client.lua
 | `ItemdatabaseFilloutAcquireCost` | `itemHash, costTypeHash` |
 | `ItemdatabaseFilloutAwardItemInfo` | `awardHash, index` |
 | `ItemdatabaseFilloutAwardUnlockFlag` | `awardHash, index` |
-| `ItemdatabaseFilloutBundle` | `bundleHash, costtypeHash, index` |
+| `ItemdatabaseFilloutBundle` | `bundleHash, costHash, index` |
 | `ItemdatabaseFilloutItem` | `itemHash, costHash, index` |
 | `ItemdatabaseFilloutItemByName` | `itemHash` |
 | `ItemdatabaseFilloutItemEffectIdInfo` | `effectId` |
@@ -184,9 +184,12 @@ myscript/client.lua
 | `ItemdatabaseFilloutTagData` | `itemHash, size` |
 | `ItemdatabaseFilloutUiData` | `itemHash` |
 | `ItemdatabaseGetAcquireCost` | `itemHash, index` |
+| `ItemdatabaseGetAcquireCostsCountFromCostType` | `itemHash, costHash` |
 | `ItemdatabaseGetAwardAcquireCost` | `awardHash, index` |
 | `ItemdatabaseGetAwardCostModifiers` | `awardHash` |
+| `ItemdatabaseGetAwardInfo` | `awardHash` |
 | `ItemdatabaseGetAwardUnlockFlagCount` | `award` |
+| `ItemdatabaseGetBundleAcquireCostsCount` | `bundleHash, costHash` |
 | `ItemdatabaseGetBundleItemCount` | `bundleId` |
 | `ItemdatabaseGetBundleItemInfo` | `bundleId, index` |
 | `ItemdatabaseGetFitsSlotInfo` | `categoryHash, index` |
@@ -260,6 +263,7 @@ myscript/client.lua
 | `SetDoorKickPromptEnabled` | `doorHash, toggle` |
 | `SetDoorKnockingWhenLocked` | `doorHash, toggle` |
 | `SetObjectLanternLightDisabled` | `object, toggle` |
+| `SetObjectMarkableInDeadEye` | `object, toggle` |
 
 ## Ped
 
