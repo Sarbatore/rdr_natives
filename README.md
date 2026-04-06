@@ -69,6 +69,7 @@ myscript/client.lua
 | `SetCamDofAndFocalParams` | `cam, dofStrength, dofNear, dofFar, focalLength, minFocal, maxFocal, enableDof, p8, p9, p10` |
 | `SetCameraClosestZoom` | `` |
 | `SetCameraGroundLevelZoom` | `zoom` |
+| `ShakeGameplayCamWithName` | `shakeName, intensity` |
 
 ## Databinding
 
@@ -168,8 +169,8 @@ myscript/client.lua
 
 | Function | Parameters |
 |----------|------------|
-| `ItemdatabaseCreateItemCollection` | `slotIdHash, slotId2Hash, tagHash, categoryHash, costHash, unkHash, flags, itemTypeHash, ciTagHash` |
-| `ItemdatabaseFilloutAcquireCost` | `itemHash, costTypeHash` |
+| `ItemdatabaseCreateItemCollection` | `slotIdHash, slotId2Hash, tagHash, catalogItemCategoryHash, costHash, sellHash, flag, itemTypeHash, catalogItemTagHash` |
+| `ItemdatabaseFilloutAcquireCost` | `itemHash, costHash` |
 | `ItemdatabaseFilloutAwardItemInfo` | `awardHash, index` |
 | `ItemdatabaseFilloutAwardUnlockFlag` | `awardHash, index` |
 | `ItemdatabaseFilloutBundle` | `bundleHash, costHash, index` |
@@ -188,10 +189,14 @@ myscript/client.lua
 | `ItemdatabaseGetAwardAcquireCost` | `awardHash, index` |
 | `ItemdatabaseGetAwardCostModifiers` | `awardHash` |
 | `ItemdatabaseGetAwardInfo` | `awardHash` |
-| `ItemdatabaseGetAwardUnlockFlagCount` | `award` |
-| `ItemdatabaseGetBundleAcquireCostsCount` | `bundleHash, costHash` |
+| `ItemdatabaseGetAwardUnlockFlagCount` | `awardHash` |
+| `ItemdatabaseGetBundleAcquireCost` | `bundleHash, index` |
+| `ItemdatabaseGetBundleAcquireCostModifiers` | `bundleHash` |
+| `ItemdatabaseGetBundleAcquireCostsCount` | `bundleHash` |
+| `ItemdatabaseGetBundleAcquireCostsCountFromCost` | `bundleHash, costHash` |
 | `ItemdatabaseGetBundleItemCount` | `bundleId` |
 | `ItemdatabaseGetBundleItemInfo` | `bundleId, index` |
+| `ItemdatabaseGetCatalogItemCategoryPathset` | `ciCategoryHash` |
 | `ItemdatabaseGetFitsSlotInfo` | `categoryHash, index` |
 | `ItemdatabaseGetItemPriceModifiers` | `itemHash` |
 | `ItemdatabaseGetShopInventoriesItemInfo` | `shopTypeHash, shopInventoryIndex` |

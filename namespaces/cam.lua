@@ -36,3 +36,10 @@ function SetCamDofAndFocalParams(cam, dofStrength, dofNear, dofFar, focalLength,
 
     Citizen.InvokeNative(0xE4B7945EF4F1BFB2, cam, inData:Buffer())
 end
+
+---Plays a predefined camera shake effect by string name.
+---@param shakeName string DRUNK_SHAKE, REINFORCED_LASSO_STRUGGLE_SHAKE, HAND_SHAKE
+---@param intensity number
+function ShakeGameplayCamWithName(shakeName, intensity)
+    Citizen.InvokeNative(0xC3E9E5D4F413B773, shakeName, intensity)
+end
