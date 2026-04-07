@@ -171,9 +171,12 @@ myscript/client.lua
 |----------|------------|
 | `ItemdatabaseCreateItemCollection` | `slotIdHash, slotId2Hash, tagHash, catalogItemCategoryHash, costHash, sellHash, flag, itemTypeHash, catalogItemTagHash` |
 | `ItemdatabaseFilloutAcquireCost` | `itemHash, costHash` |
+| `ItemdatabaseFilloutAwardAcquireCost` | `awardHash, costHash, index` |
 | `ItemdatabaseFilloutAwardItemInfo` | `awardHash, index` |
 | `ItemdatabaseFilloutAwardUnlockFlag` | `awardHash, index` |
 | `ItemdatabaseFilloutBundle` | `bundleHash, costHash, index` |
+| `ItemdatabaseFilloutBuyAwardAcquireCosts` | `awardHash` |
+| `ItemdatabaseFilloutBuyAwardUiData` | `awardHash` |
 | `ItemdatabaseFilloutItem` | `itemHash, costHash, index` |
 | `ItemdatabaseFilloutItemByName` | `itemHash` |
 | `ItemdatabaseFilloutItemEffectIdInfo` | `effectId` |
@@ -194,11 +197,12 @@ myscript/client.lua
 | `ItemdatabaseGetBundleAcquireCostModifiers` | `bundleHash` |
 | `ItemdatabaseGetBundleAcquireCostsCount` | `bundleHash` |
 | `ItemdatabaseGetBundleAcquireCostsCountFromCost` | `bundleHash, costHash` |
-| `ItemdatabaseGetBundleItemCount` | `bundleId` |
-| `ItemdatabaseGetBundleItemInfo` | `bundleId, index` |
+| `ItemdatabaseGetBundleItemCount` | `bundleHash` |
+| `ItemdatabaseGetBundleItemInfo` | `bundleHash, index` |
 | `ItemdatabaseGetCatalogItemCategoryPathset` | `ciCategoryHash` |
 | `ItemdatabaseGetFitsSlotInfo` | `categoryHash, index` |
 | `ItemdatabaseGetItemPriceModifiers` | `itemHash` |
+| `ItemdatabaseGetItemTagCatalogItemTags` | `itemHash, tagHash, size` |
 | `ItemdatabaseGetShopInventoriesItemInfo` | `shopTypeHash, shopInventoryIndex` |
 | `ItemdatabaseGetShopInventoriesItemInfoByKey` | `shopTypeHash, itemHash` |
 | `ItemdatabaseGetShopInventoriesRequirementGroupInfo` | `shopTypeHash, itemHash, groupIndex` |

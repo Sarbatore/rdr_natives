@@ -58,16 +58,16 @@ end
 ---@param costHash integer
 ---@param index integer
 ---@return boolean success
----@return integer currencyHash
+---@return integer priceHash
 ---@return integer amount
 function ItemdatabaseFilloutItem(itemHash, costHash, index)
     local outData = DataView.ArrayBuffer(2*8)
     
-    local success      = Citizen.InvokeNative(0xAD73B614DF26CF8A, itemHash, costHash, index, outData:Buffer()) == 1
-    local currencyHash = outData:GetInt32(0*8)
-    local amount       = outData:GetInt32(1*8)
+    local success   = Citizen.InvokeNative(0xAD73B614DF26CF8A, itemHash, costHash, index, outData:Buffer()) == 1
+    local priceHash = outData:GetInt32(0*8)
+    local amount    = outData:GetInt32(1*8)
 
-    return success, currencyHash, amount
+    return success, priceHash, amount
 end
 
 ---Returns a list of effects
@@ -131,28 +131,28 @@ function ItemdatabaseGetFitsSlotInfo(categoryHash, index)
 end
 
 ---Return the number of items for the bundle
----@param bundleId integer
+---@param bundleHash integer
 ---@return integer
-function ItemdatabaseGetBundleItemCount(bundleId)
-    local data = DataView.ArrayBuffer(1*8)
+function ItemdatabaseGetBundleItemCount(bundleHash)
+    local data = DataView.ArrayBuffer(8*8)
     data:SetInt32(0*8, 1)
-    return Citizen.InvokeNative(0x3332695B01015DF9, bundleId, data:Buffer(), Citizen.ResultAsInteger())
+    return Citizen.InvokeNative(0x3332695B01015DF9, bundleHash, data:Buffer(), Citizen.ResultAsInteger())
 end
 
 ---Return bundle item info at the selected index (item hash, slot id...)
----@param bundleId integer
+---@param bundleHash integer
 ---@param index integer
 ---@return boolean success
 ---@return integer itemHash
 ---@return integer slotIdHash
 ---@return integer unkNum1
 ---@return integer unkNum2
-function ItemdatabaseGetBundleItemInfo(bundleId, index)
+function ItemdatabaseGetBundleItemInfo(bundleHash, index)
     local data = DataView.ArrayBuffer(1*8)
     data:SetInt32(0*8, 1)
     local outData = DataView.ArrayBuffer(4*8)
     
-    local success    = Citizen.InvokeNative(0x5D48A77E4B668B57, bundleId, data:Buffer(), index, outData:Buffer()) == 1
+    local success    = Citizen.InvokeNative(0x5D48A77E4B668B57, bundleHash, data:Buffer(), index, outData:Buffer()) == 1
     local itemHash   = outData:GetInt32(0*8)
     local slotIdHash = outData:GetInt32(1*8)
     local unkNum1    = outData:GetInt32(2*8)
@@ -230,9 +230,32 @@ function ItemdatabaseFilloutPriceModifierByKey(itemHash)
     return success, unkHash
 end
 
+---@todo seems to be broken, tested with +3millions hashes
+---@param bundleHash integer
+---@return boolean success
+---@return table modifiersHash
+function ItemdatabaseGetBundleAcquireCostModifiers(bundleHash)
+    local outData = DataView.ArrayBuffer(1024*8)
+    outData:SetInt32(1*8, 10)
+
+    local success       = Citizen.InvokeNative(0xA97EE5E4589FCF5A, bundleHash, outData:Buffer())-- == 1
+    local modifiersHash = {}
+    
+    local numModifiers = outData:GetInt32(0*8)
+    if (numModifiers > 0) then
+        local startOffset = 2
+        local endOffset = startOffset + numModifiers - 1
+        for i = startOffset, endOffset do
+            table.insert(modifiersHash, outData:GetInt32(i*8))
+        end
+    end
+    
+    return success, modifiersHash
+end
+
 ---Return a list of tag data for the given item.
 ---@param itemHash integer
----@param size integer
+---@param size integer Number of tags to retrieve
 ---@return boolean success
 ---@return table tags 2D array of tag pairs, first value is the CI_TAG_ hash, second value is the TAG_ hash
 function ItemdatabaseFilloutTagData(itemHash, size)
@@ -240,8 +263,8 @@ function ItemdatabaseFilloutTagData(itemHash, size)
     outData:SetInt32(0*8, size)
     local outSize = DataView.ArrayBuffer(1*8)
 
-    local success  = Citizen.InvokeNative(0x5A11D6EEA17165B0, itemHash, outData:Buffer(), outSize:Buffer(), size) == 1
-    local tags     = {}
+    local success = Citizen.InvokeNative(0x5A11D6EEA17165B0, itemHash, outData:Buffer(), outSize:Buffer(), size) == 1
+    local tags    = {}
     
     local numTags = outSize:GetInt32(0)
     if (numTags > 0) then
@@ -490,7 +513,7 @@ end
 ---@param sellTypeHash integer SELL_SHOP_DEFAULT, etc...
 ---@return boolean success
 ---@return integer costTypeHash
----@return table sellPrices 2D array of price pairs, first value is the currency type hash, second value is the amount
+---@return table sellPrices 2D array of price pairs, first value is the price hash, second value is the amount
 function ItemdatabaseFilloutSellPrice(itemHash, sellTypeHash)
     local outData = DataView.ArrayBuffer(64*8)
     outData:SetInt32(4*8, 10)
@@ -521,7 +544,7 @@ end
 ---@return boolean success
 ---@return integer costHash
 ---@return integer costTypeHash
----@return table costs 2D array of cost pairs, first value is the currency hash, second value is the amount
+---@return table costs 2D array of cost pairs, first value is the price hash, second value is the amount
 function ItemdatabaseGetAcquireCost(itemHash, index)
     local outData = DataView.ArrayBuffer(64*8)
     outData:SetInt32(4*8, 15)
@@ -546,6 +569,39 @@ function ItemdatabaseGetAcquireCost(itemHash, index)
     end
     
     return success, costHash, costTypeHash, costs
+end
+
+---
+---@param itemHash integer
+---@param costHash integer
+---@return boolean success
+---@return integer costTypeHash
+---@return table costs 2D array of cost pairs, first value is the price hash, second value is the amount
+---@return integer unknown
+function ItemdatabaseFilloutAcquireCost(itemHash, costHash)
+    local outData = DataView.ArrayBuffer(38*8)
+    outData:SetInt32(4*8, 15)
+    outData:SetInt32(36*8, 10)
+
+    local success      = Citizen.InvokeNative(0x74F7928816E4E181, itemHash, costHash, outData:Buffer()) == 1
+    local costTypeHash = outData:GetInt32(2*8)
+    local costs        = {}
+    local unknown      = outData:GetInt32(37*8)
+
+    local numCosts = outData:GetInt32(3*8)
+    if (numCosts > 0) then
+        local startOffset = 5
+        local tableSize = 2
+        local endOffset = startOffset + (numCosts - 1) * tableSize
+        for i = startOffset, endOffset, tableSize do
+            table.insert(costs, {
+                outData:GetInt32(i*8),
+                outData:GetInt32((i + 1)*8)
+            })
+        end
+    end
+
+    return success, costTypeHash, costs, unknown
 end
 
 ---
@@ -587,53 +643,20 @@ function ItemdatabaseGetAwardCostModifiers(awardHash)
     return success, modifiersHash
 end
 
----Return the modifier currencyType and value at the selected index.
+---Return the modifier currencyType and multiplier at the selected index.
 ---@param modifierHash integer
 ---@param index integer
 ---@return boolean success
 ---@return integer currencyTypeHash
----@return number value
+---@return number multiplier
 function ItemdatabaseFilloutModifier(modifierHash, index)
     local outData = DataView.ArrayBuffer(2*8)
 
     local success          = Citizen.InvokeNative(0x60614A0AB580A2B5, modifierHash, index, outData:Buffer()) == 1
     local currencyTypeHash = outData:GetInt32(0*8)
-    local value            = outData:GetFloat32(1*8)
+    local multiplier       = outData:GetFloat32(1*8)
 
-    return success, currencyTypeHash, value
-end
-
----
----@param itemHash integer
----@param costHash integer
----@return boolean success
----@return integer costTypeHash
----@return table costs 2D array of cost pairs, first value is the currency hash, second value is the amount
----@return integer unknown
-function ItemdatabaseFilloutAcquireCost(itemHash, costHash)
-    local outData = DataView.ArrayBuffer(38*8)
-    outData:SetInt32(4*8, 15)
-    outData:SetInt32(36*8, 10)
-
-    local success      = Citizen.InvokeNative(0x74F7928816E4E181, itemHash, costHash, outData:Buffer()) == 1
-    local costTypeHash = outData:GetInt32(2*8)
-    local costs        = {}
-    local unknown      = outData:GetInt32(37*8)
-
-    local numCosts = outData:GetInt32(3*8)
-    if (numCosts > 0) then
-        local startOffset = 5
-        local tableSize = 2
-        local endOffset = startOffset + (numCosts - 1) * tableSize
-        for i = startOffset, endOffset, tableSize do
-            table.insert(costs, {
-                outData:GetInt32(i*8),
-                outData:GetInt32((i + 1)*8)
-            })
-        end
-    end
-
-    return success, costTypeHash, costs, unknown
+    return success, currencyTypeHash, multiplier
 end
 
 ---
@@ -693,6 +716,98 @@ function ItemdatabaseFilloutUiData(itemHash)
 end
 
 ---
+---@param awardHash integer
+---@return boolean success
+---@return integer hash
+---@return integer hashString
+---@return table tbl 2D array of label1, label2, hash
+function ItemdatabaseFilloutBuyAwardUiData(awardHash)
+    local outData = DataView.ArrayBuffer(64*8)
+    outData:SetInt32(2*8, 5)
+    outData:SetInt32(18*8, 8)
+
+    local success    = Citizen.InvokeNative(0xF8D09EF8CE61D7BF, awardHash, outData:Buffer()) == 1
+    local hash       = outData:GetInt32(0*8)
+    local hashString = outData:GetInt32(1*8)
+    local tbl        = {}
+
+    for i = 3, 63, 3 do
+        local label1 = outData:GetInt64(i*8)
+        if (label1 == 0) then break end
+        local label2 = outData:GetInt64((i+1)*8)
+        local hash = outData:GetInt32((i+2)*8)
+        table.insert(tbl, {label1, label2, hash})
+    end
+
+    return success, hash, hashString, tbl
+end
+
+---Retrieve acquire costs for a buy award.
+---@param awardHash integer
+---@return boolean success
+---@return table acquireCosts 2D array of cost data. e.g: ` {-1571233163, 1400824947, { {-595319816, 1}, {773203532, 500} }} `
+function ItemdatabaseFilloutBuyAwardAcquireCosts(awardHash)
+    local outData = DataView.ArrayBuffer(1024*8)
+    outData:SetInt32(0, 10)
+    local baseOffset = 1 * 8
+    for i = 0, 9 do
+        local currentNodeOffset = baseOffset + (i * 47 * 8)
+
+        local offset_f4 = currentNodeOffset + (4 * 8)
+        outData:SetInt32(offset_f4, 15)
+
+        local offset_f36 = currentNodeOffset + (36 * 8)
+        outData:SetInt32(offset_f36, 10)
+    end
+    local outSize = DataView.ArrayBuffer(1*8)
+
+    local success = Citizen.InvokeNative(0xB52E20F6767A09A2, awardHash, outData:Buffer(), outSize:Buffer(), 10) == 1
+    local acquireCosts = {}
+    
+    local numAcquireCosts = outSize:GetInt32(0)
+    for i = 0, numAcquireCosts - 1 do
+        local currentNodeOffset = baseOffset + (i * 47) * 8
+        local costHash = outData:GetInt32(currentNodeOffset + (0 * 8))
+        local costTypeHash = outData:GetInt32(currentNodeOffset + (2 * 8))
+        local numPrices = outData:GetInt32(currentNodeOffset + (3 * 8))
+        local prices = {}
+        for j = 0, numPrices - 1 do
+            local priceHash = outData:GetInt32(currentNodeOffset + ((5 + (j * 2)) * 8))
+            local amount = outData:GetInt32(currentNodeOffset + ((5 + (j * 2) + 1) * 8))
+            table.insert(prices, {
+                priceHash,
+                amount
+            })
+        end
+        table.insert(acquireCosts, {
+            costHash,
+            costTypeHash,
+            prices
+        })
+    end
+
+    return success, acquireCosts
+end
+
+---
+---@param awardHash integer
+---@param costHash integer
+---@param index integer
+---@return boolean
+---@return integer priceHash `CURRENCY_GOLD_BAR`, etc...
+---@return integer priceAmount
+function ItemdatabaseFilloutAwardAcquireCost(awardHash, costHash, index)
+    local outData = DataView.ArrayBuffer(2*8)
+    outData:SetInt32(0*8, 15)
+
+    local success = Citizen.InvokeNative(0xF27F01BBF5ACD3F3, awardHash, costHash, index, outData:Buffer()) == 1
+    local priceHash = success and outData:GetInt32(0*8) or 0
+    local priceAmount = outData:GetInt32(1*8)
+
+    return success, priceHash, priceAmount
+end
+
+---
 ---@param bundleHash integer
 ---@param costHash integer
 function ItemdatabaseGetBundleAcquireCostsCountFromCost(bundleHash, costHash)
@@ -712,7 +827,7 @@ end
 ---@return boolean success
 ---@return integer costHash
 ---@return integer costTypeHash
----@return table costs 2D array of cost pairs, first value is the currency hash, second value is the amount
+---@return table costs 2D array of cost pairs, first value is the price hash, second value is the amount
 function ItemdatabaseGetBundleAcquireCost(bundleHash, index)
     local outData = DataView.ArrayBuffer(64*8)
     outData:SetInt32(4*8, 15)
@@ -744,17 +859,17 @@ end
 ---@param costHash integer
 ---@param index integer
 ---@return boolean success
----@return integer currencyHash Currency can be item, money, gold...
+---@return integer priceHash `CURRENCY_GOLD_BAR`, etc...
 ---@return integer amount
 function ItemdatabaseFilloutBundle(bundleHash, costHash, index)
     local outData = DataView.ArrayBuffer(2*8)
     outData:SetInt32(0, 15)
 
-    local success      = Citizen.InvokeNative(0xB542632693D53408, bundleHash, costHash, index, outData:Buffer()) == 1
-    local currencyHash = outData:GetInt32(0*8)
-    local amount       = outData:GetInt32(1*8)
+    local success   = Citizen.InvokeNative(0xB542632693D53408, bundleHash, costHash, index, outData:Buffer()) == 1
+    local priceHash = outData:GetInt32(0*8)
+    local amount    = outData:GetInt32(1*8)
 
-    return success, currencyHash, amount
+    return success, priceHash, amount
 end
 
 ---Number of N_0x8D029948CA29409B entries for the given hash
@@ -811,30 +926,36 @@ function ItemdatabaseGetAwardInfo(awardHash)
 end
 
 ---
+---@param itemHash integer
+---@param tagHash integer TAG_ITEM_PROPERTY, etc...
+---@param size integer Number of tags to return
+---@return table catalogItemTags List of CI_TAG_ hashes
+function ItemdatabaseGetItemTagCatalogItemTags(itemHash, tagHash, size)
+    local outData = DataView.ArrayBuffer(32*8)
+    outData:SetInt32(0*8, size)
+
+    local numTags = Citizen.InvokeNative(0x8870895BA5ED9385, itemHash, tagHash, outData:Buffer(), Citizen.ResultAsInteger())
+    
+    local catalogItemTags = {}
+    for i = 1, numTags do
+        table.insert(catalogItemTags, outData:GetInt32(i*8))
+    end
+
+    return catalogItemTags
+end
+
+---
 ---@param ciCategoryHash integer
 ---@return integer pathsetHash
 function ItemdatabaseGetCatalogItemCategoryPathset(ciCategoryHash)
     return Citizen.InvokeNative(0xAA29A5F13B2C20B2, ciCategoryHash, `DEFAULT`, Citizen.ResultAsInteger())
 end
 
----
----@param bundleHash integer
----@return boolean success
-function ItemdatabaseGetBundleAcquireCostModifiers(bundleHash)
-    local outData = DataView.ArrayBuffer(32*8)
-    outData:SetInt32(1*8, 10)
-
-    local success      = Citizen.InvokeNative(0xA97EE5E4589FCF5A, bundleHash, outData:Buffer()) == 1
-    local numModifiers = outData:GetInt32(0*8)
-    
-    return success
-end
-
 ---Return the number of items in the bundle for the given bundle hash to use with N_0xC4146375D8A0B374.
 ---@param bundleHash integer
 ---@return integer num
-function N_0x799FCD53358ED5FA(bundleHash) -- ItemdatabaseGetBundle
-    local data = DataView.ArrayBuffer(1*8)
+function N_0x799FCD53358ED5FA(bundleHash) -- ItemdatabaseGetBundleAccessory*
+    local data = DataView.ArrayBuffer(16*8)
     data:SetInt32(0*8, 1)
     return Citizen.InvokeNative(0x799FCD53358ED5FA, bundleHash, data:Buffer(), Citizen.ResultAsInteger())
 end
@@ -844,23 +965,23 @@ end
 ---@param index integer
 ---@return boolean success
 ---@return integer itemHash
----@return integer unkHash
+---@return integer slotIdHash
 ---@return integer unkNum1
 ---@return integer unkNum2
 ---@return integer unkNum3
-function N_0xC4146375D8A0B374(bundleHash, index) -- ItemdatabaseGetBundleAcquireCost*
-    local data = DataView.ArrayBuffer(1*8)
+function N_0xC4146375D8A0B374(bundleHash, index) -- ItemdatabaseGetBundleAccessory*
+    local data = DataView.ArrayBuffer(16*8)
     data:SetInt32(0*8, 1)
-    local outData = DataView.ArrayBuffer(5*8)
+    local outData = DataView.ArrayBuffer(16*8)
 
-    local success  = Citizen.InvokeNative(0xC4146375D8A0B374, bundleHash, data:Buffer(), index, outData:Buffer()) == 1
-    local itemHash = outData:GetInt32(0*8)
-    local unkHash  = outData:GetInt32(1*8)
-    local unkNum1  = outData:GetInt32(2*8)
-    local unkNum2  = outData:GetInt32(3*8)
-    local unkNum3  = outData:GetInt32(4*8)
+    local success    = Citizen.InvokeNative(0xC4146375D8A0B374, bundleHash, data:Buffer(), index, outData:Buffer()) == 1
+    local itemHash   = outData:GetInt32(0*8)
+    local slotIdHash = outData:GetInt32(1*8)
+    local unkNum1    = outData:GetInt32(2*8)
+    local unkNum2    = outData:GetInt32(3*8)
+    local unkNum3    = outData:GetInt32(4*8)
     
-    return success, itemHash, unkHash, unkNum1, unkNum2, unkNum3
+    return success, itemHash, slotIdHash, unkNum1, unkNum2, unkNum3
 end
 
 ---
