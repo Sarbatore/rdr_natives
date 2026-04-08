@@ -132,7 +132,11 @@ myscript/client.lua
 
 | Function | Parameters |
 |----------|------------|
+| `AnimpostfxHasEventTriggered` | `effectName, eventType, peekOnly` |
+| `NumPixelsVisibleAtTrackedPoint` | `trackedPoint` |
 | `RemoveVegModifier` | `vegModifier` |
+| `ResetMaskOverlay` | `` |
+| `SetMaskOverlay` | `maskName` |
 
 ## Hud
 
@@ -298,7 +302,11 @@ myscript/client.lua
 | `RefreshCarriedPedForPed` | `ped, p1, p2` |
 | `RemovePedPropItemConditionalAnim` | `ped, propItemId` |
 | `RequestCarryingStateForPed` | `ped, carryingType, unk3, filter` |
+| `SetPedLocalVfxColor` | `ped, vfxNodeHash, r, g, b` |
+| `SetPedMeleeAction` | `ped, actionRequestHash` |
+| `SetPedRagdollBoneScale` | `ped, boneId, scaleX, scaleY, scaleZ` |
 | `SetPedWetness` | `ped, amount` |
+| `SetPresetForPed` | `ped, presetIndex` |
 
 ## Player
 
@@ -462,6 +470,7 @@ myscript/client.lua
 | Function | Parameters |
 |----------|------------|
 | `AreAnyVehicleWheelsDestroyed` | `vehicle` |
+| `BreakLocksOnVehicle` | `vehicle` |
 | `BreakVehicleStraps` | `vehicle, coords` |
 | `DeleteMissionTrain` | `trainVehicle` |
 | `DetermineVehicleCompartmentState` | `vehicle, ped` |
@@ -473,14 +482,19 @@ myscript/client.lua
 | `GetNumDraftVehicleStraps` | `vehicle` |
 | `GetStationFromTrainStationData` | `trackIndex, stationIndex` |
 | `IsPositionValidForTrain` | `trainConfig, x, y, z, direction, p5` |
+| `IsVehicleTouchingVegetation` | `vehicle` |
 | `RecoverDraftVehicleFallingLog` | `vehicle` |
 | `ReturnTrainInfoFromHandle` | `trainVehicle` |
+| `SetBalloonFaceCoords` | `balloonVehicle, x, y, z` |
+| `SetBalloonGoToCoords` | `balloonVehicle, x, y, z, p2, speedMultiplier` |
 | `SetBalloonRoute` | `balloonVehicle, x, y, z, autoPower, speed` |
+| `SetCargoCompartmentOpen` | `vehicle` |
 | `SetOarsRowingSpeed` | `boatVehicle, speed` |
 | `SetTrainCarriageInteriorCollisionAvoidance` | `trainCarriage, enable` |
 | `SetTrainCollisionAvoidanceEnabled` | `trainVehicle, enable` |
 | `SetTrainReverseEnabled` | `missionTrain, enable` |
 | `SetTrainWhistleEnabled` | `trainVehicle, enable` |
+| `SetVehicleStopDistanceBuffer` | `vehicle, bufferDistance` |
 
 ## Weapon
 

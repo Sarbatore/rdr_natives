@@ -181,6 +181,52 @@ function IsPositionValidForTrain(trainConfig, x, y, z, direction, p5)
     return Citizen.InvokeNative(0xF05DFAF1ADFEF2CD, trainConfig, x, y, z, direction, p5) == 1
 end
 
+---Adds a forward buffer to the AI's stopping distance for a specific vehicle.
+---@param vehicle integer
+---@param bufferDistance number
+function SetVehicleStopDistanceBuffer(vehicle, bufferDistance)
+    Citizen.InvokeNative(0xA13028E22564A1BD, vehicle, bufferDistance)
+end
+
+---Forces a hot air balloon to rotate (yaw) and face a specific 3D world coordinate.
+---@param balloonVehicle integer
+---@param x number
+---@param y number
+---@param z number
+function SetBalloonFaceCoords(balloonVehicle, x, y, z)
+    Citizen.InvokeNative(0xB42C87521D1BDD2F, balloonVehicle, x, y, z)
+end
+
+---
+---@param balloonVehicle integer
+---@param x number
+---@param y number
+---@param z number
+---@param p2 boolean
+---@param speedMultiplier number
+function SetBalloonGoToCoords(balloonVehicle, x, y, z, p2, speedMultiplier)
+    Citizen.InvokeNative(0x2200AB13CBD10F4E, balloonVehicle, x, y, z, p2, speedMultiplier)
+end
+
+---A universal trigger that forces open a vehicle's primary cargo access point (e.g., dropping the tailgate, opening a built-in lockbox, or revealing a hidden smuggler compartment).
+---@param vehicle integer
+function SetCargoCompartmentOpen(vehicle)
+    Citizen.InvokeNative(0xF6E3D38869D0F7AD, vehicle)
+end
+
+---Checks if a vehicle's collision bounds (or wheels) are currently interacting with dense vegetation/foliage physics materials (e.g., bushes, reeds, thick shrubs).
+---@param vehicle integer
+---@return boolean
+function IsVehicleTouchingVegetation(vehicle)
+    return Citizen.InvokeNative(0x51C7694E140FAE43, vehicle) == 1
+end
+
+---Instantly pops/destroys any breakable lock objects attached to the vehicle AND automatically swings open the corresponding doors/compartments.
+---@param vehicle integer
+function BreakLocksOnVehicle(vehicle)
+    Citizen.InvokeNative(0x9D12796EF4BF9EA9, vehicle)
+end
+
 ---
 ---@param missionTrain integer
 ---@param p1 integer

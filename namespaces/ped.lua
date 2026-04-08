@@ -229,11 +229,39 @@ function HasPedKnockedOnDoor(ped)
     return Citizen.InvokeNative(0xFA8C10DCE0706D43, ped) == 1
 end
 
---[[
+---Sets a predefined variation preset for the ped's appearance.
+---@param ped integer
+---@param presetIndex integer
+function SetPresetForPed(ped, presetIndex)
+    Citizen.InvokeNative(0xFFA1594703ED27CA, ped, presetIndex)
+end
 
-TO DISCOVER:
+---Modifies the size/scale of the collision capsule (hitbox) for a specific ped bone.
+---@param ped integer
+---@param boneId integer
+---@param scaleX number
+---@param scaleY number
+---@param scaleZ number
+function SetPedRagdollBoneScale(ped, boneId, scaleX, scaleY, scaleZ)
+    Citizen.InvokeNative(0xC17A94CC8FC3C61A, ped, boneId, scaleX, scaleY, scaleZ)
+end
 
-]]
+---Queues a specific melee action, grapple move, or execution for the ped's next attack.
+---@param ped integer
+---@param actionRequestHash integer e.g: AR_GRAPPLE_EXECUTION, etc...
+function SetPedMeleeAction(ped, actionRequestHash)
+    Citizen.InvokeNative(0xC48AF420371C7407, ped, actionRequestHash)
+end
+
+---Sets the RGB color for a specific volumetric VFX/Particle node attached to a ped's outfit or component.
+---@param ped integer
+---@param vfxNodeHash integer e.g: -929362906
+---@param r number Normalized float: 0.0 - 1.0
+---@param g number Normalized float: 0.0 - 1.0
+---@param b number Normalized float: 0.0 - 1.0
+function SetPedLocalVfxColor(ped, vfxNodeHash, r, g, b)
+    Citizen.InvokeNative(0xDD9540E7B1C9714F, ped, vfxNodeHash, r, g, b)
+end
 
 ---
 ---@param ped integer

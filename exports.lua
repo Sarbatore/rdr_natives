@@ -75,7 +75,11 @@ exports("IsPedInHerd", IsPedInHerd)
 exports("RemoveHerdPed", RemoveHerdPed)
 
 -- Graphics
+exports("AnimpostfxHasEventTriggered", AnimpostfxHasEventTriggered)
+exports("NumPixelsVisibleAtTrackedPoint", NumPixelsVisibleAtTrackedPoint)
 exports("RemoveVegModifier", RemoveVegModifier)
+exports("ResetMaskOverlay", ResetMaskOverlay)
+exports("SetMaskOverlay", SetMaskOverlay)
 
 -- Hud
 exports("GetHudState", GetHudState)
@@ -211,7 +215,11 @@ exports("PlayConditionalAnimWithPropItem", PlayConditionalAnimWithPropItem)
 exports("RefreshCarriedPedForPed", RefreshCarriedPedForPed)
 exports("RemovePedPropItemConditionalAnim", RemovePedPropItemConditionalAnim)
 exports("RequestCarryingStateForPed", RequestCarryingStateForPed)
+exports("SetPedLocalVfxColor", SetPedLocalVfxColor)
+exports("SetPedMeleeAction", SetPedMeleeAction)
+exports("SetPedRagdollBoneScale", SetPedRagdollBoneScale)
 exports("SetPedWetness", SetPedWetness)
+exports("SetPresetForPed", SetPresetForPed)
 
 -- Player
 exports("AddAmbientPlayerInteractiveFocusPresetAtCoords", AddAmbientPlayerInteractiveFocusPresetAtCoords)
@@ -351,6 +359,7 @@ exports("UilogPostNotification", UilogPostNotification)
 
 -- Vehicle
 exports("AreAnyVehicleWheelsDestroyed", AreAnyVehicleWheelsDestroyed)
+exports("BreakLocksOnVehicle", BreakLocksOnVehicle)
 exports("BreakVehicleStraps", BreakVehicleStraps)
 exports("DeleteMissionTrain", DeleteMissionTrain)
 exports("DetermineVehicleCompartmentState", DetermineVehicleCompartmentState)
@@ -362,14 +371,19 @@ exports("GetNumDraftVehicleLogs", GetNumDraftVehicleLogs)
 exports("GetNumDraftVehicleStraps", GetNumDraftVehicleStraps)
 exports("GetStationFromTrainStationData", GetStationFromTrainStationData)
 exports("IsPositionValidForTrain", IsPositionValidForTrain)
+exports("IsVehicleTouchingVegetation", IsVehicleTouchingVegetation)
 exports("RecoverDraftVehicleFallingLog", RecoverDraftVehicleFallingLog)
 exports("ReturnTrainInfoFromHandle", ReturnTrainInfoFromHandle)
+exports("SetBalloonFaceCoords", SetBalloonFaceCoords)
+exports("SetBalloonGoToCoords", SetBalloonGoToCoords)
 exports("SetBalloonRoute", SetBalloonRoute)
+exports("SetCargoCompartmentOpen", SetCargoCompartmentOpen)
 exports("SetOarsRowingSpeed", SetOarsRowingSpeed)
 exports("SetTrainCarriageInteriorCollisionAvoidance", SetTrainCarriageInteriorCollisionAvoidance)
 exports("SetTrainCollisionAvoidanceEnabled", SetTrainCollisionAvoidanceEnabled)
 exports("SetTrainReverseEnabled", SetTrainReverseEnabled)
 exports("SetTrainWhistleEnabled", SetTrainWhistleEnabled)
+exports("SetVehicleStopDistanceBuffer", SetVehicleStopDistanceBuffer)
 
 -- Weapon
 exports("AttachWeaponToHorseHolster", AttachWeaponToHorseHolster)
