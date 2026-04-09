@@ -44,23 +44,23 @@ function InverseKinematicsIsActive(ped, ik)
     return Citizen.InvokeNative(0x6098139150DCC745, ped, ik) == 1
 end
 
----
+---Make the ped point at with his arm, must be called each frames.
 ---@param ped integer
 ---@param isRightHand boolean
 ---@param xOffset number
 ---@param yOffset number
 ---@param zOffset number
 ---@param pointAtEntity integer
----@param boneIndex integer
+---@param pointAtBoneIndex integer
 ---@param flags integer
-function N_0x0B9F7A01EC50448D(ped, isRightHand, xOffset, yOffset, zOffset, pointAtEntity, boneIndex, flags)
+function InverseKinematicsPointAt(ped, isRightHand, xOffset, yOffset, zOffset, pointAtEntity, pointAtBoneIndex, flags)
     local data = DataView.ArrayBuffer(10*8)
     data:SetInt32(0*8, isRightHand and 1 or 0)
     data:SetFloat32(1*8, xOffset)
     data:SetFloat32(2*8, yOffset)
     data:SetFloat32(3*8, zOffset)
     data:SetInt32(4*8, pointAtEntity)
-    data:SetInt32(5*8, boneIndex)
+    data:SetInt32(5*8, pointAtBoneIndex)
     data:SetInt32(6*8, flags) -- 24 flags, (1 << 22): attach
     data:SetInt32(7*8, 2)
     data:SetInt32(8*8, 2)

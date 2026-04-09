@@ -152,6 +152,7 @@ myscript/client.lua
 | Function | Parameters |
 |----------|------------|
 | `InverseKinematicsIsActive` | `ped, ik` |
+| `InverseKinematicsPointAt` | `ped, isRightHand, xOffset, yOffset, zOffset, pointAtEntity, pointAtBoneIndex, flags` |
 | `InverseKinematicsRequestLookAt` | `ped, x, y, z, lookAtEntity, flags, p6, duration` |
 
 ## Inventory
@@ -250,6 +251,10 @@ myscript/client.lua
 | `DisableCompositePickPromptThisFrame` | `composite, disable` |
 | `FireSingleBullet` | `xStart, yStart, zStart, xEnd, yEnd, zEnd, weaponHash, damage, p8, investigator, entity2, entity3, p12, p13, p14, p15, p16, p18, p19` |
 | `GetGroundZAndMaterialFor3DCoord` | `x, y, z, p1` |
+| `GetHeadingFromVector2d` | `dx, dy` |
+| `GetNumberOfBulletsImpactedEntity` | `entity, p1, p2` |
+| `GetNumberOfBulletsInArea` | `x, y, z, radius, p4, p5` |
+| `HasBulletImpactedEntity` | `entity, p1, p2` |
 
 ## Network
 

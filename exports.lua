@@ -89,6 +89,7 @@ exports("UiPromptHasMashModeJustPressed", UiPromptHasMashModeJustPressed)
 
 -- Ik
 exports("InverseKinematicsIsActive", InverseKinematicsIsActive)
+exports("InverseKinematicsPointAt", InverseKinematicsPointAt)
 exports("InverseKinematicsRequestLookAt", InverseKinematicsRequestLookAt)
 
 -- Inventory
@@ -172,6 +173,10 @@ exports("DisableCompositeEatPromptThisFrame", DisableCompositeEatPromptThisFrame
 exports("DisableCompositePickPromptThisFrame", DisableCompositePickPromptThisFrame)
 exports("FireSingleBullet", FireSingleBullet)
 exports("GetGroundZAndMaterialFor3DCoord", GetGroundZAndMaterialFor3DCoord)
+exports("GetHeadingFromVector2d", GetHeadingFromVector2d)
+exports("GetNumberOfBulletsImpactedEntity", GetNumberOfBulletsImpactedEntity)
+exports("GetNumberOfBulletsInArea", GetNumberOfBulletsInArea)
+exports("HasBulletImpactedEntity", HasBulletImpactedEntity)
 
 -- Network
 exports("NetworkHandleFromPlayer", NetworkHandleFromPlayer)
