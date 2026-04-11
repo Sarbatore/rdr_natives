@@ -1,5 +1,5 @@
 ## Description
-This resource is a strong library of discovered native functions by the community.
+This resource is a strong library of +400 discovered native functions by the community.
 You can reuse functions with exports or by including files.
 
 ## Links
@@ -9,13 +9,13 @@ You can reuse functions with exports or by including files.
 ### With exports
 myscript/client.lua
 ```lua
-exports.redm_natives:PlayPedAmbientSpeechNative(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0) -- This will make your ped speak.
+exports.rdr_natives:PlayPedAmbientSpeechNative(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0) -- This will make your ped speak.
 ```
 ### With include
 myscript/fxmanifest.lua
 ```lua
 client_scripts {
-    "@redm_natives/namespaces/audio.lua"
+    "@rdr_natives/namespaces/audio.lua"
 }
 ```
 myscript/client.lua
