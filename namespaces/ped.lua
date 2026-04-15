@@ -263,6 +263,27 @@ function SetPedLocalVfxColor(ped, vfxNodeHash, r, g, b)
     Citizen.InvokeNative(0xDD9540E7B1C9714F, ped, vfxNodeHash, r, g, b)
 end
 
+---Returns the ped seeing range.
+---@param ped integer
+---@return number
+function GetPedSeeingRange(ped)
+    return Citizen.InvokeNative(0x2BA9D7BF629F920C, ped, Citizen.ResultAsFloat())
+end
+
+---Returns the ped hearing range.
+---@param ped integer
+---@return number
+function GetPedHearingRange(ped)
+    return Citizen.InvokeNative(0x900CA00CE703E1E2, ped, Citizen.ResultAsFloat())
+end
+
+---Returns the ped race.
+---@param ped integer
+---@return integer raceHash CAUCASIAN
+function GetMetaPedRace(ped)
+    return Citizen.InvokeNative(0xB292203008EBBAAC, ped, Citizen.ResultAsInteger())
+end
+
 ---
 ---@param ped integer
 ---@return boolean
