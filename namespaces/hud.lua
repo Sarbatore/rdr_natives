@@ -28,7 +28,7 @@ end
 ---@param p0 integer
 ---@param weaponHash integer
 ---@param p2Hash integer
-function N_0X8A59D44189AF2BC5(p0, weaponHash, p2Hash)
+function N_0x8A59D44189AF2BC5(p0, weaponHash, p2Hash)
     local data = DataView.ArrayBuffer(2*8)
     data:SetInt32(0*8, p0)
     data:SetInt32(1*8, weaponHash)
@@ -41,6 +41,6 @@ end
 ---@param x number
 ---@param y number
 ---@param z number
-function N_0XCC3B787E73E64160(checkpoint, p1, x, y, z)
-    Citizen.InvokeNative(0XCC3B787E73E64160, checkpoint, p1, x, y, z)
+function N_0xCC3B787E73E64160(checkpoint, p1, x, y, z)
+    Citizen.InvokeNative(0xCC3B787E73E64160, checkpoint, p1, x, y, z)
 end

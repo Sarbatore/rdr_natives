@@ -260,13 +260,13 @@ end
 ---@param attachPoint integer
 ---@return boolean
 function IsPedCarryingWeaponSniperAtAttachPoint(ped, attachPoint)
-    return Citizen.InvokeNative(0XD2209866B0CB72EA, ped, attachPoint) == 1
+    return Citizen.InvokeNative(0xD2209866B0CB72EA, ped, attachPoint) == 1
 end
 
 ---Deletes all visible weapon PROP objects attached to the horse’s holsters. This ONLY removes objects, the weapons remain in inventory and are still accessible.
 ---@param horsePed integer
 function DeleteWeaponObjectsOnHorse(horsePed)
-    Citizen.InvokeNative(0XD4C6E24D955FF061, horsePed)
+    Citizen.InvokeNative(0xD4C6E24D955FF061, horsePed)
 end
 
 ---Visually attaches the specified weapon to the given horse's holster (long-gun rack), even if the player is not near the horse.
@@ -281,21 +281,21 @@ end
 ---@param ped integer
 ---@param weaponHash integer
 function DisableAllSpecialAmmoForPed(ped, weaponHash)
-    Citizen.InvokeNative(0XD63B4BA3A02A99E0, ped, weaponHash)
+    Citizen.InvokeNative(0xD63B4BA3A02A99E0, ped, weaponHash)
 end
 
 ---Enables all special ammo types for the specified weapon on the given ped.
 ---@param ped integer
 ---@param weaponHash integer
 function EnableAllSpecialAmmoForPed(ped, weaponHash)
-    Citizen.InvokeNative(0X404514D231DB27A0, ped, weaponHash)
+    Citizen.InvokeNative(0x404514D231DB27A0, ped, weaponHash)
 end
 
 ---Return true if the ped can switch weapon, false otherwise
 ---@param ped integer
 ---@return boolean
 function GetCanSwitchWeapon(ped)
-    return Citizen.InvokeNative(0XBC9444F2FF94A9C0, ped) == 1
+    return Citizen.InvokeNative(0xBC9444F2FF94A9C0, ped) == 1
 end
 
 ---
@@ -318,58 +318,58 @@ end
 
 ---
 ---@param p0 boolean
-function N_0X457B16951AD77C1B(p0)
-    Citizen.InvokeNative(0X457B16951AD77C1B, p0)
+function N_0x457B16951AD77C1B(p0)
+    Citizen.InvokeNative(0x457B16951AD77C1B, p0)
 end
 
 ---
 ---@param ped integer
 ---@param weaponGuid string
 ---@return integer
-function N_0XA2091482ED42EF85(ped, weaponGuid)
-    return Citizen.InvokeNative(0XA2091482ED42EF85, ped, weaponGuid, Citizen.ResultAsInteger())
+function N_0xA2091482ED42EF85(ped, weaponGuid)
+    return Citizen.InvokeNative(0xA2091482ED42EF85, ped, weaponGuid, Citizen.ResultAsInteger())
 end
 
 ---
 ---@param ped integer
 ---@param p1 boolean
-function N_0X431240A58484D5D0(ped, p1)
-    Citizen.InvokeNative(0X431240A58484D5D0, ped, p1)
+function N_0x431240A58484D5D0(ped, p1)
+    Citizen.InvokeNative(0x431240A58484D5D0, ped, p1)
 end
 
 ---
 ---@param ped integer
 ---@param p1 boolean
-function N_0X45E57FDD531C9477(ped, p1)
-    Citizen.InvokeNative(0X45E57FDD531C9477, ped, p1)
+function N_0x45E57FDD531C9477(ped, p1)
+    Citizen.InvokeNative(0x45E57FDD531C9477, ped, p1)
 end
 
 ---
 ---@param ped integer
 ---@param p1 boolean
-function N_0XF08D8FEB455F2C8C(ped, p1)
-    Citizen.InvokeNative(0XF08D8FEB455F2C8C, ped, p1)
+function N_0xF08D8FEB455F2C8C(ped, p1)
+    Citizen.InvokeNative(0xF08D8FEB455F2C8C, ped, p1)
 end
 
 ---
 ---@param ped integer
 ---@param p1 boolean
-function N_0X16D9841A85FA627E(ped, p1)
-    Citizen.InvokeNative(0X16D9841A85FA627E, ped, p1)
+function N_0x16D9841A85FA627E(ped, p1)
+    Citizen.InvokeNative(0x16D9841A85FA627E, ped, p1)
 end
 
 ---
 ---@param weaponHash integer
 ---@param p1 integer
 ---@return integer
-function N_0XF2F585411E748B9C(weaponHash, p1)
-    return Citizen.InvokeNative(0XF2F585411E748B9C, weaponHash, p1, Citizen.ResultAsInteger())
+function N_0xF2F585411E748B9C(weaponHash, p1)
+    return Citizen.InvokeNative(0xF2F585411E748B9C, weaponHash, p1, Citizen.ResultAsInteger())
 end
 
 ---
 ---@param p0 integer
-function N_0X63B83A526329AFBC(p0)
-    Citizen.InvokeNative(0X63B83A526329AFBC, p0)
+function N_0x63B83A526329AFBC(p0)
+    Citizen.InvokeNative(0x63B83A526329AFBC, p0)
 end
 
 ---
@@ -381,81 +381,81 @@ end
 ---
 ---@param ped integer
 ---@param p1 Any
-function N_0X641351E9AD103890(ped, p1)
-    Citizen.InvokeNative(0X641351E9AD103890, ped, p1)
+function N_0x641351E9AD103890(ped, p1)
+    Citizen.InvokeNative(0x641351E9AD103890, ped, p1)
 end
 
 ---
 ---@param ped integer
 ---@param p1 integer
 ---@return boolean
-function N_0X486C96A0DCD2BC92(ped, p1)
-    return Citizen.InvokeNative(0X486C96A0DCD2BC92, ped, p1) == 1
+function N_0x486C96A0DCD2BC92(ped, p1)
+    return Citizen.InvokeNative(0x486C96A0DCD2BC92, ped, p1) == 1
 end
 
 ---
 ---@param ped integer
 ---@param p1 number
 ---@param p2 number
-function N_0XA769D753922B031B(ped, p1, p2)
-    Citizen.InvokeNative(0XA769D753922B031B, ped, p1, p2)
+function N_0xA769D753922B031B(ped, p1, p2)
+    Citizen.InvokeNative(0xA769D753922B031B, ped, p1, p2)
 end
 
 ---
 ---@param ped integer
 ---@param weaponHash integer
-function N_0X183CE355115B6E75(ped, weaponHash)
-    Citizen.InvokeNative(0X183CE355115B6E75, ped, weaponHash)
+function N_0x183CE355115B6E75(ped, weaponHash)
+    Citizen.InvokeNative(0x183CE355115B6E75, ped, weaponHash)
 end
 
 ---
 ---@param ped integer
 ---@param weaponHash integer
 ---@param p2 number
-function N_0XE9B3FEC825668291(ped, weaponHash, p2)
-    Citizen.InvokeNative(0XE9B3FEC825668291, ped, weaponHash, p2)
+function N_0xE9B3FEC825668291(ped, weaponHash, p2)
+    Citizen.InvokeNative(0xE9B3FEC825668291, ped, weaponHash, p2)
 end
 
 ---
 ---@param ped integer
-function N_0XC5899C4CD2E2495D(ped)
-    Citizen.InvokeNative(0XC5899C4CD2E2495D, ped)
+function N_0xC5899C4CD2E2495D(ped)
+    Citizen.InvokeNative(0xC5899C4CD2E2495D, ped)
 end
 
 ---
 ---@param vehicle integer
 ---@param p1 boolean
-function N_0X9409C62504A8F9E9(vehicle, p1)
-    Citizen.InvokeNative(0X9409C62504A8F9E9, vehicle, p1)
+function N_0x9409C62504A8F9E9(vehicle, p1)
+    Citizen.InvokeNative(0x9409C62504A8F9E9, vehicle, p1)
 end
 
 ---
 ---@param ped integer
 ---@param weaponHash integer
 ---@param p2 number
-function N_0XD53846B9C931C181(ped, weaponHash, p2)
-    Citizen.InvokeNative(0XD53846B9C931C181, ped, weaponHash, p2)
+function N_0xD53846B9C931C181(ped, weaponHash, p2)
+    Citizen.InvokeNative(0xD53846B9C931C181, ped, weaponHash, p2)
 end
 
 ---
 ---@param ped integer
 ---@param weaponHash integer
 ---@param p2 integer
-function N_0XA3716A77DCF17424(ped, weaponHash, p2)
-    Citizen.InvokeNative(0XA3716A77DCF17424, ped, weaponHash, p2)
+function N_0xA3716A77DCF17424(ped, weaponHash, p2)
+    Citizen.InvokeNative(0xA3716A77DCF17424, ped, weaponHash, p2)
 end
 
 ---
 ---@param projectile integer
 ---@param p1 integer
-function N_0X74C2365FDD1BB48F(projectile, p1)
-    Citizen.InvokeNative(0X74C2365FDD1BB48F, projectile, p1)
+function N_0x74C2365FDD1BB48F(projectile, p1)
+    Citizen.InvokeNative(0x74C2365FDD1BB48F, projectile, p1)
 end
 
 ---
 ---@param p0 integer
-function N_0XECBB26529A737EF6(p0)
-    Citizen.InvokeNative(0XECBB26529A737EF6, p0)
+function N_0xECBB26529A737EF6(p0)
+    Citizen.InvokeNative(0xECBB26529A737EF6, p0)
 end
 
 ---
@@ -463,14 +463,14 @@ end
 ---@param weaponHash integer
 ---@param p2 number
 ---@return boolean
-function N_0X9CCA3131E6B53C68(ped, weaponHash, p2)
-    return Citizen.InvokeNative(0X9CCA3131E6B53C68, ped, weaponHash, p2) == 1
+function N_0x9CCA3131E6B53C68(ped, weaponHash, p2)
+    return Citizen.InvokeNative(0x9CCA3131E6B53C68, ped, weaponHash, p2) == 1
 end
 
 ---
 ---@param ped integer
 ---@param p1 integer
 ---@param weaponHash integer
-function N_0XB0FB9B196A3D13F0(ped, p1, weaponHash)
-    Citizen.InvokeNative(0XB0FB9B196A3D13F0, ped, p1, weaponHash)
+function N_0xB0FB9B196A3D13F0(ped, p1, weaponHash)
+    Citizen.InvokeNative(0xB0FB9B196A3D13F0, ped, p1, weaponHash)
 end

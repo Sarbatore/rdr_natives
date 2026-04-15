@@ -128,7 +128,7 @@ end
 ---@param p2 boolean
 ---@return integer carriedPed
 function RefreshCarriedPedForPed(ped, p1, p2)
-    return Citizen.InvokeNative(0X6B67320E0D57856A, ped, Citizen.PointerValueInt(), p1, p2)
+    return Citizen.InvokeNative(0x6B67320E0D57856A, ped, Citizen.PointerValueInt(), p1, p2)
 end
 
 ---Return the ped move blend ratio corresponding to the specified speed.
@@ -266,15 +266,15 @@ end
 ---
 ---@param ped integer
 ---@return boolean
-function N_0X7EE3A8660F38797E(ped)
-    return Citizen.InvokeNative(0X7EE3A8660F38797E, ped) == 1
+function N_0x7EE3A8660F38797E(ped)
+    return Citizen.InvokeNative(0x7EE3A8660F38797E, ped) == 1
 end
 
 ---
 ---@param ped integer
 ---@return boolean
-function N_0X758F081DB204DDDE(ped)
-    return Citizen.InvokeNative(0X758F081DB204DDDE, ped) == 1
+function N_0x758F081DB204DDDE(ped)
+    return Citizen.InvokeNative(0x758F081DB204DDDE, ped) == 1
 end
 
 ---
@@ -288,36 +288,36 @@ end
 ---
 ---@param ped integer
 ---@return boolean
-function N_0X12EB4E31F092C9B3(ped)
-    return Citizen.InvokeNative(0X12EB4E31F092C9B3, ped) == 1
+function N_0x12EB4E31F092C9B3(ped)
+    return Citizen.InvokeNative(0x12EB4E31F092C9B3, ped) == 1
 end
 
 ---
 ---@param ped integer
 ---@return integer
-function N_0XA31D350D66FA1855(ped)
-    return Citizen.InvokeNative(0XA31D350D66FA1855, ped, Citizen.ResultAsInteger())
+function N_0xA31D350D66FA1855(ped)
+    return Citizen.InvokeNative(0xA31D350D66FA1855, ped, Citizen.ResultAsInteger())
 end
 
 ---
 ---@param ped integer
 ---@return number
-function N_0X900CA00CE703E1E2(ped)
-    return Citizen.InvokeNative(0X900CA00CE703E1E2, ped, Citizen.ResultAsFloat())
+function N_0x900CA00CE703E1E2(ped)
+    return Citizen.InvokeNative(0x900CA00CE703E1E2, ped, Citizen.ResultAsFloat())
 end
 
 ---
 ---@param ped integer
 ---@return number
-function N_0X2BA9D7BF629F920C(ped)
-    return Citizen.InvokeNative(0X2BA9D7BF629F920C, ped, Citizen.ResultAsFloat())
+function N_0x2BA9D7BF629F920C(ped)
+    return Citizen.InvokeNative(0x2BA9D7BF629F920C, ped, Citizen.ResultAsFloat())
 end
 
 ---
 ---@param ped integer
 ---@return integer ped
-function N_0X4B19F171450E0D4F(ped)
-    return Citizen.InvokeNative(0X4B19F171450E0D4F, ped, Citizen.ResultAsInteger())
+function N_0x4B19F171450E0D4F(ped)
+    return Citizen.InvokeNative(0x4B19F171450E0D4F, ped, Citizen.ResultAsInteger())
 end
 
 ---
@@ -330,8 +330,8 @@ end
 ---
 ---@param ped1 integer
 ---@param ped2 integer
-function N_0X34EDDD59364AD74A(ped1, ped2)
+function N_0x34EDDD59364AD74A(ped1, ped2)
     local data = DataView.ArrayBuffer(1*8)
     data:SetInt32(0*8, ped2)
-    Citizen.InvokeNative(0X34EDDD59364AD74A, ped1, data:Buffer())
+    Citizen.InvokeNative(0x34EDDD59364AD74A, ped1, data:Buffer())
 end

@@ -270,11 +270,11 @@ end
 ---@param p3 integer
 ---@param p4 integer
 ---@return boolean
-function N_0X383F64263F946E45(object, p1, ped, p3, p4)
+function N_0x383F64263F946E45(object, p1, ped, p3, p4)
     local res
     local outData = DataView.ArrayBuffer(10*8)
 
-    res = Citizen.InvokeNative(0X383F64263F946E45, outData:Buffer(), object, p1, ped, p3, p4) == 1
+    res = Citizen.InvokeNative(0x383F64263F946E45, outData:Buffer(), object, p1, ped, p3, p4) == 1
 
     return res
 end

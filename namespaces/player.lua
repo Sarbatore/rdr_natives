@@ -291,7 +291,7 @@ end
 ---@param player integer
 ---@return boolean success
 ---@return integer entity
-function N_0X7AE93C45EC14A166(player)
+function N_0x7AE93C45EC14A166(player)
     local outEntity = DataView.ArrayBuffer(1*8)
 
     local success = Citizen.InvokeNative(0x7AE93C45EC14A166, player, outEntity:Buffer()) == 1

@@ -107,36 +107,36 @@ end
 
 ---@param p0 Any
 ---@return integer
-function N_0X08C5825A2932EA7B(p0)
+function N_0x08C5825A2932EA7B(p0)
     return Citizen.InvokeNative(0x08C5825A2932EA7B, p0, Citizen.ResultAsInteger())
 end
 
 ---@param object integer
 ---@return integer
-function N_0X250EBB11E81A10BE(object)
-    return Citizen.InvokeNative(0X250EBB11E81A10BE, object, Citizen.ResultAsInteger())
+function N_0x250EBB11E81A10BE(object)
+    return Citizen.InvokeNative(0x250EBB11E81A10BE, object, Citizen.ResultAsInteger())
 end
 
 ---@param p0 Any
 ---@return boolean
-function N_0X2BF1953C0C21AC88(p0)
-    return Citizen.InvokeNative(0X2BF1953C0C21AC88, p0) == 1
+function N_0x2BF1953C0C21AC88(p0)
+    return Citizen.InvokeNative(0x2BF1953C0C21AC88, p0) == 1
 end
 
 ---@param p0 Any
 ---@return integer
-function N_0X7D4411D6736CD295(p0)
-    return Citizen.InvokeNative(0X7D4411D6736CD295, p0, Citizen.PointerValueInt())
+function N_0x7D4411D6736CD295(p0)
+    return Citizen.InvokeNative(0x7D4411D6736CD295, p0, Citizen.PointerValueInt())
 end
 
 ---@param player integer
 ---@return integer
-function N_0X3E2616E7EA539480(player)
-    return Citizen.InvokeNative(0X3E2616E7EA539480, player, Citizen.ResultAsInteger())
+function N_0x3E2616E7EA539480(player)
+    return Citizen.InvokeNative(0x3E2616E7EA539480, player, Citizen.ResultAsInteger())
 end
 
 ---@param object integer
 ---@param p1 number
-function N_0XCBFBD38F2E0A263B(object, p1)
-    return Citizen.InvokeNative(0XCBFBD38F2E0A263B, object, p1)
+function N_0xCBFBD38F2E0A263B(object, p1)
+    return Citizen.InvokeNative(0xCBFBD38F2E0A263B, object, p1)
 end

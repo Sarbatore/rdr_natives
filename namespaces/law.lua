@@ -23,7 +23,7 @@ end
 ---
 ---@param player integer
 ---@return
-function N_0XCBFB4951F2E3934C(player)
+function N_0xCBFB4951F2E3934C(player)
     local outData = DataView.ArrayBuffer(16*8)
     
     Citizen.InvokeNative(0xCBFB4951F2E3934C, player, outData:Buffer())
@@ -35,21 +35,21 @@ end
 ---
 ---@param player integer
 ---@return integer
-function N_0X148E7AC8141C9E64(player)
+function N_0x148E7AC8141C9E64(player)
     return Citizen.InvokeNative(0x148E7AC8141C9E64, player, Citizen.ResultAsInteger())
 end
 
 ---
 ---@param player integer
 ---@return integer
-function N_0XE083BEDA81709891(player)
-    return Citizen.InvokeNative(0XE083BEDA81709891, player, Citizen.ResultAsInteger())
+function N_0xE083BEDA81709891(player)
+    return Citizen.InvokeNative(0xE083BEDA81709891, player, Citizen.ResultAsInteger())
 end
 
 ---
 ---@param crimeTypeHash integer
 ---@param p1 any
 ---@return integer
-function N_0XDAEFDFDB2AEECE37(crimeTypeHash, p1)
-    return Citizen.InvokeNative(0XDAEFDFDB2AEECE37, crimeTypeHash, p1, Citizen.ResultAsInteger())
+function N_0xDAEFDFDB2AEECE37(crimeTypeHash, p1)
+    return Citizen.InvokeNative(0xDAEFDFDB2AEECE37, crimeTypeHash, p1, Citizen.ResultAsInteger())
 end

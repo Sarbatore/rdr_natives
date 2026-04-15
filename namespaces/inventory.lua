@@ -74,7 +74,7 @@ function InventoryGetInventoryItemLastCreation(inventoryId, itemHash)
     local minuteOut = DataView.ArrayBuffer(1*8)
     local secondOut = DataView.ArrayBuffer(1*8)
 
-    local res    = Citizen.InvokeNative(0X112BCA290D2EB53C, inventoryId, itemHash, yearOut:Buffer(), monthOut:Buffer(), dayOut:Buffer(), hourOut:Buffer(), minuteOut:Buffer(), secondOut:Buffer()) == 1
+    local res    = Citizen.InvokeNative(0x112BCA290D2EB53C, inventoryId, itemHash, yearOut:Buffer(), monthOut:Buffer(), dayOut:Buffer(), hourOut:Buffer(), minuteOut:Buffer(), secondOut:Buffer()) == 1
     local year   = yearOut:GetInt32(0)
     local month  = monthOut:GetInt32(0)
     local day    = dayOut:GetInt32(0)

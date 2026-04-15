@@ -173,15 +173,15 @@ end
 
 ---
 ---@param p0 integer
-function N_0X49F3241C28EBBFBC(p0)
-    Citizen.InvokeNative(0X49F3241C28EBBFBC, p0)
+function N_0x49F3241C28EBBFBC(p0)
+    Citizen.InvokeNative(0x49F3241C28EBBFBC, p0)
 end
 
 ---
 ---@param currencyType integer
 ---@param p1 number
 ---@param p3 integer
-function N_0X183672FE838A661B(currencyType, p1, p3)
+function N_0x183672FE838A661B(currencyType, p1, p3)
     local data = DataView.ArrayBuffer(4*8)
     data:SetInt32(0*8, currencyType)
     data:SetFloat32(1*8, p1)
@@ -191,6 +191,6 @@ end
 
 ---
 ---@param rewardHash integer
-function N_0X38C0C9CAE1544500(rewardHash)
-    Citizen.InvokeNative(0X38C0C9CAE1544500, rewardHash)
+function N_0x38C0C9CAE1544500(rewardHash)
+    Citizen.InvokeNative(0x38C0C9CAE1544500, rewardHash)
 end
