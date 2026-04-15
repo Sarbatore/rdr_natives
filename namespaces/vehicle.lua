@@ -478,11 +478,11 @@ function N_0xF8F7DA13CFBD4532(trackIndex, p1)
 end
 
 ---
----@param trackIndex integer
+---@param trackHash integer
 ---@param junctionIndex integer
 ---@param p2 boolean
-function N_0x3ABFA128F5BF5A70(trackIndex, junctionIndex, p2)
-    Citizen.InvokeNative(0x3ABFA128F5BF5A70, trackIndex, junctionIndex, p2)
+function N_0x3ABFA128F5BF5A70(trackHash, junctionIndex, p2)
+    Citizen.InvokeNative(0x3ABFA128F5BF5A70, trackHash, junctionIndex, p2)
 end
 
 ---Linked to 0x0FDDEE66E3465726
