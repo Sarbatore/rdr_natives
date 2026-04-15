@@ -285,6 +285,14 @@ function GetMetaPedRace(ped)
 end
 
 ---
+---@param perscharHash integer
+---@param p1 integer
+---@return integer ped
+function GetPedIndexFromPerscharHash(perscharHash, p1)
+    return Citizen.InvokeNative(0xE76687023D8C8505, perscharHash, p1, Citizen.ResultAsInteger())
+end
+
+---
 ---@param ped integer
 ---@return boolean
 function N_0x7EE3A8660F38797E(ped)

@@ -108,6 +108,7 @@ myscript/client.lua
 | `SetEntityLightsOff` | `entity, toggle` |
 | `SetEntityLockonPointOffset` | `entity, offsetX, offsetY, offsetZ` |
 | `SetEntityRotationParallelToLine` | `entity, x1, y1, z1, x2, y2, z2, p7` |
+| `SetMaterialFillLevelForEntity` | `entity, expressionType, dofName, fillState` |
 | `UnpinMapEntity` | `pinId` |
 
 ## Fire
@@ -294,10 +295,13 @@ myscript/client.lua
 | `ComputePedMoveBlendRatioForMaxSpeed` | `ped, moveBlendRatio` |
 | `ComputeSpeedForPedMoveBlendRatio` | `ped, speed` |
 | `GetCarriedAttachedInfoForSlot` | `ped, carriableSlot` |
+| `GetMetaPedRace` | `ped` |
 | `GetNumReservedStamina` | `ped` |
 | `GetPedDirtLevel` | `ped, p1` |
+| `GetPedHearingRange` | `ped` |
 | `GetPedNearbyPeds` | `ped, size, ignoredPedType, p3` |
 | `GetPedNearbyVehicles` | `ped, size` |
+| `GetPedSeeingRange` | `ped` |
 | `HasPedBeenShotByPlayerRecently` | `player, ped, duration` |
 | `HasPedInteractedWithPlayerRecently` | `ped, player, flag, duration` |
 | `HasPedKnockedOnDoor` | `ped` |
