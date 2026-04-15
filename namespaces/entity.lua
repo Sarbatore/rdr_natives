@@ -225,6 +225,15 @@ function GetEntityAlbedo(entity)
     return Citizen.InvokeNative(0x120376C23F019C6C, entity, Citizen.PointerValueInt())
 end
 
+---Sets the fillState in state for some objects like for the stew, coffee mug, poker chips, jugs.
+---@param entity integer
+---@param expressionType integer
+---@param dofName string
+---@param fillState number
+function SetMaterialFillLevelForEntity(entity, expressionType, dofName, fillState)
+    Citizen.InvokeNative(0x669655FFB29EF1A9, entity, expressionType, dofName, fillState)
+end
+
 ---
 ---@param entity1 integer
 ---@param entity2 integer

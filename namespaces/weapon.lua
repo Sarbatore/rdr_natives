@@ -298,11 +298,23 @@ function GetCanSwitchWeapon(ped)
     return Citizen.InvokeNative(0XBC9444F2FF94A9C0, ped) == 1
 end
 
---[[
+---
+---@param ped integer
+---@param p1 boolean
+---@param p2 boolean
+function N_0xB832F1A686B9B810(ped, p1, p2)
+    Citizen.InvokeNative(0xB832F1A686B9B810, ped, p1, p2)
+end
 
-TO DISCOVER:
-
-]]
+---
+---@param weaponGroupHash integer
+---@param p1 number 0.5 in R* scripts
+---@param p2 number 1.0 in R* scripts
+---@param p3 any 0 in R* scripts
+---@return integer weaponHash
+function N_0xF8204EF17410BF43(weaponGroupHash, p1, p2, p3)
+    return Citizen.InvokeNative(0xF8204EF17410BF43, weaponGroupHash, p1, p2, p3, Citizen.ResultAsInteger())
+end
 
 ---
 ---@param p0 boolean
@@ -312,7 +324,7 @@ end
 
 ---
 ---@param ped integer
----@param weaponGuid BinaryString
+---@param weaponGuid string
 ---@return integer
 function N_0XA2091482ED42EF85(ped, weaponGuid)
     return Citizen.InvokeNative(0XA2091482ED42EF85, ped, weaponGuid, Citizen.ResultAsInteger())
