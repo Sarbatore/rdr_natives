@@ -294,6 +294,30 @@ end
 
 ---
 ---@param ped integer
+---@param eventHash integer
+---@return vector3
+function GetPositionOfPedRecentEvent(ped, eventHash)
+    return Citizen.InvokeNative(0xCB8F4C9343EBE240, ped, eventHash, Citizen.PointerValueVector())
+end
+
+---
+---@param ped integer
+---@param eventHash integer
+---@return integer instigatorEntity
+function GetPedInstigatorOfRecentEvent(ped, eventHash)
+    return Citizen.InvokeNative(0x5E9FAF6C513347B4, ped, eventHash, Citizen.ResultAsInteger())
+end
+
+---
+---@param ped integer
+---@param eventHash integer
+---@return integer
+function N_0x326F7951EF0D7F75(ped, eventHash)
+    return Citizen.InvokeNative(0x326F7951EF0D7F75, ped, eventHash, Citizen.ResultAsInteger())
+end
+
+---
+---@param ped integer
 ---@return boolean
 function N_0x7EE3A8660F38797E(ped)
     return Citizen.InvokeNative(0x7EE3A8660F38797E, ped) == 1

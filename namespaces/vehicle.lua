@@ -14,14 +14,14 @@ function AreAnyVehicleWheelsDestroyed(vehicle)
 end
 
 ---Determines whether the train whistle can be used. True if so, False to make it unusable.
----@param train integer
+---@param trainVehicle integer
 ---@param enable boolean
 function SetTrainWhistleEnabled(trainVehicle, enable)
     Citizen.InvokeNative(0x1BFBAFCC6760FF02, trainVehicle, enable)
 end
 
 ---
----@param train integer
+---@param trainVehicle integer
 function DeleteMissionTrain(trainVehicle)
     Citizen.InvokeNative(0x0D3630FB07E8B570, Citizen.PointerValueIntInitialized(trainVehicle))
 end
@@ -320,6 +320,15 @@ end
 ---@return integer trackIndex
 function N_0x331CBD247FC5DAA8(trainConfig, x, y, z, direction, p5)
     return Citizen.InvokeNative(0x331CBD247FC5DAA8, trainConfig, x, y, z, direction, p5, Citizen.ResultAsInteger())
+end
+
+---
+---@param trackHash integer
+---@param junctionIndex integer
+---@param p2 integer 1 in R* scripts
+---@return boolean
+function N_0x2C46D2A591D8C322(trackHash, junctionIndex, p2)
+    return Citizen.InvokeNative(0x2C46D2A591D8C322, trackHash, junctionIndex, p2) == 1
 end
 
 ---

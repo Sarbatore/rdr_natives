@@ -326,7 +326,7 @@ end
 ---@param ped integer
 ---@param weaponGuid string
 ---@return integer
-function N_0xA2091482ED42EF85(ped, weaponGuid)
+function N_0xA2091482ED42EF85(ped, weaponGuid) -- GetPedWeapon
     return Citizen.InvokeNative(0xA2091482ED42EF85, ped, weaponGuid, Citizen.ResultAsInteger())
 end
 
