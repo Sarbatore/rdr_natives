@@ -20,6 +20,28 @@ function GetPlayerRegisteredCrime(player, index)
     return success, crimeTypeHash, bounty, unk3, unk4, unk5
 end
 
+---Find peds.
+---@param coords vector3
+---@param radius number
+---@param itemset integer
+function N_0x0C392DB374655176(...)
+    return Citizen.InvokeNative(0x0C392DB374655176, ..., Citizen.ResultAsInteger())
+end
+
+---Find peds.
+---@param player integer
+---@param itemset integer
+function N_0x522F74636DF10201(player, itemset)
+    return Citizen.InvokeNative(0x522F74636DF10201, player, itemset, Citizen.ResultAsInteger())
+end
+
+---Find peds.
+---@param player integer
+---@param itemset integer
+function N_0x9C8A2BF37E966464(player, itemset)
+    return Citizen.InvokeNative(0x9C8A2BF37E966464, player, itemset, Citizen.ResultAsInteger())
+end
+
 ---
 ---@param player integer
 ---@return

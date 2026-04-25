@@ -308,6 +308,17 @@ function GetPedInstigatorOfRecentEvent(ped, eventHash)
     return Citizen.InvokeNative(0x5E9FAF6C513347B4, ped, eventHash, Citizen.ResultAsInteger())
 end
 
+---Find peds.
+---@param ped integer
+---@param p1 integer
+---@param coords vector3
+---@param radius number
+---@param itemset integer
+---@return integer
+function N_0x3ACCE14DFA6BA8C2(...)
+    return Citizen.InvokeNative(0x3ACCE14DFA6BA8C2, ..., Citizen.ResultAsInteger())
+end
+
 ---
 ---@param ped integer
 ---@param eventHash integer

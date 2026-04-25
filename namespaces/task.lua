@@ -567,6 +567,14 @@ function TaskShootWithWeapon(ped, targetEntity, x, y, z, duration, firingPattern
     Citizen.InvokeNative(0x08AA95E8298AE772, ped, data:Buffer())
 end
 
+---Returns num of scenario points of propset.
+---@param propset integer
+---@param itemset integer
+---@return integer
+function FindScenarioAllPointsInPropset(propset, itemset)
+    return Citizen.InvokeNative(0x0D322AEF8878B8FE, propset, itemset, Citizen.ResultAsInteger())
+end
+
 ---
 ---@param x number
 ---@param y number

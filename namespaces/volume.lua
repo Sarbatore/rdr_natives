@@ -1,3 +1,12 @@
+---Find volumes.
+---@param coords vector3
+---@param radius number
+---@param itemset integer
+---@return integer
+function N_0x2B32B11520626229(...)
+    return Citizen.InvokeNative(0x2B32B11520626229, ..., Citizen.ResultAsInteger())
+end
+
 ---
 ---@param x number
 ---@param y number

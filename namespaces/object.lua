@@ -105,6 +105,13 @@ function SetObjectMarkableInDeadEye(object, toggle)
     Citizen.InvokeNative(0xE157A8A336C7F04A, object, toggle)
 end
 
+---
+---@param object integer
+---@param gxtEntryHash integer
+function SetObjectPromptNameFromGxtEntry(object, gxtEntryHash)
+    Citizen.InvokeNative(0xD503D6F0986D58BC, object, gxtEntryHash)
+end
+
 ---@param p0 Any
 ---@return integer
 function N_0x08C5825A2932EA7B(p0)

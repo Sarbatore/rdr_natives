@@ -283,6 +283,7 @@ myscript/client.lua
 | `SetDoorKnockingWhenLocked` | `doorHash, toggle` |
 | `SetObjectLanternLightDisabled` | `object, toggle` |
 | `SetObjectMarkableInDeadEye` | `object, toggle` |
+| `SetObjectPromptNameFromGxtEntry` | `object, gxtEntryHash` |
 
 ## Ped
 
@@ -299,9 +300,12 @@ myscript/client.lua
 | `GetNumReservedStamina` | `ped` |
 | `GetPedDirtLevel` | `ped, p1` |
 | `GetPedHearingRange` | `ped` |
+| `GetPedIndexFromPerscharHash` | `perscharHash, p1` |
+| `GetPedInstigatorOfRecentEvent` | `ped, eventHash` |
 | `GetPedNearbyPeds` | `ped, size, ignoredPedType, p3` |
 | `GetPedNearbyVehicles` | `ped, size` |
 | `GetPedSeeingRange` | `ped` |
+| `GetPositionOfPedRecentEvent` | `ped, eventHash` |
 | `HasPedBeenShotByPlayerRecently` | `player, ped, duration` |
 | `HasPedInteractedWithPlayerRecently` | `ped, player, flag, duration` |
 | `HasPedKnockedOnDoor` | `ped` |
@@ -383,6 +387,7 @@ myscript/client.lua
 | `CancelPedHogtie` | `ped` |
 | `ClearVehicleTasks` | `vehicle` |
 | `DoesPedFishingWaitForBite` | `ped` |
+| `FindScenarioAllPointsInPropset` | `propset, itemset` |
 | `FindScenarioAllPointsInVolumeOfType` | `volume, itemSet, scenarioTypeHash, p3, p4, p5, p6` |
 | `FindScenarioAtObjectOfType` | `object, xOffset, yOffset, zOffset, scenarioTypeHash, radius` |
 | `FinishScenarioTransition` | `ped, phaseOrDelta` |

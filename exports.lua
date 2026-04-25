@@ -199,6 +199,7 @@ exports("SetDoorKickPromptEnabled", SetDoorKickPromptEnabled)
 exports("SetDoorKnockingWhenLocked", SetDoorKnockingWhenLocked)
 exports("SetObjectLanternLightDisabled", SetObjectLanternLightDisabled)
 exports("SetObjectMarkableInDeadEye", SetObjectMarkableInDeadEye)
+exports("SetObjectPromptNameFromGxtEntry", SetObjectPromptNameFromGxtEntry)
 
 -- Ped
 exports("ApplyColdToPed", ApplyColdToPed)
@@ -287,6 +288,7 @@ exports("CalculateWaypointDistanceFromStart", CalculateWaypointDistanceFromStart
 exports("CancelPedHogtie", CancelPedHogtie)
 exports("ClearVehicleTasks", ClearVehicleTasks)
 exports("DoesPedFishingWaitForBite", DoesPedFishingWaitForBite)
+exports("FindScenarioAllPointsInPropset", FindScenarioAllPointsInPropset)
 exports("FindScenarioAllPointsInVolumeOfType", FindScenarioAllPointsInVolumeOfType)
 exports("FindScenarioAtObjectOfType", FindScenarioAtObjectOfType)
 exports("FinishScenarioTransition", FinishScenarioTransition)
