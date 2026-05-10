@@ -3,21 +3,24 @@
 ---@param y number
 ---@param z number
 ---@param radius number
----@param size integer
----@return boolean, table
-function GetScenarioPointsInArea(x, y, z, radius, size)
-    local outData = DataView.ArrayBuffer((size+1)*8)
+---@return boolean success
+---@return table scenarioPoints
+function GetScenarioPointsInArea(x, y, z, radius)
+    local size = 15
+    local outData = DataView.ArrayBuffer(16*8)
     outData:SetInt32(0*8, size)
 
-    local res = Citizen.InvokeNative(0x345EC3B7EBDE1CB5, x, y, z, radius, outData:Buffer(), size) == 1
+    local success        = Citizen.InvokeNative(0x345EC3B7EBDE1CB5, x, y, z, radius, outData:Buffer(), size) == 1
     local scenarioPoints = {}
-    local i = 1
-    while (i <= size and DoesScenarioPointExist(outData:GetInt32(i*8)) == 1) do
-        table.insert(scenarioPoints, outData:GetInt32(i*8))
-        i = i + 1
+    if (success) then
+        local i = 1
+        while (i <= size and DoesScenarioPointExist(outData:GetInt32(i*8)) == 1) do
+            table.insert(scenarioPoints, outData:GetInt32(i*8))
+            i = i + 1
+        end
     end
     
-    return res, scenarioPoints
+    return success, scenarioPoints
 end
 
 ---
@@ -178,17 +181,18 @@ end
 ---Retrieves chained scenario points linked to the given parent scenario.
 ---@param scenarioHash integer
 ---@param toggle boolean
----@return table
+---@return integer numberOfScenarioPoints
+---@return table scenarioPoints
 function GetLinkedScenarioPoints(scenarioHash, toggle)
     local outData = DataView.ArrayBuffer(16*8)
     
-    local numScenarioPoints = Citizen.InvokeNative(0xE7BBC4E56B989449, scenarioHash, outData:Buffer(), toggle, Citizen.ResultAsInteger())
-    local scenarioPoints = {}
-    for i = 0, numScenarioPoints - 1 do
+    local numberOfScenarioPoints = Citizen.InvokeNative(0xE7BBC4E56B989449, scenarioHash, outData:Buffer(), toggle, Citizen.ResultAsInteger())
+    local scenarioPoints         = {}
+    for i = 0, numberOfScenarioPoints - 1 do
         table.insert(scenarioPoints, outData:GetInt32(i*8))
     end
 
-    return scenarioPoints
+    return numberOfScenarioPoints, scenarioPoints
 end
 
 ---Remove/unload a previously loaded carriable config.
@@ -364,10 +368,12 @@ end
 
 ---Returns the signed distance along the waypoint recording from its start to the point on the recording that corresponds to the given coordinates.
 ---@param waypointName string
----@param coords Vector3
+---@param x number
+---@param y number
+---@param z number
 ---@return number
-function CalculateWaypointDistanceFromStart(waypointName, coords)
-    return Citizen.InvokeNative(0x3ACC128510142B9D, waypointName, coords, Citizen.ResultAsFloat())
+function CalculateWaypointDistanceFromStart(waypointName, x, y, z)
+    return Citizen.InvokeNative(0x3ACC128510142B9D, waypointName, x, y, z, Citizen.ResultAsFloat())
 end
 
 ---Orders the ped to follow a waypoint recording with control over start/end node indices, optional patrol (back-and-forth) behavior, aiming stance, and total traversal duration.

@@ -255,10 +255,10 @@ end
 
 ---Return a list of tag data for the given item.
 ---@param itemHash integer
----@param size integer Number of tags to retrieve
 ---@return boolean success
 ---@return table tags 2D array of tag pairs, first value is the CI_TAG_ hash, second value is the TAG_ hash
-function ItemdatabaseFilloutTagData(itemHash, size)
+function ItemdatabaseFilloutTagData(itemHash)
+    local size = 15
     local outData = DataView.ArrayBuffer(40*8)
     outData:SetInt32(0*8, size)
     local outSize = DataView.ArrayBuffer(1*8)
@@ -266,11 +266,11 @@ function ItemdatabaseFilloutTagData(itemHash, size)
     local success = Citizen.InvokeNative(0x5A11D6EEA17165B0, itemHash, outData:Buffer(), outSize:Buffer(), size) == 1
     local tags    = {}
     
-    local numTags = outSize:GetInt32(0)
-    if (numTags > 0) then
+    local numberOfTags = outSize:GetInt32(0)
+    if (numberOfTags > 0) then
         local startOffset = 1
         local tblSize = 2
-        local endOffset = startOffset + (numTags - 1) * tblSize
+        local endOffset = startOffset + (numberOfTags - 1) * tblSize
         for i = startOffset, endOffset, tblSize do
             table.insert(tags, {
                 outData:GetInt32(i*8),
@@ -929,19 +929,19 @@ end
 ---@param itemHash integer
 ---@param tagHash integer TAG_ITEM_PROPERTY, etc...
 ---@param size integer Number of tags to return
+---@return integer numberOfTags
 ---@return table catalogItemTags List of CI_TAG_ hashes
 function ItemdatabaseGetItemTagCatalogItemTags(itemHash, tagHash, size)
     local outData = DataView.ArrayBuffer(32*8)
     outData:SetInt32(0*8, size)
 
-    local numTags = Citizen.InvokeNative(0x8870895BA5ED9385, itemHash, tagHash, outData:Buffer(), Citizen.ResultAsInteger())
-    
+    local numberOfTags    = Citizen.InvokeNative(0x8870895BA5ED9385, itemHash, tagHash, outData:Buffer(), Citizen.ResultAsInteger())
     local catalogItemTags = {}
-    for i = 1, numTags do
+    for i = 1, numberOfTags do
         table.insert(catalogItemTags, outData:GetInt32(i*8))
     end
 
-    return catalogItemTags
+    return numberOfTags, catalogItemTags
 end
 
 ---

@@ -1,29 +1,51 @@
-## Description
-This resource is a strong library of +400 discovered native functions by the community.
+# Description
+This resource contains +400 non implemented natives in the engine and facilitate the use of natives using data struct.
 You can reuse functions with exports or by including files.
 
-## Links
+# Links
 - [Github](https://github.com/Sarbatore/rdr_natives)
 
-## Usages
-### With exports
+# Usages
+## With exports
 myscript/client.lua
 ```lua
-exports.rdr_natives:PlayPedAmbientSpeechNative(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0) -- This will make your ped speak.
+local RDR = exports.rdr_natives
+CreateThread(function()
+    local ped             = PlayerPedId()
+    local speechRef       = "0083_U_M_O_BlWGeneralStoreOwner_01"
+    local speechName      = "TAKE_YOUR_TIME"
+    local speechParamHash = `SPEECH_PARAMS_SHOUTED_CLEAR`
+    local speechLine      = 0
+    local pedListener     = 0
+    local syncOverNetwork = true
+    local p7              = true
+    RDR:PlayPedAmbientSpeechNative(ped, speechRef, speechName, speechParamHash, speechLine, pedListener, syncOverNetwork, p7)
+end)
 ```
-### With include
+## With include
 myscript/fxmanifest.lua
 ```lua
 client_scripts {
-    "@rdr_natives/namespaces/audio.lua"
+    "@rdr_natives/lib/dataview.lua",
+    "@rdr_natives/namespaces/audio.lua",
 }
 ```
 myscript/client.lua
 ```lua
-    PlayPedAmbientSpeechNative(PlayerPedId(), "0083_U_M_O_BlWGeneralStoreOwner_01", "TAKE_YOUR_TIME", 291934926, 0)
+CreateThread(function()
+    local ped             = PlayerPedId()
+    local speechRef       = "0083_U_M_O_BlWGeneralStoreOwner_01"
+    local speechName      = "TAKE_YOUR_TIME"
+    local speechParamHash = `SPEECH_PARAMS_SHOUTED_CLEAR`
+    local speechLine      = 0
+    local pedListener     = 0
+    local syncOverNetwork = true
+    local p7              = true
+    PlayPedAmbientSpeechNative(ped, speechRef, speechName, speechParamHash, speechLine, pedListener, syncOverNetwork, p7)
+end)
 ```
 
-## References:
+# References:
 
 ## Aicoverpoint
 
@@ -162,11 +184,11 @@ myscript/client.lua
 |----------|------------|
 | `InventoryAddItemWithGuid` | `inventoryId, guid2, itemHash, slotIdHash, p3, addReasonHash` |
 | `InventoryApplyWeaponStatsToEntry` | `entryId, weaponHash, ped` |
-| `InventoryCreateItemCollectionWithFilter` | `inventoryId, itemHash, slotIdHash, slotId2Hash, slotId3Hash, p5, p6, p7, p8, itemTypeHash, p10, p11, p12, p13, p14, p15, p16, p17` |
+| `InventoryCreateItemCollectionWithFilter` | `inventoryId, itemHash, slotIdHash, slotId2Hash, slotId3Hash, p5, p6, p7, p8, itemTypeHash, p10, p11, p12, p13, p14, p15, p16, p17, p18` |
 | `InventoryGetCatalogItemInspectionEffectsEntry` | `entryId, name, p2, p3` |
 | `InventoryGetCatalogItemInspectionStatsEntry` | `entryId, name, p2, playerId` |
 | `InventoryGetGuidFromItemid` | `inventoryId, itemHash, slotIdHash` |
-| `InventoryGetInventoryItemCompatibleSlots` | `itemHash, size` |
+| `InventoryGetInventoryItemCompatibleSlots` | `itemHash` |
 | `InventoryGetInventoryItemInspectionInfo` | `itemHash` |
 | `InventoryGetInventoryItemLastCreation` | `inventoryId, itemHash` |
 | `SetItemPromptInfoRequest` | `object, itemHash, consumableHash, label, price, modifiedPrice, flags, p5, x, y, z, p9` |
@@ -191,7 +213,7 @@ myscript/client.lua
 | `ItemdatabaseFilloutModifier` | `modifierHash, index` |
 | `ItemdatabaseFilloutPriceModifierByKey` | `itemHash` |
 | `ItemdatabaseFilloutSellPrice` | `itemHash, sellTypeHash` |
-| `ItemdatabaseFilloutTagData` | `itemHash, size` |
+| `ItemdatabaseFilloutTagData` | `itemHash` |
 | `ItemdatabaseFilloutUiData` | `itemHash` |
 | `ItemdatabaseGetAcquireCost` | `itemHash, index` |
 | `ItemdatabaseGetAcquireCostsCountFromCostType` | `itemHash, costHash` |
@@ -292,9 +314,10 @@ myscript/client.lua
 | `ApplyColdToPed` | `ped, intensity, p2` |
 | `ApplyPedDamagePackToBone` | `ped, boneIndex, xOffset, yOffset, zOffset, xRot, yRot, zRot, damagePack` |
 | `CanPedHearTargetPed` | `targetPed, ped, flag` |
-| `ComputeLootForPedCarcass` | `modelHash, damageCleanliness, skinningQuality, size` |
+| `ComputeLootForPedCarcass` | `modelHash, damageCleanliness, skinningQuality` |
 | `ComputePedMoveBlendRatioForMaxSpeed` | `ped, moveBlendRatio` |
 | `ComputeSpeedForPedMoveBlendRatio` | `ped, speed` |
+| `CountPedsAwareOfEvent` | `eventHandle, x, y, z, radius` |
 | `GetCarriedAttachedInfoForSlot` | `ped, carriableSlot` |
 | `GetMetaPedRace` | `ped` |
 | `GetNumReservedStamina` | `ped` |
@@ -303,7 +326,7 @@ myscript/client.lua
 | `GetPedIndexFromPerscharHash` | `perscharHash, p1` |
 | `GetPedInstigatorOfRecentEvent` | `ped, eventHash` |
 | `GetPedNearbyPeds` | `ped, size, ignoredPedType, p3` |
-| `GetPedNearbyVehicles` | `ped, size` |
+| `GetPedNearbyVehicles` | `ped` |
 | `GetPedSeeingRange` | `ped` |
 | `GetPositionOfPedRecentEvent` | `ped, eventHash` |
 | `HasPedBeenShotByPlayerRecently` | `player, ped, duration` |
@@ -320,6 +343,12 @@ myscript/client.lua
 | `SetPedRagdollBoneScale` | `ped, boneId, scaleX, scaleY, scaleZ` |
 | `SetPedWetness` | `ped, amount` |
 | `SetPresetForPed` | `ped, presetIndex` |
+
+## Physics
+
+| Function | Parameters |
+|----------|------------|
+| `RopeForceLenght` | `rope, lenght` |
 
 ## Player
 
@@ -341,7 +370,7 @@ myscript/client.lua
 | `EagleEyeSetSprintBehavior` | `player, disableSprint` |
 | `GetDeadeyeAbilityDepletionDelay` | `player` |
 | `GetNumDeadeyeMarksOnPed` | `player, ped` |
-| `GetPedsDamagedByPlayerRecently` | `player, duration, size` |
+| `GetPedsDamagedByPlayerRecently` | `player, duration` |
 | `GetPlayerInteractionAimEntity` | `player` |
 | `HasPlayerDamagedRecentlyAttackedPed` | `player, duration` |
 | `IsPlayerPromptJumpToActive` | `player` |
@@ -383,7 +412,7 @@ myscript/client.lua
 
 | Function | Parameters |
 |----------|------------|
-| `CalculateWaypointDistanceFromStart` | `waypointName, coords` |
+| `CalculateWaypointDistanceFromStart` | `waypointName, x, y, z` |
 | `CancelPedHogtie` | `ped` |
 | `ClearVehicleTasks` | `vehicle` |
 | `DoesPedFishingWaitForBite` | `ped` |
@@ -403,7 +432,7 @@ myscript/client.lua
 | `GetScenarioContainerNumCompartments` | `object` |
 | `GetScenarioContainerNumOpenCompartments` | `object` |
 | `GetScenarioContainerRemainingLootCount` | `object` |
-| `GetScenarioPointsInArea` | `x, y, z, radius, size` |
+| `GetScenarioPointsInArea` | `x, y, z, radius` |
 | `GetTaskCombatReadyToShoot` | `ped` |
 | `GetWhistleRangeMaxForBondingLevel` | `bondingLevel` |
 | `GetWhistleRangeMinForBondingLevel` | `bondingLevel` |
@@ -485,12 +514,11 @@ myscript/client.lua
 |----------|------------|
 | `AreAnyVehicleWheelsDestroyed` | `vehicle` |
 | `BreakLocksOnVehicle` | `vehicle` |
-| `BreakVehicleStraps` | `vehicle, coords` |
+| `BreakVehicleStraps` | `vehicle, x, y, z` |
 | `DeleteMissionTrain` | `trainVehicle` |
 | `DetermineVehicleCompartmentState` | `vehicle, ped` |
 | `GetAllWagonPassengers` | `wagon, itemSet` |
 | `GetBalloonObjectFromVehicle` | `vehicle` |
-| `GetClosestVehicle` | `x, y, z, radius, modelHash` |
 | `GetJunctionCoordsForTrainTrack` | `trackHash, junctionIndex` |
 | `GetNumDraftVehicleLogs` | `vehicle` |
 | `GetNumDraftVehicleStraps` | `vehicle` |
@@ -509,6 +537,14 @@ myscript/client.lua
 | `SetTrainReverseEnabled` | `missionTrain, enable` |
 | `SetTrainWhistleEnabled` | `trainVehicle, enable` |
 | `SetVehicleStopDistanceBuffer` | `vehicle, bufferDistance` |
+
+## Voice
+
+| Function | Parameters |
+|----------|------------|
+| `NetworkAmIMutedByPlayer` | `player` |
+| `NetworkIsPlayerTalking` | `player` |
+| `NetworkPlayerHasHeadset` | `player` |
 
 ## Weapon
 

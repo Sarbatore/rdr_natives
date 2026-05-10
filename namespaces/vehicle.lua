@@ -50,9 +50,11 @@ end
 
 ---Break all the straps of a draft vehicle.
 ---@param vehicle integer
----@param coords vector3
-function BreakVehicleStraps(vehicle, coords)
-    Citizen.InvokeNative(0xD1EFA8D68BF5D63D, vehicle, coords)
+---@param x number
+---@param y number
+---@param z number
+function BreakVehicleStraps(vehicle, x, y, z)
+    Citizen.InvokeNative(0xD1EFA8D68BF5D63D, vehicle, x, y, z)
 end
 
 ---Return the entity of the draft vehicle log that just fell off.
@@ -98,43 +100,6 @@ end
 ---@param enable integer
 function SetTrainCollisionAvoidanceEnabled(trainVehicle, enable)
     Citizen.InvokeNative(0xE6BD7DD3FD474415, trainVehicle, enable)
-end
-
----
----@param x number
----@param y number
----@param z number
----@param radius number
----@param modelHash integer
----@return integer vehicle
-function GetClosestVehicle(x, y, z, radius, modelHash)
-    local itemSet = CreateItemset(true)
-
-    if (not IsItemsetValid(itemSet)) then
-        return 0
-    end
-
-    local itemSetSize = GetEntitiesNearPoint(x, y, z, radius, itemSet, 2)
-    local nearestVehicle = 0
-    local nearestDistance = -1.0
-    local coords = vector3(x, y, z)
-
-    for i = 0, itemSetSize - 1 do
-        local vehicle = GetVehicleFromIndexedItem(GetIndexedItemInItemset(i, itemSet))
-        if (modelHash == 0 or GetEntityModel(vehicle) == modelHash) then
-            local distance = #(GetEntityCoords(vehicle) - coords)
-            if (nearestDistance == -1.0 or distance < nearestDistance) then
-                nearestDistance = distance
-                nearestVehicle = vehicle
-            end
-        end
-    end
-    
-    if (IsItemsetValid(itemSet)) then
-        DestroyItemset(itemSet)
-    end
-
-    return nearestVehicle
 end
 
 ---Sets a hot air balloon's travel target position.

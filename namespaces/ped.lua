@@ -82,19 +82,19 @@ end
 ---@param modelHash integer
 ---@param damageCleanliness integer
 ---@param skinningQuality integer
----@param size integer
+---@return integer numberOfLoots
 ---@return table lootsHash
-function ComputeLootForPedCarcass(modelHash, damageCleanliness, skinningQuality, size)
-    local outData = DataView.ArrayBuffer((size+1)*8)
-    outData:SetInt32(0*8, size)
+function ComputeLootForPedCarcass(modelHash, damageCleanliness, skinningQuality)
+    local outData = DataView.ArrayBuffer(16*8)
+    outData:SetInt32(0*8, 15)
     
-    local numLoots  = Citizen.InvokeNative(0xB29C553BA582D09E, outData:Buffer(), modelHash, damageCleanliness, skinningQuality, Citizen.ResultAsInteger())
-    local lootsHash = {}
-    for i = 1, numLoots do
+    local numberOfLoots = Citizen.InvokeNative(0xB29C553BA582D09E, outData:Buffer(), modelHash, damageCleanliness, skinningQuality, Citizen.ResultAsInteger())
+    local lootsHash     = {}
+    for i = 1, numberOfLoots do
         table.insert(lootsHash, outData:GetInt32(i*8))
     end
 
-    return lootsHash
+    return numberOfLoots, lootsHash
 end
 
 ---Return wheter a ped is heard by a target ped. Usually flag is set to false when the ped is in stealth mode.
@@ -175,22 +175,20 @@ end
 
 ---
 ---@param ped integer
----@param size integer
----@return boolean, table
-function GetPedNearbyVehicles(ped, size)
+---@return boolean success
+---@return table vehicles
+function GetPedNearbyVehicles(ped)
     local outData = DataView.ArrayBuffer(16*8)
-    outData:SetInt32(0*8, size or 3)
+    outData:SetInt32(0*8, 15)
 
-    local res = Citizen.InvokeNative(0xCFF869CBFA210D82, ped, outData:Buffer()) == 1
-    local numVehicles = outData:GetInt32(0*8)
+    local success  = Citizen.InvokeNative(0xCFF869CBFA210D82, ped, outData:Buffer()) == 1
     local vehicles = {}
-    if (numVehicles > 0) then
-        for i = 1, numVehicles do
-            table.insert(vehicles, outData:GetInt32(i*8))
-        end
+    local numberOfVehicles = outData:GetInt32(0*8)
+    for i = 1, numberOfVehicles do
+        table.insert(vehicles, outData:GetInt32(i*8))
     end
 
-    return res, vehicles
+    return success, vehicles
 end
 
 
@@ -306,6 +304,27 @@ end
 ---@return integer instigatorEntity
 function GetPedInstigatorOfRecentEvent(ped, eventHash)
     return Citizen.InvokeNative(0x5E9FAF6C513347B4, ped, eventHash, Citizen.ResultAsInteger())
+end
+
+---Counts how many peds that the ADD_SHOCKING_EVENT_FOR_ENTITY were add to based on position and radius, p0 is handleId from ADD_SHOCKING_EVENT_FOR_ENTITY
+---@param eventHandle integer
+---@param x number
+---@param y number
+---@param z number
+---@param radius number
+---@return integer numberOfPeds
+---@return table peds
+function CountPedsAwareOfEvent(eventHandle, x, y, z, radius)
+    local outData = DataView.ArrayBuffer(16*8)
+    outData:SetInt32(0*8, 15)
+
+    local numberOfPeds = Citizen.InvokeNative(0xF4860514AD354226, eventHandle, x, y, z, radius, outData:Buffer(), Citizen.ResultAsInteger())
+    local peds         = {}
+    for i = 1, numberOfPeds do
+        table.insert(peds, outData:GetInt32(i*8))
+    end
+
+    return numberOfPeds, peds
 end
 
 ---Find peds.

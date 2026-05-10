@@ -44,19 +44,21 @@ end
 
 ---Returns a list of compatible SLOTID
 ---@param itemHash integer
----@param size integer
 ---@return boolean success
 ---@return table slotIdsHash
-function InventoryGetInventoryItemCompatibleSlots(itemHash, size)
+function InventoryGetInventoryItemCompatibleSlots(itemHash)
+    local size = 15
     local outData = DataView.ArrayBuffer((size+1)*8)
     outData:SetInt32(0*8, size)
     
     local success     = Citizen.InvokeNative(0x9AC53CB6907B4428, itemHash, outData:Buffer(), size) == 1
     local slotIdsHash = {}
-    local i = 1
-    while i <= size and outData:GetInt32(i*8) ~= 0 do
-        table.insert(slotIdsHash, outData:GetInt32(i*8))
-        i = i + 1
+    if (success) then
+        local i = 1
+        while i <= size and outData:GetInt32(i*8) ~= 0 do
+            table.insert(slotIdsHash, outData:GetInt32(i*8))
+            i = i + 1
+        end
     end
 
     return success, slotIdsHash
@@ -104,9 +106,10 @@ end
 ---@param p15 any
 ---@param p16 any
 ---@param p17 any
+---@param p18 any
 ---@return integer collectionId
 ---@return integer size
-function InventoryCreateItemCollectionWithFilter(inventoryId, itemHash, slotIdHash, slotId2Hash, slotId3Hash, p5, p6, p7, p8, itemTypeHash, p10, p11, p12, p13, p14, p15, p16, p17)
+function InventoryCreateItemCollectionWithFilter(inventoryId, itemHash, slotIdHash, slotId2Hash, slotId3Hash, p5, p6, p7, p8, itemTypeHash, p10, p11, p12, p13, p14, p15, p16, p17, p18)
     local filterStruct = DataView.ArrayBuffer(18*8)
     filterStruct:SetInt32(0*8, itemHash)
     filterStruct:SetInt32(1*8, slotIdHash)
@@ -129,7 +132,7 @@ function InventoryCreateItemCollectionWithFilter(inventoryId, itemHash, slotIdHa
     local sizeStruct = DataView.ArrayBuffer(1*8)
 
     local collectionId = Citizen.InvokeNative(0x640F890C3E5A3FFD, inventoryId, filterStruct:Buffer(), sizeStruct:Buffer(), Citizen.ResultAsInteger())
-    local size = sizeStruct:GetInt32(0)
+    local size         = sizeStruct:GetInt32(0)
 
     return collectionId, size
 end

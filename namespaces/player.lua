@@ -9,21 +9,24 @@ end
 ---Returns a list of peds that the player has damaged recently.
 ---@param player integer
 ---@param duration integer
----@param size integer
----@return boolean, table
-function GetPedsDamagedByPlayerRecently(player, duration, size)
-    local outData = DataView.ArrayBuffer((size+1)*8)
+---@return boolean success
+---@return table peds
+function GetPedsDamagedByPlayerRecently(player, duration)
+    local size = 15
+    local outData = DataView.ArrayBuffer(16*8)
     outData:SetInt32(0*8, size)
 
-    local res = Citizen.InvokeNative(0x1A6E84F13C952094, player, duration, outData:Buffer()) == 1
-    local peds = {}
-    local i = 1
-    while (i <= size and DoesEntityExist(outData:GetInt32(i*8))) do
-        table.insert(peds, outData:GetInt32(i*8))
-        i = i + 1
+    local success = Citizen.InvokeNative(0x1A6E84F13C952094, player, duration, outData:Buffer()) == 1
+    local peds    = {}
+    if (success) then
+        local i = 1
+        while (i <= size and DoesEntityExist(outData:GetInt32(i*8))) do
+            table.insert(peds, outData:GetInt32(i*8))
+            i = i + 1
+        end
     end
 
-    return res, peds
+    return success, peds
 end
 
 ---Activates the special ability for the specified player.

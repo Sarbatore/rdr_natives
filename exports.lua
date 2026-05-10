@@ -208,6 +208,7 @@ exports("CanPedHearTargetPed", CanPedHearTargetPed)
 exports("ComputeLootForPedCarcass", ComputeLootForPedCarcass)
 exports("ComputePedMoveBlendRatioForMaxSpeed", ComputePedMoveBlendRatioForMaxSpeed)
 exports("ComputeSpeedForPedMoveBlendRatio", ComputeSpeedForPedMoveBlendRatio)
+exports("CountPedsAwareOfEvent", CountPedsAwareOfEvent)
 exports("GetCarriedAttachedInfoForSlot", GetCarriedAttachedInfoForSlot)
 exports("GetMetaPedRace", GetMetaPedRace)
 exports("GetNumReservedStamina", GetNumReservedStamina)
@@ -233,6 +234,9 @@ exports("SetPedMeleeAction", SetPedMeleeAction)
 exports("SetPedRagdollBoneScale", SetPedRagdollBoneScale)
 exports("SetPedWetness", SetPedWetness)
 exports("SetPresetForPed", SetPresetForPed)
+
+-- Physics
+exports("RopeForceLenght", RopeForceLenght)
 
 -- Player
 exports("AddAmbientPlayerInteractiveFocusPresetAtCoords", AddAmbientPlayerInteractiveFocusPresetAtCoords)
@@ -379,7 +383,6 @@ exports("DeleteMissionTrain", DeleteMissionTrain)
 exports("DetermineVehicleCompartmentState", DetermineVehicleCompartmentState)
 exports("GetAllWagonPassengers", GetAllWagonPassengers)
 exports("GetBalloonObjectFromVehicle", GetBalloonObjectFromVehicle)
-exports("GetClosestVehicle", GetClosestVehicle)
 exports("GetJunctionCoordsForTrainTrack", GetJunctionCoordsForTrainTrack)
 exports("GetNumDraftVehicleLogs", GetNumDraftVehicleLogs)
 exports("GetNumDraftVehicleStraps", GetNumDraftVehicleStraps)
@@ -398,6 +401,11 @@ exports("SetTrainCollisionAvoidanceEnabled", SetTrainCollisionAvoidanceEnabled)
 exports("SetTrainReverseEnabled", SetTrainReverseEnabled)
 exports("SetTrainWhistleEnabled", SetTrainWhistleEnabled)
 exports("SetVehicleStopDistanceBuffer", SetVehicleStopDistanceBuffer)
+
+-- Voice
+exports("NetworkAmIMutedByPlayer", NetworkAmIMutedByPlayer)
+exports("NetworkIsPlayerTalking", NetworkIsPlayerTalking)
+exports("NetworkPlayerHasHeadset", NetworkPlayerHasHeadset)
 
 -- Weapon
 exports("AttachWeaponToHorseHolster", AttachWeaponToHorseHolster)
