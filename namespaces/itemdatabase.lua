@@ -287,17 +287,17 @@ end
 ---@param shopInventoryIndex integer
 ---@return boolean success
 ---@return integer itemHash
----@return any unk
+---@return integer unkHash
 ---@return integer numRequirementGroup
 function ItemdatabaseGetShopInventoriesItemInfo(shopTypeHash, shopInventoryIndex)
     local outData = DataView.ArrayBuffer(3*8)
 
     local success             = Citizen.InvokeNative(0x4A79B41B4EB91F4E, shopTypeHash, shopInventoryIndex, outData:Buffer()) == 1
     local itemHash            = outData:GetInt32(0*8)
-    local unk                 = outData:GetInt32(1*8)
+    local unkHash             = outData:GetInt32(1*8)
     local numRequirementGroup = outData:GetInt32(2*8)
 
-    return success, itemHash, unk, numRequirementGroup
+    return success, itemHash, unkHash, numRequirementGroup
 end
 
 ---
@@ -321,16 +321,16 @@ end
 ---@param itemHash integer
 ---@param groupIndex integer
 ---@return boolean success
----@return integer unkHash
+---@return integer unkInt
 ---@return integer numRequirements
 function ItemdatabaseGetShopInventoriesRequirementGroupInfo(shopTypeHash, itemHash, groupIndex)
     local outData = DataView.ArrayBuffer(2*8)
 
     local success         = Citizen.InvokeNative(0x76C752D788A76813, shopTypeHash, itemHash, groupIndex, outData:Buffer()) == 1
-    local unkHash         = outData:GetInt32(0*8)
+    local unkInt          = outData:GetInt32(0*8)
     local numRequirements = outData:GetInt32(1*8)
 
-    return success, unkHash, numRequirements
+    return success, unkInt, numRequirements
 end
 
 ---
@@ -884,16 +884,29 @@ end
 ---@param index integer
 ---@return boolean success
 ---@return integer itemHash
----@return integer unlockFlagHash UF_VISIBLE...
+---@return table unlockFlags 2D array of pairs, first value is the hash of the flag (UF_VISIBLE...), second value is the expected state of the flag (true/false)
 function ItemdatabaseFilloutAwardUnlockFlag(awardHash, index)
-    local outData = DataView.ArrayBuffer(3*8)
-    outData:SetInt32(1*8, 10)
+    local size = 10
+    local outData = DataView.ArrayBuffer(64*8)
+    outData:SetInt32(1*8, size)
 
-    local success        = Citizen.InvokeNative(0x8D029948CA29409B, awardHash, index, outData:Buffer()) == 1
-    local itemHash       = outData:GetInt32(0*8)
-    local unlockFlagHash = outData:GetInt32(2*8)
+    local success     = Citizen.InvokeNative(0x8D029948CA29409B, awardHash, index, outData:Buffer()) == 1
+    local itemHash    = outData:GetInt32(0*8)
+    local unlockFlags = {}
 
-    return success, itemHash, unlockFlagHash
+    local tblSize = 2
+    local startOffset = 2
+    local endOffset = startOffset + (size - 1) * tblSize
+    for i = startOffset, endOffset, tblSize do
+        local unlockFlagHash = outData:GetInt32(i*8)
+        if (unlockFlagHash == 0) then break end
+        table.insert(unlockFlags, {
+            unlockFlagHash,
+            outData:GetInt32((i+1)*8) == 1
+        })
+    end
+
+    return success, itemHash, unlockFlags
 end
 
 ---Return num rewards and rewards data of the hash
