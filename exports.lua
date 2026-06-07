@@ -101,6 +101,7 @@ exports("InventoryGetCatalogItemInspectionEffectsEntry", InventoryGetCatalogItem
 exports("InventoryGetCatalogItemInspectionStatsEntry", InventoryGetCatalogItemInspectionStatsEntry)
 exports("InventoryGetGuidFromItemid", InventoryGetGuidFromItemid)
 exports("InventoryGetInventoryItemCompatibleSlots", InventoryGetInventoryItemCompatibleSlots)
+exports("InventoryGetInventoryItemFitSlot", InventoryGetInventoryItemFitSlot)
 exports("InventoryGetInventoryItemInspectionInfo", InventoryGetInventoryItemInspectionInfo)
 exports("InventoryGetInventoryItemLastCreation", InventoryGetInventoryItemLastCreation)
 exports("SetItemPromptInfoRequest", SetItemPromptInfoRequest)

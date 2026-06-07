@@ -206,3 +206,22 @@ function InventoryGetGuidFromItemid(inventoryId, itemHash, slotIdHash)
 
     return success, outGuid:GetInt32(0)
 end
+
+---
+---@param itemHash integer
+---@param maxResults integer
+---@return boolean success
+---@return table slotids A list of slotids hash that the item can fit into, up to maxResults in length
+function InventoryGetInventoryItemFitSlot(itemHash, maxResults)
+    local outData = DataView.ArrayBuffer(32*8)
+
+    local success = Citizen.InvokeNative(0xB991FE166FAF84FD, itemHash, outData:Buffer(), maxResults) == 1
+    local slotids = {}
+    for i = 1, maxResults do
+        local slotid = outData:GetInt32(i*8)
+        if slotid == 0 then break end
+        table.insert(slotids, slotid)
+    end
+
+    return success, slotids
+end
