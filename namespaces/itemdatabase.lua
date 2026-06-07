@@ -287,17 +287,17 @@ end
 ---@param shopInventoryIndex integer
 ---@return boolean success
 ---@return integer itemHash
----@return integer unkHash
+---@return integer bundleHash -- e.g: BUNDLE_CLOTHING_ITEM_F_OFFHAND_001_TINT_003
 ---@return integer numRequirementGroup
 function ItemdatabaseGetShopInventoriesItemInfo(shopTypeHash, shopInventoryIndex)
     local outData = DataView.ArrayBuffer(3*8)
 
     local success             = Citizen.InvokeNative(0x4A79B41B4EB91F4E, shopTypeHash, shopInventoryIndex, outData:Buffer()) == 1
     local itemHash            = outData:GetInt32(0*8)
-    local unkHash             = outData:GetInt32(1*8)
+    local bundleHash          = outData:GetInt32(1*8)
     local numRequirementGroup = outData:GetInt32(2*8)
 
-    return success, itemHash, unkHash, numRequirementGroup
+    return success, itemHash, bundleHash, numRequirementGroup
 end
 
 ---
@@ -339,8 +339,8 @@ end
 ---@param groupIndex integer
 ---@param requirementIndex integer
 ---@return boolean success
----@return integer requirementTypeHash
----@return integer requirementHash
+---@return integer requirementTypeHash -- e.g: INV_REQ_TYPE_CAN_CRAFT
+---@return integer requirementHash -- The item required
 ---@return integer num
 ---@return boolean state
 function ItemdatabaseGetShopInventoriesRequirementInfo(shopTypeHash, unkHash, groupIndex, requirementIndex)
@@ -792,6 +792,14 @@ end
 ---
 ---@param awardHash integer
 ---@param costHash integer
+---@return integer count
+function ItemdatabaseGetAwardAcquireCostCountFromCostType(awardHash, costHash)
+    return Citizen.InvokeNative(0xF540239F9937033B, awardHash, costHash, Citizen.ResultAsInteger())
+end
+
+---
+---@param awardHash integer
+---@param costHash integer
 ---@param index integer
 ---@return boolean
 ---@return integer priceHash `CURRENCY_GOLD_BAR`, etc...
@@ -800,8 +808,8 @@ function ItemdatabaseFilloutAwardAcquireCost(awardHash, costHash, index)
     local outData = DataView.ArrayBuffer(2*8)
     outData:SetInt32(0*8, 15)
 
-    local success = Citizen.InvokeNative(0xF27F01BBF5ACD3F3, awardHash, costHash, index, outData:Buffer()) == 1
-    local priceHash = success and outData:GetInt32(0*8) or 0
+    local success     = Citizen.InvokeNative(0xF27F01BBF5ACD3F3, awardHash, costHash, index, outData:Buffer()) == 1
+    local priceHash   = outData:GetInt32(0*8)
     local priceAmount = outData:GetInt32(1*8)
 
     return success, priceHash, priceAmount
@@ -1001,14 +1009,16 @@ end
 ---@param shopTypeHash integer ST_GUNSMITH, ST_GENERAL...
 ---@param itemHash integer
 ---@return boolean success
----@return integer num
+---@return integer unkInt2
 function N_0x17721003A66C72BF(shopTypeHash, itemHash) -- ItemdatabaseGetShopInventories
     local outData = DataView.ArrayBuffer(3*8)
 
     local success = Citizen.InvokeNative(0x17721003A66C72BF, shopTypeHash, itemHash, outData:Buffer()) == 1
-    local num = outData:GetInt32(2*8)
+    --local _itemHash = outData:GetInt32(0*8)
+    --local unk   = outData:GetInt32(1*8) -- always 0
+    local unkInt2 = outData:GetInt32(2*8)
 
-    return success, num
+    return success, unkInt2
 end
 
 ---
