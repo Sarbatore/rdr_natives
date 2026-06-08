@@ -19,3 +19,26 @@ function NetworkHandleFromPlayer(player)
 
     return gamerHandle
 end
+
+---
+---@param x number
+---@param y number
+---@param z number
+---@param heading number
+---@param p4 integer
+---@param vehicle integer
+---@param p6 integer
+---@param p7 boolean
+function NetworkResurrectLocalPlayer2(x, y, z, heading, p4, vehicle, p6, p7)
+    local data = DataView.ArrayBuffer(8*8)
+    data:SetFloat32(0*8, x)
+    data:SetFloat32(1*8, y)
+    data:SetFloat32(2*8, z)
+    data:SetFloat32(3*8, heading)
+    data:SetInt32(4*8, p4)
+    data:SetInt32(5*8, vehicle)
+    data:SetInt32(6*8, p6)
+    data:SetInt32(7*8, p7 and 1 or 0)
+
+    Citizen.InvokeNative(0x4154B7D8C75E5DCF, data:Buffer())
+end

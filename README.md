@@ -45,7 +45,7 @@ CreateThread(function()
 end)
 ```
 
-# References:
+## References:
 
 ## Aicoverpoint
 
@@ -189,6 +189,7 @@ end)
 | `InventoryGetCatalogItemInspectionStatsEntry` | `entryId, name, p2, playerId` |
 | `InventoryGetGuidFromItemid` | `inventoryId, itemHash, slotIdHash` |
 | `InventoryGetInventoryItemCompatibleSlots` | `itemHash` |
+| `InventoryGetInventoryItemFitSlot` | `itemHash, maxResults` |
 | `InventoryGetInventoryItemInspectionInfo` | `itemHash` |
 | `InventoryGetInventoryItemLastCreation` | `inventoryId, itemHash` |
 | `SetItemPromptInfoRequest` | `object, itemHash, consumableHash, label, price, modifiedPrice, flags, p5, x, y, z, p9` |
@@ -218,6 +219,7 @@ end)
 | `ItemdatabaseGetAcquireCost` | `itemHash, index` |
 | `ItemdatabaseGetAcquireCostsCountFromCostType` | `itemHash, costHash` |
 | `ItemdatabaseGetAwardAcquireCost` | `awardHash, index` |
+| `ItemdatabaseGetAwardAcquireCostCountFromCostType` | `awardHash, costHash` |
 | `ItemdatabaseGetAwardCostModifiers` | `awardHash` |
 | `ItemdatabaseGetAwardInfo` | `awardHash` |
 | `ItemdatabaseGetAwardUnlockFlagCount` | `awardHash` |
@@ -284,6 +286,7 @@ end)
 | Function | Parameters |
 |----------|------------|
 | `NetworkHandleFromPlayer` | `player` |
+| `NetworkResurrectLocalPlayer2` | `x, y, z, heading, p4, vehicle, p6, p7` |
 | `NetworkSessionRequestTerminate` | `` |
 | `NetworkUnregisterNetworkedEntity` | `entity` |
 

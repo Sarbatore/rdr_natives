@@ -183,6 +183,7 @@ exports("HasBulletImpactedEntity", HasBulletImpactedEntity)
 
 -- Network
 exports("NetworkHandleFromPlayer", NetworkHandleFromPlayer)
+exports("NetworkResurrectLocalPlayer2", NetworkResurrectLocalPlayer2)
 exports("NetworkSessionRequestTerminate", NetworkSessionRequestTerminate)
 exports("NetworkUnregisterNetworkedEntity", NetworkUnregisterNetworkedEntity)
 
