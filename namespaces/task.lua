@@ -582,6 +582,17 @@ function FindScenarioAllPointsInPropset(propset, itemset)
 end
 
 ---
+---@param ped integer
+---@return boolean success
+function N_0x643FD1556F621772(ped)
+    local outData1 = DataView.ArrayBuffer(32*8)
+    local outData2 = DataView.ArrayBuffer(32*8)
+    local success = Citizen.InvokeNative(0x643FD1556F621772, ped, outData1:Buffer(), outData2:Buffer()) == 1
+
+    return success
+end
+
+---
 ---@param x number
 ---@param y number
 ---@param z number

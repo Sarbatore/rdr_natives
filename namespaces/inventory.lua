@@ -3,15 +3,27 @@
 ---@return boolean success
 ---@return integer modelHash
 function InventoryGetInventoryItemInspectionInfo(itemHash)
-    local struct = DataView.ArrayBuffer(32*8)
-    struct:SetInt32(3*8, -1)
-    struct:SetInt32(12*8, 4)
-    struct:SetInt32(17*8, 4)
+    local outData = DataView.ArrayBuffer(22*8)
+    outData:SetInt32(3*8, -1)
+    outData:SetInt32(12*8, 4)
+    outData:SetInt32(17*8, 4)
 
-    local success   = Citizen.InvokeNative(0x0C093C1787F18519, itemHash, struct:Buffer()) == 1
-    local modelHash = struct:GetInt32(0*8)
+    local success   = Citizen.InvokeNative(0x0C093C1787F18519, itemHash, outData:Buffer()) == 1
+    local modelHash = outData:GetInt32(0*8)
 
     return success, modelHash
+end
+
+---
+---@param collectionId integer
+---@param index integer
+---@return boolean success
+---@return table itemData DataView.ArrayBuffer
+function InventoryGetItemFromCollectionIndex(collectionId, index)
+    local itemData = DataView.ArrayBuffer(32*8)
+    local success  = Citizen.InvokeNative(0x82FA24C3D3FCD9B7, collectionId, index, itemData:Buffer()) == 1
+
+    return success, itemData
 end
 
 --- Returns the effects entry id for "CatalogItemInspection" container
@@ -67,7 +79,13 @@ end
 ---Returns the last creation date of the item for the selected inventory.
 ---@param inventoryId integer
 ---@param itemHash integer
----@return boolean, integer, integer, integer, integer, integer, integer
+---@return boolean success
+---@return integer year
+---@return integer month
+---@return integer day
+---@return integer hour
+---@return integer minute
+---@return integer second
 function InventoryGetInventoryItemLastCreation(inventoryId, itemHash)
     local yearOut   = DataView.ArrayBuffer(1*8)
     local monthOut  = DataView.ArrayBuffer(1*8)
@@ -76,15 +94,15 @@ function InventoryGetInventoryItemLastCreation(inventoryId, itemHash)
     local minuteOut = DataView.ArrayBuffer(1*8)
     local secondOut = DataView.ArrayBuffer(1*8)
 
-    local res    = Citizen.InvokeNative(0x112BCA290D2EB53C, inventoryId, itemHash, yearOut:Buffer(), monthOut:Buffer(), dayOut:Buffer(), hourOut:Buffer(), minuteOut:Buffer(), secondOut:Buffer()) == 1
-    local year   = yearOut:GetInt32(0)
-    local month  = monthOut:GetInt32(0)
-    local day    = dayOut:GetInt32(0)
-    local hour   = hourOut:GetInt32(0)
-    local minute = minuteOut:GetInt32(0)
-    local second = secondOut:GetInt32(0)
+    local success = Citizen.InvokeNative(0x112BCA290D2EB53C, inventoryId, itemHash, yearOut:Buffer(), monthOut:Buffer(), dayOut:Buffer(), hourOut:Buffer(), minuteOut:Buffer(), secondOut:Buffer()) == 1
+    local year    = yearOut:GetInt32(0)
+    local month   = monthOut:GetInt32(0)
+    local day     = dayOut:GetInt32(0)
+    local hour    = hourOut:GetInt32(0)
+    local minute  = minuteOut:GetInt32(0)
+    local second  = secondOut:GetInt32(0)
         
-    return res, year, month, day, hour, minute, second
+    return success, year, month, day, hour, minute, second
 end
 
 ---
@@ -135,6 +153,26 @@ function InventoryCreateItemCollectionWithFilter(inventoryId, itemHash, slotIdHa
     local size         = sizeStruct:GetInt32(0)
 
     return collectionId, size
+end
+
+---
+---@param entity integer
+---@param p1 integer
+---@param flags integer
+---@param p3 any
+---@param p4 any
+---@param p5 any
+---@param p6 number
+function SetCarriableCarryActionPromptOverride(entity, p1, flags, p3, p4, p5, p6)
+    local data = DataView.ArrayBuffer(16*8)
+    data:SetInt32(0*8, entity)
+    data:SetInt32(1*8, p1)
+    data:SetInt32(2*8, flags)
+    data:SetInt32(3*8, p3)
+    data:SetInt32(4*8, p4)
+    data:SetInt32(5*8, p5)
+    data:SetFloat32(6*8, p6)
+    Citizen.InvokeNative(0xF666EF30F4F0AC4E, data:Buffer())
 end
 
 ---Update item prompt info

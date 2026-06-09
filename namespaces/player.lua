@@ -291,6 +291,14 @@ function GetPlayerInteractionAimEntity(player)
 end
 
 ---
+---@param entity integer
+---@param waypointRecording string
+---@param alpha number
+function N_0xD288E02E364972D2(entity, waypointRecording, alpha)
+    Citizen.InvokeNative(0xD288E02E364972D2, entity, waypointRecording, alpha)
+end
+
+---
 ---@param player integer
 ---@return boolean success
 ---@return integer entity
