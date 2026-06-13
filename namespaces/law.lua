@@ -65,20 +65,16 @@ end
 function N_0x9C5BD8C562565CE6()
     local outData = DataView.ArrayBuffer(32*8)
     Citizen.InvokeNative(0x9C5BD8C562565CE6, outData:Buffer())
-    for i = 0, 31 do
-        local unk = outData:GetInt32(i*8)
-        if unk ~= 0 then
-            print(string.format("Unknown data at index %d: %d", i, unk))
-        end
-    end
 end
 
 ---Find peds.
----@param coords vector3
+---@param x number
+---@param y number
+---@param z number
 ---@param radius number
 ---@param itemset integer
-function N_0x0C392DB374655176(...)
-    return Citizen.InvokeNative(0x0C392DB374655176, ..., Citizen.ResultAsInteger())
+function N_0x0C392DB374655176(x, y, z, radius, itemset)
+    return Citizen.InvokeNative(0x0C392DB374655176, x, y, z, radius, itemset, Citizen.ResultAsInteger())
 end
 
 ---Find peds.
@@ -144,11 +140,17 @@ function N_0xE083BEDA81709891(player)
 end
 
 ---
----@param crimeTypeHash integer
----@param p1 any
----@return integer
-function N_0xDAEFDFDB2AEECE37(crimeTypeHash, p1)
-    return Citizen.InvokeNative(0xDAEFDFDB2AEECE37, crimeTypeHash, p1, Citizen.ResultAsInteger())
+---@param player integer
+---@param p1 boolean
+function N_0x5E6F375CA101C108(player, p1)
+    return Citizen.InvokeNative(0x5E6F375CA101C108, player, p1)
+end
+
+---
+---@param crimeHash integer
+---@return integer hash
+function N_0x0BDFEBCF40A5F7E3(crimeHash)
+    return Citizen.InvokeNative(0x0BDFEBCF40A5F7E3, crimeHash, Citizen.ResultAsInteger())
 end
 
 ---
