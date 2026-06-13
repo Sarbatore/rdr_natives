@@ -156,7 +156,12 @@ exports("ItemdatabaseGetShopLayoutPageItemKey", ItemdatabaseGetShopLayoutPageIte
 exports("ItemdatabaseGetShopLayoutRootMenuInfo", ItemdatabaseGetShopLayoutRootMenuInfo)
 
 -- Law
+exports("ForcePlayerResearch", ForcePlayerResearch)
+exports("ForcePlayerResearchThisFrame", ForcePlayerResearchThisFrame)
 exports("GetPlayerRegisteredCrime", GetPlayerRegisteredCrime)
+exports("IsPedVictimOfCrime", IsPedVictimOfCrime)
+exports("IsPlayerResearched", IsPlayerResearched)
+exports("StopPlayerResearch", StopPlayerResearch)
 
 -- Map
 exports("ClearBlip", ClearBlip)
