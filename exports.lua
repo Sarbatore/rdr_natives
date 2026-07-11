@@ -22,6 +22,7 @@ exports("PlaySoundFromScriptedSpeech", PlaySoundFromScriptedSpeech)
 
 -- Bounty
 exports("BountyGetBountyOnPlayer", BountyGetBountyOnPlayer)
+exports("BountyRequestBeginLegendaryMission", BountyRequestBeginLegendaryMission)
 
 -- Cam
 exports("SetCamDofAndFocalParams", SetCamDofAndFocalParams)
@@ -104,6 +105,8 @@ exports("InventoryGetInventoryItemCompatibleSlots", InventoryGetInventoryItemCom
 exports("InventoryGetInventoryItemFitSlot", InventoryGetInventoryItemFitSlot)
 exports("InventoryGetInventoryItemInspectionInfo", InventoryGetInventoryItemInspectionInfo)
 exports("InventoryGetInventoryItemLastCreation", InventoryGetInventoryItemLastCreation)
+exports("InventoryGetItemFromCollectionIndex", InventoryGetItemFromCollectionIndex)
+exports("SetCarriableCarryActionPromptOverride", SetCarriableCarryActionPromptOverride)
 exports("SetItemPromptInfoRequest", SetItemPromptInfoRequest)
 
 -- Itemdatabase
@@ -442,6 +445,7 @@ exports("GetWeaponFromHorseHolster", GetWeaponFromHorseHolster)
 exports("GetWeaponHasMultipleAmmoTypes", GetWeaponHasMultipleAmmoTypes)
 exports("GetWeaponReplacedHash", GetWeaponReplacedHash)
 exports("GiveWeaponToPedWithOptions", GiveWeaponToPedWithOptions)
+exports("IsPedCarryingBackupWeapon", IsPedCarryingBackupWeapon)
 exports("IsPedCarryingWeaponSniperAtAttachPoint", IsPedCarryingWeaponSniperAtAttachPoint)
 exports("IsPedHoldingWeapon", IsPedHoldingWeapon)
 exports("IsPedTakingPoisonGasDamage", IsPedTakingPoisonGasDamage)

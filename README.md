@@ -83,6 +83,7 @@ end)
 | Function | Parameters |
 |----------|------------|
 | `BountyGetBountyOnPlayer` | `playerId` |
+| `BountyRequestBeginLegendaryMission` | `p0, p1` |
 
 ## Cam
 
@@ -192,6 +193,8 @@ end)
 | `InventoryGetInventoryItemFitSlot` | `itemHash, maxResults` |
 | `InventoryGetInventoryItemInspectionInfo` | `itemHash` |
 | `InventoryGetInventoryItemLastCreation` | `inventoryId, itemHash` |
+| `InventoryGetItemFromCollectionIndex` | `collectionId, index` |
+| `SetCarriableCarryActionPromptOverride` | `entity, p1, flags, p3, p4, p5, p6` |
 | `SetItemPromptInfoRequest` | `object, itemHash, consumableHash, label, price, modifiedPrice, flags, p5, x, y, z, p9` |
 
 ## Itemdatabase
@@ -250,7 +253,12 @@ end)
 
 | Function | Parameters |
 |----------|------------|
+| `ForcePlayerResearch` | `` |
+| `ForcePlayerResearchThisFrame` | `` |
 | `GetPlayerRegisteredCrime` | `player, index` |
+| `IsPedVictimOfCrime` | `ped` |
+| `IsPlayerResearched` | `` |
+| `StopPlayerResearch` | `` |
 
 ## Map
 
@@ -579,6 +587,7 @@ end)
 | `GetWeaponHasMultipleAmmoTypes` | `weaponHash` |
 | `GetWeaponReplacedHash` | `p0` |
 | `GiveWeaponToPedWithOptions` | `ped, weaponHash, slotIdHash, attachPoint, addReasonHash, p4, p5, forceInHand, forceInHolster, p8` |
+| `IsPedCarryingBackupWeapon` | `ped, attachPoint` |
 | `IsPedCarryingWeaponSniperAtAttachPoint` | `ped, attachPoint` |
 | `IsPedHoldingWeapon` | `ped, weaponHash` |
 | `IsPedTakingPoisonGasDamage` | `ped` |

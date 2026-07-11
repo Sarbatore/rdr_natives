@@ -298,6 +298,14 @@ function GetCanSwitchWeapon(ped)
     return Citizen.InvokeNative(0xBC9444F2FF94A9C0, ped) == 1
 end
 
+---Return true if there is a back up ped weapon get it using GET_PED_BACKUP_WEAPON
+---@param ped integer
+---@param attachPoint integer
+---@return boolean
+function IsPedCarryingBackupWeapon(ped, attachPoint)
+    return Citizen.InvokeNative(0x486C96A0DCD2BC92, ped, attachPoint) == 1
+end
+
 ---
 ---@param ped integer
 ---@param p1 boolean
