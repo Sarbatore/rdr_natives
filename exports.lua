@@ -291,6 +291,15 @@ exports("SpecialAbilitySetActivate", SpecialAbilitySetActivate)
 -- Propset
 exports("ModifyPropSetCoordsAndHeading", ModifyPropSetCoordsAndHeading)
 
+-- Stats
+exports("StatIdGetBool", StatIdGetBool)
+exports("StatIdGetFloat", StatIdGetFloat)
+exports("StatIdGetInt", StatIdGetInt)
+exports("StatIdIsValid", StatIdIsValid)
+exports("StatIdSetBool", StatIdSetBool)
+exports("StatIdSetFloat", StatIdSetFloat)
+exports("StatIdSetInt", StatIdSetInt)
+
 -- Streaming
 exports("HasClipSetLoaded_2", HasClipSetLoaded_2)
 exports("HasScenarioTypeForPedLoaded", HasScenarioTypeForPedLoaded)
