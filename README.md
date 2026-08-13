@@ -382,6 +382,8 @@ end)
 | `GetDeadeyeAbilityDepletionDelay` | `player` |
 | `GetNumDeadeyeMarksOnPed` | `player, ped` |
 | `GetPedsDamagedByPlayerRecently` | `player, duration` |
+| `GetPlayerFreeAimClosestEntity` | `player` |
+| `GetPlayerFreeAimCoords` | `player` |
 | `GetPlayerInteractionAimEntity` | `player` |
 | `HasPlayerDamagedRecentlyAttackedPed` | `player, duration` |
 | `IsPlayerPromptJumpToActive` | `player` |
@@ -407,6 +409,18 @@ end)
 | Function | Parameters |
 |----------|------------|
 | `ModifyPropSetCoordsAndHeading` | `propSet, x, y, z, onGroundProperly, heading` |
+
+## Stats
+
+| Function | Parameters |
+|----------|------------|
+| `StatIdGetBool` | `statCategoryHash, statNameHash` |
+| `StatIdGetFloat` | `statCategoryHash, statNameHash` |
+| `StatIdGetInt` | `statCategoryHash, statNameHash` |
+| `StatIdIsValid` | `statCategoryHash, statNameHash` |
+| `StatIdSetBool` | `statCategoryHash, statNameHash, value, p3` |
+| `StatIdSetFloat` | `statCategoryHash, statNameHash, value, p3` |
+| `StatIdSetInt` | `statCategoryHash, statNameHash, value, p3` |
 
 ## Streaming
 

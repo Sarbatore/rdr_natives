@@ -291,14 +291,6 @@ function GetPlayerInteractionAimEntity(player)
 end
 
 ---
----@param entity integer
----@param waypointRecording string
----@param alpha number
-function N_0xD288E02E364972D2(entity, waypointRecording, alpha)
-    Citizen.InvokeNative(0xD288E02E364972D2, entity, waypointRecording, alpha)
-end
-
----
 ---@param player integer
 ---@return boolean success
 ---@return integer entity
@@ -309,4 +301,54 @@ function GetPlayerFreeAimClosestEntity(player)
     local entity  = outEntity:GetInt32(0)
 
     return success, entity
+end
+
+---Retrieves the world position of the player's free aim.
+---@param player integer
+---@return vector3
+function GetPlayerFreeAimCoords(player)
+    return Citizen.InvokeNative(0x3DAABE78A23694BC, player, Citizen.PointerValueVector())
+end
+
+---
+---@param entity integer
+---@param waypointRecording string
+---@param alpha number
+function N_0xD288E02E364972D2(entity, waypointRecording, alpha)
+    Citizen.InvokeNative(0xD288E02E364972D2, entity, waypointRecording, alpha)
+end
+
+---Getter of N_0x83C989D5B5B5B466
+---@param player integer
+---@return number
+function N_0x03B4B759A8990505(player)
+    return Citizen.InvokeNative(0x03B4B759A8990505, player, Citizen.ResultAsFloat())
+end
+
+---Setter of N_0x03B4B759A8990505
+---@param player integer
+---@param multiplier number
+function N_0x83C989D5B5B5B466(player, multiplier)
+    Citizen.InvokeNative(0x83C989D5B5B5B466, player, multiplier)
+end
+
+---Getter of N_0x19B2C7A6C34FAD54
+---@param player integer
+---@return number
+function N_0x9422743A5BA50E10(player)
+    return Citizen.InvokeNative(0x9422743A5BA50E10, player, Citizen.ResultAsFloat())
+end
+
+---Setter of N_0x9422743A5BA50E10
+---@param player integer
+---@param multiplier number
+function N_0x19B2C7A6C34FAD54(player, multiplier)
+    Citizen.InvokeNative(0x19B2C7A6C34FAD54, player, multiplier)
+end
+
+---Getter of SET_ENABLE_BOUND_ANKLES
+---@param playerPed integer
+---@return boolean
+function N_0x8822F139408B8D0A(playerPed)
+    return Citizen.InvokeNative(0x8822F139408B8D0A, playerPed) == 1
 end
