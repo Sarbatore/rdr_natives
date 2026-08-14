@@ -311,6 +311,44 @@ function GetPlayerFreeAimCoords(player)
 end
 
 ---
+---@param player integer
+---@param p1 boolean
+---@param p2 number
+---@param p3 number
+---@param p4 any
+---@param p5 any
+---@param p6 number
+---@param p7 number
+function N_0xCA59808E51FD67C4(player)
+    local paramsData = DataView.ArrayBuffer(6*8)
+    paramsData:SetInt32(0*8, 0)
+    paramsData:SetFloat32(1*8, 0.3)
+    paramsData:SetFloat32(2*8, 1.2)
+    paramsData:SetInt32(3*8, 0)
+    paramsData:SetInt32(4*8, 0)
+    paramsData:SetFloat32(5*8, -1.0)
+    paramsData:SetFloat32(6*8, -1.0)
+
+    Citizen.InvokeNative(0xCA59808E51FD67C4, player, paramsData:Buffer())
+end
+
+---
+---@param player integer
+---@param ped integer
+---@param distance number
+function N_0x2BEED53B912537D0(player, ped, distance)
+    Citizen.InvokeNative(0x2BEED53B912537D0, player, ped, distance)
+end
+
+---
+---@param player integer
+---@param weaponHash integer
+---@param p2 boolean
+function N_0x5C2E5E3CAEEB1F58(player, weaponHash, p2)
+    Citizen.InvokeNative(0x5C2E5E3CAEEB1F58, player, weaponHash, p2)
+end
+
+---
 ---@param entity integer
 ---@param waypointRecording string
 ---@param alpha number

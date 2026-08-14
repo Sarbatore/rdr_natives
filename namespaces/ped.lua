@@ -327,6 +327,20 @@ function CountPedsAwareOfEvent(eventHandle, x, y, z, radius)
     return numberOfPeds, peds
 end
 
+---
+---@param ped integer
+---@param coords vector3
+---@param radius number
+---@return boolean success
+---@return vector3
+function N_0xF6A8C4B4A11AE89C(...)
+    local outCoords = DataView.ArrayBuffer(3*8)
+    
+    local success = Citizen.InvokeNative(0xF6A8C4B4A11AE89C, ...) == 1
+
+    return success, vector3(outCoords:GetFloat32(0), outCoords:GetFloat32(8), outCoords:GetFloat32(16))
+end
+
 ---Find peds.
 ---@param ped integer
 ---@param p1 integer

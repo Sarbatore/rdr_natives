@@ -352,3 +352,14 @@ function UiFeedPostHelpText(data)
 
     return Citizen.InvokeNative(0x049D5C615BD38BAD, optionsBuffer, struct:Buffer(), true)
 end
+
+---
+---@param text string
+---@param p1 boolean
+---@return integer feedMessage
+function N_0x4E88A65968A55C78(text, p1)
+    local paramsData = DataView.ArrayBuffer(2*8)
+    paramsData:SetInt64(1*8, VarString(10, "LITERAL_STRING", text, Citizen.ResultAsLong()))
+
+    return Citizen.InvokeNative(0x4E88A65968A55C78, paramsData:Buffer(), p1, Citizen.ResultAsInteger())
+end
