@@ -390,12 +390,14 @@ exports("UiFeedPostSampleToastWithAppLink", UiFeedPostSampleToastWithAppLink)
 exports("UiFeedPostThreeTextShard", UiFeedPostThreeTextShard)
 exports("UiFeedPostTwoTextShard", UiFeedPostTwoTextShard)
 exports("UiFeedPostVoiceChatFeed", UiFeedPostVoiceChatFeed)
-exports("UiStickyFeedCreateDeathFailMessage", UiStickyFeedCreateDeathFailMessage)
-exports("UiStickyFeedCreateErrorMessage", UiStickyFeedCreateErrorMessage)
-exports("UiStickyFeedCreateWarningMessage", UiStickyFeedCreateWarningMessage)
 
 -- Uilog
 exports("UilogPostNotification", UilogPostNotification)
+
+-- Uistickyfeed
+exports("UiStickyFeedCreateDeathFailMessage", UiStickyFeedCreateDeathFailMessage)
+exports("UiStickyFeedCreateErrorMessage", UiStickyFeedCreateErrorMessage)
+exports("UiStickyFeedCreateWarningMessage", UiStickyFeedCreateWarningMessage)
 
 -- Vehicle
 exports("AreAnyVehicleWheelsDestroyed", AreAnyVehicleWheelsDestroyed)

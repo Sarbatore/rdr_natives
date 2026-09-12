@@ -195,7 +195,7 @@ end, false)
 | `InventoryGetInventoryItemLastCreation` | `inventoryId, itemHash` |
 | `InventoryGetItemFromCollectionIndex` | `collectionId, index` |
 | `SetCarriableCarryActionPromptOverride` | `entity, p1, flags, p3, p4, p5, p6` |
-| `SetItemPromptInfoRequest` | `object, itemHash, consumableHash, label, price, modifiedPrice, flags, p5, x, y, z, p9` |
+| `SetItemPromptInfoRequest` | `object, itemHash, consumableHash, labelVarString, price, modifiedPrice, flags, p5, x, y, z, p9` |
 
 ## Itemdatabase
 
@@ -506,32 +506,37 @@ end, false)
 
 | Function | Parameters |
 |----------|------------|
-| `UiFeedPostCollectorToast` | `duration, title, text, textureDict, textureName, collectableCategory, extraText, p7` |
-| `UiFeedPostFeedTicker` | `data` |
-| `UiFeedPostHelpText` | `data` |
+| `UiFeedPostCollectorToast` | `duration, titleVarString, textVarString, textureDict, textureName, collectableCategory, p6Hash, extraTextVarString` |
+| `UiFeedPostFeedTicker` | `textVarString, duration, soundSet, soundName` |
+| `UiFeedPostHelpText` | `textVarString, duration, soundSet, soundName` |
 | `UiFeedPostInteractiveToast` | `` |
-| `UiFeedPostLocationShard` | `data` |
-| `UiFeedPostMissionName` | `data` |
-| `UiFeedPostObjective` | `data` |
-| `UiFeedPostOneTextShard` | `data` |
-| `UiFeedPostRankupToast` | `duration, title, text, textureDict, textureName, textureColor, subCategoryToastAppId, extraText, p8, p9, p10, p11, p12, p13, p14, p15` |
-| `UiFeedPostReticleMessage` | `data` |
+| `UiFeedPostLocationShard` | `location, text, duration, soundSet, soundName` |
+| `UiFeedPostMissionName` | `textVarString, duration, soundSet, soundName` |
+| `UiFeedPostObjective` | `textVarString, duration, soundSet, soundName` |
+| `UiFeedPostOneTextShard` | `text, duration, soundSet, soundName` |
+| `UiFeedPostRankupToast` | `duration, titleVarString, textVarString, soundSet, soundName, textureDict, textureName` |
+| `UiFeedPostReticleMessage` | `textVarString, hideBackground, duration, soundSet, soundName` |
 | `UiFeedPostSampleNotification` | `` |
-| `UiFeedPostSampleToast` | `` |
-| `UiFeedPostSampleToastRight` | `data` |
-| `UiFeedPostSampleToastWithAppLink` | `duration, title, text, textureDictHash, textureNameHash, subCategoryToastAppId, p6, p7, extraText` |
-| `UiFeedPostThreeTextShard` | `data` |
-| `UiFeedPostTwoTextShard` | `data` |
-| `UiFeedPostVoiceChatFeed` | `data` |
-| `UiStickyFeedCreateDeathFailMessage` | `data` |
-| `UiStickyFeedCreateErrorMessage` | `data` |
-| `UiStickyFeedCreateWarningMessage` | `data` |
+| `UiFeedPostSampleToast` | `title, text, duration, textureDict, textureName, soundSet, soundName` |
+| `UiFeedPostSampleToastRight` | `textVarString, quality, textureDict, textureName, color, duration, soundSet, soundName` |
+| `UiFeedPostSampleToastWithAppLink` | `duration, titleVarString, textVarString, textureDict, textureName, subCategoryToastAppId, p6, p7, extraTextVarString` |
+| `UiFeedPostThreeTextShard` | `title, text1, text2, duration, soundSet, soundName` |
+| `UiFeedPostTwoTextShard` | `title, text, duration, soundSet, soundName` |
+| `UiFeedPostVoiceChatFeed` | `textVarString, textColor, duration, soundSet, soundName` |
 
 ## Uilog
 
 | Function | Parameters |
 |----------|------------|
 | `UilogPostNotification` | `toast, body, p2, p3, p4, p5` |
+
+## Uistickyfeed
+
+| Function | Parameters |
+|----------|------------|
+| `UiStickyFeedCreateDeathFailMessage` | `text, soundSet, soundName, firstButtonLabel, isFirstButtonHold, secondButtonLabel, isSecondButtonHold, thirdButtonLabel, isThirdButtonHold, fourthButtonLabel, isFourthButtonHold` |
+| `UiStickyFeedCreateErrorMessage` | `title, text, soundSet, soundName, firstButtonLabel, isFirstButtonHold, secondButtonLabel, isSecondButtonHold, thirdButtonLabel, isThirdButtonHold, fourthButtonLabel, isFourthButtonHold` |
+| `UiStickyFeedCreateWarningMessage` | `title, text, soundSet, soundName, firstButtonLabel, isFirstButtonHold, secondButtonLabel, isSecondButtonHold, thirdButtonLabel, isThirdButtonHold, fourthButtonLabel, isFourthButtonHold` |
 
 ## Vehicle
 
