@@ -150,3 +150,22 @@ for label,datatype in pairs(DataView.FixedTypes) do
         return self
     end
 end
+
+---
+---@param value integer
+---@return integer bigInt
+function BigInt(value)
+    local bigInt = DataView.ArrayBuffer(16)
+        :SetInt64(0, value)
+    return bigInt:GetInt64(0)
+end
+
+---
+---@param str string
+---@return integer bigInt
+function LiteralStringLong(str)
+    if (type(str) ~= "string" or str == "") then
+        return 0
+    end
+    return VarString(10, "LITERAL_STRING", str, Citizen.ResultAsLong())
+end

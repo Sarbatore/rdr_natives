@@ -8,32 +8,32 @@
 ---@param p6 boolean
 ---@param duration integer
 function InverseKinematicsRequestLookAt(ped, x, y, z, lookAtEntity, flags, p6, duration)
-    local data = DataView.ArrayBuffer(32*8)
-    data:SetFloat32(0*8, x)
-    data:SetFloat32(1*8, y)
-    data:SetFloat32(2*8, z)
-    data:SetFloat32(3*8, lookAtEntity)
-    data:SetInt32(4*8, flags)
-    data:SetInt32(5*8, p6 and 1 or 0)
-    data:SetInt32(6*8, 0) -- 0
-    data:SetInt32(7*8, duration)
-    data:SetInt32(8*8, 2) -- 0-4
-    data:SetInt32(9*8, 1) -- 0-1
-    data:SetInt32(10*8, 1) -- 0-1
-    data:SetInt32(11*8, 1) -- 0-1
-    data:SetInt32(13*8, 1) -- 0-1
-    data:SetInt32(14*8, 2) -- 0-2
-    data:SetInt32(15*8, 2) -- 0-2
-    data:SetInt32(16*8, 3) -- 0-3
-    data:SetInt32(17*8, 0) -- 0-4
-    data:SetInt32(18*8, 0) -- 0-4
-    data:SetInt32(19*8, 3) -- 0-4
-    data:SetInt32(20*8, 1) -- 0-3
-    data:SetInt32(21*8, 3) -- 0-4
-    data:SetInt32(22*8, 3) -- 0-3
-    data:SetInt32(23*8, 3) -- 0-3
-    data:SetInt32(24*8, 3) -- 0-3
-    Citizen.InvokeNative(0x66F9EB44342BB4C5, ped, data:Buffer())
+    local paramsStruct = DataView.ArrayBuffer(32*8)
+        :SetFloat32(0*8, x)
+        :SetFloat32(1*8, y)
+        :SetFloat32(2*8, z)
+        :SetFloat32(3*8, lookAtEntity)
+        :SetInt32(4*8, flags)
+        :SetInt32(5*8, p6 and 1 or 0)
+        :SetInt32(6*8, 0) -- 0
+        :SetInt32(7*8, duration)
+        :SetInt32(8*8, 2) -- 0-4
+        :SetInt32(9*8, 1) -- 0-1
+        :SetInt32(10*8, 1) -- 0-1
+        :SetInt32(11*8, 1) -- 0-1
+        :SetInt32(13*8, 1) -- 0-1
+        :SetInt32(14*8, 2) -- 0-2
+        :SetInt32(15*8, 2) -- 0-2
+        :SetInt32(16*8, 3) -- 0-3
+        :SetInt32(17*8, 0) -- 0-4
+        :SetInt32(18*8, 0) -- 0-4
+        :SetInt32(19*8, 3) -- 0-4
+        :SetInt32(20*8, 1) -- 0-3
+        :SetInt32(21*8, 3) -- 0-4
+        :SetInt32(22*8, 3) -- 0-3
+        :SetInt32(23*8, 3) -- 0-3
+        :SetInt32(24*8, 3) -- 0-3
+    Citizen.InvokeNative(0x66F9EB44342BB4C5, ped, paramsStruct:Buffer())
 end
 
 ---
@@ -54,15 +54,15 @@ end
 ---@param pointAtBoneIndex integer
 ---@param flags integer
 function InverseKinematicsPointAt(ped, isRightHand, xOffset, yOffset, zOffset, pointAtEntity, pointAtBoneIndex, flags)
-    local data = DataView.ArrayBuffer(10*8)
-    data:SetInt32(0*8, isRightHand and 1 or 0)
-    data:SetFloat32(1*8, xOffset)
-    data:SetFloat32(2*8, yOffset)
-    data:SetFloat32(3*8, zOffset)
-    data:SetInt32(4*8, pointAtEntity)
-    data:SetInt32(5*8, pointAtBoneIndex)
-    data:SetInt32(6*8, flags) -- 24 flags, (1 << 22): attach
-    data:SetInt32(7*8, 2)
-    data:SetInt32(8*8, 2)
-    Citizen.InvokeNative(0x0B9F7A01EC50448D, ped, data:Buffer())
+    local paramsStruct = DataView.ArrayBuffer(10*8)
+        :SetInt32(0*8, isRightHand and 1 or 0)
+        :SetFloat32(1*8, xOffset)
+        :SetFloat32(2*8, yOffset)
+        :SetFloat32(3*8, zOffset)
+        :SetInt32(4*8, pointAtEntity)
+        :SetInt32(5*8, pointAtBoneIndex)
+        :SetInt32(6*8, flags) -- 24 flags, (1 << 22): attach
+        :SetInt32(7*8, 2)
+        :SetInt32(8*8, 2)
+    Citizen.InvokeNative(0x0B9F7A01EC50448D, ped, paramsStruct:Buffer())
 end

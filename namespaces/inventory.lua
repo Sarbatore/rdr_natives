@@ -3,13 +3,13 @@
 ---@return boolean success
 ---@return integer modelHash
 function InventoryGetInventoryItemInspectionInfo(itemHash)
-    local outData = DataView.ArrayBuffer(22*8)
-    outData:SetInt32(3*8, -1)
-    outData:SetInt32(12*8, 4)
-    outData:SetInt32(17*8, 4)
+    local outStruct = DataView.ArrayBuffer(22*8)
+        :SetInt32(3*8, -1)
+        :SetInt32(12*8, 4)
+        :SetInt32(17*8, 4)
 
-    local success   = Citizen.InvokeNative(0x0C093C1787F18519, itemHash, outData:Buffer()) == 1
-    local modelHash = outData:GetInt32(0*8)
+    local success   = Citizen.InvokeNative(0x0C093C1787F18519, itemHash, outStruct:Buffer()) == 1
+    local modelHash = outStruct:GetInt32(0*8)
 
     return success, modelHash
 end
@@ -60,15 +60,15 @@ end
 ---@return table slotIdsHash
 function InventoryGetInventoryItemCompatibleSlots(itemHash)
     local size = 15
-    local outData = DataView.ArrayBuffer((size+1)*8)
-    outData:SetInt32(0*8, size)
+    local outStruct = DataView.ArrayBuffer((size+1)*8)
+        :SetInt32(0*8, size)
     
-    local success     = Citizen.InvokeNative(0x9AC53CB6907B4428, itemHash, outData:Buffer(), size) == 1
+    local success     = Citizen.InvokeNative(0x9AC53CB6907B4428, itemHash, outStruct:Buffer(), size) == 1
     local slotIdsHash = {}
     if (success) then
         local i = 1
-        while i <= size and outData:GetInt32(i*8) ~= 0 do
-            table.insert(slotIdsHash, outData:GetInt32(i*8))
+        while i <= size and outStruct:GetInt32(i*8) ~= 0 do
+            table.insert(slotIdsHash, outStruct:GetInt32(i*8))
             i = i + 1
         end
     end
@@ -87,22 +87,8 @@ end
 ---@return integer minute
 ---@return integer second
 function InventoryGetInventoryItemLastCreation(inventoryId, itemHash)
-    local yearOut   = DataView.ArrayBuffer(1*8)
-    local monthOut  = DataView.ArrayBuffer(1*8)
-    local dayOut    = DataView.ArrayBuffer(1*8)
-    local hourOut   = DataView.ArrayBuffer(1*8)
-    local minuteOut = DataView.ArrayBuffer(1*8)
-    local secondOut = DataView.ArrayBuffer(1*8)
-
-    local success = Citizen.InvokeNative(0x112BCA290D2EB53C, inventoryId, itemHash, yearOut:Buffer(), monthOut:Buffer(), dayOut:Buffer(), hourOut:Buffer(), minuteOut:Buffer(), secondOut:Buffer()) == 1
-    local year    = yearOut:GetInt32(0)
-    local month   = monthOut:GetInt32(0)
-    local day     = dayOut:GetInt32(0)
-    local hour    = hourOut:GetInt32(0)
-    local minute  = minuteOut:GetInt32(0)
-    local second  = secondOut:GetInt32(0)
-        
-    return success, year, month, day, hour, minute, second
+    local success, year, month, day, hour, minute, second = Citizen.InvokeNative(0x112BCA290D2EB53C, inventoryId, itemHash, Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt())
+    return success == 1, year, month, day, hour, minute, second
 end
 
 ---
@@ -126,33 +112,29 @@ end
 ---@param p17 any
 ---@param p18 any
 ---@return integer collectionId
----@return integer size
+---@return integer collectionSize
 function InventoryCreateItemCollectionWithFilter(inventoryId, itemHash, slotIdHash, slotId2Hash, slotId3Hash, p5, p6, p7, p8, itemTypeHash, p10, p11, p12, p13, p14, p15, p16, p17, p18)
-    local filterStruct = DataView.ArrayBuffer(18*8)
-    filterStruct:SetInt32(0*8, itemHash)
-    filterStruct:SetInt32(1*8, slotIdHash)
-    filterStruct:SetInt32(2*8, slotId2Hash)
-    filterStruct:SetInt32(3*8, slotId3Hash)
-    filterStruct:SetInt32(4*8, p5)
-    filterStruct:SetInt32(5*8, p6)
-    filterStruct:SetInt32(6*8, p7)
-    filterStruct:SetInt32(7*8, p8)
-    filterStruct:SetInt32(8*8, itemTypeHash)
-    filterStruct:SetInt32(9*8, p10)
-    filterStruct:SetInt32(10*8, p11)
-    filterStruct:SetInt32(11*8, p12)
-    filterStruct:SetInt32(12*8, p13)
-    filterStruct:SetInt32(13*8, p14)
-    filterStruct:SetInt32(14*8, p15)
-    filterStruct:SetInt32(15*8, p16)
-    filterStruct:SetInt32(16*8, p17)
-    filterStruct:SetInt32(17*8, p18)
-    local sizeStruct = DataView.ArrayBuffer(1*8)
+    local paramsStruct = DataView.ArrayBuffer(18*8)
+        :SetInt32(0*8, itemHash)
+        :SetInt32(1*8, slotIdHash)
+        :SetInt32(2*8, slotId2Hash)
+        :SetInt32(3*8, slotId3Hash)
+        :SetInt32(4*8, p5)
+        :SetInt32(5*8, p6)
+        :SetInt32(6*8, p7)
+        :SetInt32(7*8, p8)
+        :SetInt32(8*8, itemTypeHash)
+        :SetInt32(9*8, p10)
+        :SetInt32(10*8, p11)
+        :SetInt32(11*8, p12)
+        :SetInt32(12*8, p13)
+        :SetInt32(13*8, p14)
+        :SetInt32(14*8, p15)
+        :SetInt32(15*8, p16)
+        :SetInt32(16*8, p17)
+        :SetInt32(17*8, p18)
 
-    local collectionId = Citizen.InvokeNative(0x640F890C3E5A3FFD, inventoryId, filterStruct:Buffer(), sizeStruct:Buffer(), Citizen.ResultAsInteger())
-    local size         = sizeStruct:GetInt32(0)
-
-    return collectionId, size
+    return Citizen.InvokeNative(0x640F890C3E5A3FFD, inventoryId, paramsStruct:Buffer(), Citizen.PointerValueInt(), Citizen.ResultAsInteger())
 end
 
 ---
@@ -164,22 +146,22 @@ end
 ---@param p5 any
 ---@param p6 number
 function SetCarriableCarryActionPromptOverride(entity, p1, flags, p3, p4, p5, p6)
-    local data = DataView.ArrayBuffer(16*8)
-    data:SetInt32(0*8, entity)
-    data:SetInt32(1*8, p1)
-    data:SetInt32(2*8, flags)
-    data:SetInt32(3*8, p3)
-    data:SetInt32(4*8, p4)
-    data:SetInt32(5*8, p5)
-    data:SetFloat32(6*8, p6)
-    Citizen.InvokeNative(0xF666EF30F4F0AC4E, data:Buffer())
+    local paramsStruct = DataView.ArrayBuffer(16*8)
+        :SetInt32(0*8, entity)
+        :SetInt32(1*8, p1)
+        :SetInt32(2*8, flags)
+        :SetInt32(3*8, p3)
+        :SetInt32(4*8, p4)
+        :SetInt32(5*8, p5)
+        :SetFloat32(6*8, p6)
+    Citizen.InvokeNative(0xF666EF30F4F0AC4E, paramsStruct:Buffer())
 end
 
 ---Update item prompt info
 ---@param object integer
 ---@param itemHash integer
 ---@param consumableHash integer
----@param label string -- MEAT, FISH, VEGETABLE, FRUIT, DAIRY, CANDY, JERKY, LETTER
+---@param labelVarString integer -- MEAT, FISH, VEGETABLE, FRUIT, DAIRY, CANDY, JERKY, LETTER
 ---@param price integer
 ---@param modifiedPrice integer
 ---@param flags integer -- 1: can take, 2: can examine, 4: unknown, 8: unknown, 16: infinite interaction
@@ -188,23 +170,21 @@ end
 ---@param y number
 ---@param z number
 ---@param p9 integer -- 0 or 10
-function SetItemPromptInfoRequest(object, itemHash, consumableHash, label, price, modifiedPrice, flags, p5, x, y, z, p9)
-    local data = DataView.ArrayBuffer(13*8)
-    data:SetInt32(0*8, object)
-    data:SetInt32(1*8, itemHash)
-    data:SetInt32(2*8, consumableHash)
-    if (label ~= "") then
-        data:SetInt64(3*8, VarString(10, "LITERAL_STRING", label, Citizen.ResultAsLong()))
-    end
-    data:SetInt32(4*8, price)
-    data:SetInt32(5*8, modifiedPrice)
-    data:SetInt32(6*8, flags)
-    data:SetInt32(7*8, p5)
-    data:SetFloat32(8*8, x)
-    data:SetFloat32(9*8, y)
-    data:SetFloat32(10*8, z)
-    data:SetInt32(11*8, p9)
-    Citizen.InvokeNative(0xFD41D1D4350F6413, data:Buffer())
+function SetItemPromptInfoRequest(object, itemHash, consumableHash, labelVarString, price, modifiedPrice, flags, p5, x, y, z, p9)
+    local paramsStruct = DataView.ArrayBuffer(13*8)
+        :SetInt32(0*8, object)
+        :SetInt32(1*8, itemHash)
+        :SetInt32(2*8, consumableHash)
+        :SetInt64(3*8, BigInt(labelVarString))
+        :SetInt32(4*8, price)
+        :SetInt32(5*8, modifiedPrice)
+        :SetInt32(6*8, flags)
+        :SetInt32(7*8, p5)
+        :SetFloat32(8*8, x)
+        :SetFloat32(9*8, y)
+        :SetFloat32(10*8, z)
+        :SetInt32(11*8, p9)
+    Citizen.InvokeNative(0xFD41D1D4350F6413, paramsStruct:Buffer())
 
     --[[
     AddEventHandler("gameEventTriggered", function(eventName, args)
@@ -251,12 +231,12 @@ end
 ---@return boolean success
 ---@return table slotids A list of slotids hash that the item can fit into, up to maxResults in length
 function InventoryGetInventoryItemFitSlot(itemHash, maxResults)
-    local outData = DataView.ArrayBuffer(32*8)
+    local outStruct = DataView.ArrayBuffer(32*8)
 
-    local success = Citizen.InvokeNative(0xB991FE166FAF84FD, itemHash, outData:Buffer(), maxResults) == 1
+    local success = Citizen.InvokeNative(0xB991FE166FAF84FD, itemHash, outStruct:Buffer(), maxResults) == 1
     local slotids = {}
     for i = 1, maxResults do
-        local slotid = outData:GetInt32(i*8)
+        local slotid = outStruct:GetInt32(i*8)
         if slotid == 0 then break end
         table.insert(slotids, slotid)
     end

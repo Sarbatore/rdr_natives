@@ -6,8 +6,8 @@ function BountyGetBountyOnPlayer(playerId)
         gamerHandle = exports.rdr_natives:NetworkHandleFromPlayer(playerId)
     end
 
-    local outData = DataView.ArrayBuffer(10*8)
-    Citizen.InvokeNative(0x4EF23E04A0C8FF51, gamerHandle:Buffer(), outData:Buffer())
+    local outStruct = DataView.ArrayBuffer(10*8)
+    Citizen.InvokeNative(0x4EF23E04A0C8FF51, gamerHandle:Buffer(), outStruct:Buffer())
 
     return
 end

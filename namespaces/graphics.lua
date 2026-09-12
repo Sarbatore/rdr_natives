@@ -22,12 +22,8 @@ end
 ---@return boolean hasEventTriggered
 ---@return boolean isRegistered
 function AnimpostfxHasEventTriggered(effectName, eventType, peekOnly)
-    local outData = DataView.ArrayBuffer(1*8)
-
-    local hasEventTriggered = Citizen.InvokeNative(0xFBF161FCFEC8589E, effectName, eventType, peekOnly, outData:Buffer()) == 1
-    local isRegistered      = outData:GetInt32(0) == 1
-
-    return hasEventTriggered, isRegistered
+    local hasEventTriggered, isRegistered = Citizen.InvokeNative(0xFBF161FCFEC8589E, effectName, eventType, peekOnly, Citizen.PointerValueInt(), Citizen.ResultAsInteger())
+    return hasEventTriggered == 1, isRegistered == 1
 end
 
 ---

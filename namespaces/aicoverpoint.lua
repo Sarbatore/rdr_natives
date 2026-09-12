@@ -38,13 +38,13 @@ end
 ---@param y number
 ---@param z number
 function TaskExitCover(ped, p1, x, y, z)
-    local data = DataView.ArrayBuffer(8*8)
-    data:SetInt32(0*8, ped)
-    data:SetInt32(1*8, p1)
-    data:SetFloat32(2*8, x)
-    data:SetFloat32(3*8, y)
-    data:SetFloat32(4*8, z)
-    Citizen.InvokeNative(0x2BC4A6D92D140112, data:Buffer())
+    local paramsStruct = DataView.ArrayBuffer(8*8)
+        :SetInt32(0*8, ped)
+        :SetInt32(1*8, p1)
+        :SetFloat32(2*8, x)
+        :SetFloat32(3*8, y)
+        :SetFloat32(4*8, z)
+    Citizen.InvokeNative(0x2BC4A6D92D140112, paramsStruct:Buffer())
 end
 
 ---
@@ -54,24 +54,24 @@ end
 ---@param y number
 ---@param z number
 function TaskEnterCover(ped, coverPoint, x, y, z)
-    local data = DataView.ArrayBuffer(24*8)
-    data:SetInt32(0*8, ped)
-    data:SetInt32(3*8, coverPoint)
-    data:SetInt32(4*8, 0) -- 0, 1, 2
-    data:SetInt32(5*8, -1) -- flags or duration
-    data:SetInt32(6*8, 0) -- 0 or 1
-    data:SetInt32(7*8, 0) -- 0 or 1
-    data:SetInt32(8*8, 0)
-    data:SetFloat32(9*8, 0.5)
-    data:SetFloat32(10*8, 2.0)
-    data:SetFloat32(11*8, 0.0)
-    data:SetFloat32(12*8, 0.0)
-    data:SetFloat32(13*8, 0.0)
-    data:SetFloat32(14*8, x) -- x
-    data:SetFloat32(15*8, y) -- y
-    data:SetFloat32(16*8, z) -- z
-    data:SetInt32(17*8, 0)
-    data:SetInt32(18*8, 0) -- 0 or 1
-    data:SetInt32(20*8, 0)
-    Citizen.InvokeNative(0x4972A022AE6DAFA1, data:Buffer())
+    local paramsStruct = DataView.ArrayBuffer(24*8)
+        :SetInt32(0*8, ped)
+        :SetInt32(3*8, coverPoint)
+        :SetInt32(4*8, 0) -- 0, 1, 2
+        :SetInt32(5*8, -1) -- flags or duration
+        :SetInt32(6*8, 0) -- 0 or 1
+        :SetInt32(7*8, 0) -- 0 or 1
+        :SetInt32(8*8, 0)
+        :SetFloat32(9*8, 0.5)
+        :SetFloat32(10*8, 2.0)
+        :SetFloat32(11*8, 0.0)
+        :SetFloat32(12*8, 0.0)
+        :SetFloat32(13*8, 0.0)
+        :SetFloat32(14*8, x) -- x
+        :SetFloat32(15*8, y) -- y
+        :SetFloat32(16*8, z) -- z
+        :SetInt32(17*8, 0)
+        :SetInt32(18*8, 0) -- 0 or 1
+        :SetInt32(20*8, 0)
+    Citizen.InvokeNative(0x4972A022AE6DAFA1, paramsStruct:Buffer())
 end

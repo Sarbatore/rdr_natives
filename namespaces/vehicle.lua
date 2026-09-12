@@ -478,8 +478,8 @@ end
 ---@param z number
 ---@return boolean
 function N_0xD9BF3ED8EFB67EA3(hash, x, y, z)
-    local outData = DataView.ArrayBuffer(32*8)
-    local retval = Citizen.InvokeNative(0xD9BF3ED8EFB67EA3, hash, x, y, z, outData:Buffer()) == 1
+    local outStruct = DataView.ArrayBuffer(32*8)
+    local retval = Citizen.InvokeNative(0xD9BF3ED8EFB67EA3, hash, x, y, z, outStruct:Buffer()) == 1
 
     return retval
 end

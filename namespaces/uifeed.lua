@@ -1,82 +1,110 @@
---[[
+----------------------------------------
+---									 ---
+---			 Toast messages 	  	 ---
+---									 ---
+----------------------------------------
 
-Ui feeds are in experiment for the moment.
+---
+---@param duration integer
+---@param soundSet string|nil
+---@param soundName string|nil
+---@param p3 integer|nil
+---@param subCategoryToastAppId string|integer|nil
+---@param p5Hash string|integer|nil
+---@param textVarString integer|nil
+---@param p7 any
+---@param p8 any
+---@param p9 any
+---@param p10 any
+---@param p11 any
+---@param p12 any
+---@return unknown
+local function UiFeedPostExtrasBuffer(duration, soundSet, soundName, p3, subCategoryToastAppId, p5Hash, textVarString, p7, p8, p9, p10, p11, p12)
+    local paramsStruct = DataView.ArrayBuffer(13*8)
+        :SetInt32(0*8, duration)
+        :SetInt64(1*8, LiteralStringLong(soundSet))
+        :SetInt64(2*8, LiteralStringLong(soundName))
+        :SetInt32(3*8, p3)
+	    :SetInt32(4*8, joaat(subCategoryToastAppId))
+	    :SetInt32(5*8, joaat(p5Hash))
+	    :SetInt64(6*8, BigInt(textVarString))
+	    :SetInt32(7*8, p7)
+	    :SetInt32(8*8, p8)
+	    :SetInt32(9*8, p9)
+	    :SetInt32(10*8, p10)
+	    :SetInt32(11*8, p11)
+	    :SetInt32(12*8, p12)
 
-]]
-
-local function UiFeedPostExtrasBuffer(duration, soundDict, soundName, p3, subCategoryToastAppId, p5, text, p7, p8, p9, p10, p11, p12)
-    local struct = DataView.ArrayBuffer(13*8)
-    struct:SetInt32(0*8, duration)
-    struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", soundDict, Citizen.ResultAsLong()))
-    struct:SetInt64(2*8, VarString(10, "LITERAL_STRING", soundName, Citizen.ResultAsLong()))
-    struct:SetInt32(3*8, p3)
-	struct:SetInt32(4*8, subCategoryToastAppId)
-	struct:SetInt32(5*8, p5)
-	struct:SetInt64(6*8, VarString(10, "LITERAL_STRING", text, Citizen.ResultAsLong()))
-	struct:SetInt32(7*8, p7)
-	struct:SetInt32(8*8, p8)
-	struct:SetInt32(9*8, p9)
-	struct:SetInt32(10*8, p10)
-	struct:SetInt32(11*8, p11)
-	struct:SetInt32(12*8, p12)
-
-	return struct:Buffer()
+	return paramsStruct:Buffer()
 end
 
-local function UiFeedToastBuffer(p0, title, text, p3, textureDict, textureName, textureColor, p7, p8, p9)
-	local struct = DataView.ArrayBuffer(10*8)
-	struct:SetInt32(0*8, p0)
-	struct:SetInt64(1*8, title)
-	struct:SetInt64(2*8, text)
-	struct:SetInt32(3*8, p3)
-    struct:SetInt32(4*8, textureDict)
-    struct:SetInt32(5*8, textureName)
-    struct:SetInt32(6*8, textureColor)
-	struct:SetInt32(7*8, p7)
-	struct:SetInt32(8*8, p8)
-	struct:SetInt32(9*8, p9)
+---
+---@param p0 boolean
+---@param titleVarString integer
+---@param textVarString integer
+---@param p3 integer
+---@param textureDict string|integer
+---@param textureName string|integer
+---@param textureColor string|integer
+---@param p7 any
+---@param p8 any
+---@param p9 any
+---@return unknown
+local function UiFeedToastBuffer(p0, titleVarString, textVarString, p3, textureDict, textureName, textureColor, p7, p8, p9)
+	local paramsStruct = DataView.ArrayBuffer(10*8)
+	    :SetInt32(0*8, p0 and 1 or 0)
+	    :SetInt64(1*8, BigInt(titleVarString))
+	    :SetInt64(2*8, BigInt(textVarString))
+	    :SetInt32(3*8, p3 or -1)
+        :SetInt32(4*8, joaat(textureDict))
+        :SetInt32(5*8, joaat(textureName))
+        :SetInt32(6*8, joaat(textureColor))
+	    :SetInt32(7*8, p7)
+	    :SetInt32(8*8, p8)
+	    :SetInt32(9*8, p9)
 
-	return struct:Buffer()
+	return paramsStruct:Buffer()
 end
 
 ---@param duration integer
----@param title long
----@param text long
----@param textureDictHash integer
----@param textureNameHash integer
----@param subCategoryToastAppId integer
+---@param titleVarString integer
+---@param textVarString integer
+---@param textureDict string|integer
+---@param textureName string|integer
+---@param subCategoryToastAppId string|integer
 ---@param p6 integer
 ---@param p7 boolean
----@param extraText long
+---@param extraTextVarString integer
 ---@return integer
-function UiFeedPostSampleToastWithAppLink(duration, title, text, textureDictHash, textureNameHash, subCategoryToastAppId, p6, p7, extraText)
-    local extrasBuffer = UiFeedPostExtrasBuffer(duration, "Mission_Complete_Sounds", "Mission_Complete_Enter", 0, subCategoryToastAppId, p6, extraText, 1, 0, 0, 0, 0, 0)
-    local buffer = UiFeedToastBuffer(0, title, text, 0, textureDictHash, textureNameHash, 0, 1, 0, 0)
+function UiFeedPostSampleToastWithAppLink(duration, titleVarString, textVarString, textureDict, textureName, subCategoryToastAppId, p6, p7, extraTextVarString)
+    local extrasBuffer = UiFeedPostExtrasBuffer(duration, "Mission_Complete_Sounds", "Mission_Complete_Enter", 0, subCategoryToastAppId, p6, extraTextVarString)
+    local buffer = UiFeedToastBuffer(false, titleVarString, textVarString, 0, textureDict, textureName, 0, 1)
 
-	return Citizen.InvokeNative(0x38838A646FB30AAE, extrasBuffer, buffer, true, true, p7)
+	return Citizen.InvokeNative(0x38838A646FB30AAE, extrasBuffer, buffer, true, true, p7, Citizen.ResultAsInteger())
 end
 
 ---
+---@param duration integer
+---@param titleVarString integer
+---@param textVarString integer
+---@param textureDict string|integer
+---@param textureName string|integer
+---@param collectableCategory string|integer
+---@param p6Hash string|integer
+---@param extraTextVarString integer
 ---@return integer
-function UiFeedPostCollectorToast(duration, title, text, textureDict, textureName, collectableCategory, extraText, p7)
-    local extrasBuffer = UiFeedPostExtrasBuffer(duration, "Mission_Complete_Sounds", "Mission_Complete_Enter", 0, `COLLECTORS`, p7, extraText, 1, 0, 0, 0, 0, 0)
-    local buffer = UiFeedToastBuffer(0, title, text, 0, textureDict, textureName, 0, 1, 0, 0)
+function UiFeedPostCollectorToast(duration, titleVarString, textVarString, textureDict, textureName, collectableCategory, p6Hash, extraTextVarString)
+    local extrasBuffer = UiFeedPostExtrasBuffer(duration, "Mission_Complete_Sounds", "Mission_Complete_Enter", 0, `COLLECTORS`, p6Hash, extraTextVarString)
+    local buffer = UiFeedToastBuffer(false, titleVarString, textVarString, 0, textureDict, textureName, 0, 1)
 
-	return Citizen.InvokeNative(0xAFF5BE9BA496CE40, extrasBuffer, buffer, true, true, collectableCategory)
+	return Citizen.InvokeNative(0xAFF5BE9BA496CE40, extrasBuffer, buffer, true, true, joaat(collectableCategory), Citizen.ResultAsInteger())
 end
 
----
----@return integer
-function UiFeedPostRankupToast(duration, title, text, textureDict, textureName, textureColor, subCategoryToastAppId, extraText, p8, p9, p10, p11, p12, p13, p14, p15)
-    local p3ExtrasBuffer = 0
-    local p5ExtrasBuffer = `collectors_bag_details`
-    local p0Buffer = 1
-    local p3Buffer = 0
+function UiFeedPostRankupToast(duration, titleVarString, textVarString, soundSet, soundName, textureDict, textureName)
+    local extrasBuffer = UiFeedPostExtrasBuffer(1000, "Mission_Complete_Sounds", "Mission_Complete_Enter", 0, `color_freemode_event`, `toast_fme`, -1)
+    local buffer = UiFeedToastBuffer(true, VarString(10, "LITERAL_STRING", "FEED_TOAST_TITLE"), VarString(10, "LITERAL_STRING", "FEED_TOAST_TEXT"), -1, `hud_toasts`, `toast_bank_debt_medal_bronze`, 0, 1)
 
-    local extrasBuffer = UiFeedPostExtrasBuffer(duration, soundDict, soundName, p3ExtrasBuffer, subCategoryToastAppId, p5ExtrasBuffer, extraText, 0, 0, 0, 0, 0, 0)
-    local buffer = UiFeedToastBuffer(p0Buffer, title, text, p3Buffer, textureDict, textureName, textureColor, 1, 0, 0)
-
-	return Citizen.InvokeNative(0x3F9FDDBA79117C69, extrasBuffer, buffer, 1, 1)
+	return Citizen.InvokeNative(0x3F9FDDBA79117C69, extrasBuffer, buffer, true, true, Citizen.ResultAsInteger())
 end
 
 ---Particulariry: ring sound
@@ -89,7 +117,7 @@ function UiFeedPostInteractiveToast()
     local extrasBuffer = UiFeedPostExtrasBuffer(duration, soundDict, soundName, p3ExtrasBuffer, subCategoryToastAppId, p5ExtrasBuffer, extraText, 0, 0, 0, 0, 0, 0)
     local buffer = UiFeedToastBuffer(p0Buffer, title, text, 0, textureDict, textureName, 0, 1, 0, 0)
 
-	return Citizen.InvokeNative(0x18D6869FBFFEC0F8, extrasBuffer, buffer, true, true)
+	return Citizen.InvokeNative(0x18D6869FBFFEC0F8, extrasBuffer, buffer, true, true, Citizen.ResultAsInteger())
 end
 
 ---Particularity: no color
@@ -110,247 +138,323 @@ function UiFeedPostSampleNotification()
     local extrasBuffer = UiFeedPostExtrasBuffer(duration, soundDict, soundName, p3ExtrasBuffer, subCategoryToastAppId, p5ExtrasBuffer, extraText, 0, 0, p9ExtrasBuffer, p10ExtrasBuffer, p11ExtrasBuffer, p12ExtrasBuffer)
     local buffer = UiFeedToastBuffer(p0Buffer, title, text, 0, textureDict, textureName, p6Buffer, p7Buffer, p8Buffer, p9Buffer)
 
-	return Citizen.InvokeNative(0xC927890AA64E9661, extrasBuffer, buffer, true, true)
+	return Citizen.InvokeNative(0xC927890AA64E9661, extrasBuffer, buffer, true, true, Citizen.ResultAsInteger())
 end
 
 ---
 ---@return number
-function UiFeedPostSampleToast()
-    local extrasBuffer = UiFeedPostExtrasBuffer(duration, soundDict, soundName, 0, subCategoryToastAppId, p5ExtrasBuffer, extraText, 1, 0, 0, 0, 0, 0)
-    local buffer = UiFeedToastBuffer(0, title, text, 0, textureDict, textureName, 0, 1, 0, 0)
+function UiFeedPostSampleToast(title, text, duration, textureDict, textureName, soundSet, soundName)
+    local extrasBuffer = UiFeedPostExtrasBuffer(duration, soundSet, soundName, 0, 0, 0, nil, 0, 0, nil, `player_menu`, nil, 778915895)
+    local buffer = UiFeedToastBuffer(false, title, text, 0, textureDict, textureName, 0, 1)
 
-    return Citizen.InvokeNative(0x26E87218390E6729, extrasBuffer, buffer, true, true)
+    return Citizen.InvokeNative(0x26E87218390E6729, extrasBuffer, buffer, true, true, Citizen.ResultAsInteger())
 end
 
-local function UiShardFeedBuffer(data)
-	local struct = DataView.ArrayBuffer(7*8)
-    struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", data.text1, Citizen.ResultAsLong()))
-    struct:SetInt64(2*8, VarString(10, "LITERAL_STRING", data.text2, Citizen.ResultAsLong()))
-	struct:SetInt64(3*8, VarString(10, "LITERAL_STRING", data.text3, Citizen.ResultAsLong()))
+----------------------------------------
+---									 ---
+---			 Shard messages 	  	 ---
+---									 ---
+----------------------------------------
 
-	return struct:Buffer()
+---
+---@param str1 string
+---@param str2 string|nil
+---@param str3 string|nil
+---@return any
+local function UiShardFeedBuffer(str1, str2, str3)
+	local paramsStruct = DataView.ArrayBuffer(8 + 3*16)
+    	:SetInt64(1*8, LiteralStringLong(str1))
+    	:SetInt64(2*8, LiteralStringLong(str2))
+		:SetInt64(3*8, LiteralStringLong(str3))
+
+	return paramsStruct:Buffer()
 end
 
 ---
----@return number
-function UiFeedPostOneTextShard(data)
-    return Citizen.InvokeNative(0x860DDFE97CC94DF0,
-        UiFeedPostExtrasBuffer({
-            duration = data.duration
-        }),
-        UiShardFeedBuffer({
-            text1 = data.text
-        }), true, true)
+---@param text string
+---@param duration integer
+---@param soundSet string
+---@param soundName string
+---@return integer
+function UiFeedPostOneTextShard(text, duration, soundSet, soundName)
+    local optionsBuffer = UiFeedPostExtrasBuffer(duration, soundSet, soundName)
+    local shardBuffer = UiShardFeedBuffer(text)
+
+    return Citizen.InvokeNative(0x860DDFE97CC94DF0, optionsBuffer, shardBuffer, true, true, Citizen.ResultAsInteger())
 end
 
 ---
----@return number
-function UiFeedPostTwoTextShard(data)
-    return Citizen.InvokeNative(0xA6F4216AB10EB08E,
-        UiFeedPostExtrasBuffer({
-            duration = data.duration
-        }),
-        UiShardFeedBuffer({
-            text1 = data.title,
-            text2 = data.text
-        }), true, true)
+---@param title string
+---@param text string
+---@param duration integer
+---@param soundSet string
+---@param soundName string
+---@return integer
+function UiFeedPostTwoTextShard(title, text, duration, soundSet, soundName)
+    local optionsBuffer = UiFeedPostExtrasBuffer(duration, soundSet, soundName)
+    local shardBuffer = UiShardFeedBuffer(title, text)
+
+    return Citizen.InvokeNative(0xA6F4216AB10EB08E, optionsBuffer, shardBuffer, true, true, Citizen.ResultAsInteger())
+end
+
+---comment
+---@param title string
+---@param text1 string
+---@param text2 string
+---@param duration integer
+---@param soundSet string
+---@param soundName string
+---@return integer
+function UiFeedPostThreeTextShard(title, text1, text2, duration, soundSet, soundName)
+    local optionsBuffer = UiFeedPostExtrasBuffer(duration, soundSet, soundName)
+    local shardBuffer = UiShardFeedBuffer(title, text1, text2)
+
+    return Citizen.InvokeNative(0x02BCC0FE9EBA3529, optionsBuffer, shardBuffer, true, true, Citizen.ResultAsInteger())
 end
 
 ---
----@return number
-function UiFeedPostThreeTextShard(data)
-    return Citizen.InvokeNative(0x02BCC0FE9EBA3529,
-        UiFeedPostExtrasBuffer({
-            duration = data.duration
-        }),
-        UiShardFeedBuffer({
-            text1 = data.title,
-            text2 = data.text1,
-            text3 = data.text2
-        }), true, true)
+---@param location string
+---@param text string
+---@param duration integer
+---@param soundSet string
+---@param soundName string
+---@return integer
+function UiFeedPostLocationShard(location, text, duration, soundSet, soundName)
+    local optionsBuffer = UiFeedPostExtrasBuffer(duration, soundSet, soundName)
+    local shardBuffer = UiShardFeedBuffer(location, text)
+
+    return Citizen.InvokeNative(0xD05590C1AB38F068, optionsBuffer, shardBuffer, false, true, Citizen.ResultAsInteger())
+end
+
+----------------------------------------
+---									 ---
+---		 Sticky feed messages 	  	 ---
+---									 ---
+----------------------------------------
+
+---
+---@param soundSet string
+---@param soundName string
+---@param firstButtonText string|integer
+---@param isFirstButtonHold boolean
+---@param secondButtonText string|integer
+---@param isSecondButtonHold boolean
+---@param thirdButtonText string|integer
+---@param isThirdButtonHold boolean
+---@param fourthButtonText string|integer
+---@param isFourthButtonHold boolean
+---@return any
+local function UiStickyFeedOptionsBuffer(soundSet, soundName, firstButtonText, isFirstButtonHold, secondButtonText, isSecondButtonHold, thirdButtonText, isThirdButtonHold, fourthButtonText, isFourthButtonHold)
+	local paramsStruct = DataView.ArrayBuffer(20*8)
+		:SetInt64(0*8, LiteralStringLong(soundSet))
+		:SetInt64(1*8, LiteralStringLong(soundName))
+		:SetInt32(2*8, 4)
+		:SetInt32(3*8, joaat(secondButtonText))
+		:SetInt32(6*8, isSecondButtonHold and 1 or 0)
+		:SetInt32(7*8, joaat(firstButtonText))
+		:SetInt32(10*8, isFirstButtonHold and 1 or 0)
+		:SetInt32(11*8, joaat(thirdButtonText))
+		:SetInt32(14*8, isThirdButtonHold and 1 or 0)
+		:SetInt32(15*8, joaat(fourthButtonText))
+		:SetInt32(18*8, isFourthButtonHold and 1 or 0)
+
+	return paramsStruct:Buffer()
 end
 
 ---
----@return number
-function UiFeedPostLocationShard(data)
-    local optionsBuffer = UiFeedPostExtrasBuffer(data.duration)
-    local shardBuffer = UiShardFeedBuffer(data.location, data.text)
+---@param titleVarString integer
+---@param textVarString integer
+---@param soundSet string
+---@param soundName string
+---@param firstButtonTextHash string|integer
+---@param isFirstButtonHold boolean
+---@param secondButtonText string|integer
+---@param isSecondButtonHold boolean
+---@param thirdButtonText string|integer
+---@param isThirdButtonHold boolean
+---@param fourthButtonText string|integer
+---@param isFourthButtonHold boolean
+---@return integer
+function UiStickyFeedCreateErrorMessage(titleVarString, textVarString, soundSet, soundName, firstButtonTextHash, isFirstButtonHold, secondButtonText, isSecondButtonHold, thirdButtonText, isThirdButtonHold, fourthButtonText, isFourthButtonHold)
+	local optionsBuffer = UiStickyFeedOptionsBuffer(soundSet, soundName, firstButtonTextHash, isFirstButtonHold, secondButtonText, isSecondButtonHold, thirdButtonText, isThirdButtonHold, fourthButtonText, isFourthButtonHold)
+	local paramsStruct = DataView.ArrayBuffer(8 + 2*16)
+		:SetInt32(0*8, 0)
+		:SetInt64(1*8, BigInt(titleVarString))
+		:SetInt64(2*8, BigInt(textVarString))
 
-    return Citizen.InvokeNative(0xD05590C1AB38F068,
-        UiFeedPostExtrasBuffer({
-            duration = data.duration
-        }),
-        UiShardFeedBuffer({
-            text1 = data.location,
-            text2 = data.text
-        }), false, true)
-end
-
---[[
-
-]]
-
-local function UiStickyFeedOptionsBuffer(sound, firstButtonTextHash, isFirstButtonHold, secondButtonTextHash, isSecondButtonHold, thirdButtonTextHash, isThirdButtonHold, fourthButtonTextHash, isFourthButtonHold)
-	local struct = DataView.ArrayBuffer(20*8)
-	if (sound) then
-		struct:SetInt64(0*8, VarString(10, "LITERAL_STRING", sound.dict, Citizen.ResultAsLong()))
-		struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", sound.name, Citizen.ResultAsLong()))
-	end
-	struct:SetInt32(2*8, 4)
-	struct:SetInt32(3*8, secondButtonTextHash)
-	struct:SetInt32(6*8, isSecondButtonHold and 1 or 0)
-	struct:SetInt32(7*8, firstButtonTextHash)
-	struct:SetInt32(10*8, isFirstButtonHold and 1 or 0)
-	struct:SetInt32(11*8, thirdButtonTextHash)
-	struct:SetInt32(14*8, isThirdButtonHold and 1 or 0)
-	struct:SetInt32(15*8, fourthButtonTextHash)
-	struct:SetInt32(18*8, isFourthButtonHold and 1 or 0)
-
-	return struct:Buffer()
+	return Citizen.InvokeNative(0x9F2CC2439A04E7BA, optionsBuffer, paramsStruct:Buffer(), true, Citizen.ResultAsInteger)
 end
 
 ---
----@return number
-function UiStickyFeedCreateErrorMessage(data)
-	local optionsBuffer = UiStickyFeedOptionsBuffer(data.sound, `IB_QUIT`, true, `IB_RETRY`, false)
+---@param titleVarString integer
+---@param soundSet string
+---@param soundName string
+---@param firstButtonTextHash string|integer
+---@param isFirstButtonHold boolean
+---@param secondButtonText string|integer
+---@param isSecondButtonHold boolean
+---@param thirdButtonText string|integer
+---@param isThirdButtonHold boolean
+---@param fourthButtonText string|integer
+---@param isFourthButtonHold boolean
+---@return integer
+function UiStickyFeedCreateDeathFailMessage(titleVarString, soundSet, soundName, firstButtonTextHash, isFirstButtonHold, secondButtonText, isSecondButtonHold, thirdButtonText, isThirdButtonHold, fourthButtonText, isFourthButtonHold)
+	local optionsBuffer = UiStickyFeedOptionsBuffer(soundSet, soundName, firstButtonTextHash, isFirstButtonHold, secondButtonText, isSecondButtonHold, thirdButtonText, isThirdButtonHold, fourthButtonText, isFourthButtonHold)
+	local paramsStruct = DataView.ArrayBuffer(8+16)
+		:SetInt32(0*8, 0)
+		:SetInt64(1*8, BigInt(titleVarString))
 
-	local struct = DataView.ArrayBuffer(9*8)
-	struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", data.title, Citizen.ResultAsLong()))
-	struct:SetInt64(2*8, VarString(10, "LITERAL_STRING", data.text, Citizen.ResultAsLong()))
-
-	return Citizen.InvokeNative(0x9F2CC2439A04E7BA, optionsBuffer, struct:Buffer(), true)
+	return Citizen.InvokeNative(0x815C4065AE6E6071, optionsBuffer, paramsStruct:Buffer(), true, Citizen.ResultAsInteger())
 end
 
 ---
----@return number
-function UiStickyFeedCreateDeathFailMessage(data)
-	local optionsBuffer = UiStickyFeedOptionsBuffer(data.sound, 166188472, true, -1904156936, true, 2015838421, true, 207908017, true)
+---@param titleVarString integer
+---@param textVarString integer
+---@param soundSet string
+---@param soundName string
+---@param firstButtonTextHash string|integer
+---@param isFirstButtonHold boolean
+---@param secondButtonText string|integer
+---@param isSecondButtonHold boolean
+---@param thirdButtonText string|integer
+---@param isThirdButtonHold boolean
+---@param fourthButtonText string|integer
+---@param isFourthButtonHold boolean
+---@return integer
+function UiStickyFeedCreateWarningMessage(titleVarString, textVarString, soundSet, soundName, firstButtonTextHash, isFirstButtonHold, secondButtonText, isSecondButtonHold, thirdButtonText, isThirdButtonHold, fourthButtonText, isFourthButtonHold)
+	local optionsBuffer = UiStickyFeedOptionsBuffer(soundSet, soundName, firstButtonTextHash, isFirstButtonHold, secondButtonText, isSecondButtonHold, thirdButtonText, isThirdButtonHold, fourthButtonText, isFourthButtonHold)
+	local paramsStruct = DataView.ArrayBuffer(2*8 + 2*16)
+		:SetInt32(0*8, 0)
+		:SetInt32(1*8, 0)
+		:SetInt64(2*8, BigInt(titleVarString))
+		:SetInt64(3*8, BigInt(textVarString))
 
-	local struct = DataView.ArrayBuffer(9*8)
-	struct:SetInt64(0*8, 0)
-	struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", data.text, Citizen.ResultAsLong()))
+	return Citizen.InvokeNative(0x339E16B41780FC35, optionsBuffer, paramsStruct:Buffer(), true, Citizen.ResultAsInteger())
+end
 
-	return Citizen.InvokeNative(0x815C4065AE6E6071, optionsBuffer, struct:Buffer(), true)
+----------------------------------------
+---									 ---
+---		    Misc messages 	  		 ---
+---									 ---
+----------------------------------------
+
+---
+---@param textVarString integer
+---@param quality integer
+---@param textureDict string
+---@param textureName string|integer
+---@param color string|integer
+---@param duration integer
+---@param soundSet string
+---@param soundName string
+---@return integer
+function UiFeedPostSampleToastRight(textVarString, quality, textureDict, textureName, color, duration, soundSet, soundName)
+	local optionsBuffer = UiFeedPostExtrasBuffer(duration, soundSet, soundName)
+	local paramsStruct = DataView.ArrayBuffer(6*8 + 2*16)
+		:SetInt32(0*8, 0)
+		:SetInt64(1*8, BigInt(textVarString))
+		:SetInt32(6*8, math.clamp(quality or 0, 0, 3))
+		:SetInt64(2*8, LiteralStringLong(textureDict))
+		:SetInt32(3*8, joaat(textureName))
+		:SetInt32(4*8, 1)
+		:SetInt32(5*8, joaat(color))
+		:SetInt32(6*8, 0)
+
+	return Citizen.InvokeNative(0xB249EBCB30DD88E0, optionsBuffer, paramsStruct:Buffer(), true, Citizen.ResultAsInteger())
 end
 
 ---
----@return number
-function UiStickyFeedCreateWarningMessage(data)
-	local optionsBuffer = UiStickyFeedOptionsBuffer(data.sound, `IB_BACK`)
+---@param textVarString integer
+---@param hideBackground boolean
+---@param duration integer
+---@param soundSet string
+---@param soundName string
+---@return integer
+function UiFeedPostReticleMessage(textVarString, hideBackground, duration, soundSet, soundName)
+	local optionsBuffer = UiFeedPostExtrasBuffer(duration, soundSet, soundName)
+	local paramsStruct = DataView.ArrayBuffer(2*8 + 16)
+		:SetInt32(0*8, 0)
+		:SetInt64(1*8, BigInt(textVarString))
+		:SetInt32(2*8, hideBackground and 1 or 0)
 
-	local struct = DataView.ArrayBuffer(9*8)
-	struct:SetInt32(0*8, 0)
-	struct:SetInt32(1*8, 0)
-	struct:SetInt64(2*8, VarString(10, "LITERAL_STRING", data.title, Citizen.ResultAsLong()))
-	struct:SetInt64(3*8, VarString(10, "LITERAL_STRING", data.text, Citizen.ResultAsLong()))
-
-	return Citizen.InvokeNative(0x339E16B41780FC35, optionsBuffer, struct:Buffer(), true)
-end
-
---[[
-
-]]
-
----
----@return number
-function UiFeedPostSampleToastRight(data)
-	local optionsBuffer = UiFeedPostExtrasBuffer({
-        duration = data.duration,
-        sound = data.sound
-    })
-
-	local struct = DataView.ArrayBuffer(10*8)
-	struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", data.text, Citizen.ResultAsLong()))
-	if (data.quality) then
-		struct:SetInt32(6*8, math.clamp(data.quality, 0, 3))
-	elseif (data.icon) then
-		struct:SetInt64(2*8, VarString(10, "LITERAL_STRING", data.icon.dict, Citizen.ResultAsLong()))
-		struct:SetInt32(3*8, data.icon.texture)
-	end
-	struct:SetInt32(4*8, 0)
-	struct:SetInt32(5*8, data.color)
-
-	return Citizen.InvokeNative(0xB249EBCB30DD88E0, optionsBuffer, struct:Buffer(), true)
+	return Citizen.InvokeNative(0x893128CDB4B81FBB, optionsBuffer, paramsStruct:Buffer(), true, Citizen.ResultAsInteger())
 end
 
 ---
----@return number
-function UiFeedPostReticleMessage(data)
-	local optionsBuffer = UiFeedPostExtrasBuffer({
-        duration = data.duration,
-        sound = data.sound
-    })
+---@param textVarString integer
+---@param duration integer
+---@param soundSet string
+---@param soundName string
+---@return integer
+function UiFeedPostMissionName(textVarString, duration, soundSet, soundName)
+	local optionsBuffer = UiFeedPostExtrasBuffer(duration, soundSet, soundName)
+	local paramsStruct = DataView.ArrayBuffer(8+16)
+		:SetInt32(0*8, 0)
+		:SetInt64(1*8, BigInt(textVarString))
 
-	local struct = DataView.ArrayBuffer(3*8)
-	struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", data.text, Citizen.ResultAsLong()))
-	struct:SetInt32(2*8, data.hideBackground and 1 or 0)
-
-	return Citizen.InvokeNative(0x893128CDB4B81FBB, optionsBuffer, struct:Buffer(), true)
+	return Citizen.InvokeNative(0x2024F4F333095FB1, optionsBuffer, paramsStruct:Buffer(), true, Citizen.ResultAsInteger())
 end
 
 ---
----@return number
-function UiFeedPostMissionName(data)
-	local optionsBuffer = UiFeedPostExtrasBuffer({
-        duration = data.duration,
-        sound = data.sound
-    })
+---@param textVarString integer
+---@param textColor integer
+---@param duration integer
+---@param soundSet string
+---@param soundName string
+---@return integer
+function UiFeedPostVoiceChatFeed(textVarString, textColor, duration, soundSet, soundName)
+	local optionsBuffer = UiFeedPostExtrasBuffer(duration, soundSet, soundName)
+	local paramsStruct = DataView.ArrayBuffer(2*8 + 16)
+		:SetInt32(0*8, 0)
+		:SetInt64(1*8, BigInt(textVarString))
+		:SetInt32(2*8, joaat(textColor))
 
-	local struct = DataView.ArrayBuffer(2*8)
-	struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", data.text, Citizen.ResultAsLong()))
-
-	return Citizen.InvokeNative(0x2024F4F333095FB1, optionsBuffer, struct:Buffer(), true)
+	return Citizen.InvokeNative(0xC48152BC6B3E821C, optionsBuffer, paramsStruct:Buffer(), true, Citizen.ResultAsInteger())
 end
 
 ---
----@return number
-function UiFeedPostVoiceChatFeed(data)
-	local optionsBuffer = UiFeedPostExtrasBuffer({
-        duration = data.duration,
-        sound = data.sound
-    })
-	
-	local struct = DataView.ArrayBuffer(3*8)
-	struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", data.text, Citizen.ResultAsLong()))
-	struct:SetInt32(2*8, data.color)
+---@param textVarString integer
+---@param duration integer
+---@param soundSet string
+---@param soundName string
+---@return integer feedMessage
+function UiFeedPostFeedTicker(textVarString, duration, soundSet, soundName)
+	local optionsStruct = UiFeedPostExtrasBuffer(duration, soundSet, soundName)
+    local paramsStruct = DataView.ArrayBuffer(8+16)
+		:SetInt32(0*8, 0)
+    	:SetInt64(1*8, BigInt(textVarString))
 
-	return Citizen.InvokeNative(0xC48152BC6B3E821C, optionsBuffer, struct:Buffer(), true)
+    return Citizen.InvokeNative(0xB2920B9760F0F36B, optionsStruct, paramsStruct:Buffer(), true, Citizen.ResultAsInteger())
 end
 
 ---
----@return number
-function UiFeedPostFeedTicker(data)
-	local optionsBuffer = UiFeedPostExtrasBuffer({
-        duration = data.duration,
-        sound = data.sound
-    })
+---@param textVarString integer
+---@param duration integer
+---@param soundSet string
+---@param soundName string
+---@return integer feedMessage
+function UiFeedPostObjective(textVarString, duration, soundSet, soundName)
+	local optionsStruct = UiFeedPostExtrasBuffer(duration, soundSet, soundName)
+    local paramsStruct = DataView.ArrayBuffer(8+16)
+		:SetInt32(0*8, 0)
+    	:SetInt64(1*8, BigInt(textVarString))
 
-    local struct = DataView.ArrayBuffer(2*8)
-    struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", data.text, Citizen.ResultAsLong()))
-
-    return Citizen.InvokeNative(0xB2920B9760F0F36B, optionsBuffer, struct:Buffer(), true)
+    return Citizen.InvokeNative(0xCEDBF17EFCC0E4A4, optionsStruct, paramsStruct:Buffer(), true, Citizen.ResultAsInteger())
 end
 
 ---
----@return number
-function UiFeedPostObjective(data)
-	local optionsBuffer = UiFeedPostExtrasBuffer(data.duration)
+---@param textVarString integer
+---@param duration integer
+---@param soundSet string
+---@param soundName string
+---@return integer feedMessage
+function UiFeedPostHelpText(textVarString, duration, soundSet, soundName)
+	local optionsStruct = UiFeedPostExtrasBuffer(duration, soundSet, soundName)
+    local paramsStruct = DataView.ArrayBuffer(8+16)
+		:SetInt32(0*8, 0)
+    	:SetInt64(1*8, BigInt(textVarString))
 
-    local struct = DataView.ArrayBuffer(2*8)
-    struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", data.text, Citizen.ResultAsLong()))
-
-    return Citizen.InvokeNative(0xCEDBF17EFCC0E4A4, optionsBuffer, struct:Buffer(), true)
-end
-
----
----@return number
-function UiFeedPostHelpText(data)
-	local optionsBuffer = UiFeedPostExtrasBuffer(data.duration)
-
-    local struct = DataView.ArrayBuffer(2*8)
-    struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", data.text, Citizen.ResultAsLong()))
-
-    return Citizen.InvokeNative(0x049D5C615BD38BAD, optionsBuffer, struct:Buffer(), true)
+    return Citizen.InvokeNative(0x049D5C615BD38BAD, optionsStruct, paramsStruct:Buffer(), true, Citizen.ResultAsInteger())
 end
 
 ---
@@ -358,8 +462,9 @@ end
 ---@param p1 boolean
 ---@return integer feedMessage
 function N_0x4E88A65968A55C78(text, p1)
-    local paramsData = DataView.ArrayBuffer(2*8)
-    paramsData:SetInt64(1*8, VarString(10, "LITERAL_STRING", text, Citizen.ResultAsLong()))
+    local paramsStruct = DataView.ArrayBuffer(8+16)
+		:SetInt32(0*8, 0)
+    	:SetInt64(1*8, LiteralStringLong(text))
 
-    return Citizen.InvokeNative(0x4E88A65968A55C78, paramsData:Buffer(), p1, Citizen.ResultAsInteger())
+    return Citizen.InvokeNative(0x4E88A65968A55C78, paramsStruct:Buffer(), p1, Citizen.ResultAsInteger())
 end

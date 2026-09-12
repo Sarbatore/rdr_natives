@@ -29,10 +29,10 @@ end
 ---@param weaponHash integer
 ---@param p2Hash integer
 function N_0x8A59D44189AF2BC5(p0, weaponHash, p2Hash)
-    local data = DataView.ArrayBuffer(2*8)
-    data:SetInt32(0*8, p0)
-    data:SetInt32(1*8, weaponHash)
-    Citizen.InvokeNative(0x8A59D44189AF2BC5, data:Buffer(), p2Hash)
+    local paramsStruct = DataView.ArrayBuffer(2*8)
+        :SetInt32(0*8, p0)
+        :SetInt32(1*8, weaponHash)
+    Citizen.InvokeNative(0x8A59D44189AF2BC5, paramsStruct:Buffer(), p2Hash)
 end
 
 ---

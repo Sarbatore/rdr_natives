@@ -4,8 +4,8 @@
 ---@return boolean isValid
 function StatIdIsValid(statCategoryHash, statNameHash)
     local paramsStruct = DataView.ArrayBuffer(2*8)
-    paramsStruct:SetInt32(0*8, statCategoryHash)
-    paramsStruct:SetInt32(1*8, statNameHash)
+        :SetInt32(0*8, statCategoryHash)
+        :SetInt32(1*8, statNameHash)
 
     return Citizen.InvokeNative(0xC48FE1971C9743FF, paramsStruct:Buffer()) == 1
 end
@@ -17,13 +17,12 @@ end
 ---@return boolean value
 function StatIdGetBool(statCategoryHash, statNameHash)
     local paramsStruct = DataView.ArrayBuffer(2*8)
-    paramsStruct:SetInt32(0*8, statCategoryHash)
-    paramsStruct:SetInt32(1*8, statNameHash)
-    local outStruct = DataView.ArrayBuffer(1*8)
+        :SetInt32(0*8, statCategoryHash)
+        :SetInt32(1*8, statNameHash)
 
-    local success = Citizen.InvokeNative(0x11B5E6D2AE73F48F, paramsStruct:Buffer(), outStruct:Buffer()) == 1
+    local success, value = Citizen.InvokeNative(0x11B5E6D2AE73F48F, paramsStruct:Buffer(), Citizen.PointerValueInt(), Citizen.ResultAsInteger())
 
-    return success, outStruct:GetInt32(0) == 1
+    return success == 1, value == 1
 end
 
 ---
@@ -34,8 +33,8 @@ end
 ---@return boolean success
 function StatIdSetBool(statCategoryHash, statNameHash, value, p3)
     local paramsStruct = DataView.ArrayBuffer(2*8)
-    paramsStruct:SetInt32(0*8, statCategoryHash)
-    paramsStruct:SetInt32(1*8, statNameHash)
+        :SetInt32(0*8, statCategoryHash)
+        :SetInt32(1*8, statNameHash)
 
     return Citizen.InvokeNative(0x3B5107353267D7A1, paramsStruct:Buffer(), value, p3) == 1
 end
@@ -47,13 +46,12 @@ end
 ---@return number value
 function StatIdGetFloat(statCategoryHash, statNameHash)
     local paramsStruct = DataView.ArrayBuffer(2*8)
-    paramsStruct:SetInt32(0*8, statCategoryHash)
-    paramsStruct:SetInt32(1*8, statNameHash)
-    local outStruct = DataView.ArrayBuffer(1*8)
+        :SetInt32(0*8, statCategoryHash)
+        :SetInt32(1*8, statNameHash)
+    
+    local success, value = Citizen.InvokeNative(0xD7AE6C9C9C6AC54D, paramsStruct:Buffer(), Citizen.PointerValueFloat(), Citizen.ResultAsInteger())
 
-    local success = Citizen.InvokeNative(0xD7AE6C9C9C6AC54D, paramsStruct:Buffer(), outStruct:Buffer()) == 1
-
-    return success, outStruct:GetFloat32(0)
+    return success == 1, value
 end
 
 ---
@@ -64,8 +62,8 @@ end
 ---@return boolean success
 function StatIdSetFloat(statCategoryHash, statNameHash, value, p3)
     local paramsStruct = DataView.ArrayBuffer(2*8)
-    paramsStruct:SetInt32(0*8, statCategoryHash)
-    paramsStruct:SetInt32(1*8, statNameHash)
+        :SetInt32(0*8, statCategoryHash)
+        :SetInt32(1*8, statNameHash)
 
     return Citizen.InvokeNative(0x481BDF6A10C5EF68, paramsStruct:Buffer(), value, p3) == 1
 end
@@ -77,13 +75,12 @@ end
 ---@return integer value
 function StatIdGetInt(statCategoryHash, statNameHash)
     local paramsStruct = DataView.ArrayBuffer(2*8)
-    paramsStruct:SetInt32(0*8, statCategoryHash)
-    paramsStruct:SetInt32(1*8, statNameHash)
-    local outStruct = DataView.ArrayBuffer(1*8)
+        :SetInt32(0*8, statCategoryHash)
+        :SetInt32(1*8, statNameHash)
 
-    local success = Citizen.InvokeNative(0x767FBC2AC802EF3E, paramsStruct:Buffer(), outStruct:Buffer()) == 1
+    local success, value = Citizen.InvokeNative(0x767FBC2AC802EF3E, paramsStruct:Buffer(), Citizen.PointerValueInt(), Citizen.ResultAsInteger())
 
-    return success, outStruct:GetInt32(0)
+    return success == 1, value
 end
 
 ---
@@ -94,8 +91,8 @@ end
 ---@return boolean success
 function StatIdSetInt(statCategoryHash, statNameHash, value, p3)
     local paramsStruct = DataView.ArrayBuffer(2*8)
-    paramsStruct:SetInt32(0*8, statCategoryHash)
-    paramsStruct:SetInt32(1*8, statNameHash)
+        :SetInt32(0*8, statCategoryHash)
+        :SetInt32(1*8, statNameHash)
 
     return Citizen.InvokeNative(0xA4DDF5DF95E65EEE, paramsStruct:Buffer(), value, p3) == 1
 end

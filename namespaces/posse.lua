@@ -13,7 +13,7 @@ function N_0xC084FF658B2E61DA(playerId)
 end
 
 function N_0xC084FF658B2E81DA(playerId, index)
-    local outData = DataView.ArrayBuffer(32*8)
+    local outStruct = DataView.ArrayBuffer(32*8)
     local gamerHandle
     if (GetCurrentResourceName() == "rdr_natives") then
         gamerHandle = NetworkHandleFromPlayer(playerId)
@@ -21,7 +21,7 @@ function N_0xC084FF658B2E81DA(playerId, index)
         gamerHandle = exports.rdr_natives:NetworkHandleFromPlayer(playerId)
     end
 
-    local retval = Citizen.InvokeNative(0xC084FF658B2E81DA, gamerHandle:Buffer(), index, outData:Buffer()) == 1
+    local retval = Citizen.InvokeNative(0xC084FF658B2E81DA, gamerHandle:Buffer(), index, outStruct:Buffer()) == 1
 
     return retval
 end
@@ -40,8 +40,8 @@ end
 ---@param playerId integer
 ---@return boolean
 function N_0xC087FF658B2E51DA(playerId)
-    local outData = DataView.ArrayBuffer(32*8)
-    outData:SetInt32(22*8, 10)
+    local outStruct = DataView.ArrayBuffer(32*8)
+        :SetInt32(22*8, 10)
 
     local gamerHandle
     if (GetCurrentResourceName() == "rdr_natives") then
@@ -50,7 +50,7 @@ function N_0xC087FF658B2E51DA(playerId)
         gamerHandle = exports.rdr_natives:NetworkHandleFromPlayer(playerId)
     end
 
-    local retval = Citizen.InvokeNative(0xC087FF658B2E51DA, gamerHandle:Buffer(), outData:Buffer()) == 1
+    local retval = Citizen.InvokeNative(0xC087FF658B2E51DA, gamerHandle:Buffer(), outStruct:Buffer()) == 1
     
     return retval
 end
@@ -60,10 +60,10 @@ end
 ---@return boolean
 function N_0xC09CFF658B2E51DA(playerId)
     local data = DataView.ArrayBuffer(32*8)
-    data:SetInt32(10*8, 0)
-    data:SetInt32(22*8, 10)
-    local outData = DataView.ArrayBuffer(1*8)
-    outData:SetInt32(0*8, 0)
+        :SetInt32(10*8, 0)
+        :SetInt32(22*8, 10)
+    local outStruct = DataView.ArrayBuffer(1*8)
+        :SetInt32(0*8, 0)
 
     local gamerHandle
     if (GetCurrentResourceName() == "rdr_natives") then
@@ -72,7 +72,7 @@ function N_0xC09CFF658B2E51DA(playerId)
         gamerHandle = exports.rdr_natives:NetworkHandleFromPlayer(playerId)
     end
 
-    local retval = Citizen.InvokeNative(0xC09CFF658B2E51DA, gamerHandle:Buffer(), data:Buffer(), outData:Buffer()) == 1
+    local retval = Citizen.InvokeNative(0xC09CFF658B2E51DA, gamerHandle:Buffer(), data:Buffer(), outStruct:Buffer()) == 1
     
     return retval
 end

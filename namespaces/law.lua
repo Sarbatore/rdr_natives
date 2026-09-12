@@ -15,21 +15,21 @@
 ---@return integer unk15
 ---@return integer unk16
 function GetPlayerRegisteredCrime(player, index)
-    local outData = DataView.ArrayBuffer(17*8)
+    local outStruct = DataView.ArrayBuffer(17*8)
     
-    local success         = Citizen.InvokeNative(0x532C5FDDB986EE5C, player, index, outData:Buffer()) == 1
-    local crimeTypeHash   = outData:GetInt32(0*8)
-    local unk1            = outData:GetInt32(1*8)
-    local unk2            = outData:GetInt32(2*8)
-    local victimPed       = outData:GetInt32(3*8)
-    local victimModelHash = outData:GetInt32(4*8)
-    local unk7            = outData:GetInt32(7*8)
-    local unk10           = outData:GetInt32(10*8) == 1
-    local unk12           = outData:GetInt32(12*8)
-    local unk13           = outData:GetInt32(13*8)
-    local unk14           = outData:GetInt32(14*8)
-    local unk15           = outData:GetInt32(15*8)
-    local unk16           = outData:GetInt32(16*8)
+    local success         = Citizen.InvokeNative(0x532C5FDDB986EE5C, player, index, outStruct:Buffer()) == 1
+    local crimeTypeHash   = outStruct:GetInt32(0*8)
+    local unk1            = outStruct:GetInt32(1*8)
+    local unk2            = outStruct:GetInt32(2*8)
+    local victimPed       = outStruct:GetInt32(3*8)
+    local victimModelHash = outStruct:GetInt32(4*8)
+    local unk7            = outStruct:GetInt32(7*8)
+    local unk10           = outStruct:GetInt32(10*8) == 1
+    local unk12           = outStruct:GetInt32(12*8)
+    local unk13           = outStruct:GetInt32(13*8)
+    local unk14           = outStruct:GetInt32(14*8)
+    local unk15           = outStruct:GetInt32(15*8)
+    local unk16           = outStruct:GetInt32(16*8)
 
     return success, crimeTypeHash, unk1, unk2, victimPed, victimModelHash, unk7, unk10, unk12, unk13, unk14, unk15, unk16
 end
@@ -63,8 +63,8 @@ function IsPedVictimOfCrime(ped)
 end
 
 function N_0x9C5BD8C562565CE6()
-    local outData = DataView.ArrayBuffer(32*8)
-    Citizen.InvokeNative(0x9C5BD8C562565CE6, outData:Buffer())
+    local outStruct = DataView.ArrayBuffer(32*8)
+    Citizen.InvokeNative(0x9C5BD8C562565CE6, outStruct:Buffer())
 end
 
 ---Find peds.
@@ -95,10 +95,10 @@ end
 ---@param player integer
 ---@return
 function N_0xCBFB4951F2E3934C(player)
-    local outData = DataView.ArrayBuffer(16*8)
+    local outStruct = DataView.ArrayBuffer(16*8)
     
-    Citizen.InvokeNative(0xCBFB4951F2E3934C, player, outData:Buffer())
-    local unk0 = outData:GetInt32(10*8)
+    Citizen.InvokeNative(0xCBFB4951F2E3934C, player, outStruct:Buffer())
+    local unk0 = outStruct:GetInt32(10*8)
 
     return unk0
 end
@@ -170,15 +170,15 @@ end
 ---@param regionHash integer
 ---@param bounty integer
 function N_0x018F30D762E62DF8(ped, victim, crimeHash, x, y, z, regionHash, bounty)
-    local data = DataView.ArrayBuffer(16*8)
-    data:SetInt32(0*8, ped)
-    data:SetInt32(1*8, victim)
-    data:SetInt32(2*8, crimeHash)
-    data:SetFloat32(3*8, x)
-    data:SetFloat32(4*8, y)
-    data:SetFloat32(5*8, z)
-    data:SetInt32(6*8, regionHash)
-    data:SetInt32(7*8, bounty)
+    local paramsStruct = DataView.ArrayBuffer(16*8)
+        :SetInt32(0*8, ped)
+        :SetInt32(1*8, victim)
+        :SetInt32(2*8, crimeHash)
+        :SetFloat32(3*8, x)
+        :SetFloat32(4*8, y)
+        :SetFloat32(5*8, z)
+        :SetInt32(6*8, regionHash)
+        :SetInt32(7*8, bounty)
     --data:SetInt32(8*8, 1)
     --data:SetInt32(9*8, 1)
     --data:SetInt32(10*8, 0)
@@ -186,5 +186,5 @@ function N_0x018F30D762E62DF8(ped, victim, crimeHash, x, y, z, regionHash, bount
     --data:SetInt32(12*8, 1)
     --data:SetInt32(13*8, 1)
     --data:SetInt32(14*8, 1034599207)
-    Citizen.InvokeNative(0x018F30D762E62DF8, victim, data:Buffer())
+    Citizen.InvokeNative(0x018F30D762E62DF8, victim, paramsStruct:Buffer())
 end

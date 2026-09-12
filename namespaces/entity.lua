@@ -246,21 +246,13 @@ end
 
 ---
 ---@param albedoHash integer
----@return boolean
+---@return boolean success
 ---@return integer txdHash
 ---@return integer txdHash2
 ---@return integer txdHash3
 function N_0x5744562E973E33CD(albedoHash)
-    local outData = DataView.ArrayBuffer(1*8)
-    local outData2 = DataView.ArrayBuffer(1*8)
-    local outData3 = DataView.ArrayBuffer(1*8)
-
-    local res = Citizen.InvokeNative(0x5744562E973E33CD, albedoHash, outData:Buffer(), outData2:Buffer(), outData3:Buffer(), 0) == 1
-    local txdHash  = outData:GetInt32(0)
-    local txdHash2 = outData2:GetInt32(0)
-    local txdHash3 = outData3:GetInt32(0)
-
-    return res, txdHash, txdHash2, txdHash3
+    local success, txdHash, txdHash2, txdHash3 = Citizen.InvokeNative(0x5744562E973E33CD, albedoHash, Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt(), 0, Citizen.ResultAsInteger())
+    return success == 1, txdHash, txdHash2, txdHash3
 end
 
 ---
@@ -272,9 +264,9 @@ end
 ---@return boolean
 function N_0x383F64263F946E45(object, p1, ped, p3, p4)
     local res
-    local outData = DataView.ArrayBuffer(10*8)
+    local outStruct = DataView.ArrayBuffer(10*8)
 
-    res = Citizen.InvokeNative(0x383F64263F946E45, outData:Buffer(), object, p1, ped, p3, p4) == 1
+    res = Citizen.InvokeNative(0x383F64263F946E45, outStruct:Buffer(), object, p1, ped, p3, p4) == 1
 
     return res
 end
@@ -283,12 +275,9 @@ end
 ---@param entity1 integer
 ---@param p1 integer
 ---@param entity2 integer
----@return retval boolean
----@return unk integer
+---@return boolean success
+---@return integer value
 function N_0x0CCEFC6C2C95DA2A(entity1, p1, entity2)
-    local outData = DataView.ArrayBuffer(1*8)
-    local retval = Citizen.InvokeNative(0x0CCEFC6C2C95DA2A, outData:Buffer(), entity1, p1, entity2, Citizen.ResultAsInteger())
-    local unk = outData:GetInt32(0)
-
-    return retval, unk
+    local success, value = Citizen.InvokeNative(0x0CCEFC6C2C95DA2A, Citizen.PointerValueInt(), entity1, p1, entity2, Citizen.ResultAsInteger())
+    return success == 1, value
 end

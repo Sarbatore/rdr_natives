@@ -7,15 +7,15 @@
 ---@return table scenarioPoints
 function GetScenarioPointsInArea(x, y, z, radius)
     local size = 15
-    local outData = DataView.ArrayBuffer(16*8)
-    outData:SetInt32(0*8, size)
+    local outStruct = DataView.ArrayBuffer(16*8)
+        :SetInt32(0*8, size)
 
-    local success        = Citizen.InvokeNative(0x345EC3B7EBDE1CB5, x, y, z, radius, outData:Buffer(), size) == 1
+    local success        = Citizen.InvokeNative(0x345EC3B7EBDE1CB5, x, y, z, radius, outStruct:Buffer(), size) == 1
     local scenarioPoints = {}
     if (success) then
         local i = 1
-        while (i <= size and DoesScenarioPointExist(outData:GetInt32(i*8)) == 1) do
-            table.insert(scenarioPoints, outData:GetInt32(i*8))
+        while (i <= size and DoesScenarioPointExist(outStruct:GetInt32(i*8)) == 1) do
+            table.insert(scenarioPoints, outStruct:GetInt32(i*8))
             i = i + 1
         end
     end
@@ -184,12 +184,12 @@ end
 ---@return integer numberOfScenarioPoints
 ---@return table scenarioPoints
 function GetLinkedScenarioPoints(scenarioHash, toggle)
-    local outData = DataView.ArrayBuffer(16*8)
+    local outStruct = DataView.ArrayBuffer(16*8)
     
-    local numberOfScenarioPoints = Citizen.InvokeNative(0xE7BBC4E56B989449, scenarioHash, outData:Buffer(), toggle, Citizen.ResultAsInteger())
+    local numberOfScenarioPoints = Citizen.InvokeNative(0xE7BBC4E56B989449, scenarioHash, outStruct:Buffer(), toggle, Citizen.ResultAsInteger())
     local scenarioPoints         = {}
     for i = 0, numberOfScenarioPoints - 1 do
-        table.insert(scenarioPoints, outData:GetInt32(i*8))
+        table.insert(scenarioPoints, outStruct:GetInt32(i*8))
     end
 
     return numberOfScenarioPoints, scenarioPoints
@@ -457,7 +457,7 @@ local function GetTaskMoveNetworkParamsStruct(params)
         paramsStruct:SetInt32(3*8, params[3])
     end
     if (params[4]) then
-        paramsStruct:SetInt64(4*8, VarString(10, "LITERAL_STRING", params[4], Citizen.ResultAsLong()))
+        paramsStruct:SetInt64(4*8, LiteralStringLong(params[4]))
     end
     if (params[5]) then
         paramsStruct:SetFloat32(5*8, params[5])
@@ -469,13 +469,13 @@ local function GetTaskMoveNetworkParamsStruct(params)
         paramsStruct:SetInt32(9*8, params[9])
     end
     if (params[30]) then
-        paramsStruct:SetInt64(30*8, VarString(10, "LITERAL_STRING", params[30], Citizen.ResultAsLong()))
+        paramsStruct:SetInt64(30*8, LiteralStringLong(params[30]))
     end
     if (params[32]) then
-        paramsStruct:SetInt64(32*8, VarString(10, "LITERAL_STRING", params[32], Citizen.ResultAsLong()))
+        paramsStruct:SetInt64(32*8, LiteralStringLong(params[32]))
     end
     if (params[33]) then
-        paramsStruct:SetInt64(33*8, VarString(10, "LITERAL_STRING", params[33], Citizen.ResultAsLong()))
+        paramsStruct:SetInt64(33*8, LiteralStringLong(params[33]))
     end
 
     return paramsStruct
@@ -563,14 +563,14 @@ end
 ---@param duration integer
 ---@param firingPattern integer
 function TaskShootWithWeapon(ped, targetEntity, x, y, z, duration, firingPattern)
-    local data = DataView.ArrayBuffer(16*8)
-    data:SetInt32(0*8, targetEntity)
-    data:SetFloat32(1*8, x)
-    data:SetFloat32(2*8, y)
-    data:SetFloat32(3*8, z)
-    data:SetInt32(4*8, duration)
-    data:SetInt32(5*8, firingPattern)
-    Citizen.InvokeNative(0x08AA95E8298AE772, ped, data:Buffer())
+    local paramsStruct = DataView.ArrayBuffer(16*8)
+        :SetInt32(0*8, targetEntity)
+        :SetFloat32(1*8, x)
+        :SetFloat32(2*8, y)
+        :SetFloat32(3*8, z)
+        :SetInt32(4*8, duration)
+        :SetInt32(5*8, firingPattern)
+    Citizen.InvokeNative(0x08AA95E8298AE772, ped, paramsStruct:Buffer())
 end
 
 ---Returns num of scenario points of propset.
@@ -585,9 +585,9 @@ end
 ---@param ped integer
 ---@return boolean success
 function N_0x643FD1556F621772(ped)
-    local outData1 = DataView.ArrayBuffer(32*8)
-    local outData2 = DataView.ArrayBuffer(32*8)
-    local success = Citizen.InvokeNative(0x643FD1556F621772, ped, outData1:Buffer(), outData2:Buffer()) == 1
+    local outStruct1 = DataView.ArrayBuffer(32*8)
+    local outStruct2 = DataView.ArrayBuffer(32*8)
+    local success = Citizen.InvokeNative(0x643FD1556F621772, ped, outStruct1:Buffer(), outStruct2:Buffer()) == 1
 
     return success
 end
@@ -629,11 +629,11 @@ end
 ---@param p0 integer
 ---@return integer, integer
 function N_0xEFD875C2791EBEFD(p0, p1, p2)
-    local outData = DataView.ArrayBuffer(32*8)
-    outData:SetInt32(0*8, 1)
+    local outStruct = DataView.ArrayBuffer(32*8)
+    outStruct:SetInt32(0*8, 1)
     
-    local num = Citizen.InvokeNative(0xEFD875C2791EBEFD, p0, outData:Buffer(), p1, p2, Citizen.ResultAsInteger())
-    local handle = outData:GetInt32(0*8)
+    local num = Citizen.InvokeNative(0xEFD875C2791EBEFD, p0, outStruct:Buffer(), p1, p2, Citizen.ResultAsInteger())
+    local handle = outStruct:GetInt32(0*8)
 
     return num, handle
 end

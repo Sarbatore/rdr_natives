@@ -238,21 +238,21 @@ end
 ---@param p8 integer
 ---@return DataView.ArrayBuffer
 function GiveWeaponToPedWithOptions(ped, weaponHash, slotIdHash, attachPoint, addReasonHash, p4, p5, forceInHand, forceInHolster, p8)
-    local data = DataView.ArrayBuffer(32*8)
-    data:SetInt32(4*8, weaponHash)
-    data:SetInt32(5*8, slotIdHash)
-    data:SetInt32(6*8, attachPoint)
-    data:SetInt32(7*8, addReasonHash)
-    data:SetFloat32(8*8, p4)
-    data:SetFloat32(9*8, p5)
-    data:SetInt32(11*8, forceInHand and 1 or 0)
-    data:SetInt32(12*8, forceInHolster and 1 or 0)
-    data:SetInt32(14*8, p8)
+    local paramsStruct = DataView.ArrayBuffer(32*8)
+        :SetInt32(4*8, weaponHash)
+        :SetInt32(5*8, slotIdHash)
+        :SetInt32(6*8, attachPoint)
+        :SetInt32(7*8, addReasonHash)
+        :SetFloat32(8*8, p4)
+        :SetFloat32(9*8, p5)
+        :SetInt32(11*8, forceInHand and 1 or 0)
+        :SetInt32(12*8, forceInHolster and 1 or 0)
+        :SetInt32(14*8, p8)
 
-    local outData = DataView.ArrayBuffer(32*8)
-    Citizen.InvokeNative(0xBE7E42B07FD317AC, ped, data:Buffer(), outData:Buffer())
+    local outStruct = DataView.ArrayBuffer(32*8)
+    Citizen.InvokeNative(0xBE7E42B07FD317AC, ped, paramsStruct:Buffer(), outStruct:Buffer())
 
-    return outData
+    return outStruct
 end
 
 ---Returns true if the ped has a sniper-type weapon equipped or stored in the specified attach point

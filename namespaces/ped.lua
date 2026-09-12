@@ -69,11 +69,11 @@ end
 ---@return integer carriedEntity
 ---@return integer takenFromEntity
 function RequestCarryingStateForPed(ped, carryingType, unk3, filter)
-    local outData = DataView.ArrayBuffer(2*8)
+    local outStruct = DataView.ArrayBuffer(2*8)
     
-    local carryingState = Citizen.InvokeNative(0x4642182A298187D0, ped, carryingType, outData:Buffer(), unk3, filter, Citizen.ResultAsInteger())
-    local carriedEntity = outData:GetInt32(0*8)
-    local takenFromEntity = outData:GetInt32(1*8)
+    local carryingState = Citizen.InvokeNative(0x4642182A298187D0, ped, carryingType, outStruct:Buffer(), unk3, filter, Citizen.ResultAsInteger())
+    local carriedEntity = outStruct:GetInt32(0*8)
+    local takenFromEntity = outStruct:GetInt32(1*8)
 
     return carryingState, carriedEntity, takenFromEntity
 end
@@ -85,13 +85,13 @@ end
 ---@return integer numberOfLoots
 ---@return table lootsHash
 function ComputeLootForPedCarcass(modelHash, damageCleanliness, skinningQuality)
-    local outData = DataView.ArrayBuffer(16*8)
-    outData:SetInt32(0*8, 15)
+    local outStruct = DataView.ArrayBuffer(16*8)
+        :SetInt32(0*8, 15)
     
-    local numberOfLoots = Citizen.InvokeNative(0xB29C553BA582D09E, outData:Buffer(), modelHash, damageCleanliness, skinningQuality, Citizen.ResultAsInteger())
+    local numberOfLoots = Citizen.InvokeNative(0xB29C553BA582D09E, outStruct:Buffer(), modelHash, damageCleanliness, skinningQuality, Citizen.ResultAsInteger())
     local lootsHash     = {}
     for i = 1, numberOfLoots do
-        table.insert(lootsHash, outData:GetInt32(i*8))
+        table.insert(lootsHash, outStruct:GetInt32(i*8))
     end
 
     return numberOfLoots, lootsHash
@@ -163,12 +163,12 @@ end
 ---@return integer carryConfigHash
 ---@return integer entity
 function GetCarriedAttachedInfoForSlot(ped, carriableSlot)
-    local outData = DataView.ArrayBuffer(4*8)
+    local outStruct = DataView.ArrayBuffer(4*8)
 
-    local success         = Citizen.InvokeNative(0x608BC6A6AACD5036, outData:Buffer(), ped, carriableSlot, 0) == 1
-    local modelHash       = outData:GetInt32(0*8)
-    local carryConfigHash = outData:GetInt32(1*8)
-    local entity          = outData:GetInt32(3*8)
+    local success         = Citizen.InvokeNative(0x608BC6A6AACD5036, outStruct:Buffer(), ped, carriableSlot, 0) == 1
+    local modelHash       = outStruct:GetInt32(0*8)
+    local carryConfigHash = outStruct:GetInt32(1*8)
+    local entity          = outStruct:GetInt32(3*8)
 
     return success, modelHash, carryConfigHash, entity
 end
@@ -178,14 +178,14 @@ end
 ---@return boolean success
 ---@return table vehicles
 function GetPedNearbyVehicles(ped)
-    local outData = DataView.ArrayBuffer(16*8)
-    outData:SetInt32(0*8, 15)
+    local outStruct = DataView.ArrayBuffer(16*8)
+        :SetInt32(0*8, 15)
 
-    local success  = Citizen.InvokeNative(0xCFF869CBFA210D82, ped, outData:Buffer()) == 1
+    local success  = Citizen.InvokeNative(0xCFF869CBFA210D82, ped, outStruct:Buffer()) == 1
     local vehicles = {}
-    local numberOfVehicles = outData:GetInt32(0*8)
+    local numberOfVehicles = outStruct:GetInt32(0*8)
     for i = 1, numberOfVehicles do
-        table.insert(vehicles, outData:GetInt32(i*8))
+        table.insert(vehicles, outStruct:GetInt32(i*8))
     end
 
     return success, vehicles
@@ -199,15 +199,15 @@ end
 ---@param p3 integer
 ---@return boolean, table
 function GetPedNearbyPeds(ped, size, ignoredPedType, p3)
-    local outData = DataView.ArrayBuffer(16*8)
-    outData:SetInt32(0*8, size or 20)
+    local outStruct = DataView.ArrayBuffer(16*8)
+        :SetInt32(0*8, size or 20)
 
-    local res = Citizen.InvokeNative(0x23F8F5FC7E8C4A6B, ped, outData:Buffer(), ignoredPedType, p3) == 1
-    local numPeds = outData:GetInt32(0*8)
+    local res = Citizen.InvokeNative(0x23F8F5FC7E8C4A6B, ped, outStruct:Buffer(), ignoredPedType, p3) == 1
+    local numPeds = outStruct:GetInt32(0*8)
     local peds = {}
     if (numPeds > 0) then
         for i = 1, numPeds do
-            table.insert(peds, outData:GetInt32(i*8))
+            table.insert(peds, outStruct:GetInt32(i*8))
         end
     end
 
@@ -315,13 +315,13 @@ end
 ---@return integer numberOfPeds
 ---@return table peds
 function CountPedsAwareOfEvent(eventHandle, x, y, z, radius)
-    local outData = DataView.ArrayBuffer(16*8)
-    outData:SetInt32(0*8, 15)
+    local outStruct = DataView.ArrayBuffer(16*8)
+        :SetInt32(0*8, 15)
 
-    local numberOfPeds = Citizen.InvokeNative(0xF4860514AD354226, eventHandle, x, y, z, radius, outData:Buffer(), Citizen.ResultAsInteger())
+    local numberOfPeds = Citizen.InvokeNative(0xF4860514AD354226, eventHandle, x, y, z, radius, outStruct:Buffer(), Citizen.ResultAsInteger())
     local peds         = {}
     for i = 1, numberOfPeds do
-        table.insert(peds, outData:GetInt32(i*8))
+        table.insert(peds, outStruct:GetInt32(i*8))
     end
 
     return numberOfPeds, peds
@@ -329,16 +329,15 @@ end
 
 ---
 ---@param ped integer
----@param coords vector3
+---@param x number
+---@param y number
+---@param z number
 ---@param radius number
 ---@return boolean success
 ---@return vector3
-function N_0xF6A8C4B4A11AE89C(...)
-    local outCoords = DataView.ArrayBuffer(3*8)
-    
-    local success = Citizen.InvokeNative(0xF6A8C4B4A11AE89C, ...) == 1
-
-    return success, vector3(outCoords:GetFloat32(0), outCoords:GetFloat32(8), outCoords:GetFloat32(16))
+function N_0xF6A8C4B4A11AE89C(ped, x, y, z, radius)
+    local success, coords = Citizen.InvokeNative(0xF6A8C4B4A11AE89C, ped, x, y, z, radius, Citizen.PointerValueVector(), Citizen.ResultAsInteger())
+    return success == 1, coords
 end
 
 ---Find peds.
@@ -428,7 +427,7 @@ end
 ---@param ped1 integer
 ---@param ped2 integer
 function N_0x34EDDD59364AD74A(ped1, ped2)
-    local data = DataView.ArrayBuffer(1*8)
-    data:SetInt32(0*8, ped2)
-    Citizen.InvokeNative(0x34EDDD59364AD74A, ped1, data:Buffer())
+    local paramsStruct = DataView.ArrayBuffer(1*8)
+        :SetInt32(0*8, ped2)
+    Citizen.InvokeNative(0x34EDDD59364AD74A, ped1, paramsStruct:Buffer())
 end

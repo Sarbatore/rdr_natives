@@ -8,21 +8,16 @@
 ---@param p6 boolean
 ---@return Buffer
 local function GetSpeechBuffer(speechName, speechRef, speechLine, speechParamHash, pedListener, syncOverNetwork, p6)
-    local struct = DataView.ArrayBuffer(7*8)
-    struct:SetInt64(0*8, VarString(10, "LITERAL_STRING", speechName, Citizen.ResultAsLong()))
-    struct:SetInt64(1*8, VarString(10, "LITERAL_STRING", speechRef, Citizen.ResultAsLong()))
-    struct:SetInt32(2*8, speechLine)
-    struct:SetInt64(3*8, speechParamHash)
-    struct:SetInt32(4*8, pedListener)
-    struct:SetInt32(5*8, syncOverNetwork and 1 or 0)
-    struct:SetInt32(6*8, p6 and 1 or 0)
-
-    return struct:Buffer()
+    local paramsStruct = DataView.ArrayBuffer(7*8)
+        :SetInt64(0*8, LiteralStringLong(speechName))
+        :SetInt64(1*8, LiteralStringLong(speechRef))
+        :SetInt32(2*8, speechLine)
+        :SetInt64(3*8, speechParamHash)
+        :SetInt32(4*8, pedListener)
+        :SetInt32(5*8, syncOverNetwork and 1 or 0)
+        :SetInt32(6*8, p6 and 1 or 0)
+    return paramsStruct:Buffer()
 end
-
---[[
-
-]]
 
 ---Play ambient speech for a ped and return true if successful.
 ---@param ped integer
@@ -33,7 +28,7 @@ end
 ---@param pedListener integer
 ---@param syncOverNetwork boolean
 ---@param p7 boolean
----@return boolean
+---@return boolean success
 function PlayPedAmbientSpeechNative(ped, speechRef, speechName, speechParamHash, speechLine, pedListener, syncOverNetwork, p7)
     local buffer = GetSpeechBuffer(speechName, speechRef, speechLine, speechParamHash, pedListener, syncOverNetwork, p7)
     return Citizen.InvokeNative(0x8E04FEDD28D42462, ped, buffer) == 1
@@ -50,7 +45,7 @@ end
 ---@param pedListener integer
 ---@param syncOverNetwork boolean
 ---@param p9 boolean
----@return boolean
+---@return boolean success
 function PlayAmbientSpeechFromPositionNative(x, y, z, soundRef, soundName,  speechLine, speechParamHash, pedListener, syncOverNetwork, p9)
     local buffer = GetSpeechBuffer(soundName, soundRef, speechLine, speechParamHash, pedListener, syncOverNetwork, p9)
     return Citizen.InvokeNative(0xED640017ED337E45, x, y, z, buffer) == 1
@@ -104,9 +99,9 @@ end
 ---
 ---@param p0 number
 function N_0x7678FE0455ED1145(p0)
-    local data = DataView.ArrayBuffer(1*8)
-    data:SetFloat32(0, p0)
-    local outData = DataView.ArrayBuffer(10*8)
-    local outData2 = DataView.ArrayBuffer(10*8)
-    Citizen.InvokeNative(0x7678FE0455ED1145, outData:Buffer(), data:Buffer(), outData2:Buffer())
+    local paramsStruct = DataView.ArrayBuffer(1*8)
+        :SetFloat32(0, p0)
+    local outStruct1 = DataView.ArrayBuffer(10*8)
+    local outStruct2 = DataView.ArrayBuffer(10*8)
+    Citizen.InvokeNative(0x7678FE0455ED1145, outStruct1:Buffer(), paramsStruct:Buffer(), outStruct2:Buffer())
 end

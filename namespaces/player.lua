@@ -13,15 +13,15 @@ end
 ---@return table peds
 function GetPedsDamagedByPlayerRecently(player, duration)
     local size = 15
-    local outData = DataView.ArrayBuffer(16*8)
-    outData:SetInt32(0*8, size)
+    local outStruct = DataView.ArrayBuffer(16*8)
+        :SetInt32(0*8, size)
 
-    local success = Citizen.InvokeNative(0x1A6E84F13C952094, player, duration, outData:Buffer()) == 1
+    local success = Citizen.InvokeNative(0x1A6E84F13C952094, player, duration, outStruct:Buffer()) == 1
     local peds    = {}
     if (success) then
         local i = 1
-        while (i <= size and DoesEntityExist(outData:GetInt32(i*8))) do
-            table.insert(peds, outData:GetInt32(i*8))
+        while (i <= size and DoesEntityExist(outStruct:GetInt32(i*8))) do
+            table.insert(peds, outStruct:GetInt32(i*8))
             i = i + 1
         end
     end
@@ -295,12 +295,8 @@ end
 ---@return boolean success
 ---@return integer entity
 function GetPlayerFreeAimClosestEntity(player)
-    local outEntity = DataView.ArrayBuffer(1*8)
-
-    local success = Citizen.InvokeNative(0x7AE93C45EC14A166, player, outEntity:Buffer()) == 1
-    local entity  = outEntity:GetInt32(0)
-
-    return success, entity
+    local success, entity = Citizen.InvokeNative(0x7AE93C45EC14A166, player, Citizen.PointerValueInt(), Citizen.ResultAsInteger())
+    return success == 1, entity
 end
 
 ---Retrieves the world position of the player's free aim.
@@ -320,16 +316,16 @@ end
 ---@param p6 number
 ---@param p7 number
 function N_0xCA59808E51FD67C4(player)
-    local paramsData = DataView.ArrayBuffer(6*8)
-    paramsData:SetInt32(0*8, 0)
-    paramsData:SetFloat32(1*8, 0.3)
-    paramsData:SetFloat32(2*8, 1.2)
-    paramsData:SetInt32(3*8, 0)
-    paramsData:SetInt32(4*8, 0)
-    paramsData:SetFloat32(5*8, -1.0)
-    paramsData:SetFloat32(6*8, -1.0)
+    local paramsStruct = DataView.ArrayBuffer(6*8)
+        :SetInt32(0*8, 0)
+        :SetFloat32(1*8, 0.3)
+        :SetFloat32(2*8, 1.2)
+        :SetInt32(3*8, 0)
+        :SetInt32(4*8, 0)
+        :SetFloat32(5*8, -1.0)
+        :SetFloat32(6*8, -1.0)
 
-    Citizen.InvokeNative(0xCA59808E51FD67C4, player, paramsData:Buffer())
+    Citizen.InvokeNative(0xCA59808E51FD67C4, player, paramsStruct:Buffer())
 end
 
 ---

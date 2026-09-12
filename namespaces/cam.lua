@@ -22,19 +22,19 @@ end
 ---@param p9 boolean
 ---@param p10 boolean
 function SetCamDofAndFocalParams(cam, dofStrength, dofNear, dofFar, focalLength, minFocal, maxFocal, enableDof, p8, p9, p10)
-    local inData = DataView.ArrayBuffer(10*8)
-    inData:SetFloat32(0*8, dofStrength)
-    inData:SetFloat32(1*8, dofNear)
-    inData:SetFloat32(2*8, dofFar)
-    inData:SetFloat32(3*8, focalLength)
-    inData:SetFloat32(4*8, minFocal)
-    inData:SetFloat32(5*8, maxFocal)
-    inData:SetInt32(6*8, enableDof and 1 or 0)
-    inData:SetInt32(7*8, p8 and 1 or 0)
-    inData:SetInt32(8*8, p9 and 1 or 0)
-    inData:SetInt32(9*8, p10 and 1 or 0)
+    local paramsStruct = DataView.ArrayBuffer(10*8)
+        :SetFloat32(0*8, dofStrength)
+        :SetFloat32(1*8, dofNear)
+        :SetFloat32(2*8, dofFar)
+        :SetFloat32(3*8, focalLength)
+        :SetFloat32(4*8, minFocal)
+        :SetFloat32(5*8, maxFocal)
+        :SetInt32(6*8, enableDof and 1 or 0)
+        :SetInt32(7*8, p8 and 1 or 0)
+        :SetInt32(8*8, p9 and 1 or 0)
+        :SetInt32(9*8, p10 and 1 or 0)
 
-    Citizen.InvokeNative(0xE4B7945EF4F1BFB2, cam, inData:Buffer())
+    Citizen.InvokeNative(0xE4B7945EF4F1BFB2, cam, paramsStruct:Buffer())
 end
 
 ---Plays a predefined camera shake effect by string name.

@@ -5,12 +5,12 @@ You can reuse functions with exports or by including files.
 # Links
 - [Github](https://github.com/Sarbatore/rdr_natives)
 
-# Usages
+# How to Use
 ## With exports
 myscript/client.lua
 ```lua
 local RDR = exports.rdr_natives
-CreateThread(function()
+RegisterCommand("PlayPedAmbientSpeechNative", function()
     local ped             = PlayerPedId()
     local speechRef       = "0083_U_M_O_BlWGeneralStoreOwner_01"
     local speechName      = "TAKE_YOUR_TIME"
@@ -20,19 +20,19 @@ CreateThread(function()
     local syncOverNetwork = true
     local p7              = true
     RDR:PlayPedAmbientSpeechNative(ped, speechRef, speechName, speechParamHash, speechLine, pedListener, syncOverNetwork, p7)
-end)
+end, false)
 ```
 ## With include
 myscript/fxmanifest.lua
 ```lua
 client_scripts {
-    "@rdr_natives/lib/dataview.lua",
+    "@rdr_natives/lib/dataview.lua", -- rdr_natives depends on DataView
     "@rdr_natives/namespaces/audio.lua",
 }
 ```
 myscript/client.lua
 ```lua
-CreateThread(function()
+RegisterCommand("PlayPedAmbientSpeechNative", function()
     local ped             = PlayerPedId()
     local speechRef       = "0083_U_M_O_BlWGeneralStoreOwner_01"
     local speechName      = "TAKE_YOUR_TIME"
@@ -42,7 +42,7 @@ CreateThread(function()
     local syncOverNetwork = true
     local p7              = true
     PlayPedAmbientSpeechNative(ped, speechRef, speechName, speechParamHash, speechLine, pedListener, syncOverNetwork, p7)
-end)
+end, false)
 ```
 
 ## References:
