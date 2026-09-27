@@ -75,6 +75,7 @@ end, false)
 | `GetCurrentAmbientSpeechHash` | `ped` |
 | `GetLastAmbientSpeechHash` | `ped` |
 | `PlayAmbientSpeechFromPositionNative` | `x, y, z, soundRef, soundName,  speechLine, speechParamHash, pedListener, syncOverNetwork, p9` |
+| `PlayPainWithName` | `ped, painName` |
 | `PlayPedAmbientSpeechNative` | `ped, speechRef, speechName, speechParamHash, speechLine, pedListener, syncOverNetwork, p7` |
 | `PlaySoundFromScriptedSpeech` | `scriptedSpeech` |
 
@@ -346,6 +347,7 @@ end, false)
 | `HidePedReins` | `ped` |
 | `IsPedAfloat` | `ped` |
 | `PlayConditionalAnimWithPropItem` | `ped, targetEntity, propItemId, conditionalAnimName` |
+| `PlayPedFacialOneShotAnim` | `ped, animName` |
 | `RefreshCarriedPedForPed` | `ped, p1, p2` |
 | `RemovePedPropItemConditionalAnim` | `ped, propItemId` |
 | `RequestCarryingStateForPed` | `ped, carryingType, unk3, filter` |

@@ -327,6 +327,13 @@ function CountPedsAwareOfEvent(eventHandle, x, y, z, radius)
     return numberOfPeds, peds
 end
 
+---Plays a one-shot facial animation on a ped.
+---@param ped integer
+---@param animName string e.g: ONESHOTPAIN
+function PlayPedFacialOneShotAnim(ped, animName)
+    Citizen.InvokeNative(0xD2F0FE8805D91647, ped, animName)
+end
+
 ---
 ---@param ped integer
 ---@param x number

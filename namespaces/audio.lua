@@ -96,6 +96,13 @@ function PlaySoundFromScriptedSpeech(scriptedSpeech)
     Citizen.InvokeNative(0xB18FEC133C7C6C69, scriptedSpeech)
 end
 
+---Forces a ped to play a named pain vocalization.
+---@param ped integer
+---@param painName string e.g: PAIN_LOW
+function PlayPainWithName(ped, painName)
+    Citizen.InvokeNative(0xA6847BBA4FCDD13F, ped, painName)
+end
+
 ---
 ---@param p0 number
 function N_0x7678FE0455ED1145(p0)
